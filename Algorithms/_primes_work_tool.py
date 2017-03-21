@@ -99,7 +99,7 @@ def prime_sieve(n):       # FOURTH      o(^_^)o
     return [2] + [i for i in range(3, n , 2) if sieve[i] ]
 
 def prime_sieve_generator(lower, upper):      #FIFTH FASTEST
-    """  Sieve of Eratosthenes              !!!!!!!!! THE FASTEST SIEVE. It won the battle with sieve
+    """  Sieve of Eratosthenes
     Create a candidate list within which non-primes will be marked as None.         """
     cand = [i for i in range(3, upper + 1, 2)]
     end = int(upper ** 0.5) // 2
@@ -115,7 +115,7 @@ def prime_sieve_generator(lower, upper):      #FIFTH FASTEST
 
 
 
-def sieve_2(lower, upper_bound):          # FIFTH
+def sieve_2(lower, upper_bound):          # SIXTH
     ''':Description:        SIEVE OF ERATOSTHENES ALGORITHM  , SECOND FASTEST
     :param:      :lower: = lower_integer including
                      :upper_bound: = upper integer excluding
@@ -135,7 +135,7 @@ def sieve_2(lower, upper_bound):          # FIFTH
 print(sieve_2(11900, 12000))
 
 
-def primes_up_to(n):            #### SIXTH
+def primes_up_to(n):            #### SEVENTH
     ''' SIEVE of ERATOSTHENES :  PRIME GENERATOR algorithms
         # http://code.activestate.com/recipes/576640/ '''
     import math
@@ -179,7 +179,7 @@ print('\n' ,' primes generated in :', round((t2-t1)*1000,4), 'ms\n')
 t1  = time.time()
 
 from itertools import filterfalse
-def Eratosthène_sieve(N) :
+def Eratosthène_sieve(N) :              ### @2017-03-21 - Not yet tested but IS SLOW !!!
     ## -- Crible d'Eratosthène jusqu'à N ------------------
     vPrime = list(range(N + 1))
     vPrime[1] = 0
@@ -608,7 +608,7 @@ def pair_Factors(n):        # VERY EFFICIENT !!!! SUPER INTELLIGENT ALGORITHM
             i += 1
     return combis
 
-def pair_Factors_rec(n):
+def pair_Factors_rec(n):        # Recursive Pair Factoring, Just a little bit more slow
     def factor(n, i, combi, combis):
         while i * i <= n:
             if n % i == 0:

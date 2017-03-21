@@ -86,8 +86,6 @@ for i in range(0,1): #range(len(B)) :
 
 print('\n\nFinal Res : \t', Z - sum(N),'    ' ,len( str( Z - sum(N)) )   )
 
-print('\n================  My FIRST SOLUTION,   ===============\n')
-t1  = time.time()
 
 print('\n---------------- MORE TESTS ON THE CONCEPT ----------------')
 
@@ -105,6 +103,8 @@ print('\n 00 : \t\t', itr    )
 
 
 
+print('\n================  My FIRST SOLUTION,   ===============\n')
+t1  = time.time()
 
 
 

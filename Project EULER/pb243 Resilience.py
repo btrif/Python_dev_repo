@@ -147,13 +147,13 @@ print('\n--------------------------SOLUTION 1,   --------------------------')
 t1  = time.time()
 
 
-About 0.3 ms in Python.
-I use the same ideas as many here, noting that R(d)=ϕ(n)/n−1≈ϕ(n)/n for large n,
-and so is a function only of the prime factors of n, independent of the exponents of those factors.
-The denominator will be minimised if n is a primorial.
-Thus we look for the smallest primorial number for which ϕ(n)n<15499/94744
-and then multiply that successively by 2 until ϕ(n)/n−1<15499/94744,
-knowing that in doing so we will not change the value of ϕ(n)/n.
+# About 0.3 ms in Python.
+# I use the same ideas as many here, noting that R(d)=ϕ(n)/n−1≈ϕ(n)/n for large n,
+# and so is a function only of the prime factors of n, independent of the exponents of those factors.
+# The denominator will be minimised if n is a primorial.
+# Thus we look for the smallest primorial number for which ϕ(n)n<15499/94744
+# and then multiply that successively by 2 until ϕ(n)/n−1<15499/94744,
+# knowing that in doing so we will not change the value of ϕ(n)/n.
 
 
 import time

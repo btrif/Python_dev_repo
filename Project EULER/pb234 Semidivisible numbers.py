@@ -46,6 +46,7 @@ t1  = time.time()
 
 UP_NR = 999966663333
 print('Square root of UP_NR : \t', math.sqrt(UP_NR),'\n'  )     # 1 milion is affordable :) !
+
 So we need a sieve up to 10**6, EASY PROBLEM !!!!
 
 

@@ -1,3 +1,5 @@
+# Module dedicated to songs :)
+
 def melody():
 
     import winsound;

@@ -333,7 +333,7 @@ print('\nCompleted in :', round((t2-t1),6), 's\n\n')
 
 # 2017-03-19 - I need to improve the algorithm. I'm not even close !
 # http://www.andrewewhite.net/wordpress/2010/05/07/finding-integer-triangles-ratios/    !!!!!!!!!!!
-# @ I miss one triangle with the above algorithm
+# @2017-03-19  -  I miss one triangle with the above algorithm for the ratio 1 -- Need to really analyze all the steps AGAIN !!!!!
 
 # print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
 # print('\n--------------------------SOLUTION 1,   --------------------------')

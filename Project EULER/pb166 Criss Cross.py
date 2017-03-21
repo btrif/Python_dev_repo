@@ -326,7 +326,8 @@ t1  = time.time()
 
 # ==== Thu, 20 Aug 2015, 10:57, bukebuer, China
 #
-# By using Gauss-Jordan elimination algorithm, I reduced the initial 9 equations with 16 variables to 7 independent variables and 9 dependent variables. (It reminds me the difficult days when taking linear algebra in university.)
+# By using Gauss-Jordan elimination algorithm, I reduced the initial 9 equations with 16 variables to 7 independent variables
+# and 9 dependent variables. (It reminds me the difficult days when taking linear algebra in university.)
 #
 # a, b, c, d
 # e, f, g, h
@@ -524,7 +525,7 @@ print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 print('\n--------------------------SOLUTION 6, 12 sec  --------------------------')
 t1  = time.time()
 
-==== Tue, 16 Feb 2010, 16:33, Obergscheidle, AWK  , Luxemburg
+# ==== Tue, 16 Feb 2010, 16:33, Obergscheidle, AWK  , Luxemburg
 
 # Slightly optimized brute-force, based on the following consideration:
 # * The outer cells of one diagonal have the same sum as the inner cells of the other diagonal

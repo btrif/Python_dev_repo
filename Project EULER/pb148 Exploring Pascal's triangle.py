@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Solved by Bogdan Trif @
+# Solved by Bogdan Trif @       Completed on Mon, 20 Mar 2017, 21:02
 #The  Euler Project  https://projecteuler.net
 '''
                         Exploring Pascal's triangle     -       Problem 148
@@ -238,9 +238,6 @@ def non_sevens_firs(rows ) :        # Not Finished !!!!
     return print('\nTotal Sum: ', int(Suma))
 
 
-
-
-
 print('--------  Testing the manual and the automatic functions  --------\n')
 
 def automated_test():
@@ -268,10 +265,10 @@ print('----------------\n')
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n================  My FIRST SOLUTION,   VERY FAST, 0 ms  ===============\n')
+print('\n================  My FIRST SOLUTION,    FASTEST Algorithm , 0 ms  ===============\n')
 t1  = time.time()
 
-# It seems that my algorithm is the fastest from the Euler site. I use only length of number iterations
+# It seems that my algorithm is the fastest from the Euler site. I use only length of the number iterations
 
 res = non_sevens(10**100)
 print('\nAnswer : \t', res )            #   Answer : 	 2129970655314432
@@ -286,7 +283,7 @@ print('\n--------------------------SOLUTION 1,  SIERPINSKi  TRIANGLE  ----------
 t1  = time.time()
 
 # === Fri, 23 Dec 2016, 09:10, mbh038, England
-# Less than 0.1 ms in Python (and less than 0.2 ms for 10451045 rows), without using recursion.
+# Less than 0.1 ms in Python (and less than 0.2 ms for 10**451045 rows), without using recursion.
 # I really enjoyed this. By using brute force Python code on small row numbers, and this function in Mathematica
 # http://www.oftenpaper.net/sierpinski.htm
 # (based on one I found here) to draw a Sierpinski triangle mod m, I pieced together the way this works.
@@ -383,7 +380,7 @@ main(10**9)
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n-------------SOLUTION 3, THE RECURSION which I wanted to implement in the first place, BRAVO Khalid !!!  ----------')
+print('\n-------------SOLUTION 3, THE RECURSION similar to what I wanted to implement in the first place, BRAVO Khalid !!!  ----------')
 t1  = time.time()
 
 # ==== Sat, 10 Dec 2016, 21:11, Khalid, Saudi Arabia
@@ -419,28 +416,334 @@ print (calc_triangle_partial(7, 10**9))
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n--------------------------SOLUTION 4,   --------------------------')
+print('\n--------------------------SOLUTION 4, Sierpinsky, Similar to mine  --------------------------')
 t1  = time.time()
 
+# ===== Mon, 3 Oct 2016, 05:35, Sandamnit, USA
+# Noticed the Sierpinski Triangle pattern after drawing it out by hand for p=2,
+# after which it was a matter of just writing out 10**9 in base-7 and getting to work.
+# There's certainly a more elegant way of doing this (as pointed out with the carries method) ' \
+#      'but this runs in about 44ms on my machine, so I'm fairly pleased with it.
+
+N = 10**9
+k, p = 0, 7
+factor = p*(p+1)//2
+
+pows = []
+while True:
+   value = p**k
+   if value > N: break
+   pows = [value] + pows
+   k += 1
+
+coeffs = []
+for k in range(len(pows)):
+   coeffs += [N//pows[k]]
+   N -= pows[k]*coeffs[-1]
+
+total = 0
+mult = 1
+for k in range(len(pows)):
+   e = len(pows)-k-1
+   total += mult * factor**e * coeffs[k]*(coeffs[k]+1)//2
+   mult *= (coeffs[k]+1)
+
+print(total)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------------------SOLUTION 5, RECURSION  --------------------------')
+t1  = time.time()
+
+# ==== Tue, 12 Jan 2016, 10:35, spacewolf009, Australia
+# Identified the pattern, used simple recursion for the result.
+
+def pascals_triangle(rows, base=1, mod=7):
+    counter = 0
+    if rows <= mod:
+        for y in range(rows):
+            row = []
+            for x in range(y + 1):
+                n = (base if x == 0 or x == y else (prev[x-1] + prev[x])) % mod
+                row.append(n)
+                if n != 0:
+                    counter += 1
+            prev = row
+    else:
+        top = pascals_triangle(mod, 1, mod)
+        i, r, size = 1, 0, mod
+        while r + size < rows:
+            counter += i * top
+            r += size
+            i += 1
+            if i == mod + 1:
+                i, top = 2, counter
+                size *= mod
+        counter += i * pascals_triangle(rows - r, 1, mod)
+    return counter
+
+print (pascals_triangle(10**9))
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n------------------ SOLUTION 6, VERY Interest Approach , RECURSION  ----------------------')
+t1  = time.time()
+
+# ====Sun, 22 May 2016, 04:19, azax1, USA
+# Think about the rows of Pascal's triangle modulo 7. The first 7 rows are as given in the problem '
+# (or at least, after you take them mod 7 they are); the 7th row collapses into 1,0,0,0,0,0,0,1.
+# The original 11 in the n=0n=0 row seeded a tree of numbers 7∗82/28=28 large not divisible by 7,
+# so each of the ones on either end of this new row is also the root of a new tree.
+# ....
+
+def f(n):
+    if len(n) == 1:
+        return (int(n) + 1) * (int(n) + 2) / 2
+    v = int(n[0])
+    return ((v * (v + 1)) / 2) * 28**(len(n) - 1) + (v + 1) * f(n[1:])
+
+count = f("33531600615")            # 10^9 - 1 in base 7
+
+print (count)
 
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n--------------------------SOLUTION 5,   --------------------------')
+
+print('\n--------------------------SOLUTION 7,  Nice RECURSION  --------------------------')
 t1  = time.time()
 
+# ===Mon, 20 Jun 2016, 21:57, poposon
+# Awesome problem. Found pattern by printing the first ~70 rows.
+# Next was writing a recurrence relation to solve it in a divide-and-conquer fashion.
+
+from math import log
+
+def S(n):
+    """ Sum of natural numbers up to and including n. """
+    return n*(n+1)//2
+
+def V(z, p):
+    """
+    Calculates number of non-divisible numbers in the triangle up to and
+    including row z*7**p.
+
+    Input:
+        p: an exponent of 7
+        z: coefficient, 1 < z < 7
+
+    From pattern inspection we know,
+        V(1)  = S(1) = 1
+        V(7)  = S(7) = 28
+        V(49) = 28*V(7) = 28**2
+    So we can induce:
+        V(7**n) = 28 * V(7**(n-1))
+                = 28**n
+
+    Furthermore we know that for any integer constant 1 < z < 7, the expression
+        V(z * 7**n) = S(z) * V(7**n)
+    is true (can be induced from pattern).
+    """
+    return S(z)*28**p
+
+
+def solve(n):
+    """
+    Strategy
+
+    With V, one can calculate the number non-divisible numbers in the
+    triangle easily, for powers of 7 multiplied by a coefficient. Let's call
+    such a number c.
+
+    Find the largest c that fits within the questioned size, add V(c) to the
+    result, and recurse for the remaining part r = n - c.
+
+    If we hit the bottom and there are no whole triangles left, calculate
+    partial values, which are simply S(n).
+    """
+
+    # calculate largest 7**p that fits in n.
+    p = int(log(n, 7))
+
+    # calculate largest coefficient z such that z*7**p < n
+    z = n//7**p
+    c = z*7**p
+
+    r = n - c  # the remaining part
+
+    # we don't have whole triangles left, only partial ones.
+    if p <= 0:
+        return S(n)
+
+    ans = V(z, p)
+    ans += solve(r) * (z+1) # The remaining part has one extra triangle.
+
+    return ans
+
+
+t = 1000000000
+print (solve(t))
 
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
-# print('\n--------------------------SOLUTION 6,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
+print('\n--------------------------SOLUTION 8,   --------------------------')
+t1  = time.time()
+
+# === Tue, 10 Jun 2014, 02:28, muffoosta
+# I first though I had a nice solution by simply multiplying the digits (+1) of the row number in base 7.
+# But luckily the upper bound of the problem forced me to make a better solution, runs instantly.
+
+t, m, b, l = 0, 1, 7, 10 ** 100
+for d in range(int(log(l) / log(b)), -1, -1):
+    i = l // (b ** d)
+    t += ((b * (b + 1) // 2) ** d) * i * (i + 1) // 2 * m
+    l -= i * (b ** d)
+    m *= i + 1
+print(t)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 9,  very short --------------------------')
+t1  = time.time()
+
+
+n, c, r = 10 ** 9, 0, 0
+while n:
+  d = n % 7
+  r = ((d * (d + 1)) >> 1) * 28 ** c + (d + 1) * r
+  c += 1
+  n //= 7
+print (r)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 10,   --------------------------')
+t1  = time.time()
+
+# ==== Mon, 1 Jul 2013, 08:11, rendon, Mexico
+# I've formulated a recursive function from the observed pattern in the first 1000 rows.
+
+def notdiv7(rows):
+  if rows <= 6:
+    return rows * (rows + 1) / 2
+  power = 1
+  while power * 7 <= rows:
+    power *= 7
+  n = 1
+  while (power * (n + 1)) <= rows:
+    n += 1
+  tr = n * (n + 1) // 2
+  ans = tr * notdiv7(power - 1) + tr * power
+  ans += (n + 1) * notdiv7(rows - power * n)
+  return ans
+
+print (notdiv7(10**9))
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 11,  Interesting --------------------------')
+t1  = time.time()
+
+def change_base(n, p=7):
+    """ Returns a list with the coeficients of 'n' in base 'p' """
+    l = []
+    while n != 0:
+        l.append(n % p)
+        n //= p
+    l.reverse()
+    return l
+
+def G(l, p=7):
+    """ Calculates the number of elements in the Pascal
+        Triangle not multiple to 'p' until the 'l' line. """
+    k = len(l)
+    if k == 0:
+        return 0
+    k -= 1
+    a = l[0]
+    return (p*(p+1)//2)**k * a*(a + 1) // 2 + (a + 1) * G(l[1:], p)
+
+print(G(change_base(10**9)))
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 12, RECURSION  --------------------------')
+t1  = time.time()
+
+def triangle(n):
+    if n < 7:
+        return n*(n + 1)//2
+    if n//7 < 7:
+        return 14*(n//7)*(n//7 + 1)
+    else:
+        return 28*triangle(n//7)
+
+
+def main(rows):
+    non_divisible = 0
+    numtriangles = 1
+    remaining = rows
+    k = 7
+    while k <= rows:
+        k *= 7
+    while remaining > 0:
+        non_divisible += numtriangles * triangle(remaining)
+        while k > remaining:
+            k = k // 7
+        numtriangles *= (1 + remaining // k)
+        remaining -= k * (remaining // k)
+    return non_divisible
+
+print(main(10**9))
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 13, RECURSION  --------------------------')
+t1  = time.time()
+
+# === Mon, 6 May 2013, 08:56, jbum, USA
+# I visualized it first in Processing, and saw the Sierpinski triangle.  Then produced this code to fill it.
+
+from math import ceil,log
+
+def countTri(rows):
+  p = int(ceil(log(rows)/log(7)))
+  # print( " >",p,rows)
+  tot = 0
+  if p == 1:
+    return 28 if rows > 28 else rows*(rows+1)//2
+  else:
+    lo = 0
+    p7 = 7**(p-1)
+    for n in range(1,8):
+      if rows > p7*n:
+        tot += n*28**(p-1)
+        lo = p7*n
+      else:
+        tot += n*countTri(rows-lo)
+        break
+  return tot
+
+print (countTri(10**9))
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+

@@ -82,7 +82,7 @@ t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
-print('\n================  My FIRST SOLUTION,   ===============\n')
+print('\n================  My FIRST SOLUTION, ELEGANT  ===============\n')
 t1  = time.time()
 
 def binary_search() :       # Elegant solution Using binary Search  !!!!

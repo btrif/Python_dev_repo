@@ -188,7 +188,7 @@ first_solution_pb500(100)                              # Answer : 	 35407281
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1),6), 's\n\n')            #   Completed in : 580.514204 s
 
-print('\n================  My SECOND SOLUTION,   < 1 sec  ===============\n')
+print('\n================  My SECOND SOLUTION, VERY FAST , < 1 sec  ===============\n')
 t1  = time.time()
 
 

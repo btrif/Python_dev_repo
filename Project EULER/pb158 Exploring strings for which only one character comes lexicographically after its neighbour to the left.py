@@ -82,7 +82,7 @@ test_valid_permutations('abcdef')
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n================  My FIRST SOLUTION,   ===============\n')
+print('\n================  My FIRST SOLUTION,  VERY FAST  ===============\n')
 t1  = time.time()
 
 
@@ -105,8 +105,8 @@ t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 #### OTHER IDEAS ########
-https://en.wikipedia.org/wiki/Eulerian_number
-EULERIAN NUMBER
+# https://en.wikipedia.org/wiki/Eulerian_number
+# EULERIAN NUMBER
 
 print('\n================  My SECOND SOLUTION,   ===============\n')
 t1  = time.time()

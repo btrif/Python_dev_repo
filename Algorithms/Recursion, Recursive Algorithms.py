@@ -41,10 +41,9 @@ print(factorial(12))
 print('\n----------------  RECURSION FUNCTION for base**power  :       --------------------')
 
 def recursionPower(base=3, exp=6):
-    '''
-    base: int or float.    exp: int >= 0
-    returns: int or float, base^exp
-    '''
+    '''         **©** Made by Bogdan Trif in 2017-02-20
+                :base: int or float.    exp: int >= 0
+        :returns: int or float, base^exp     '''
     if exp == 1 : return base
     else :
         return (base * recursionPower(base, exp-1))
@@ -65,7 +64,7 @@ def cmmdc(a, b):
 print(cmmdc(1445, 3005))
 
 ########################################
-print('\n ------------------- Fibonacci Recursion Function, HIGHLY INEFFICIENT for Fibonacci ------------------------')
+print('\n --------- Fibonacci Recursion Function, HIGHLY INEFFICIENT for Fibonacci without Memoization ----------------')
 
 def Fib_rec(n):     # Fibonacci Recursion
     if ( n == 1 or n == 0 )  :
@@ -224,3 +223,68 @@ def dragonpos(n) :
 
 
 print(dragonpos(5))
+
+print('\n------RECURSION - Sierpinski Fractal, find all the numbers of a Pascal Triangles NON Divisible by 7 ------------')
+
+from math import log
+
+def S(n):
+    """ Sum of natural numbers up to and including n. """
+    return n*(n+1)//2
+
+def V(z, p):
+    """
+    Calculates number of non-divisible numbers in the triangle up to and
+    including row z*7**p.
+
+    Input:
+        p: an exponent of 7
+        z: coefficient, 1 < z < 7
+
+    From pattern inspection we know,
+        V(1)  = S(1) = 1
+        V(7)  = S(7) = 28
+        V(49) = 28*V(7) = 28**2
+    So we can induce:
+        V(7**n) = 28 * V(7**(n-1))
+                = 28**n
+
+    Furthermore we know that for any integer constant 1 < z < 7, the expression
+        V(z * 7**n) = S(z) * V(7**n)
+    is true (can be induced from pattern).
+    """
+    return S(z)*28**p
+
+
+def solve(n):
+    """
+    Strategy
+
+    With V, one can calculate the number non-divisible numbers in the
+    triangle easily, for powers of 7 multiplied by a coefficient. Let's call
+    such a number c.
+
+    Find the largest c that fits within the questioned size, add V(c) to the
+    result, and recurse for the remaining part r = n - c.
+
+    If we hit the bottom and there are no whole triangles left, calculate
+    partial values, which are simply S(n).
+    """
+
+    # calculate largest 7**p that fits in n.
+    p = int(log(n, 7))
+
+    # calculate largest coefficient z such that z*7**p < n
+    z = n//7**p
+    c = z*7**p
+
+    r = n - c  # the remaining part
+
+    # we don't have whole triangles left, only partial ones.
+    if p <= 0:
+        return S(n)
+
+    ans = V(z, p)
+    ans += solve(r) * (z+1) # The remaining part has one extra triangle.
+
+    return ans
