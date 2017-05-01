@@ -35,7 +35,7 @@ def brute_force( u ,up_lim) :
                 if c > b :
                     if a+b+c <= up_lim :
                         cnt+=1
-                        print(str(cnt)+'.      ', a, b, c,'     ', a+b+c,'         ',b/a)
+                        print(str(cnt)+'.      a = ', a, '    b=' ,  b, '     c=',c,'     ', a+b+c,'         ',b/a ,'   a**2-1=', a**2-1)
                         if b/a > ba_max :
                             ba_max = b/a
 
@@ -74,6 +74,12 @@ t1  = time.time()
 #                 print(str(cnt)+'.      ', a, b, c,'     ', a+b+c  , '        ', get_factors(a),'    ' ,get_factors(b),'    ' ,get_factors(c)      )
 #
 # print('\nAnswer : \t',  cnt )
+
+#
+# for a in range(1, 1000) :
+#     ccbb = a*a -1
+
+@2017-03-28 - I left here, I must use the a**2 -1 decomposition
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1),6), 's\n\n')

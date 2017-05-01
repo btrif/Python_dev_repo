@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Solved by Bogdan Trif @
+# Solved by Bogdan Trif @   Completed on Tue, 7 Mar 2017, 22:00
 #The  Euler Project  https://projecteuler.net
 '''
                                                     Number Rotations        -       Problem 168
@@ -439,4 +439,5 @@ print(val % 100000)
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
 

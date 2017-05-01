@@ -200,7 +200,7 @@ def permutations_wor(elements): # permutations without repetitions
 
 
 print('\n-------------- PERMUTATION CALCULATION FORMULA OF A LIST -------------------')
-# The formula is P(total_elem_nr) / [ P(elem_1) *P(elem_2) * ...* Perm(elem_n) ]
+# The formula is Perm(total_elem_nr) / [ Perm(elem_1) *Perm(elem_2) * ...* Perm(elem_n) ]
 
 lst =   [1, 1, 1, 1, 2, 2, 3]
 lst = lst*3
@@ -208,7 +208,7 @@ print(lst)
 
 def calc_perm(lst) :        ### o(^_^)o    o(^_^)o  ###
     '''     **©** Made by Bogdan Trif @ 2016-12-16, 1150.
-
+         The formula is Perm(total_elem_nr) / [ Perm(elem_1) *Perm(elem_2) * ...* Perm(elem_n) ]
         :Description:    Calculates the number of unique permutations of a list.
         :param lst: list
         :return: int, number of permutations                    '''
@@ -220,9 +220,11 @@ def calc_perm(lst) :        ### o(^_^)o    o(^_^)o  ###
     for i in set(lst): elem_nr.append(lst.count(i))
     numerator = factorial(sum(elem_nr))
     denominator =  reduce(mul, [factorial(i) for i in elem_nr] )
+    print([factorial(i) for i in elem_nr] )
     return numerator // denominator
 
 print('\nThe Permutation Function calc_perm :\t',calc_perm(lst))
+print('\nThe Permutation Function calc_perm :\t',calc_perm([1,2,3,4]))
 
 
 print('\n------------------- Permutation of a string ---------------------')

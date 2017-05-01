@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Solved by Bogdan Trif @
+# Solved by Bogdan Trif @       Completed on Sun, 19 Mar 2017, 10:44
 #The  Euler Project  https://projecteuler.net
 '''
 Investigating progressive numbers, n, which are also square         -       Problem 141
@@ -294,21 +294,69 @@ def second_solution( lim ):
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)/60, 6), 'min\n\n')
 
+##### IDEAS #############
+# ===== Sun, 4 Jan 2015, 04:10, dawghaus, USA
+# n=dq+r
+#
+# Since r is the remainder we have r<d and, without loss of generality, we can assume d<q; that is, r<d<qr
+# When I used the common ratio as drdr to get n=d(d**2/r)+r=(d**3/r)+r, the r in the denominator caused me a lot of grief.
+# I decided to let the common ratio be represented by ab,GCD(a,b)=1.
+#
+# That leads to :
+#       r=r
+#       d=ar/b
+#       q=a**2r/b**2
+#
+# Since GCD(a,b)=1 the equation for q tells us b**2|r and there exists an integer cc such that cb2=rc
+#
+# That gives,
+#       d=abc
+#       q=a**2c
+#       n=a**3bc**2+cb**2 with GCD(a,b)=1,a>b,c≥1
+#
+# Since n<10**12,a<10**4, which provides a nice bound on a.
+#
+# On edit:  I notice 10^12 doesn't display properly.  How does one display a multi-digit exponent?
+# On second edit:  Figured out how to display multi-digit exponents - uses braces; for example 10^{12}
+
 
 print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
-print('\n--------------------------SOLUTION 1,   --------------------------')
+print('\n--------------------------SOLUTION 1, 28 sec  --------------------------')
 t1  = time.time()
 
+# ==== Mon, 11 May 2015, 06:49 , squidaction, USA
+# Here's my python code which ran in 24 seconds. Same basic algorithm as many of the others
 
+from math import *
+from math import gcd
+
+def solution_1():
+    MAX = 1e12
+
+    sum = 0
+    for a in range(1,floor(MAX**(1/3))):
+         a3 = a**3
+         for c in range(1, floor(sqrt(MAX/a3))):
+            for b in range(1,a):
+                    if gcd(a,b) > 1: continue
+                    N = c*b*(c*a3+b)
+                    if N > MAX: break
+                    n = sqrt(N)
+                    if floor(n) == n:
+                            sum += N
+
+    return print(sum)
+
+# solution_1()
 
 t2  = time.time()
-print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+print('\nCompleted in :', round((t2-t1),6), 's\n\n')
 
-print('\n--------------------------SOLUTION 2,   --------------------------')
+print('\n--------------------------SOLUTION 2,  6 sec --------------------------')
 t1  = time.time()
 
 # === Tue, 14 Jul 2015, 05:32, bukebuer, China
-# Reached n=k3t(c3+t)=m2n=k3t(c3+t)=m2 as most people.
+# Reached n=k**3*t ( c**3 + t) =m**2 as most people.
 # Then using brute search, while having some generator techniques to accelerate the code.
 
 import math
@@ -318,7 +366,7 @@ def f(k, t, c):
     return k*k*k * t * (c*c*c + t)
 
 def ep141():
-    N = 1000000000000
+    N = 1e12
     s = set([])
     for k in takewhile(lambda k: f(k, 1, k+1) < N, count(1)):
         for t in takewhile(lambda t: f(k, t, t*k+1) < N, count(1)):
@@ -327,32 +375,136 @@ def ep141():
                 if n in s:
                     continue
                 sn = int(math.sqrt(n))
-                if sn*sn == n:
+                if sn*sn == n :
                     print (k*k*k*t*t, k*c*c, n)
                     s.add(n)
-    return sum(s)
+    return print('\nAnswer : \t',sum(s))
 
-ep141()
+# ep141()
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n--------------------------SOLUTION 3,   --------------------------')
+print('\n--------------------------SOLUTION 3,  3 sec,  inamori --------------------------')
 t1  = time.time()
 
+# ==== Sat, 28 Apr 2012, 14:36, inamori, Japan
+
+from itertools import *
+from math import sqrt
+from fractions import gcd
+import time
+
+def div_pow(n, d):
+    e = 0
+    while n % d == 0:
+        e += 1
+        n /= d
+    return e, n
+
+def is_square(n):
+    m = int(sqrt(n))
+    return m * m == n
+
+def has_square(n):
+    squares = takewhile(lambda s: s <= n, (k * k for k in count(2)))
+    return any(n % s == 0 for s in squares)
+
+def divide_square_and_not(n, p0 = 2):
+    if n == 1:
+        return 1, 1
+    else:
+        for p in takewhile(lambda p: p * p <= n, count(p0)):
+            if n % p == 0:
+                e, m = div_pow(n, p)
+                s, t = divide_square_and_not(m, p + 1)
+                return p ** (e / 2) * s, p ** (e % 2) * t
+        else:
+            return 1, n
+
+def f(t, p, u):
+    return p * t ** 3 * (u ** 3 + p)
+
+# solutions of am^2 = bu^3 + c (m <= M, u >= U)
+def g(a, b, c, U, M):
+    def gcd2(a, c):
+        d = gcd(a, c)
+        s, t = divide_square_and_not(d)
+        return s * t
+
+    def g2(a, b, c, U, M):
+        for u in takewhile(lambda u: b * u ** 3 + c <= a * M, count(U)):
+            rhs = b * u ** 3 + c
+            if rhs % a == 0 and is_square(rhs / a):
+                yield int(sqrt(rhs / a)), u
+
+    d1 = gcd(a, b)
+    d = gcd(d1, c)
+    if d > 1:
+        return g(a / d, b / d, c / d, U, M)
+
+    if d1 > 1:
+        return ()
+
+    d2 = gcd2(a, c)
+    if d2 > 1:
+        return ((m, u * d2) for m, u in
+                    g(a / d2, b * d2 * d2, c / d2, U / d2, M))
+
+    d3 = gcd2(b, c)
+    if d3 > 1:
+        return ((m * d3, u) for m, u in g(a * d3, b / d3, c / d3, U, M / d3 ** 2))
+
+    return g2(a, b, c, U, M)
+
+def gen_progressive_perfect_squares(N):
+    for t in takewhile(lambda t: f(t, 1, t + 1) < N, count(1)):
+        if has_square(t): continue
+        for p in takewhile(lambda p: f(t, p, p * t + 1) < N, count(1)):
+            for m, u in g(1, p * t ** 3, p * p * t ** 3, p * t + 1, N):
+                if t * p < u:
+                    print ( t, p, m, u, m * m )
+                    yield m * m
+
+
+N = 10 ** 12
+# print (sum(set(gen_progressive_perfect_squares(N))))
 
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-# print('\n--------------------------SOLUTION 4,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
+print('\n--------------------------SOLUTION 4,  15 sec --------------------------')
+t1  = time.time()
+
+# ==== Mon, 4 Mar 2013, 12:28, tom.wheldon, England
+# Same analysis as quite a few others.
+
+def solution_4():
+    limit = int(1e12)
+    squares = {n*n for n in range(1000000)}
+
+    ans = 0
+    for s in range(2,10001):
+        sc = s**3
+        for t in range(1,s):
+            if t*sc + t*t >= limit:
+                break
+            if gcd(s,t) > 1:
+                continue
+            for k in range(1, 400000):
+                n = k*k*sc*t + k*t*t
+                if n >= limit:
+                    break
+                if n in squares:
+                    ans += n
+    return print(ans)
+
+# solution_4()
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
 # print('\n--------------------------SOLUTION 5,   --------------------------')
 # t1  = time.time()
 #

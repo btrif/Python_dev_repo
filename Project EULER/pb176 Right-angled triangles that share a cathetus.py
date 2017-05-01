@@ -53,7 +53,14 @@ def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
 
 
 
+@2017-03-23 - get_factors(47547) =  [3, 3, 3, 3, 587]
+we need to find the smallest triangles with 3, 3, 3, 3 shared cathetus and find the largest with 587 cathetus
+We then must multiply all these to obtain the desired trainagle !!
 
+@2017-04-29 - Actually we need to find a x which in combinations with other numbers y smaller or bigger than x
+=> x**2 + y**2 is a perfect square.  In the example given :
+(9,12,15), (12,16,20), (5,12,13) and (12,35,37) => x=12 form with 4 different y's perfect squares
+in this case the range of y's is :   9 <= y <= 35
 
 
 print('\n--------------------------TESTS------------------------------')

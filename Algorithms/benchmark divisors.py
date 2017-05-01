@@ -1,40 +1,53 @@
 import time
 
 
+def get_divisors_2(n):       ### o(^_^)o  #  More powerfull for numbers > 10**10
+    ''' first it decomposes the number in prime factors , then makes combinations of all the factors
+    to get all the divisors '''
+    from pyprimes import factorise
+    from itertools import combinations
+    from functools import reduce
+    from operator import mul
+    import heapq
+    L = [val for sublist in [[i[0]]*i[1] for i in factorise(n)] for val in sublist]
+    # print(L)
+    D={1}
+    for i in range(1, len(L)+1):
+        # print( list(combinations(L,i)) )
+        for j in list(combinations(L,i)) :
+            D.add ( reduce(mul, j)   )
+    return list(sorted(D))
 
-############## SLOW ALGORITHM FOR LARGE n's - TO DELETE !!!!!!!!!!
+def get_divisors(n):      ### ( ͡° ͜ʖ ͡°)  FASTEST  ( ͡° ͜ʖ ͡°)  ### !! FIRST FASTEST     MUST BE IMPROVED !! It is a sqrt(n) Algorithm
+    from math import sqrt
+    factors = set()
+    for x in range(1, int(sqrt(n)) + 1):
+        if n % x == 0:
+            factors.add(x)
+            factors.add(n//x)
+    return sorted(factors)
+
+n = 123456789000
+
+##############    ALGORITHM 1
 
 t1  = time.time()
 
-n = 1216036521
+
+print(get_divisors(n))
+
 
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n')
 
-###################
+###################     ALGORITHM 2
 
 t1  = time.time()
 
 
 
-def  calculate_divisors(nr):
-    '''**©** Made by Bogdan Trif @ 2016-12-08, 16:30.
-        :Description: Functions which computes the number of divisors of a number.
-                It uses the Numbers of Divisors Theorem :which says : if N=a**x*b**y*c**z => divisors_nr=(x+1)(y+1)(z+1)
-            Example: N = 216 = 2**3 * 3**3 => divisors_nr = (3+1)(3+1) = 16
-    :param nr: int, nr
-    :return: int, divisors_number                   '''
-    import functools, operator
-    from pyprimes import factorise
-    def factors(nr):
-        ''' Decompose a factor in its prime factors. This function uses the pyprimes module. THE FASTEST  '''
-        return [i for i in factorise(nr)]
-    N = factors(nr)
-    return  functools.reduce( operator.mul , [ (i[1]+1) for i in N ])
-
-
-print( calculate_divisors(n))
+print(get_divisors_2(n))
 
 
 t2  = time.time()

@@ -303,6 +303,15 @@ test_2=[2, 2, 8, 2, 5, 5, 6, 5, 6, 5, 6, 7, 2, 5, 5, 5, 6, 8]
 for i in set(test_2):
     print(i, test_2.count(i), end='; ')
 
+def count_elem(lst):        # Nice function, made by Bogdan Trif @ 2017-04-09, 13:30
+    X = []
+    for i in set(lst):
+        print(i, lst.count(i), end='; ')
+        X.append((i, lst.count(i) ))
+    return X
+
+count_elem([1,2,3,1,1,2,1,3,2,2])
+
 print('Count a single element at a time :  ',[1, 2, 3, 4, 1, 4, 1].count(1))
 
 print('\n ---------- Count the number of items in a list with collections Counter --------')

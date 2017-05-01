@@ -2,7 +2,8 @@
 # Solved by Bogdan Trif @   	Completed on Mon, 23 Jan 2017, 23:46
 #The  Euler Project  https://projecteuler.net
 '''
-Disc game prize fund        -       Problem 121
+                            Disc game prize fund        -       Problem 121
+
 A bag contains one red disc and one blue disc.
 In a game of chance a player takes a disc at random and its colour is noted.
 After each turn the disc is returned to the bag,

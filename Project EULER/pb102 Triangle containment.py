@@ -41,6 +41,7 @@ print(len(triangles), triangles)
 
 def plot_triangle(A, B, C):
     ''':Description: Function to plot a triangle using the pylab module.'''
+    import pylab
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1 ) #, aspect='equal')
 
@@ -115,7 +116,7 @@ def determine_inside_origin(lst) :
     # print( 'Y Min & Max :  ', min(A[1], B[1], C[1]), max(A[1], B[1], C[1]) )
     # print('The cross : ',CR)
     # print('---------------------')
-    # plot_triangle(A, B, C)      # Here we plot each triangle
+    plot_triangle(A, B, C)      # Here we plot each triangle
     if  len(CR['x']) >1 and len(CR['y']) >1 :       # Check if the cuts  of Ox & Oy form a cross :)
         if  max(CR['x']) > 0 and min(CR['x']) < 0 and max(CR['y']) > 0 and min(CR['y']) < 0 :
             return True

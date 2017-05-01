@@ -51,7 +51,6 @@ t1  = time.time()
 
 
 
-
 import numpy
 def prime_sieve_numpy(n):                       ### o(^_^)o  FASTEST  o(^_^)o  ###  Highly Efficient !!!
     """ Input n>=6, Returns a array of primes, 2 <= p < n
@@ -228,7 +227,6 @@ def Miller_Rabin(p, k = 50):  # Miller-Rabin primality test
 
 print('Miller_Rabin Primality Algorithm Test: \t' , Miller_Rabin(151681868531) )
 
-
 def isprime(n):
     ''' SLOWER METHOD. But Does not depend on a pre-generated sieve or on other module !'''
     if n == 1:
@@ -237,6 +235,7 @@ def isprime(n):
         if not n % i:
             return False
     return True
+
 
 # print(isprime(100000980001501))
 print('isprime  Function Test:    ',isprime(10000079))
@@ -535,7 +534,7 @@ def  calculate_divisors(nr):
 
 
 
-def get_divisors(n):      ### ( ͡° ͜ʖ ͡°)  FASTEST  ( ͡° ͜ʖ ͡°)  ### !! FIRST FASTEST
+def get_divisors(n):      ### ( ͡° ͜ʖ ͡°)  FASTEST  ( ͡° ͜ʖ ͡°)  ### !! FIRST FASTEST     MUST BE IMPROVED !! It is a sqrt(n) Algorithm
     from math import sqrt
     factors = set()
     for x in range(1, int(sqrt(n)) + 1):
@@ -545,6 +544,21 @@ def get_divisors(n):      ### ( ͡° ͜ʖ ͡°)  FASTEST  ( ͡° ͜ʖ ͡°)  ###
     return sorted(factors)
 
 for i in (72, 90, 210): print( "%i: factors: %s" % (i, get_divisors(i)) )
+
+def get_divisors_2(n):       ### o(^_^)o  #  More powerfull for numbers > 10**10
+    ''' first it decomposes the number in prime factors , then makes combinations of all the factors
+    to get all the divisors '''
+    from pyprimes import factorise
+    from itertools import combinations
+    from functools import reduce
+    from operator import mul
+    L = [val for sublist in [[i[0]]*i[1] for i in factorise(n)] for val in sublist]
+    D={1}
+    for i in range(1, len(L)+1):
+        # print( list(combinations(L,i)) )
+        for j in list(combinations(L, i) ) :
+            D.add ( reduce(mul, j)   )
+    return list(sorted(D))
 
 
 def divisors(n):     # SECOND FASTEST, Very close to the First
@@ -671,7 +685,7 @@ print('Euler Totient Sieve : \t', Euler_Totient_Sieve(600))
 
 print('\n------------------  Divisor Square Sum  - sigma_2 -------------------- ')
 
-def divisor_square_sum_sigma_2(n):
+def divisor_square_sum_sigma_2(n):              #σ2(n)
     '''     **Π  = [((p_1**(a_1+1)*2)-1) / (p_1**2 -1)]*...*[ ((p_k**(a_k+1)*2)-1) / (p_k**2 -1) ]**
 
         condensed form:  = **Π  {p_k - prime, a_k - the exponential of the prime } ((p_k**(a_k+1)*2)-1) / (p_k**2 -1)**
@@ -692,7 +706,7 @@ print('Divisor Square Sum Sigma : \t ', divisor_square_sum_sigma_2(429606) )
 
 print('\n------------------  Divisor Sum  - sigma -------------------- ')
 
-def divisor_sum_sigma(n):
+def divisor_sum_sigma(n):           #   σ(n)
     '''    **Π  = [(p_1**(a_1+1)-1) / (p_1 -1)]*...*[ (p_k**(a_k+1)-1) / (p_k -1) ]**
      condensed :  = **Π  {p_k - prime, a_k - the exp of the prime } =  ((p_k**(a_k+1)-1) / (p_k -1)**
     :where: p_1, p_2,...p_k are the prime factors of the number , together with their
@@ -712,6 +726,15 @@ print(' divisor_sum_sigma : \t' ,divisor_sum_sigma(test_nr) )
 
 divisors = get_divisors(test_nr)
 print('Divisor Sum Term by term Verification Check: ', sum(divisors) ,'\n' ,divisors)
+
+
+print('\n-------------------- is CUBE ,  is SQUARE   ----------------------')
+is_cube = lambda x: int (x**(1/3)+0.5)**3 == x
+print('is cube : \t', is_cube(1000)  )
+is_square = lambda x :  int(sqrt(x))**2 == x
+print('is Square : \t', is_square(1000)  )
+
+
 
 
 

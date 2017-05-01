@@ -5,7 +5,7 @@ def plot_triangle(A, B, C):
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1 ) #, aspect='equal')
 
-    def grid(major,minor, x1,x2,y1,y2):
+    def grid(major,minor, x1, x2, y1, y2):
         # major ticks every 5, minor ticks every 1
         major_ticks = np.arange(x1, x2, major)
         minor_ticks = np.arange(y1, y2, minor)

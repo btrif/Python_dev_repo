@@ -71,3 +71,12 @@ def get_pos_of(i):
     return i
 
 print('get_pos_of  :\t', get_pos_of( (2,4) ))
+
+
+
+print('-------------- Correct way to handle lists with 0 elements -------------')
+a=[7567,45,54645,5464]
+if  [i for i in a if i < 3] :
+    mx = max([i for i in a if i < 3])
+else :
+    print('asignam noi')

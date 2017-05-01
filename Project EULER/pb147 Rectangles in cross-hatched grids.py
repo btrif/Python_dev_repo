@@ -1,5 +1,5 @@
 #!/usr/bin/python                   o(^_^)o
-# Solved by Bogdan Trif @
+# Solved by Bogdan Trif @       Completed on Wed, 8 Mar 2017, 19:15
 #The  Euler Project  https://projecteuler.net
 '''
 Rectangles in cross-hatched grids       -       Problem 147
@@ -185,7 +185,7 @@ print('\nget_squares_rombs : \t', get_squares_rombs( 8, 9)  )
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n================  My FIRST SOLUTION, 3 min  ===============\n')
+print('\n================  My FIRST SOLUTION, SLOW, 3 min  ===============\n')
 t1  = time.time()
 
 
@@ -201,9 +201,6 @@ def cross_hatched_grids(a, b) :
 
 
 # cross_hatched_grids(47, 43)             #   Answer : 	 846910284
-
-
-
 
 
 t2  = time.time()
@@ -239,44 +236,267 @@ print( total_count(47,43 ) )
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-# print('\n--------------------------SOLUTION 2,   --------------------------')
-# t1  = time.time()
+print('\n--------------------------SOLUTION 2,  6 sec --------------------------')
+t1  = time.time()
+
+# === Sun, 14 Oct 2012, 08:51, thedoctar, Australia
+# I found an equation for the normal rectangles, x(x+1)(x+2)y(y+1)(y+2)/36,
+# and for oblique rectangles with dimensions m, n. The explanation is rather complicated, anyway, here's my code.
+
+def f(x, y):
+	limit, output = (min(x, y)-1)*2+1, 0
+	for m in range(1, limit+1):
+		for n in range(1, limit-m+2):
+			output += (x-(m+n-2+(m+n-2)%2)/2)*(y-1-(m-1-(m-1)%2)/2-(n-1-(n-1)%2)/2)+(x-1-(m+n-2-(m+n-2)%2)/2)*(y-(m-1+(m-1)%2)/2-(n-1+(n-1)%2)/2)
+	return output
+
+def solution2():
+    limitx, limity = 43, 47
+    output = 0
+    for x in range(1, limitx+1):
+        for y in range(1, limity+1):
+            output += f(x, y)
+    return print (output+limitx*(limitx+1)*(limitx+2)/6*limity*(limity+1)*(limity+2)/6)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------------------SOLUTION 3,  VERY FAST --------------------------')
+t1  = time.time()
+
+# === Sun, 2 Jun 2013, 18:27, Hariram, India
+# I found a quite different recursive formula number of possible slant rectangles. If B(x, y) is the number of slant rectangles:
+# B(x, y) = 2*B(x-1, y-1) - B(x-2, x-2) + 8(x-1)(y-1) + 1
+# B(1, z) = B(z, 1) = z-1
+
+h=47
+w=43
+
+A = [[0]*w for i in range(h)] # Normal block
+B = [[0]*w for i in range(h)] # Diagonal blocks
+
+for i in range(h):
+    for j in range(w):
+        if i == 0:
+            A[0][j] = (j+1)*(j+2)/2
+            B[0][j] = j
+        elif j == 0:
+            A[i][0] = (i+1)*(i+2)/2
+            B[i][0] = i
+        else:
+            A[i][j] = A[i][0] * A[0][j]
+            B[i][j] = 2*B[i-1][j-1] + 8*i*j + 1
+            if i>1<j :
+                B[i][j] -= B[i-2][j-2]
+
+print (sum([sum(i) for i in A]) + sum([sum(i) for i in B]))
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------------------SOLUTION 4,   --------------------------')
+t1  = time.time()
+
+# ==== Sat, 6 Jul 2013, 11:38, EdM, France
+# A counting problem. Not funny for me...
+# PE147 : nombre de rectangles = 846910284 en 0.499 s
+
+
+
+# -- Rectangles obliques de largeur i < m interceptant les lignes 1 et m
+def b_(n, m, i):
+    s = 0
+    if i%2 == 1:
+        s += 2*(n - m) + 2*(2 + 2*(n - m))
+        if i == m - 1:
+            return s + (n - m + 2)
+        else:
+            return s + 2*(n - m + 2)
+    else:
+        s += 2*(n - m + 1) + 2*(2*(n - m + 1))
+        if i == m - 1:
+            return s + (n - m + 1)
+        else:
+            return s + 2*(n - m + 1)
+# -------------------------------
+
+# -- Carres obliques de taille m x m interceptant les lignes 1 et m
+def c_(n, m):
+    return n - m + (m + 1)%2
+# -------------------------------
+
+# -- Rectangles interceptant les lignes 1 et m
+def t_(n, m):
+    s = n*(n + 1)/2
+    for i in range(1, m):
+        s += b_(n, m, i)
+    return s + c_(n, m)
+# -------------------------------
+
+# -- Rectangles dans un rectangle de taille n x m
+def s_(n, m):
+    if n < m:
+        return s_(m, n)
+    s = 0
+    for k in range(1, m + 1):
+        s += (m + 1 - k)*t_(n, k)
+    return s
+# -------------------------------
+
+# -- Routine principale ---------
+cpt = 0
+
+for n in range(1, 48):
+    for m in range(1, 44):
+        cpt += s_(n, m)
+# -------------------------------
+
+
+print ("PE147 : nombre de rectangles =", cpt)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------------------SOLUTION 5,  Dynamic Programming --------------------------')
+t1  = time.time()
+
+# ==== Sat, 7 Sep 2013, 17:32, Oren, USA
+# Dynamic programming, although it is clear that the number of rectangles must be a
+# symmetric fourth order polynomial in m and n with zero free coefficient (since the count is 0 for m=n=0),
+# hence a closed form formula (leading to an O(1) algorithm)
+# could be derived from a small number of cases by polynomial interpolation.
+# For illustration, the code uses a closed form formula for
+# rectangles aligned with the vertical and horizontal axes and DP for tilted rectangles.
+
+import numpy as np
+
+def type1(M, N):
+    '''# of rectangles aligned with the vertical and horizontal axes. R[m,n] is the count for a mxn grid,
+    m <= M, n <= N.'''
+    n, m = np.meshgrid(range(N + 1), range(M + 1))
+    return n * (n + 1) * m * (m + 1) // 4
+
+def type2(M, N):
+    '''# of tilted rectangles. R[m,n] is the count for a mxn grid, m <= M, n <= N.'''
+    R = np.zeros((M + 1, N + 1), dtype=int)
+    R[1, 1:N + 1] = np.arange(N)  # Initial Condition
+    # Dynamic programming
+    for m in range(2, M + 1):
+        for n in range(1, min(N, m) + 1):
+            R[m, n] = R[m - 1, n] + n * (4 * n * n - 1) // 3
+        if m <= N: R[m, m] -= m
+        t = m * (4 * m * m - 1) / 3
+        for n in range(m + 1, N + 1): R[m, n] = R[m, n - 1] + t
+    return R
+
+'''Total number of rectangles in an MxN grid and smaller grids.'''
+all_rect = lambda M, N: np.sum(type1(M, N) + type2(M, N))
+
+if __name__ == "__main__":
+    print (all_rect(47, 43))
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 6, RECURSION  --------------------------')
+t1  = time.time()
+
+def solution_6():
+    g = lambda m, n, x: m+n-abs(m-x)
+
+    # @memoized
+    def h(m, n):
+        if m == 1: return n-1
+        if m > n: return h(n, m)
+        s = h(m-1, n)
+        for x in range(1, n+1):
+            for y in range(n-x, g(m, n, x)):
+                s += min(g(m, n, y+1), g(m, n, n-x))-x
+                if y > n-x: s += min(g(m, n, y+1), g(m, n, n-x+1))-x
+        return s
+
+    t = 0
+    for m in range(43):
+        for n in range(47):
+            t += h(m+1, n+1) + (m+1)*(m+2)*(n+1)*(n+2)//4
+    return print (t)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 7,  7 sec --------------------------')
+t1  = time.time()
+
+# ==== Tue, 30 Dec 2008, 00:40, tolstopuz, Russia
+
+s = 0
+for w in range(1, 48):
+    for h in range(1, 44):
+        s += w * (w + 1) * h * (h + 1) // 4
+        for x in range(0, 2 * w):
+            xx = 2 * w - x
+            for y in range(x % 2, 2 * h, 2):
+                yy = 2 * h - y
+                minw = max(min(y, xx - yy),0)
+                maxw = min(y, xx)
+                s += yy * minw + (2 * xx - minw - maxw - 1) * (maxw - minw) // 2
+
+print(s)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1),6), 's\n\n')
+
+
+print('\n--------------------------SOLUTION 8,  14 sec --------------------------')
+t1  = time.time()
+
+# ==== Tue, 21 Jul 2009, 08:49, thagg, USA
+# The rectilinear rectangles are from problem 85, but the angled ones are a little harder.
+# First I wrote a program to draw the rectangle with the the diagonal lines very dark and the horizontal
+# and vertical lines very faint, to make it easier to see what was going on.
 #
+# Dividing the problem into "even" lines where the first square of the block fell completely within one
+# of the rectilinear squares, and the "odd" rows than had the initial square bisected by the rectilinear lines,
+# it was pretty easy to calculate how many 'w' by 'h' blocks would fit into each line, and the number of even and odd lines.
 #
+# What took me a while to realize is that in a (say) 4x3 rectangle you can have diagonal blocks 5x1 long --
+# I had originally deceived by the smaller test cases that the longest block was at most as long as the longest edge
+# of the original rectangle -- but those diagonal blocks are smaller by sqrt(.5)!
 #
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-# print('\n--------------------------SOLUTION 3,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-# print('\n--------------------------SOLUTION 4,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-# print('\n--------------------------SOLUTION 5,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 6,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
+# Runs in 14 seconds, but more importantly took 58 minutes to write.
+
+sum = 0
+
+for Y in range(1, 43 + 1):
+	for X in range(1, 47 + 1):
+
+		# diagonals
+		limit = X + Y
+		for w in range(1, limit):
+			for h in range(1, limit):
+				even = X - (w + h + 0) // 2		# how many per even row
+				n_even = Y					# how many even rows
+				n_even -= h // 2				# subtract those that go off the top
+				n_even -= w // 2				# subtract those that go off the bottom
+				if(even > 0 and n_even > 0):
+					sum += even * n_even
+				odd = X - (w + h - 1) // 2		# how many per odd row
+				n_odd = Y - 1                               # how many odd rows
+				n_odd -= (h - 1) // 2			# subtract those that go off the top
+				n_odd -= (w - 1) // 2			# subtract those that go off the bottom
+				if(odd > 0 and n_odd > 0):
+					sum += odd * n_odd
+
+		# rectilinear
+		for w in range(1, X + 1):
+			for h in range(1, Y + 1):
+				sum += (X - w + 1) * (Y - h + 1)
+
+
+print (sum)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1),6), 's\n\n')
+

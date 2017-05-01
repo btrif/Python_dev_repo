@@ -160,12 +160,15 @@ def brute_force_testing( lim):
 # brute_force_testing(20**1)
 
 def find_Heronian_of_ratio_1() :
+    Perim = 0
     for i in range(1,100):
         for j in range(1, i):
             for k in range(1,j) :
                 A, p = Heron_area_perimeter(i,j,k)
-                if A ==p :
-                    print(i,j,k)
+                if A == p :
+                    print(i, j, k)
+                    Perim+= i+j+k
+    return print('\nAnswer : \t', Perim)
 
 find_Heronian_of_ratio_1()
 
@@ -330,6 +333,7 @@ print('\nCompleted in :', round((t2-t1),6), 's\n\n')
 # https://arxiv.org/pdf/1312.2318.pdf
 # http://www.oocities.org/teufel_pi/papers/gidag.pdf
 # https://en.wikipedia.org/wiki/Integer_triangle#Heronian_triangles
+http://eulersolutions.fr.yuku.com/topic/99/Problem-283?page=2#.WM7wKVV97RY
 
 # 2017-03-19 - I need to improve the algorithm. I'm not even close !
 # http://www.andrewewhite.net/wordpress/2010/05/07/finding-integer-triangles-ratios/    !!!!!!!!!!!

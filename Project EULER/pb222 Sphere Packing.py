@@ -2,16 +2,15 @@
 # Solved by Bogdan Trif @
 #The  Euler Project  https://projecteuler.net
 '''
-Sphere Packing      -       Problem 222
+                    Sphere Packing      -       Problem 222
 
 What is the length of the shortest pipe, of internal radius 50mm,
 that can fully contain 21 balls of radii 30mm, 31mm, ..., 50mm?
 
 [30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50] mm
 
-Give your answer in micrometres (10**-6 m) rounded to the nearest integer.
+Give your answer in micrometres (10**-6 m) rounded to the nearest integer.                                                  '''
 
-'''
 import time
 
 

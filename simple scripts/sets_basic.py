@@ -303,5 +303,12 @@ INTERSECTION = [ s for s in lst if len(set_nr& set([int(i) for i in str(s)]) )==
 print(' Intersection of the test_nr with every element of the list yields :\n', INTERSECTION )
 
 
+print('\n--------------- Create set of tuples ---------------------------')
+
+import itertools
+mySet = set(itertools.product(range(1,5), repeat=2))
+print(mySet)
+mySet = set((x,y) for x in range(1,5) for y in range(1,5))
+print(mySet)
 
 

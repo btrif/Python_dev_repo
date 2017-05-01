@@ -295,3 +295,26 @@ def compute_triangle_area(P1, P2, P3):
 
 P1, P2, P3 = (-1, 0), (0, 3), (2, 0)
 print('\nAREA OF THE TRIANGLE : \t', compute_triangle_area (P1, P2, P3))
+
+
+################### Angle between two slopes
+print('\n------------------- Angle between two slopes ---------------------- ')
+
+
+def angle_between_two_slopes( slopes ):     # © Made by Bogdan Trif @ 2017-04-10, 12:30
+    '''Correct formula with sign convention positive for θ counter-clockwise rotation from
+    direction of radius vector 1 to 2 is . Always returns the acute angle  < 90 degrees
+        tan(θ)= (m2−m1) / (1+m1*m2)
+    :param m1:
+    :param m2:
+    :return: angle of the two slopes                        '''
+    m1, m2 = slopes
+    # print(m1, m2)
+    try :   theta = math.atan( abs( (m2 -m1) /(1+m1*m2) ) )
+    except :
+        ZeroDivisionError
+        return 90
+
+    return theta * 180 / math.pi
+
+print('\nAngle_between_two_slopes : \t', angle_between_two_slopes( ( -1/1, 1/1.001 ) )   )

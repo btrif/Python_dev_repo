@@ -74,7 +74,7 @@ def solve_sudoku(arr):
     # 'l' is a list variable that keeps the record of row and col in find_empty_location Function
     l=[ 0, 0]
     # If there is no unassigned location, we are done
-    if(not find_empty_location(arr, l)):
+    if (not find_empty_location(arr, l)):
         return True
     # Assigning list values to row and col that we got from the above Function
     row = l[0]
@@ -101,12 +101,13 @@ def solve_sudoku(arr):
 if __name__=="__main__":
     import time
     # creating a 2D array for the grid
-    grid=[[0 for x in range(9)]for y in range(9)]
+    # grid=[[0 for x in range(9)]for y in range(9)]
     # assigning values to the grid
 
-    filename = "sudoku - backtracking - test_matrix.txt"
+    # filename = "sudoku - backtracking - test_matrix.txt"
+    # grid = load_file_1(filename)
 
-    grid = load_file_1(filename)
+    grid = M = [[0, 0, 4, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 3, 0, 0, 0, 2], [3, 9, 0, 7, 0, 0, 0, 8, 0], [4, 0, 0, 0, 0, 9, 0, 0, 1], [2, 0, 9, 8, 0, 1, 3, 0, 7], [6, 0, 0, 2, 0, 0, 0, 0, 8], [0, 1, 0, 0, 0, 8, 0, 5, 3], [9, 0, 0, 0, 4, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 8, 0, 0]]
     print(' Initial grid : ', grid, '\n\n')
 
     t1  = time.time()

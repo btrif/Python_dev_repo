@@ -71,7 +71,7 @@ print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 print('\n-------------------- My Very Worked Function, Better NO !!!!! ---------------------')
 
-def nice_arrangements(lst):
+def nice_arrangements(lst):         # BETTER DON'T USE IT !!!! ----- TO DELETE !!!
     ''':Description: Function which makes nicer the arrangements/permutations of repeated values.
         The advantage becomes obvious when trying to permutate lists with length > 6
 

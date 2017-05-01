@@ -82,8 +82,8 @@ print('\nAnswer : \t', round(S/L, 10 ) , '                ',  S/L )
 # OBS : 2017-02-21 --> Must Do Reverse Engineering on that function
 # There are values of 6,5,4
         ####  Boundary
-46440.     (215, 3)          215.49941995281566
-46441.     (216, 2)          215.5017401321855
+    # 46440.     (215, 3)          215.49941995281566
+    # 46441.     (216, 2)          215.5017401321855
 
 # We can see the boundary between < 15.5 and >15.5
 

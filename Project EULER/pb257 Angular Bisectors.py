@@ -2,7 +2,7 @@
 # © Solved by Bogdan Trif @
 #The  Euler Project  https://projecteuler.net
 '''
-Angular Bisectors           -           Problem 257
+            Angular Bisectors           -           Problem 257
 
 Given is an integer sided triangle ABC with sides a ≤ b ≤ c. (AB = c, BC = a and AC = b).
 The angular bisectors of the triangle intersect the sides at points E, F and G (see picture below).
@@ -22,7 +22,7 @@ import time, zzz
 
 
 # INFO SOURCES :
-http://www.cut-the-knot.org/triangle/AngleBisectorTheorem.shtml
+# http://www.cut-the-knot.org/triangle/AngleBisectorTheorem.shtml
 
 
 

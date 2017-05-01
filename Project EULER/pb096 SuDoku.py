@@ -62,7 +62,6 @@ def load_file_2(filename):
     return M
 
 def load_file_3(filename) :
-
     f = open(filename, 'r')
     text = f.read()
     for row in text.split('\n'):
@@ -73,536 +72,152 @@ def load_file_3(filename) :
             matrix.append(list(map(int, row)))
     return matrix
 
+
 Mall = {}
 M = load_file_3(filename)
 cnt= 0
-for k,v in Mall.items() :
+S = 0
+for k, v in Mall.items() :
     cnt+=1
     print(str(cnt)+'.    ' , k,'    ' ,v)
 
 
+#############        END    DEFINITIONS        ####################
 
-def status(M):
-    digits = {}
-    for i in range(len(M)):
-        for j in range(1,10):
-            #print(M[i],'  ', j ,M[i].count(j))
-            if j in M[i] :
-                if j not in digits: digits[j] = 1
-                else : digits[j] = digits[j]+1
-    return digits
+print('\n----------------------------------------------------------- \n')
 
-print('Status: ',status(M))
-
-digits = {}
-for i in range(len(M)):
-    for j in range(1,10):
-        #print(M[i],'  ', j ,M[i].count(j))
-        if j in M[i] :
-            if j not in digits: digits[j] = 1
-            else : digits[j] = digits[j]+1
+t1  = time.time()
 
 
-def SubMatrix_3x3(x, y, M ):
-    '''Function which cuts a given matrix  in 3x3 SubMatrices. In a 9x9 matrix there will be 9 3x3 matrices called Ninants
-     Based on the position coordinate (x,y) returns the corresponding Ninant.
-     Note: x, y values go from 1 up. 0 is excluded. Don't confuse with referencing matrix like M[0]
-    :returns
-    Returns the Ninant where the coordinate (x,y) lies in.    '''
-    N =  M[((x-1)//3)*3 : ((x-1)//3)*3+3 ]      # This complicated expression do the work of slicing the list into sub pieces
-    return [row[((y-1)//3)*3 : ((y-1)//3)*3+3] for row in N]
 
-def intersection(nr, x, y, M):
-    ''':Description:    It checks if a number is on the row, column or 3x3 subMatrix of the indexes x,y. The
-        function has been made specifically for Sudoku Matrices.
-    :param nr:  is the number to test : 1...9
-    :param x:   row index   1...9
-    :param y:   column index    1...9
-    :param M:   the matrix which is tested, Must be a 9x9 matrix
-    :return:    Returns boolean : True if the number already exists, False otherwise
-    '''
-    if ( nr in M[x-1]  or  nr in  transpose(M)[y-1] ) or \
-             ( True  if  True in [ nr in row for row in SubMatrix_3x3(x, y, M) ]  else False )    :
-        return True
-    else : return False
-
-# print('\n SubMatrix :   ',SubMatrix_3x3(5, 6,M),'\n')
-# print( [ 8 in row for row in SubMatrix_3x3(5,6)])
-print( True  if  True in [ 7 in row for row in SubMatrix_3x3(1,1,M) ]  else False)        # Nice List Comprehension Construction, @Bogdan Trif
+# M = [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 7, 9, 0, 5, 0, 1, 8, 0], [8, 0, 0, 0, 0, 0, 0, 0, 7], [1, 9, 7, 3, 4, 6, 8, 5, 2], [4, 5, 2, 7, 1, 8, 3, 9, 6], [6, 8, 3, 5, 9, 2, 7, 0, 0], [7, 0, 0, 0, 0, 0, 0, 0, 5], [0, 1, 6, 0, 3, 0, 4, 2, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+M = [[6, 3, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 5, 0, 0, 0, 0, 8], [0, 0, 5, 6, 7, 4, 0, 0, 0], [0, 0, 0, 0, 2, 0, 0, 0, 0], [0, 0, 3, 4, 0, 1, 0, 2, 0], [0, 0, 0, 0, 0, 0, 3, 4, 5], [0, 0, 0, 0, 0, 7, 0, 0, 4], [0, 8, 0, 3, 0, 0, 9, 0, 2], [9, 4, 7, 1, 0, 0, 0, 8, 0]]
+# M = [[0, 0, 4, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 3, 0, 0, 0, 2], [3, 9, 0, 7, 0, 0, 0, 8, 0], [4, 0, 0, 0, 0, 9, 0, 0, 1], [2, 0, 9, 8, 0, 1, 3, 0, 7], [6, 0, 0, 2, 0, 0, 0, 0, 8], [0, 1, 0, 0, 0, 8, 0, 5, 3], [9, 0, 0, 0, 4, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 8, 0, 0]]
 
 
-# print(((x-1)//3)*3, ((x-1)//3)*3+3)
-# print('Get last 3 columns of a matrix : ',  [row[-3:] for row in M])
-print('------------ Intersection Test ----------')
-
-print('\nIntersection Test :      ',intersection(1, 3, 7, M),'\n')
-for i in range(1,10):
-    print(i ,intersection(i, 3 , 5, M), end='  ')
 
 
-print('\n---------------------------')
 
-def get_to_fill_status(M):
-    ''':Description: Important function which get the *FILL STATUS* of the matrix.
-    :param M:   the matrix to be tested
-    :return:    a **dictionary** in the following format:
-        :key: as the *xy* position in the matrix
-        :value: as a list of 9 boolean corresponding to each number.
-        E.g. :  '93': [True, True, True, True, True, True, True, False, True] --> 8-th value is *False*
-         which means that the number *8* at position *x=9, y=3* CAN BE FILLED
-         '98': [False, True, False, True, True, True, False, True, True] => 1,3,7 CAN BE FILLED
-     :NOTE:     It depends on the **intersection function** which returns the boolean    '''
-    sudoku={}
-    for x in range(1,10):
-        for y in range(1,10):
-            if M[x-1][y-1] == 0 :
-                # print('------ Position  ',x, y,'  --------------')
-                answer=[]
-                sudoku[str(x)+str(y)]=[]
-                for n in range(1,10):
-                    # print('Nr: ',n , '     x=',x,'  y=',y ,'    ' ,intersection(n, x , y, M) )
-                    answer.append(intersection(n, x , y, M))
-                    sudoku[str(x)+str(y)].append(intersection(n, x , y, M))
-                # print(answer.count(False))
-    return sudoku
-
-print('get_to_fill_status Function : ' ,get_to_fill_status(M) ,'\n')
+# A Utility Function to print the Grid
+def print_grid( arr ) :
+    for i in range(9):
+        for j in range(9):
+            print (arr[i][j], end='   ')
+        print ()
 
 
-def quench(M):
-    SDK = get_to_fill_status(M)
-    for k,v in SDK.items() :
-        if v.count(True) ==9 :
+# Function to Find the entry in the Grid that is still  not used
+# Searches the grid to find an entry that is still unassigned. If
+# found, the reference parameters row, col will be set the location
+# that is unassigned, and true is returned. If no unassigned entries
+# remain, false is returned.
+# 'l' is a list  variable that has been passed from the solve_sudoku function
+# to keep track of incrementation of Rows and Columns
+def find_empty_location(arr, l):        # FIND EMPTY LOCATION
+    for row in range(9):
+        for col in range(9):
+            if(arr[row][col]==0):
+                l[0]=row
+                l[1]=col
+                return True
+    return False
+
+# Returns a boolean which indicates whether any assigned entry
+# in the specified row matches the given number.
+def used_in_row(arr, row, num):         # ROW
+    for i in range(9):
+        if(arr[row][i] == num):
             return True
     return False
 
-def one_available_spot(M):
-    ''':Description:    check if there are positions in the matrix which can be filled **only** with **1**  number
-    :return: boolean:   *True* if there are fields with only one possibility to fill a number, otherwise *False*
-    :NOTE:  Depends on the function get_to_fill_status    '''
-    return 1 in [ h.count(False) for h in  [i for i in get_to_fill_status(M).values()]   ]
-
-def two_available_spots(M):
-    ''':Description:    check if there are positions in the matrix which can be filled **only** with **2** numbers
-    :return: boolean:   True if there are fields with only one possibility to fill a number, otherwise false
-    :NOTE:  Depends on the function get_to_fill_status    '''
-    return 2 in [ h.count(False) for h in  [i for i in get_to_fill_status(M).values() ] ]
-
-
-def no_more_zeros(M):
-    '''Returns True if the Matrix is still containing zeros , otherwise False
-    '''
-    # print('Get 0  non-filled positions : ', [ h.count(0) for h in  [i for i in M]   ]  )
-    val = sum([ h.count(0) for h in  [i for i in M] ])
-    # val = False in [ i for i in [ val for sublist in get_to_fill_status(M).values() for val in sublist ]  ]
-    if val >0 : return False
-    else : return True
-
-def get_status(M):
-    ''':Description:    Count how many times the  numbers 1-9 have been used.
-        If all the numbers have been used returns True, otherwise False.
-    :param M:   matrix M
-    :return: boolean: True or False
-    :NOTE:  Depends on the status function
-    '''
-    s = status(M).values()
-    if  ([i for i in s ].count(9) == 9) == True :
-        return True
-    else : return False
-
-def validate_final(M):
-    ''':Description:    Check if the Matrix has been completed. Check if for every number 1-9
-        at every position from (1,1) to (9,9) is a valid choice. The function gives boolean True
-        if all the numbers have been filled correctly and thus the sudoku has been solved.
-    :param M:   the matrix to test
-    :return:    boolean: True or False
-    :NOTE:      It depends on the intersection function
-    '''
-    def All_Positions_Intersection(M):
-        V = []
-        for x in range(1,10):
-            for i in range(1,10):
-                for j in range(1,10):
-                    V.append( intersection(x, i , j, M) )
-        if V.count(True) == 9**3 :  return True
-        else : return False
-    s = status(M).values()
-    if  ([i for i in s ].count(9) == 9) == True and All_Positions_Intersection(M) == True:
-        return True
-    else : return False
-
-def check_duplicates(M):
-    ''':Description:    check if the matrix was filled with the same value twice:
-        same row, same column, same 3x3 subMatrix
-    :param M:   the matrix to test
-    :return:    boolean:    True if there are duplicates, False if all are unique    '''
-    r, c = 0, 0
-    for x in range(1,10):
-        for i in range(1,10):
-            row = M[i-1]
-            col = transpose(M)[i-1].tolist()
-            r, c = row.count(x), col.count(x)
-            # print('nr = ', x,'   row=' ,i, '    ' ,r ,  row)
-            # print('nr = ', x,  '   col=', i, '   ', c ,   col )
-            if r > 1 == True or c >1 == True :      # True if there are duplicates
-               return True
-
-        for i in range(2,10,3):
-            for j in range(2,10,3):
-                submatrix = [val for sublist in SubMatrix_3x3(i,j,M) for val in sublist]
-                # print(submatrix, x,  i, j)
-                s =  submatrix.count(x)
-                if s > 1 == True  :
-                    # print('True', x,i,j)
-                    return True
-
+# Returns a boolean which indicates whether any assigned entry
+# in the specified column matches the given number.
+def used_in_col(arr, col, num):         # COLUMN
+    for i in range(9):
+        if(arr[i][col] == num):
+            return True
     return False
-# def check_doubles(M):
-#     ''':Description:    check if there are values 2 times or more at a position. Checks if
-#         there are >1 numbers on a row, a column or a 3x3 subMatrix. If there are duplicate
-#         numbers return True, returns False if all the numbers are Unique.
-#     :param M:   the matrix to test
-#     :return:    boolean:    True if there are duplicates, False if all are unique    '''
-#     for x in range(1,10):
-#         for i in range(1,10):
-#             row = M[i-1]
-#             col = transpose(M)[i-1].tolist()
-#             if row.count(x) > 1 == True or col.count(x) >1 == True :
-#                 res1 = True
-#             else: return False
-#             print(row.count(x) > 1 ,row.count(x) , type(row),x,i )
-#             print( col.count(x) >1 , col.count(x) ,type(col),x,i )
-#         for i in range(2,10,3):
-#             for j in range(2,10,3):
-#                 submatrix = [val for sublist in SubMatrix_3x3(i,j,M) for val in sublist]
-#                 print(submatrix, x,  i, j)
-#                 if submatrix.count(x) > 1 == True  :
-#                     print('True', x,i,j)
-#                     res2 = True
-#                 else: return False
-#         if res1 == True and res2 == True:
-#             return True
 
-def get_1_choice_position(M):
-    ''':Description:    Prints out the positions which have **ONLY  1 CHOICE**     '''
-    one_var={}
-    sudoku = get_to_fill_status(M)
-    for k, v in sudoku.items() :
-        # print(k, v , v.count(False)     ,end=' ')
-        if v.count(False) ==1 :
-            number = v.index(False)+1
-            position = [int(i) for i in list(k)]
-            one_var[k] = number
-            # print('position: ',position , v, '  choice: ',number )
-        # else : print('\nNo more 1 Choice')
-    if len(one_var) != 0 : return one_var
-    else: return []
+# Returns a boolean which indicates whether any assigned entry
+# within the specified 3x3 box matches the given number
+def used_in_box(arr, row, col, num):            # 3x3 BOX
+    for i in range(3):
+        for j in range(3):
+            if(arr[i+row][j+col] == num):
+                return True
+    return False
 
-def get_2_choices_positions(M):     # Not working properly
-    ''':Description:    Return out the positions which have **2 CHOICES**     '''
-    two_vars = []
-    sudoku = get_to_fill_status(M)
-    for k, v in sudoku.items() :
-        # print(k, v , v.count(False)     ,end=' ')
-        if v.count(False) == 2 :
-            position = [int(i) for i in list(k)]
-            # print(position)
-            z = [i+1 for i, x in enumerate(v) if x == False ]
-            # print(z)
-            two_vars.append( [ str(k)+str(z[0]), str(k)+str(z[1]) ] )
-            # del(two_vars[k][1])
-            # print( 'position: ', position , v,'  choices: ', z )
-        # else : print('No more 2 Choices')
-    if len(two_vars) != 0 : return two_vars
-    else: return []
-
-def rotate(l, n):
-    return l[-n:] + l[:-n]
-
-def binary_counter( digits):
-    # Binary counter
-    x=0
-    while True :
-        yield (bin(x)[2:].zfill(digits))
-        x+=1
-
-F = [ ['815', '819'], ['976', '979'], ['734', '738'] ]
-def create_tracker(F) :
-    '''Creates the INITIAL tracker list which will be used to explore
-    all possibilties. The tracker list becomes larger by exp(2)
-    Therefore a liss of 10 pairs will yield 2**10 possibilities
-    '''
-    tracker=[]
-    elem_nr = 2**len(F)
-    B = binary_counter(len(F))
-    for i in range(elem_nr) :
-        b = [ int(k) for k in next(B)]
-        tmp = []
-        for j in range(len(F)) :
-#             print(b, F[j][b[j]] , end='  ' )
-            tmp.append(F[j][b[j]] )
-        tracker.append(tmp)
-
-    return tracker
-
-def update_tracker(G, tracker) :
-    '''Creates the INITIAL tracker list which will be used to explore
-    all possibilties. The tracker list becomes larger by exp(2)
-    Therefore a liss of 10 pairs will yield 2**10 possibilities
-    '''
-#     print(tracker,'\n\n')
-    trackerU  = deepcopy(tracker)
-    tmp = deepcopy(trackerU)
-    tracker=[]
-    elem_nr = 2**len(G)
-    B = binary_counter(len(G))
-
-    for i in range(elem_nr) :
-        b = [ int(k) for k in next(B)]
-        for j in range(len(trackerU)) :
-            for l in range(len(b)) :
-                tmp[j].append(G[l][b[l]])
-            tracker.append(tmp[j])
-#         print(tmp)
-        tmp = deepcopy(trackerU)
-    return tracker
+# Checks whether it will be legal to assign num to the given row,col
+#  Returns a boolean which indicates whether it will be legal to assign
+#  num to the given row,col location.
+def check_location_is_safe(arr, row, col, num):         # ALL THREE COMBINED !!!!!!!!!!
+    # Check if 'num' is not already placed in current row,
+    # current column and current 3x3 box
+    return not used_in_row(arr, row, num) and not used_in_col(arr, col, num) \
+           and not used_in_box(arr, row - row%3, col - col%3, num)
 
 
-def tracker_fill( M, tracker, glide):
-    N = deepcopy(M)
-    tracker2 = deepcopy(tracker)
-    while glide < len(tracker) :
-        for I in tracker[glide] :
-            M[int(I[0])-1] [int(I[1])-1] = int(I[2])
-        # print(check_duplicates(M), len (tracker), M)
-        if check_duplicates(M) == True :
-            M = deepcopy(N) # revert back matrix to initial state
-            tracker.pop(glide)
-        elif check_duplicates(M) == False :
-            return M
+# Takes a partially filled-in grid and attempts to assign values to
+# all unassigned locations in such a way to meet the requirements
+# for Sudoku solution (non-duplication across rows, columns, and boxes)
+
+print('\n-----------------------------------------------')
 
 
-def show_complete(M, grid) :
-        print('=='*6+'   '+str(grid)+'   '+'=='*6)
+def solve_sudoku(M) :
+    # 'l' is a list variable that keeps the record of row and col in find_empty_location Function
+    l =[ 0, 0]
+    # If there is no unassigned location, we are done
+    if (not find_empty_location(M, l ) ) :
+        return True
+
+    # We assign list values to row and col that we got from find_empty_location function
+    row, col = l[0], l[1]
+
+    for num in range(1,10) :
+        # if it looks promising :
+        if (check_location_is_safe(M, row, col, num ) ) :
+            # make tentative assignment
+            M[row][col] = num
+            # Return If Success
+            if solve_sudoku(M) :
+                return True
+            # IF failure, unmake & try again, this triggers backtracking
+            M[row][col] = 0
+
+        # print(l , M)
+    return False
+
+def show_complete(M, grid_nr) :
+        print('=='*6+'   '+str(grid_nr)+'   '+'=='*6)
         # print('=='*15 )
         for i in range(len(M)):
             print('  +++++   ', M[i] ,'   +++++  ')
         print('=='*15 )
         # print('\nCONGRATULATIONS !! SUDOKU Magic Puzzle has been Correctly Solved ! \n ')
 
-print( '\n---------------------------- Test for spots ---------------------')
-print('Test one_available_spot Function : ', one_available_spot(M))
-print('Test two_available_spots Function : ', two_available_spots(M),'\n\n')
-
-print('Prints out the positions which have ONLY  1 CHOICE : \n' , get_1_choice_position(M) )
-print('Prints out the positions which have 2 CHOICES : \n', get_2_choices_positions(M) )
-
-
-def get_position_choices(M, x , y):
-    ''':Description: Important function which get the *FILL STATUS* of the matrix.
-    :param M:   the matrix to be tested
-    :return:    {'71': [1, 2, 3, 5]}, False = if there is no available choice,
-     True = if the position is already filled with a number
-        E.g. :  'get_position_choices :	 {'71': [1, 2, 3, 5]}
-     :NOTE:     It depends on the **intersection function** which returns the boolean    '''
-    sudoku={}
-    answer = []
-    if M[x-1][y-1] == 0 :
-        # print('------ Position  ',x, y,'  --------------')
-        sudoku[int(str(x)+str(y))] = []
-        for n in range(1, 10):
-            # print('Nr: ',n , '     x=',x,'  y=',y ,'    ' ,intersection(n, x , y, M) )
-            # answer.append(intersection(n, x , y, M))
-            if intersection(n, x , y, M) == False :
-                answer.append(n)
-        # if len(answer) > 0 :
-        sudoku[int(str(x)+str(y))] = answer
-        return sudoku
-        # else : return False
-    else : return True
-
-print('\nget_position_choices :\t',get_position_choices(M, 7,1),'\n' )
-
-
-def next_position(ij):
-    '''    :param ij: actual position
-        :return: next position          '''
-    while True :
-        ij+=1
-        if ij %10 == 0 : ij+=1
-        yield ij
-
-def previous_position(ij):
-    '''    :param ij: actual position
-        :return: previous position   '''
-    while True :
-        ij-=1
-        if ij %10 == 0 : ij-=1
-        yield ij
+# if solve_sudoku(M) :
+#     show_complete(M, 16)
 
 
 
-print('\n----------------------------------------------------------- \n')
+def main_solve_all_sudokus() :
+    cnt= 0
+    S = 0
+    for g, M in Mall.items() :
+        if solve_sudoku(M) :
+            show_complete(M, g)
+            res = int(''.join([str(i) for i in M[0][:3]]))
+            S += res
+            cnt+=1
+            print(str(cnt)+'.    ' , g ,'       res = ' ,res ,'       M=   ',M)
+
+    return print('\nAnswer : \t ', S)
 
 
-#############        END    DEFINITIONS        ####################
-t1  = time.time()
-
-# M = [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 7, 9, 0, 5, 0, 1, 8, 0], [8, 0, 0, 0, 0, 0, 0, 0, 7], [1, 9, 7, 3, 4, 6, 8, 5, 2], [4, 5, 2, 7, 1, 8, 3, 9, 6], [6, 8, 3, 5, 9, 2, 7, 0, 0], [7, 0, 0, 0, 0, 0, 0, 0, 5], [0, 1, 6, 0, 3, 0, 4, 2, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]]
-M = [[6, 3, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 5, 0, 0, 0, 0, 8], [0, 0, 5, 6, 7, 4, 0, 0, 0], [0, 0, 0, 0, 2, 0, 0, 0, 0], [0, 0, 3, 4, 0, 1, 0, 2, 0], [0, 0, 0, 0, 0, 0, 3, 4, 5], [0, 0, 0, 0, 0, 7, 0, 0, 4], [0, 8, 0, 3, 0, 0, 9, 0, 2], [9, 4, 7, 1, 0, 0, 0, 8, 0]]
-
-
-for x in range(1,10):
-    for y in range(1,10):
-        print(str(x)+str(y)+'.     ', get_position_choices(M, x, y))
-
-G = previous_position(19)
-for i in range(10):     print(str(i+1)+'.  ', next(G), end='   ')
-
-print('\n----------------------------------------------------------- \n')
-#    ##########         CASE 1          #########
-# def fill_1_available_position(M):
-#     sudoku = get_to_fill_status(M)
-#     if one_available_spot(M) == True :
-#         for k, v in sudoku.items() :
-#             # print(k, v , v.count(False)     ,end=' ')
-#             if v.count(False) == 1 :        #  if only 1 False it can be completed with the number
-#                 number = v.index(False)+1
-#                 position = [ int(i) for i in list(k) ]
-#                 print(position , ' completed with  value: ',number, '   ', v    ,'           <--   CASE  1 ')
-#                 M[position[0]-1 ] [position[1]-1 ] = number
-#                 return M    # only one at a time !!!!!!!!!!!!
-#     if one_available_spot(M) == False :
-#         return False
-#
-#        ###########          CASE 2          ############
-#
-# A, tracker, within_tracker , glide  = [], [], [], 0
-#
-# def get_2_fill_available_positions(M ):
-#     global A, tracker, within_tracker, glide
-#     if len(tracker) == 0 :
-#         A = deepcopy(M)
-#         print('\n\n      ################    matrix A was created (tracker is empty)   ############:\n',A)
-#
-#
-#         tmp = get_2_choices_positions(M)
-#         tracker = create_tracker(tmp)
-#         print('\nTracker was created, length =', len(tracker) , tmp,'\n', tracker[:3])
-#
-#     if len(tracker) != 0 :
-#         M = tracker_fill( M, tracker, 0)
-#         print('tracker_length : ', len(tracker), tracker[:3])
-#         return M
-#
-#
-#
-#
-# def solve_sudoku( grid ):
-#     global M, tracker
-#     tracker_change, len_tracker = 3, 0      # Tracker Flag
-#     while True :
-#
-#         if one_available_spot(M) == True :
-#             fill_1_available_position(M)
-#             print('\nCASE 1', M)
-#
-#         if two_available_spots(M) == True :
-#             get_2_fill_available_positions(M)
-#             M = tracker_fill( M, tracker, 0)
-#             print('\nCASE 2', M )
-#
-#             if len_tracker != len(tracker) :        # Update len_tracker & Flag
-#                 len_tracker = len(tracker)
-#                 tracker_change = True
-#             elif len_tracker == len(tracker) and one_available_spot(M) ==False :
-#                 tracker_change = False
-#             print( 'tracker length : ',len(tracker), '          tracker_change :', tracker_change, '     ', len_tracker )
-#
-#
-#         print(' ONE_spot =' ,one_available_spot(M), '      TWO_spots =' ,two_available_spots(M), '    Quench : ', quench(M))
-#         print('get_2_choices_positions : ', len(get_2_choices_positions(M)), get_2_choices_positions(M),'\n' )
-#
-#         if quench(M) == True :
-#             M = deepcopy(A)
-#             tracker.pop(glide)
-#
-#
-#         if  tracker_change == False and one_available_spot(M) == False and two_available_spots(M)==True :
-#             print(' ++++++++++++++         TRACKER WIL BE UDATED    +++++++++++++++')
-#             M = deepcopy(A)
-#             G = get_2_choices_positions(M)
-#             if len(G) > 8 :
-#                 G = G[ :3 ]
-#             tracker = update_tracker(G, tracker)
-#             print('\nTracker was UPDATED, length =', len(tracker), G, '\n', tracker[:3])
-#
-#
-#
-#         if validate_final(M) == True :
-#             show_complete(M, grid )
-#             break
-#
-# # solve_sudoku(grid=14)
-
-Flag = 100
-Tracker = {}
-pos = 11
-N = next_position(pos)
-P = previous_position(pos)
-A = deepcopy(M)
-for b in range(20) :
-    x, y = int(str(pos)[0]), int(str(pos)[1])
-
-    if A[x-1][y-1] != 0 :
-        while  A[x-1][y-1] != 0 :
-            pos = next(N)
-            x, y = int(str(pos)[0]), int(str(pos)[1])
-
-    g = get_position_choices(M, x, y )
-    print('get_pos  -->\t\t',g)
-    if g != True or len(g[pos]) > 0 :
-        if pos not in Tracker : Tracker.update(g)
-
-    ###### Fill the matrix ###
-    if pos in Tracker :
-        if len( Tracker[pos] ) > 0 :
-            M[x-1][y-1] = Tracker[pos][0]
-            print( g ,Tracker[pos], '    ',Tracker, '      ', M)
-            # pos = next(N)
-
-    if pos not in Tracker :
-        print('NO !')
-    ##### Start Backtracking ####
-
-    # if len(g[pos]) > 0 :
-    #     pos = next(P)
-    #     if len( Tracker[pos] ) == 1 :
-    #         M[x-1][y-1] = 0
-    #         Tracker.pop(pos)
-    #     if len( Tracker[pos] ) > 1 :
-    #         Tracker[pos].pop(0)
-    #         M[x-1][y-1] = Tracker[pos][0]
-    #     print('back :\t ',   '      ', M)
-
-
-    if len( Tracker[pos] ) > 0 :
-        pos = next(N)
-        Flag = 1
-
-
-
-
-
-
-
-
-
-
+main_solve_all_sudokus()            #       Answer : 	  24702
 
 
 
 t2  = time.time()
-print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-
-print('\n-----------------------------------------------')
+print('\nCompleted in :', round((t2-t1),6), 's\n\n')            #   Completed in : 69.630983 s

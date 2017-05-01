@@ -43,11 +43,11 @@ print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
 
-for m in [4, 5,6,10,15,20,25,30, 180, 185]:
+for m in range(1, 185+1) :
     for k in range(1, m+1 ) :
-        for t in range(1, 100) :
+        for t in range(-10, 10) :
             if  4**t == 2**t + k:
-                print(m, k, t)
+                print('m=',m, '       k=',k, '   t=', t,'      ', 4**t, 2**t )
 
 
 

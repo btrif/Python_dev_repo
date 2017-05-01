@@ -87,17 +87,11 @@ print('100.000        ',factorial_non_zero(10**5))
 # http://www.mathpages.com/home/kmath489.htm
 # https://comeoncodeon.wordpress.com/2009/06/20/lastnon-zero-digit-of-factorial/
 
-
 # print('\n' , len(str(fac(10**4))) , str(factorial(10**4)) )                   # 27753472
 
-t2  = time.time()
-print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n')
-
-print('\n================  My FIRST SOLUTION,   ===============\n')
-t1  = time.time()
 
 def factorial_trailing_digits(n) :
-    '''Actually is powers of ten '''
+    '''Actually n  is powers of ten !!!!!!!! '''
     o = 1
     a = factorial_non_zero( 10**(n-o) )
     b = factorial_digits_2_5_factors( 10**n )
@@ -115,14 +109,32 @@ q = 36288
 for i in range(11, 100+1):
     # if i % 10 != 0 and i %5 !=0 :
     if i % 10 == 0 :
-        q//=10
+        q //=10
     else :
-        if i % 25 == 0  :
-            q//= 4
+        if i % 25 == 0 and i% 3 ==0 :
+            q *= 3
+            q //=4
+            print(i,'--->     ', q % 10**30 , '               ',  factorial_non_zero(i))
+            continue
+        if i % 25 == 0 and i%2==0 :
+            q //= 4
             continue
     q*=i
     print(i,'     ', q % 10**30 , '               ',  factorial_non_zero(i)  )
 
+
+print('\n Res : ', (q// 10**0) %10**30)
+
+print('obladioblada :' , (pow( 36288, 10, 10**5 )*2**67 ) %10**5    )
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n')
+
+print('\n================  My FIRST SOLUTION,   ===============\n')
+t1  = time.time()
+
+
+https://en.wikipedia.org/wiki/Wilson%27s_theorem
 
     # else :
     #     if q %25 == 0 :
@@ -130,9 +142,6 @@ for i in range(11, 100+1):
     #     if q%5 == 0 and q%25 !=0 :
     #         q /= 2
 
-print('\n Res : ', (q// 10**0) %10**30)
-
-print('obladioblada :' , (pow( 36288, 10, 100000 )*2**67 ) %10**5    )
 
 # def factorial_trailing_digits(n) :
 #     # primes = [2, 3, 5, 7]

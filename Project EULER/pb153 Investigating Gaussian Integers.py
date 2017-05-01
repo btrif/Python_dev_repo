@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Solved by Bogdan Trif @
+# Solved by Bogdan Trif @   Completed on Tue, 21 Mar 2017, 21:16
 #The  Euler Project  https://projecteuler.net
 '''
 Investigating Gaussian Integers     -       Problem 153
@@ -117,7 +117,7 @@ print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
 
-print('\n--------------------------MY FIRST SOLUTION, 1 hour------------------------------')
+print('\n--------------------------MY FIRST SOLUTION,  VERY SLOW, 1 hour------------------------------')
 t1  = time.time()
 
 # 2016-12-18 17:48
@@ -125,7 +125,7 @@ t1  = time.time()
 # a**2+b**2 = n
 # You must decompose a number in two perfect squares. Must solve other problems first
 # Can you predict from what kind of numbers 3+4i will be a divisor? And 3-4i    ?
-# @2017-03-18,01:30 missed divisors of 10 : look in the notebook : their total sum = 38 (for 10)
+# @2017-03-18, 01:30 missed divisors of 10 : look in the notebook : their total sum = 38 (for 10)
 
 
 def gaussian_integers_sol_1(lim = 10**2) :
@@ -163,7 +163,7 @@ def gaussian_integers_sol_1(lim = 10**2) :
     return print('\nAnswer : \t', sum(GI)  )
 
 
-gaussian_integers_sol_1(10**8)              #   Answer : 	 17971254122360635
+# gaussian_integers_sol_1(10**8)              #   Answer : 	 17971254122360635
 
 
 # CHECK VALUES :
@@ -185,31 +185,185 @@ print('\n================  My FIRST SOLUTION,   ===============\n')
 # print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
-# print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
-# print('\n--------------------------SOLUTION 1,   --------------------------')
-# t1  = time.time()
+print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
+print('\n--------------------------SOLUTION 1, 5 sec  --------------------------')
+t1  = time.time()
+
+# ==== Tue, 22 Mar 2016, 09:24, Min_25, Japan
+# Here is an O(n3/4)O(n3/4) solution.
+# We can speed up the calculation by computing the weighted number of lattice points within a circle.
+# Theoretically, we can compute the answer in O(n**2/3(log log n)**1/3) time.
+#
+# The answer is
+# S1(N)+2⋅⎛⎝⎜∑i=1v(C2(⌊Ni⌋)−C2(⌊Ni+1⌋))S1(i)+∑i=1Nv−1(C2(i)−C2(i−1))S1(⌊Ni⌋)⎞⎠⎟,
+#
+# where, vv is arbitrary and
+# T(n):=n(n+1)2,
+# T(n):=n(n+1)2,
+#
+# S1(N):=∑i=1Nσ1(i)=∑i=1N√(i⌊Ni⌋+T(⌊Ni⌋))−T(⌊N−−√⌋)⌊N−−√⌋,
 #
 #
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-# print('\n--------------------------SOLUTION 2,   --------------------------')
-# t1  = time.time()
+# C1(N):=∑x=1N√∑y=1N√[x2+y2≤N]⋅x=∑x=N2√+1N√(x⌊N−x2−−−−−−√⌋+T(⌊N−x2−−−−−−√⌋))+T(⌊N2−−−√⌋)⌊N2−−−√⌋,
 #
 #
+# C2(N):=∑x=1N√∑y=1N√[gcd(x,y)=1∧x2+y2≤N]⋅x=C1(N)−∑g=2N√g⋅C2(⌊Ng2⌋).
 #
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-# print('\n--------------------------SOLUTION 3,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
+# Here are some additional values with PyPy 5.0:
+# - 108108: 1797125412236063517971254122360635, 0.242 sec.
+# - 109109: 17972310354702299621797231035470229962, 0.586 sec.
+# - 10101010: 179726445633260218662179726445633260218662, 2.140 sec.
+# - 10111011: 1797275027254208979348517972750272542089793485, 9.971 sec.
+# - 10121012: 17972783702920566292635181797278370292056629263518, 47.969 sec.
+# - 10131013: 179727942749349269842849984179727942749349269842849984, 256.118 sec.
+# - 10141014: 1797279761814955361272584975517972797618149553612725849755, 1310.278 sec.
+# - 10151015: 17972798675369158471222555294791797279867536915847122255529479, 6802.619 sec.
+
+
+from math import sqrt
+
+def isqrt(n, dblcutoff=1<<52):
+  if n < dblcutoff:
+    return int(sqrt(n))
+  x = int(sqrt(n * (1 + 1e-14)))
+  while True:
+    y = (x + n // x) >> 1
+    if y >= x:
+      return x
+    x = y
+
+def icbrt(n):
+  if n <= 0:
+    return 0
+
+  x = int(n ** (1. / 3.) * (1 + 1e-12))
+  while True:
+    y = (2 * x + n // (x * x)) // 3
+    if y >= x:
+      return x
+    x = y
+
+def prob153(N=10**8):
+  """
+  10 **  9: 1797231035470229962, 0.586 sec.
+  10 ** 10: 179726445633260218662, 2.140 sec.
+  10 ** 11: 17972750272542089793485, 9.971 sec.
+  10 ** 12: 1797278370292056629263518, 47.969 sec.
+  10 ** 13: 179727942749349269842849984, 256.118 sec.
+  """
+  def S(n):
+    v = isqrt(n)
+    ret = 0
+    for i in range(v, 0, -1):
+      t = n // i
+      ret += t * (2 * i + t + 1)
+    ret -= v * v * (v + 1)
+    return ret >> 1
+
+  def C(n):
+    v = isqrt(n)
+    w = isqrt(n // 2)
+    ret = 0
+    for i in range(v, w, -1):
+      t = isqrt(n - i * i)
+      ret += t * (2 * i + t + 1)
+    ret += w * w * (w + 1)
+    return ret >> 1
+
+  def sum_imaginary_numbers(N):
+    def T(n):
+      return n * (n + 1) // 2
+
+    def calc_coprime(n):
+      ret = smalls[n] if n < w else larges[N // n]
+      u = icbrt(n)
+      prev = T(isqrt(n))
+      for i in range(1, u + 1):
+        curr = T(isqrt(n // (i + 1)))
+        ret -= (prev - curr) * smalls[i]
+        prev = curr
+      for i in range(2, isqrt(n // (u + 1)) + 1):
+        d = n // (i * i)
+        ret -= i * (smalls[d] if d < w else larges[N // d])
+      return ret
+
+    v = isqrt(N)
+    w = N // v
+
+    larges = [0] + [C(N // i) for i in range(1, v + 1)]
+    smalls = [0] + [C(i) for i in range(1, w)]
+
+    for i in range(1, w):
+      smalls[i] = calc_coprime(i)
+
+    for i in range(v, 0, -1):
+      larges[i] = calc_coprime(N // i)
+
+    for i in range(1, v):
+      larges[i] -= larges[i + 1]
+    larges[v] -= smalls[w - 1]
+    for i in range(w - 2, 0, -1):
+      smalls[i+1] -= smalls[i]
+
+    ret = 0
+    for i in range(1, w):
+      if smalls[i] > 0:
+        ret += smalls[i] * S(N // i)
+    for i in range(1, v + 1):
+      ret += larges[i] * S(i)
+    return 2 * ret
+
+  ans = sum_imaginary_numbers(N) + S(N)
+  return ans
+
+# print(prob153(10 ** 8))
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------------------SOLUTION 2,   --------------------------')
+t1  = time.time()
+
+# ==== Wed, 7 Jan 2009, 01:03, tolstopuz, Russia
+# 126s on E8400.
+
+def solution_2() :
+    import math, fractions
+
+    nmax = 10 ** 8
+
+    def ss(x):
+        s = 0
+        i = 1
+        while i <= x:
+            j = x // i
+            ii = x // j
+            s += (ii + i) * (ii - i + 1) * j // 2
+            i = ii + 1
+        return s
+
+    s = ss(nmax)
+
+    for a in range(1, int(math.sqrt(nmax)) + 1):
+        for b in range(1, min(a, int(math.sqrt(nmax - a * a))) + 1):
+            if math.gcd(a, b) == 1:
+                s += ss(nmax // (a * a + b * b)) * 2 * (a if a == b else a + b)
+
+    return print(s)
+
+solution_2()
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------------------SOLUTION 3,   --------------------------')
+t1  = time.time()
+
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
 # print('\n--------------------------SOLUTION 4,   --------------------------')
 # t1  = time.time()
 #

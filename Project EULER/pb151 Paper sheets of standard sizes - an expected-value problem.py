@@ -15,7 +15,6 @@ until he obtains the A5-size sheet needed for the first batch of the week.
 
 All the unused sheets are placed back in the envelope.
 
-
 At the beginning of each subsequent batch, he takes from the envelope one sheet of paper at random.
 If it is of size A5, he uses it. If it is larger, he repeats the 'cut-in-half' procedure until
 he has what he needs and any remaining sheets are always placed back in the envelope.
@@ -31,8 +30,22 @@ import time, gmpy2
 
 # For four jobs, starting with an A3 paper, the expected number of times to find exactly
 # one sheet in the envelope (excluding first and last) is 0.5, but that doesn't help you much, does it?
+# Based on the clarifications in the comments, an is the number of ways to choose the sequence of sheets
+# drawn from the envelope, assuming that the sheets are distinguishable (even if the same size).
+# For example, a2=3 counts the following 3 possibilities:
+#
+# {A3}→{A4,A5}→{A4}→{A5}→{}
+# {A3}→{A4,A5}→{A5,A5′}→{A5}→{}
+# {A3}→{A4,A5}→{A5,A5′}→{A5′}→{}
+#
+# However, these outcomes need not have equal probabilities. In this case outcome 1 has probability 1/2,
+# while outcomes 2 and 3 each have probability 1/4.
+# So we can't compute the expectation by counting outcomes and dividing by an.
 
 # starts with : 1A2 , 1A3, 1A4 , 1 A5
+@ 2017-03-24 - I heoped to be able to solve this problem at this moment. but i do not understand enough
+the decisional tree algorithms. Must study those first beginning with the binary tree
+
 
 ## CONVENTION : A1 = 1, A2 = 2, A3, = 4, A4 = 8, A5 =16
 
