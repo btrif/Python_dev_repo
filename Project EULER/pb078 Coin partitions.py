@@ -68,9 +68,7 @@ for i in range(1,number+1):
         print(str(i)+'.   ', dyf(i))
         break
 
-print('\n The answer is:  ', i)
-
-# Answer : 55374
+print('\n The answer is:  ', i)                             # Answer : 55374
 
 
 #     #for s in range(5, 7):
@@ -80,39 +78,39 @@ print('\n The answer is:  ', i)
 
 
 t2  = time.time()
-print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')          # Completed in : 35449.027538 ms
+print('\nCompleted in :', round((t2-t1),6), 's\n\n')          # Completed in : 35449.027538 ms
 
 
 print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
 print('\n--------------------------SOLUTION 1 , SLOW  ilan, Germany--------------------------')
 
 t1  = time.time()
-#
-# class Memoize:
-#     def __init__(self, func):
-#         self.func = func
-#         self.cache = {}
-#     def __call__(self, arg):
-#         if arg not in self.cache:
-#             self.cache[arg] = self.func(arg)
-#         return self.cache[arg]
-#
-# @Memoize
-# def p(n):
-#     if n<0: return 0
-#     if n<2: return 1
-#     sm=0
-#     for k in range(1, n+1):
-#         n1 = n-k*(3*k-1)/2
-#         n2 = n-k*(3*k+1)/2
-#         sm += (-1)**(k+1) * (p(n1) + p(n2))
-#         if n1 <= 0:
-#             break
-#     return sm%1000000
-#
-# n=0
-# while p(n)!=0: n += 1
-# print (n)
+
+class Memoize:
+    def __init__(self, func):
+        self.func = func
+        self.cache = {}
+    def __call__(self, arg):
+        if arg not in self.cache:
+            self.cache[arg] = self.func(arg)
+        return self.cache[arg]
+
+@Memoize
+def p(n):
+    if n<0: return 0
+    if n<2: return 1
+    sm=0
+    for k in range(1, n+1):
+        n1 = n-k*(3*k-1)/2
+        n2 = n-k*(3*k+1)/2
+        sm += (-1)**(k+1) * (p(n1) + p(n2))
+        if n1 <= 0:
+            break
+    return sm%1000000
+
+n=0
+while p(n)!=0: n += 1
+print (n)
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')

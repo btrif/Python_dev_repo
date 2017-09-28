@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import time, functools
+import time, functools, itertools
 from math import  gcd, sqrt, log
 # The Most basic
 
@@ -516,6 +516,71 @@ print(circular_primes(197))
 
 print('\n---------------------------- DIVISORS --------------------------------')
 
+class PrimeTable():    #  ( ͡° ͜ʖ ͡°)  ### !! FIRST FASTEST
+    def __init__(self, bound):
+        self.bound = bound
+        self.primes = []
+        self._sieve()
+
+    def _sieve(self):
+        visited = [False] * (self.bound + 1)
+        visited[0] = visited[1] = True
+        for i in range(2, self.bound + 1):
+            if not visited[i]:
+                self.primes.append(i)
+            for j in range(i + i, self.bound + 1, i):
+                visited[j] = True
+        print('Prime count:', len(self.primes))
+
+class Factorization():
+
+    ''' Based on a prebuilt prime sieve, and we must pay attention that the prime up range is not
+    to low, so that we don't miss a prime when we first factor . As default the value is set to 10.000   '''
+    def __init__(self):
+        self.prime_table = PrimeTable(10**4)
+
+    def get_divisors(self, n):
+        d = n
+        f = {}
+        for p in self.prime_table.primes:
+            if d == 1 or p > d:
+                break
+            e = 0
+            while d % p == 0:
+                d = d // p
+                e += 1
+            if e > 0:
+                f[p] = e
+        if d > 1:
+            f[d] = 1
+            #raise Exception('prime factor should be small', d)
+        unpacking = [[p**e for e in range(f[p] + 1)] for p in f]
+        return sorted([self._product(divisor) for divisor in itertools.product(*unpacking)])
+
+    def _product(self, list):
+        result = 1
+        for number in list:
+            result *= number
+        return result
+
+
+F  = Factorization()
+print( F.get_divisors(180180) )
+
+
+def get_divisors(n):      ### ( ͡° ͜ʖ ͡°)  SECOND FASTEST ,  MUST BE IMPROVED !! It is a sqrt(n) Algorithm
+    from math import sqrt
+    factors = set()
+    for x in range(1, int(sqrt(n)) + 1):
+        if n % x == 0:
+            factors.add(x)
+            factors.add(n//x)
+    return sorted(factors)
+
+for i in (72, 90, 210): print( "%i: factors: %s" % (i, get_divisors(i)) )
+
+
+
 def  calculate_divisors(nr):
     '''**©** Made by Bogdan Trif @ 2016-12-08, 16:30.
         :Description: Functions which computes the number of divisors of a number.
@@ -533,17 +598,6 @@ def  calculate_divisors(nr):
 
 
 
-
-def get_divisors(n):      ### ( ͡° ͜ʖ ͡°)  FASTEST  ( ͡° ͜ʖ ͡°)  ### !! FIRST FASTEST     MUST BE IMPROVED !! It is a sqrt(n) Algorithm
-    from math import sqrt
-    factors = set()
-    for x in range(1, int(sqrt(n)) + 1):
-        if n % x == 0:
-            factors.add(x)
-            factors.add(n//x)
-    return sorted(factors)
-
-for i in (72, 90, 210): print( "%i: factors: %s" % (i, get_divisors(i)) )
 
 def get_divisors_2(n):       ### o(^_^)o  #  More powerfull for numbers > 10**10
     ''' first it decomposes the number in prime factors , then makes combinations of all the factors
@@ -651,7 +705,8 @@ print('\nDigital Root of a number : \t 467 \t =\t' ,dr(467) )
 print('\n------------------  EULER Phi,  Φ (n) of a number, EULER TOTIENT -------------------- ')
 
 def euler_totient(n):           # Remark : For large array better use Sieve approach
-    """returns Euler totient (phi) of n = Φ (n)
+    """ **©** Made by Bogdan Trif @ 2017-02-08 .
+    returns Euler totient (phi) of n = Φ (n)
         Uses the formula of the Totient  : Φ (n) =  Π {p | n}  n *(1 - 1/p) ;
         where p are each prime factors and n is the number  for which we compute
         In number theory, Euler's totient function counts the positive integers up to a given integer n
@@ -660,13 +715,16 @@ def euler_totient(n):           # Remark : For large array better use Sieve appr
         Example : Φ (12) = 4 =   [1,5,7,11]
         https://en.wikipedia.org/wiki/Euler's_totient_function
         http://marcharper.codes/2015-08-07/totients.html            """
-    phi=n
-    pfs=set(get_factors(n))
+    from pyprimes import factorise
+    phi = n
+    pfs = list(factorise(n))
+    print(pfs)
     for pf in pfs:
-        phi*=(1-1/pf)
+        phi*=(1-1/pf[0])
     return int(phi)
 
 print('euler_totient : \t', euler_totient(600))
+print('euler_totient : \t', euler_totient(90))
 
 def Euler_Totient_Sieve(n):
     ''' Constructs a SIEVE of totients up to n

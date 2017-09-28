@@ -57,7 +57,7 @@ def gauss_quad( f, a, b, n ):
 
     # Compute the sum and return the estimate of the integral
 
-    for i in xrange( n / 2 ):
+    for i in range( n / 2 ):
         x0 = -alpha * r[i] + beta
         x1 =  alpha * r[i] + beta
         sum = sum + w[i] * ( f( x0 ) + f( x1 ) )
@@ -65,3 +65,6 @@ def gauss_quad( f, a, b, n ):
     y = alpha * sum
 
     return y
+
+
+gauss_quad(1 , 0, 1, 3)

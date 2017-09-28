@@ -171,7 +171,7 @@ rec_loop_for(len(fives))
 print('\n--------------------------- RECURSION LOOP FOR WITH LIST DESCENDING, Ascending length ----------------------------')
 
 L=[2,3,5,7]
-def rec_loop_for(i):
+def rec_loop_for(i):        # *©** Made by Bogdan Trif in 2017-02
     if (i >= 1):
         rec_loop_for(i-1)
         for i in range(i):
@@ -183,7 +183,7 @@ def rec_loop_for(i):
 rec_loop_for(len(L))
 
 
-print('\n---------------- REcursive Mutliplication -------------------')
+print('\n---------------- Recursive Mutliplication -------------------')
 
 def multiplication(m , n) :
     if m == 1 : return n
@@ -288,3 +288,53 @@ def solve(n):
     ans += solve(r) * (z+1) # The remaining part has one extra triangle.
 
     return ans
+
+
+print('\n----------------------------  COMBINATIONS -----------------------------')
+
+def combinations_by_subset(seq, r):
+    if r:
+        for i in range(r - 1, len(seq)):
+            for cl in combinations_by_subset(seq[:i], r - 1):
+                print(cl + (seq[i],))
+                yield cl + (seq[i],)
+    else:
+        yield tuple()
+
+list(combinations_by_subset([1,2,3,4,5], 3)   )
+
+
+print('\n--------------------------NUMBER PARTITION RECURSIVE FUNCTION ---------------------')
+def partition(number):
+    answer = set()
+    answer.add((number, ))
+    for x in range(1, number):
+        for y in partition(number - x):
+            answer.add(tuple(sorted((x, ) + y)))
+            #print(answer)
+    return answer
+
+print(partition(4))
+
+
+print('\n---------- Euler 199, Iterative Circle Packing using Descartes Theorem  ---------------------')
+
+# === Sun, 10 Jul 2011, 18:27, MrDrake, New Zeeland
+# Great problem once you know Descartes' Theorem!
+
+def descartes(x):
+    a, b, c=x
+    return a+b+c+2*(a*b+b*c+c*a)**0.5
+
+def f(x, n):
+    if not n: return 0
+    a, b, c = x
+    d=descartes(x)
+    return 1/d**2 +f ((a, b, d), n-1 ) +f((a, c, d ), n-1)+f ((b, c, d ) , n-1 )
+
+k = 3 - 2*3**0.5
+
+n = 10
+digits = 8
+
+print ( round(1-(3+3*f((k,1,1),n)+f((1,1,1),n))*k**2, digits) )

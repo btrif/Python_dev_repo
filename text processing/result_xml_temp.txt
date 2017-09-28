@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<pricefx-configuration>
+
+	<nodeName>mstest</nodeName>
+	
+	<developmentMode>false</developmentMode>
+	
+	<readOnlyMode>false</readOnlyMode>
+	
+	<authenticationDisabled>false</authenticationDisabled>
+	
+	<authorizationDisabled>false</authorizationDisabled>
+	
+	<allowBootstrap>true</allowBootstrap>
+	
+	<defaultLocale>en</defaultLocale>
+	
+	<configuredLocales>en,de</configuredLocales>
+	
+	<baseURL>172.26.170.12</baseURL>
+	
+	<allowRemoteScriptDebugging>false</allowRemoteScriptDebugging>
+	
+	<rmiRegistryPort>1099</rmiRegistryPort>
+	
+	<serverRoles>UserNode,ListProcessor,EventProcessor,EmailProcessor,CalculationSlave</serverRoles>
+	<logEvents>true</logEvents>
+	<jolokia>
+		<enabled>true</enabled>
+	</jolokia>
+	
+	
+	<backgroundWorkers>
+		<pollingPeriod>60000</pollingPeriod>
+		<calculationWorker>
+			<numberOfThreadsPerPartition>10</numberOfThreadsPerPartition>	
+		</calculationWorker>
+	</backgroundWorkers>
+	<calculationTasks>
+		<commitBatchSize>200</commitBatchSize>
+	</calculationTasks>
+	
+	<calculationSlave>
+		<maxSlaveThreads>5</maxSlaveThreads>
+		<schedulingStrategy>FIFO</schedulingStrategy>
+		<requestQueueTimeoutSec>30</requestQueueTimeoutSec>
+		<responseQueueTimeoutSec>180</responseQueueTimeoutSec>
+	</calculationSlave>
+	
+	<maxNonStreamFetchSize>1000</maxNonStreamFetchSize>
+	
+	<jetty>
+		<port>8001</port>
+	</jetty>
+	
+	<email>
+		<smartHost>localhost</smartHost>
+		<authRequired>false</authRequired>
+		<username></username>
+		<password></password>
+		
+		<port>25</port>
+		
+		<transport></transport>
+		
+		<batchSize>200</batchSize>
+		
+		<retryDelayInSecs>300</retryDelayInSecs>
+		
+		<redirectTo></redirectTo>
+		
+		<bcc></bcc>
+		
+		<fromAddress>no-reply@media-saturn.com</fromAddress>
+		<fromName>Price f(x) MS Perf</fromName>
+	</email>
+	
+	<event>
+		<purgeOldEvents>true</purgeOldEvents>
+		
+		<retainEventsInDays>
+			<successful>10</successful>
+			<failed>100</failed>
+		</retainEventsInDays>
+	</event>
+	
+    <excel>
+        <deleteTemplateAfterSerialization>true</deleteTemplateAfterSerialization>
+        <defaultDateFormatPattern>MM/dd/yyyy HH:mm:ss:SSS</defaultDateFormatPattern>
+        
+        <tempDirectory>./temp</tempDirectory>
+        
+        <templateFile>./template.xls</templateFile>
+        
+        <client>./config/PriceFx_ExcelClient.xlsm</client>
+    </excel>
+    
+	<c3p0>
+		<maxPoolSize>20</maxPoolSize>
+		<minPoolSize>5</minPoolSize>
+		<maxIdleTime>3000</maxIdleTime>
+        <maxAdministrativeTaskTime>0</maxAdministrativeTaskTime>
+		<idleConnectionTestPeriod>300</idleConnectionTestPeriod>
+	</c3p0>	   
+	
+	<bonecp>
+		<idleMaxAgeInMinutes>4</idleMaxAgeInMinutes>
+		<idleConnectionTestPeriodInMinutes>1</idleConnectionTestPeriodInMinutes>
+		<partitionCount>3</partitionCount>
+		<acquireIncrement>2</acquireIncrement>
+		<maxConnectionsPerPartition>10</maxConnectionsPerPartition>
+		<minConnectionsPerPartition>4</minConnectionsPerPartition>
+        	<statementsCacheSize>50</statementsCacheSize>
+		<releaseHelperThreads>1</releaseHelperThreads>
+	</bonecp>
+
+	
+	<hibernateOverride>false</hibernateOverride>
+	
+	<hibernateSkipSchemaUpdate>false</hibernateSkipSchemaUpdate>
+	
+	<hibernate>
+		<cache>
+			<region>
+				<factory_class>net.pricefx.core.hibernate.MultiTenantLocalCacheRegionFactory</factory_class>
+			</region>
+			<hazelcast>
+				<instance_name>default</instance_name>
+				<shutdown_on_session_factory_close>false</shutdown_on_session_factory_close>
+			</hazelcast>
+			<use_second_level_cache>true</use_second_level_cache>
+			<use_query_cache>true</use_query_cache>
+			<use_minimal_puts>true</use_minimal_puts>			
+		</cache>
+		<connection>
+			<driver_class>com.mysql.jdbc.Driver</driver_class>
+			<url>jdbc:mysql://172.26.162.15/pricing_perf?characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;autoReconnect=true</url>
+			<username>pricing_perf</username>
+			<password>Otove7Ubas18</password>
+			<schema>pricing_perf</schema>
+			
+			<provider_class>net.pricefx.core.hibernate.BoneCPConnectionProvider</provider_class>
+		</connection>
+	
+		<current_session_context_class>thread</current_session_context_class>
+		<dialect>org.hibernate.dialect.MySQL5InnoDBDialect</dialect>
+		<generate_statistics>true</generate_statistics>
+		<hbm2ddl>			
+			<auto>update</auto>
+		</hbm2ddl>
+		<id>
+			<new_generator_mappings>true</new_generator_mappings>
+		</id>
+		<jdbc>
+			<batch_size>50</batch_size>
+			<batch_versioned_data>true</batch_versioned_data>
+		</jdbc>
+		<order_updates>true</order_updates>
+		<show_sql>false</show_sql>
+
+	</hibernate>
+	
+	<domainClassesPaths>
+		net.pricefx.domain		
+	</domainClassesPaths>
+	
+	<formulaEngine>
+		<engine>net.pricefx.formulaengine.DefaultFormulaEngine</engine>
+		
+		<dumpFormulasFolder>config/formulas</dumpFormulasFolder>
+		<dumpFormulas>false</dumpFormulas>
+		
+		<cacheSize>50000</cacheSize>
+		
+		<script>
+		</script>
+	</formulaEngine>
+	
+	<passwordService>net.pricefx.service.impl.PasswordServiceImpl</passwordService>
+	
+	<commandDispatcher>
+		<commandsPath>net.pricefx.server.commands</commandsPath>
+		
+		<interceptors>
+			net.pricefx.server.interceptors.AuditInterceptor,net.pricefx.server.interceptors.AuthorizationInterceptor,net.pricefx.server.interceptors.ReadOnlyModeInterceptor
+		</interceptors>
+	</commandDispatcher>
+	
+	<currency>
+		<pathToDefault>config/ISOCurrencies.json</pathToDefault>
+		<defaultBaseCurrencyCode>EUR</defaultBaseCurrencyCode>
+	</currency>
+	
+	<unitOfMeasure>
+		<defaultBaseUOMCode>EA</defaultBaseUOMCode>
+	</unitOfMeasure>
+	
+	<filespace>
+		<rootPath>/home/customers</rootPath>
+		<spaceSuffix>filearea/upload</spaceSuffix>
+		<uploadScript>/home/ops/bin/process-uploadfile</uploadScript>
+	</filespace>
+	<datamart>
+		<database>
+			<type>LUCIDDB</type>
+			<driver_class>!---PARAMETER_NOT_FOUND_IN_CMDB----!</driver_class>
+			<url>jdbc:luciddb:</url>
+			<skipBootstrapping>false</skipBootstrapping>
+			<system>
+				<serverHttpPort>8037</serverHttpPort>
+				<cachePagesMax>60000</cachePagesMax>
+				<cachePagesInit>60000</cachePagesInit>
+				<tempInitSize>1000</tempInitSize>
+				<codeCacheMaxBytes>20000000</codeCacheMaxBytes>
+				<prefetchPagesMax>100</prefetchPagesMax>
+				<databaseIncrementSize>1000</databaseIncrementSize>
+				<databaseTxnLogInitSize>20000</databaseTxnLogInitSize>
+				<databaseTxnLogIncrementSize>1000</databaseTxnLogIncrementSize>
+				<databaseShadowLogInitSize>20000</databaseShadowLogInitSize>
+				<databaseShadowLogIncrementSize>20000</databaseShadowLogIncrementSize>
+				<tempIncrementSize>1000</tempIncrementSize>
+				<expectedConcurrentStatements>4</expectedConcurrentStatements>
+				<cacheReservePercentage>5</cacheReservePercentage>
+				<deviceSchedulerType>!---PARAMETER_NOT_FOUND_IN_CMDB----!</deviceSchedulerType>
+			</system>
+			<backup>
+				<destination>/www/pricing/backup</destination>
+			</backup>
+		</database>
+		<schema>
+			<pathToSchemasFolder>config/schemas</pathToSchemasFolder>
+		</schema>
+		
+		<dataLoad>
+			<maxRowsPerBatch>65535</maxRowsPerBatch>
+			
+			<maxRowsPerDataChunk>5000</maxRowsPerDataChunk>
+
+		</dataLoad>
+		<persistence>
+			<rowDeleteBatchSize>5000</rowDeleteBatchSize>
+			<logSQL>true</logSQL>
+		</persistence>
+		<discretization>
+			<resolution>10000</resolution>
+			<maxPointsPerDimUnit>2</maxPointsPerDimUnit>
+			<maxLabelsInSummary>5</maxLabelsInSummary>
+		</discretization>
+		<query>
+			<resultCacheEnabled>true</resultCacheEnabled>
+			
+			<internalRowLimit>500000</internalRowLimit>
+			
+			<externalRowsLimit>500000</externalRowsLimit>
+
+			<fetchRowLimit>100</fetchRowLimit>			
+		</query>
+
+	</datamart>	
+	
+	
+</pricefx-configuration>

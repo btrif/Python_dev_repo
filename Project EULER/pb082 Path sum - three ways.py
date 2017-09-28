@@ -1,8 +1,8 @@
 #!/usr/bin/python
-# Solved by Bogdan Trif @
+# Solved by Bogdan Trif @   Completed on Fri, 1 Sep 2017, 22:15
 #The  Euler Project  https://projecteuler.net
 '''
-Path sum: three ways        -       Problem 82
+                            Path sum: three ways        -       Problem 82
 NOTE: This problem is a more challenging version of Problem 81.
 The minimal path sum in the 5 by 5 matrix below, by starting in any cell in the left column and
 finishing in any cell in the right column, and only moving up, down, and right, is indicated in red and bold; the sum is equal to 994.
@@ -29,7 +29,7 @@ def load_file(filename):
     return matrix
 
 matrix = load_file(filename)
-for i in matrix :    print(i)
+# for i in matrix :    print(i)
 
 # mT = transpose(matrix)
 # print('\n',mT)
@@ -43,122 +43,34 @@ print('\n----------------- TEST FOR Smaller MaTriX -----------------------\n')
 #        [550, 700, 500, 150, 950],\
 #        [800, 750, 500, 50,  350]]
 
-# M=  [[131, 673, 234, 103, 18], \
-#         [201, 96,  342, 965, 150],\
-#         [630, 803, 746, 422, 111],\
-#         [537, 699, 497, 121, 956],\
-#         [805, 732, 524, 37,  331]]
+M=  [[131, 673, 234, 103, 18], \
+        [201, 96,  342, 965, 150],\
+        [630, 803, 746, 422, 111],\
+        [537, 699, 497, 121, 956],\
+        [805, 732, 524, 37,  331]]
 
-M = [ [100,	100,	90,	100,	100],
-[95,	80	,105,	110,	100],
-[100,	20,	150,	115,	100],
-[125,	95,	35,	100,	100],
-[90,	95,	100,	95,	100] ]
+# M = [ [100,	100,	90,	100,	100],
+#         [95,	   80	,   105,	110,	 100],
+#         [100,	   20,	   150,	115,	100],
+#         [125,   	95,	35,	100,	100],
+#         [90,    	95,	100,	95,	100] ]
 
 print('------------------------------------The Original Matrix --------------')
 for i in range(len(M)): print(M[i])
 
-
-# print('\n---------------------------------The Transposed Matrix --------------')
-#
-# mT = transpose(m)
-#
-# for i in range(len(mT)): print(mT[i])
-
-
-
 print('\n----------------------------------- The Computed PATH ---------------------')
-# TRansposed
 
 # M = [row[:] for row in mT]     # Making a copy of transposed matrix
 # M = deepcopy(mT)          # deepcopy for cloning the transposed matrix
 # B = zeros((len(M), len(M)), dtype=int)        # numpy Create a zeroed Matrix the same size
 # print(B)
 
-def make_dict(M) :
-    ###### CONSTRUCT DICTIONARY.  We make the path dictionary :
-    D={}
-    for i in range(0, len(M) ):
-        for j in range(0, len(M[i])-1, 1):
-            if i==0:        # next pos
-                # print( (i,j), M[i][j] ,'     -->  ' , (i+1, j) , M[i+1][j] , '       ', (i, j+1) , M[i][j+1] )
-                D[ (i,j) ] = [(i+1, j), (i, j+1)  ]
-            if  0< i < len(M) -1 :  # next pos
-                # print( (i,j),M[i][j] ,'      --> ' , (i-1, j),M[i-1][j] ,'       ',(i+1,j) ,M[i+1][j] , '        ',(i, j+1) ,M[i][j+1] )
-                D[ (i,j) ] = [(i-1, j), (i+1, j), (i, j+1)  ]
-
-            if   i == len(M)-1 :    # next pos
-                # print( (i,j),M[i][j] ,'      --> ' , (i-1, j),M[i-1][j] , '        ',(i, j+1) ,M[i][j+1] )
-                D[ (i,j) ] = [(i-1, j),  (i, j+1)  ]
-
-    print('\nD = ',D )
-    return D
-
-Track = {}
-D= make_dict(M)
-def next_pos(cur_pos, Track, D, M ) :
-    oo = D[cur_pos]
-    # print(oo,  [ M[i[0]][i[1]]  for i in oo ])
-
-    for i in oo :
-        if i in Track : oo.remove(i)
-    L = [ M[i[0]][i[1]] + M[i[0]][i[1]+1]  if i[0] != cur_pos[0]  else M[i[0]][i[1]]  for i in oo   ]
-    # print( [ i   for i in oo if i[1] < len(M)-1 ] )
-    m = min(L)
-    # if L.count(m) > 1 :
-    #     ll = max([ (oo[i][1],oo[i][0]) for i in range(len(L)) if L[i] == m  ])
-    #     print( 'max col = ', ll  )
-    #     ll = ( ll[1], ll[0]  )
-
-    ll = oo[L.index(m)]
-    k = M[ll[0]][ll[1]]
-    # print('min_index = ',  ll , '       min=', k, L.index(m) , '     ', L,'      ',oo )
-    Track[ll] = 0
-    return  k, ll
-
-
-
-pos = (2, 1)
-print('\nnext_pos : \t' ,next_pos( pos, Track, D, M  ) )
-print('Track = ',Track ,'\n')
-
-
-
-
-
-
-
-def min_three_ways_path(M) :
-
-    ###### CONSTRUCT DICTIONARY.  We make the path dictionary :
-
-    D = make_dict(M)
-
-    #### PART 2 - find the min value by starting from every row with col = 0
-    SS = 10**9
-    for i in range( len(M)  ) :
-        Track = {}
-        pos = (i, 0)
-        S = M[pos[0]][pos[1]]
-        col = pos[1]
-        Track[pos] = 0
-
-        while col < len(M)-1 :
-            val, pos = next_pos( pos, Track, D, M )
-            print('val =',val, '    pos= ', pos, '      sum=', S, '             ',Track )
-            col = pos[1]
-            S += val
-        print('---------  row =',i , '\t path= ', S ,'\n')
-        if SS > S : SS = S
-
-    return print('\nSmallest path cost : \t', SS)
 
 M_test = [ [100,	100,	90,	100,	100],
-[95,	80	,105,	110,	100],
-[100,	20,	150,	115,	100],
-[125,	95,	35,	100,	100],
-[90,	95,	100,	95,	100] ]
-
+                    [95,	80	,   105,	110,	100],
+                    [100,	20,	150,	115,	100],
+                    [125,	95,	35,	100,	100],
+                    [90,	95,	100,	95,	100] ]
 
 # min_three_ways_path(M_test)
 # min_three_ways_path(matrix)
@@ -252,51 +164,215 @@ M_test = [ [100,	100,	90,	100,	100],
 #             # print(mtx[i][j])
 #     print(m[i])
 
-M = M_test
-gridSize = len(M)
-sol = [0 for i in range(gridSize)]
+print('\n================  My FIRST SOLUTION,  DP ===============\n')
+t1  = time.time()
 
-#   initialise solution :
-for i in range(0, gridSize ) :
-    sol[i] = M[i][gridSize - 1]
+def three_ways_path( matrix ) :
 
-for i in range(gridSize-2,-1, -1 ) :
-    #   Traverse down :
-    sol[0] += M[0][i]
-    for j in range(1, gridSize) :
-       sol[j] = min ( sol[j - 1] + M[j][i], sol[j] + M[j][i] )
+    M = matrix
+    gridSize = len(M)
+    sol = [0 for i in range(gridSize)]
 
-    #   Traverse up :
-    for j in range(gridSize -2, -1, -1) :
-        sol[j] = min( sol[j], sol[j+1] + M[j][i] )
+    #   initialise solution :
+    for i in range(0, gridSize ) :
+        sol[i] = M[i][gridSize - 1]
 
-print(sol)
-print( min(sol))
+    for i in range(gridSize-2,-1, -1 ) :
+        #   Traverse down :
+        sol[0] += M[0][i]
+        for j in range(1, gridSize) :
+           sol[j] = min ( sol[j - 1] + M[j][i], sol[j] + M[j][i] )
+
+        #   Traverse up :
+        for j in range(gridSize -2, -1, -1) :
+            sol[j] = min( sol[j], sol[j+1] + M[j][i] )
+
+    print('The Complete path is : ',sol)
+    return print('\nThe minimal path is : \t', min(sol))
+
+three_ways_path(matrix)
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
 
 
+print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
+print('\n--------------------------SOLUTION 1, Dynamic Programming   --------------------------')
+t1  = time.time()
 
-print('\n---------TEST----------')
-
-# bck = range(len(m)-1, -1, -1)
-# fwd = range(0, len(m), 1)
-# flag = 1
-# if flag == 1: dir = fwd
-# elif flag == -1 : dir = bck
+# ====== Fri, 25 Aug 2017, 00:18 FergusonTG  ,
+# Another python solution, using DP and sweeping backwards from right to left. Comments in line
 #
-# for i in dir :
-#     for j in range(0, len(m)) :
-#         print(m[i][j],end=',  ')
-#         if i > 0 and  m[i][j] > m[i-1][j]:
-#             flag = -1
-#             dir = bck
-#         else:
-#             flag = 1
-#             dir = fwd
+# Biggest problem for me was realising I had to scan downwards and upwards on each column in order to
+# get costs for moving down and up respectively.
 
-# print('\nBacwards : ',bck)
-# print('Forward : ',fwd)
+
+import math
+
+def costValue(row, col):
+    if row<0 or row > len(costs)-1:
+        return math.inf
+    if col < 0 or col > len(costs[row])-1:
+        return math.inf
+    return costs[row][col]
+
+def leastCost () :
+    # start at last column: this is copy of matrix column
+    for row in range(len(matrix)): costs[row][-1] = matrix[row][-1]
+
+    # next, look to the previous column and get cost of coming
+    # from the left
+    # then we go down looking for cost of moving upards
+    # and afterwards sweep up looking at cost of moving down
+    for col in range(len(matrix[0])-2,-1,-1):
+        # scanning downwards
+        for row in range(len(matrix)):
+            # cost of going right
+            costs[row][col] = matrix[row][col] + costValue(row,col+1)
+            # cost of going up
+            costs[row][col] = min(costValue(row,col),
+                        matrix[row][col]+costValue(row-1,col))
+        # scanning upwards
+        for row in range(len(matrix[row])-1,-1,-1):
+            costs[row][col] = min(costValue(row,col),
+                        matrix[row][col]+costValue(row+1,col))
+        # helps with debugging
+        # showCosts()
+
+    return min(row[0] for row in costs)
+
+def showCosts():
+    for row in costs:
+        print(row)
+    print()
+
+
+if __name__ == "__main__":
+    with open("pb081_matrix.txt","r") as matrixFile:
+        matrix = [[int(w) for w in line.split(",")] for line in matrixFile]
+
+
+    costs = [[math.inf]*len(row) for row in matrix]
+
+    answer = leastCost()
+    print(answer)
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------------------SOLUTION 2,  --------------------------')
+t1  = time.time()
+
+# ==== Tue, 15 Nov 2016, 01:14, rtoscani, Netherlands
+
+# First, the matrix is stored in a nested (2D-)list.
+# Then, starting with the second column and working top-down, each subsequent value is gradually replaced
+# by a minimum path sum value. For each cell, this is done by determining all possible sums through adjacent cells underneath,
+# until one cell in the neighbouring column on the left is reached (which is also included in the sum).
+# Of the values on top, only the one immediately above is added, this is already a replaced minimal value!
+# The smallest of the sums found is then used to replace the original value in the cell.
+# This procedure is repeated in the next column and so on until the last column is reached.
+# Finally, the smallest value in the last column yields the answer to the problem.
+
+
+minimum = 1000000
+matrix = []
+f = open(filename,'r')
+for line in f.readlines():
+    if not line:
+        break
+    lis = [int(i) for i in line.split(',')]
+    matrix.append(lis)
+f.close()
+for i in range(1,len(matrix[0])):
+    for j in range(len(matrix)):
+        min_sum = minimum
+        col_sum = 0
+        for k in range(j,len(matrix)):
+            col_sum += matrix[k][i]
+            _sum = col_sum + matrix[k][i-1]
+            if _sum < min_sum:
+                min_sum = _sum
+        if j > 0:
+            _sum = matrix[j][i] + matrix[j-1][i]
+            if _sum < min_sum:
+                min_sum = _sum
+        matrix[j][i] = min_sum
+min_path = minimum
+for m in range(len(matrix)):
+    if matrix[m][i] < min_path:
+        min_path = matrix[m][i]
+print (min_path)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------------------SOLUTION 3,  Recursive solutions --------------------------')
+t1  = time.time()
+
+from functools import reduce
+
+def euler82():
+    f = open(filename, 'r' ).read()
+    f = list( map(lambda x:  map( int, x.split(',')), f.splitlines() ) )
+    f =  map( list, zip(*f))[::-1]
+    def func(x,y):
+        s = map(reduce.add,x,y)
+        def part(s,x):
+            smin = min(s)
+            k = s.index(smin)
+            if k == 0:
+                left = []
+            else:
+                temp = min(x[k-1],smin)
+                s[k-1] += temp - x[k-1]
+                x[k-1] = temp
+                left = part(s[:k],x[:k])
+            if k == len(s)-1:
+                right = []
+            else:
+                temp = min(x[k+1],smin)
+                s[k+1] += temp - x[k+1]
+                x[k+1] = temp
+                right = part(s[k+1:],x[k+1:])
+            return left + [smin] + right
+        return part(s,x)
+    return min(reduce(func,f))
+
+euler82()
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+# print('\n--------------------------SOLUTION 4,   --------------------------')
+# t1  = time.time()
+#
+#
+#
+# t2  = time.time()
+# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+#
+# print('\n--------------------------SOLUTION 5,   --------------------------')
+# t1  = time.time()
+#
+#
+#
+# t2  = time.time()
+# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+#
+#
+# print('\n--------------------------SOLUTION 6,   --------------------------')
+# t1  = time.time()
+#
+#
+#
+# t2  = time.time()
+# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+#
 
 
 

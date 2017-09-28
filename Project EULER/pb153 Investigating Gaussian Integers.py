@@ -195,9 +195,9 @@ t1  = time.time()
 # Theoretically, we can compute the answer in O(n**2/3(log log n)**1/3) time.
 #
 # The answer is
-# S1(N)+2⋅⎛⎝⎜∑i=1v(C2(⌊Ni⌋)−C2(⌊Ni+1⌋))S1(i)+∑i=1Nv−1(C2(i)−C2(i−1))S1(⌊Ni⌋)⎞⎠⎟,
+# S1(N)+2⋅⎛⎝⎜∑i=1v(C2(⌊Ni⌋)−C2(⌊Ni+1⌋))
 #
-# where, vv is arbitrary and
+# where, v is arbitrary and
 # T(n):=n(n+1)2,
 # T(n):=n(n+1)2,
 #
@@ -210,14 +210,14 @@ t1  = time.time()
 # C2(N):=∑x=1N√∑y=1N√[gcd(x,y)=1∧x2+y2≤N]⋅x=C1(N)−∑g=2N√g⋅C2(⌊Ng2⌋).
 #
 # Here are some additional values with PyPy 5.0:
-# - 108108: 1797125412236063517971254122360635, 0.242 sec.
-# - 109109: 17972310354702299621797231035470229962, 0.586 sec.
-# - 10101010: 179726445633260218662179726445633260218662, 2.140 sec.
-# - 10111011: 1797275027254208979348517972750272542089793485, 9.971 sec.
-# - 10121012: 17972783702920566292635181797278370292056629263518, 47.969 sec.
-# - 10131013: 179727942749349269842849984179727942749349269842849984, 256.118 sec.
-# - 10141014: 1797279761814955361272584975517972797618149553612725849755, 1310.278 sec.
-# - 10151015: 17972798675369158471222555294791797279867536915847122255529479, 6802.619 sec.
+# - 10**8: 17971254122360635, 0.242 sec.
+# - 10**9109: 1797231035470229962, 0.586 sec.
+# - 10**10 179726445633260218662, 2.140 sec.
+# - 10**11: 17972750272542089793485, 9.971 sec.
+# - 10**12: 1797278370292056629263518, 47.969 sec.
+# - 10**13: 179727942749349269842849984, 256.118 sec.
+# - 10**14: 17972797618149553612725849755, 1310.278 sec.
+# - 10**15: 1797279867536915847122255529479, 6802.619 sec.
 
 
 from math import sqrt
@@ -359,19 +359,81 @@ print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 print('\n--------------------------SOLUTION 3,   --------------------------')
 t1  = time.time()
 
+import math
+import sys
+
+class Problem():
+    def solve(self, n):
+        rational_sum = self._rational_sigma_sum(n)
+        print('Rational sum:', rational_sum)
+        gaussian_sum = self._gaussian_sigma_sum(n)
+        print('Gaussian sum:', gaussian_sum)
+        print('Total sum:', rational_sum + gaussian_sum)
+
+    def _rational_sigma_sum(self, n):
+        rv = 0
+        i = 1
+        while i <= n:
+            q = n // i
+            min_i = n // (q+1)
+            max_i = n // q
+            rv += self._arithmetic_series_sum(min_i, max_i) * q
+            i += (max_i - min_i)
+        return rv
+
+    def _gaussian_sigma_sum(self, n):
+        rv = 0
+        i = 1
+        while 2*i <= n:
+            q = n // (2*i)
+            min_i = n // (q+1) - n // (q+1) % 2
+            max_i = n // q - n // q % 2
+            rv += self._arithmetic_series_sum(min_i, max_i, 2) * q
+            i += (max_i - min_i) // 2
+
+        for a in range(1, n+1):
+            print('Current a =>', a)
+            if a**2 > n:
+                break
+            for b in range(a+1, n+1):
+                c = a**2 + b**2
+                if c > n:
+                    break
+                if math.gcd(a, b) > 1:
+                    continue
+                i = 1
+                while c*i <= n:
+                    q = n // (c*i)
+                    min_i = n // (q+1) - n // (q+1) % c
+                    max_i = n // q - n // q % c
+                    rv += self._arithmetic_series_sum(min_i // c, max_i // c) * q * 2 * (a + b)
+                    i += (max_i - min_i) // c
+        return rv
+
+    def _arithmetic_series_sum(self, lower_bound, upper_bound, step=1):
+        return (step + upper_bound) * (upper_bound // step) // 2 \
+                - (step + lower_bound) * (lower_bound // step) // 2
+
+def main():
+    problem = Problem()
+    problem.solve(5)
+    problem.solve(10**5)
+    problem.solve(10**8)
+
+if __name__ == '__main__':
+    sys.exit(main())
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------------------SOLUTION 4,   --------------------------')
+t1  = time.time()
+
 
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-# print('\n--------------------------SOLUTION 4,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
 # print('\n--------------------------SOLUTION 5,   --------------------------')
 # t1  = time.time()
 #

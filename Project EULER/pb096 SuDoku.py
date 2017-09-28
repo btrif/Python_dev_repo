@@ -90,20 +90,33 @@ t1  = time.time()
 
 
 
-# M = [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 7, 9, 0, 5, 0, 1, 8, 0], [8, 0, 0, 0, 0, 0, 0, 0, 7], [1, 9, 7, 3, 4, 6, 8, 5, 2], [4, 5, 2, 7, 1, 8, 3, 9, 6], [6, 8, 3, 5, 9, 2, 7, 0, 0], [7, 0, 0, 0, 0, 0, 0, 0, 5], [0, 1, 6, 0, 3, 0, 4, 2, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]]
-M = [[6, 3, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 5, 0, 0, 0, 0, 8], [0, 0, 5, 6, 7, 4, 0, 0, 0], [0, 0, 0, 0, 2, 0, 0, 0, 0], [0, 0, 3, 4, 0, 1, 0, 2, 0], [0, 0, 0, 0, 0, 0, 3, 4, 5], [0, 0, 0, 0, 0, 7, 0, 0, 4], [0, 8, 0, 3, 0, 0, 9, 0, 2], [9, 4, 7, 1, 0, 0, 0, 8, 0]]
+M = [[3, 0, 0, 8, 7, 0, 0, 0, 9], [0, 7, 9, 0, 5, 0, 1, 8, 0], [8, 0, 0, 0, 0, 0, 0, 0, 7], [1, 9, 7, 3, 4, 6, 8, 5, 2], [4, 5, 2, 7, 1, 8, 3, 9, 6], [6, 8, 3, 5, 9, 2, 7, 0, 0], [7, 0, 0, 0, 0, 0, 0, 0, 5], [0, 1, 6, 0, 3, 0, 4, 2, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+#     [[3, 4, 5, 8, 7, 1, 2, 6, 9], [2, 7, 9, 6, 5, 3, 1, 8, 4], [8, 6, 1, 4, 2, 9, 5, 3, 7], [1, 9, 7, 3, 4, 6, 8, 5, 2], [4, 5, 2, 7, 1, 8, 3, 9, 6], [6, 8, 3, 5, 9, 2, 7, 4, 1], [7, 3, 8, 2, 6, 4, 9, 1, 5], [5, 1, 6, 9, 3, 7, 4, 2, 8], [9, 2, 4, 1, 8, 5, 6, 7, 0]]
+# M = [[6, 3, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 5, 0, 0, 0, 0, 8], [0, 0, 5, 6, 7, 4, 0, 0, 0], [0, 0, 0, 0, 2, 0, 0, 0, 0], [0, 0, 3, 4, 0, 1, 0, 2, 0], [0, 0, 0, 0, 0, 0, 3, 4, 5], [0, 0, 0, 0, 0, 7, 0, 0, 4], [0, 8, 0, 3, 0, 0, 9, 0, 2], [9, 4, 7, 1, 0, 0, 0, 8, 0]]
 # M = [[0, 0, 4, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 3, 0, 0, 0, 2], [3, 9, 0, 7, 0, 0, 0, 8, 0], [4, 0, 0, 0, 0, 9, 0, 0, 1], [2, 0, 9, 8, 0, 1, 3, 0, 7], [6, 0, 0, 2, 0, 0, 0, 0, 8], [0, 1, 0, 0, 0, 8, 0, 5, 3], [9, 0, 0, 0, 4, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 8, 0, 0]]
 
 
 
 
 
-# A Utility Function to print the Grid
+# A Utility Function to print the Grid ---> NOT USED !!!
 def print_grid( arr ) :
     for i in range(9):
         for j in range(9):
             print (arr[i][j], end='   ')
         print ()
+
+
+def show_complete(M, grid_nr) :
+        print('=='*6+'   '+str(grid_nr)+'   '+'=='*6)
+        # print('=='*15 )
+        for i in range(len(M)):
+            print('  +++++   ', M[i] ,'   +++++  ')
+        print('=='*15 )
+        # print('\nCONGRATULATIONS !! SUDOKU Magic Puzzle has been Correctly Solved ! \n ')
+
+# if solve_sudoku(M) :
+#     show_complete(M, 16)
 
 
 # Function to Find the entry in the Grid that is still  not used
@@ -163,41 +176,35 @@ def check_location_is_safe(arr, row, col, num):         # ALL THREE COMBINED !!!
 
 print('\n-----------------------------------------------')
 
-
+###### ============= THE MAIN BACKTRACKING ALGORITHM ======== ########
 def solve_sudoku(M) :
     # 'l' is a list variable that keeps the record of row and col in find_empty_location Function
-    l =[ 0, 0]
-    # If there is no unassigned location, we are done
-    if (not find_empty_location(M, l ) ) :
+    l =[ 0, 0 ]
+    # If there is no unassigned location, we are done, THIS SOLVES SUDOKU !!!
+    if not find_empty_location(M, l )  :
         return True
 
     # We assign list values to row and col that we got from find_empty_location function
     row, col = l[0], l[1]
 
     for num in range(1,10) :
-        # if it looks promising :
+        # print(num, (row, col) , M)
+            # if it looks promising :
         if (check_location_is_safe(M, row, col, num ) ) :
-            # make tentative assignment
+                # make tentative assignment
             M[row][col] = num
-            # Return If Success
+                    # Return If Success
             if solve_sudoku(M) :
                 return True
-            # IF failure, unmake & try again, this triggers backtracking
+                # IF failure, unmake & try again, this TRIGGERS BACKTRACKING !!!!
+                # This resets the row, col of the matrix and removes the previous assignment M[row][col] = num
+                # else IF FALSE :
             M[row][col] = 0
+        print(num, (row, col) , M)
 
-        # print(l , M)
     return False
 
-def show_complete(M, grid_nr) :
-        print('=='*6+'   '+str(grid_nr)+'   '+'=='*6)
-        # print('=='*15 )
-        for i in range(len(M)):
-            print('  +++++   ', M[i] ,'   +++++  ')
-        print('=='*15 )
-        # print('\nCONGRATULATIONS !! SUDOKU Magic Puzzle has been Correctly Solved ! \n ')
 
-# if solve_sudoku(M) :
-#     show_complete(M, 16)
 
 
 
@@ -215,8 +222,13 @@ def main_solve_all_sudokus() :
     return print('\nAnswer : \t ', S)
 
 
-main_solve_all_sudokus()            #       Answer : 	  24702
+# main_solve_all_sudokus()            #       Answer : 	  24702
 
+
+solve_sudoku(M)
+
+# if solve_sudoku(M) :
+#     show_complete(M, 12)
 
 
 t2  = time.time()

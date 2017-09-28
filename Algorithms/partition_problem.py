@@ -33,7 +33,7 @@ print('Second Subset : \t', s2)
 # Given a set of non-negative integers, and a value sum, determine if there is a subset
 # of the given set with sum equal to given sum.
 
-# // Returns true if there is a subset of set[] with sun equal to given sum
+# // Returns true if there is a subset of set[] with sum equal to given sum
 def  isSubsetSum(sett , n,  suma ) :        ## ( ͡° ͜ʖ ͡°)  FASTEST  ( ͡° ͜ʖ ͡°)  ### !! FIRST FASTEST
                                                                     ## !!!!!!!! ALGORITHM FAR MORE EFFICIENT !!!!!!
    # // Base Cases

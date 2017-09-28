@@ -2,7 +2,7 @@
 # Solved by Bogdan Trif @   Completed on Tue, 4 Oct 2016, 00:09
 #The  Euler Project  https://projecteuler.net
 '''
-Consecutive prime sum       -      Problem 50
+                    Consecutive prime sum       -      Problem 50
 The prime 41, can be written as the sum of six consecutive primes:
 41 = 2 + 3 + 5 + 7 + 11 + 13
 This is the longest sum of consecutive primes that adds to a prime below one-hundred.

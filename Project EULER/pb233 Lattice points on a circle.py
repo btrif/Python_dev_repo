@@ -34,7 +34,7 @@ def the_brutest_of_forces( N) :
                 if y/x < 1 : break
             if (x - N/2)**2 + ( y - N/2 )**2 == N**2/4  :
                 cnt+=8
-                print(str(cnt)+'.      x =', x ,'     y=', y, '     ', N**2/4 )
+                print('points = ',str(cnt)+'.      x =', x ,'     y=', y, '     ', N**2/4 )
 
 the_brutest_of_forces(10**4)
 

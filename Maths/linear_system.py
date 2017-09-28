@@ -127,13 +127,13 @@ def solve( A, p, b ):
 
     x = np.zeros( n )
 
-    for k in xrange( n - 1 ):
+    for k in range( n - 1 ):
         for i in xrange( k + 1, n ):
             b[p[i]] = b[p[i]] - A[p[i],k] * b[p[k]]
 
     # Backward solve
 
-    for i in xrange( n - 1, -1, -1 ):
+    for i in range( n - 1, -1, -1 ):
         sum = b[p[i]]
         for j in xrange( i + 1, n ):
             sum = sum - A[p[i],j] * x[j]

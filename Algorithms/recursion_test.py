@@ -8,4 +8,4 @@ def dragon(n):
         return list(map(2 .__mul__, dragon(n//2) ))
 
 
-print( dragon(16) )
+print( dragon(256) )

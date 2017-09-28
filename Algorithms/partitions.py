@@ -6,6 +6,30 @@ import time
 # https://www.ics.uci.edu/~eppstein/PADS/IntegerPartitions.py
 # http://math.stackexchange.com/questions/18659/algorithm-for-generating-integer-partitions
 
+print('------------------ Partitions of a number ---------------------')
+
+def partitions1(n):
+
+    a = [0 for i in range(n + 1)]
+    k = 1
+    a[0] = 0
+    a[1] = n
+    while k != 0:
+        x = a[k - 1] + 1
+        y = a[k] - 1
+        k -= 1
+        while x <= y :
+            a[k] = x
+            y -= x
+            k += 1
+        a[k] = x + y
+        yield a[:k + 1]
+
+Pnk_max = list(partitions1(8))
+print(Pnk_max)
+
+
+print('\n-------------------------- Partitions in three, I have better algorithms --------------------------------')
 
 def partition_in_three(n):     #2017-02-06 Some minor losses, but no time to fix it now
     ''':Description: Partition a number in three in the form (a, b, c) where a>=b>=c
@@ -34,6 +58,7 @@ for i in PT :
 
 
 ########### Number partition - Recursion with Elegant Memoization ###############
+print('########### Number partition - Recursion with Elegant Memoization ###############')
 def memoize(f):
     memo={}
     def helper(x):
@@ -50,8 +75,8 @@ def A000041(n):
     k = 2
     while 0 <= J:
         T = A000041(J)
-        S = S+T if k//2%2!=0 else S-T
-        J -= k if k%2!=0 else k//2
+        S = S+T if k//2 % 2 != 0 else S-T
+        J -= k if k % 2 !=0 else k//2
         k += 1
     return S
 
@@ -60,8 +85,8 @@ print( A000041(7)) #the 100's number in this series, as an example
 
 
 ############################
-
-def coins(value=5):
+print('\n------------------- Coins Partition -----------------')
+def partition_coins(value=5):
         #value = 5
         coins = [1,2,5,10,20,50,100,200]
 
@@ -69,6 +94,7 @@ def coins(value=5):
         ways[0] = 1
         print(ways)
 
+        # Remove superior values than the actual number
         while coins[-1] > value  :
             del(coins[-1])
 
@@ -79,13 +105,13 @@ def coins(value=5):
                 #print(ways)
         print(ways[-1])
 
-coins(5)
+partition_coins(5)
 
 total = 5
 combinations = [1] + [0]*total
 monies = [1,2,5,10,20,50,100,200]
 
-print('\n--------------------------NUMBER PARTITION RECURSIVE FUNCTION')
+print('\n--------------------------NUMBER PARTITION RECURSIVE FUNCTION  ----------------------------')
 def partition(number):
     answer = set()
     answer.add((number, ))
@@ -181,7 +207,7 @@ print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 print('\n-------------- Partition a number into EXACTLY k parts, with MIN AND MAX constraints ------------------')
 
-def partition_min_max(n,k,l, m):
+def partition_min_max(n, k, l, m):
     ''':Description:  n - is the integer to partition, k -  is the length of partitions,
     l - is the min partition element size, m - is the max partition element size '
    Taken from http://stackoverflow.com/questions/18503096/python-integer-partitioning-with-given-k-partitions
@@ -199,7 +225,7 @@ def partition_min_max(n,k,l, m):
             yield (n,)
         raise StopIteration
     for i in range(l,m+1):
-        for result in partition_min_max(n-i,k-1,i,m):
+        for result in partition_min_max(n-i, k-1, i, m):
             yield result+(i,)
 
 x = list(partition_min_max(20 ,3, 3, 12 ))

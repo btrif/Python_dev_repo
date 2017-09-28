@@ -13,12 +13,15 @@ Find the sum of all indices n such that T(n) is 47-smooth.
 '''
 import time, zzz
 
+import gmpy2
+
+
 def prime_sieve(n):       # SECOND FASTEST        o(^_^)o
     sieve = [True] * n
     for i in range(3, int(n**0.5)+1, 2):
         if sieve[i]:
             sieve[ i*i :: 2*i ] = [False] * ( (n-i*i-1) // (2*i) +1 )
-    return [2] + [i for i in range(3, n , 2) if sieve[i] ]
+    return set([2] + [i for i in range(3, n , 2) if sieve[i] ])
 
 def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
     ''' Decompose a factor in its prime factors. This function uses the pyprimes module. THE FASTEST  '''
@@ -32,8 +35,8 @@ def triangle_number_gen():
         yield t
         n+=1
 
-primes = prime_sieve(100)
-print(primes)
+primes = prime_sieve(10**7)
+# print(primes[:30])
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
@@ -45,14 +48,24 @@ t1  = time.time()
 # Now we must analyze why and find the underlying cause for this
 
 def brute_force_testing( prime ) :
-    S=0
+    S = prime * (prime+1)//2
     TG = triangle_number_gen()
-    for n in range(1, 10**4) :
-        T = next(TG)
-        F = get_factors(T)
-        if max(F) <= prime :
-            print(str(n)+'.     ', T,'          ', F)
-            S+=n
+    n = prime + 1
+    while 1 :
+        if not gmpy2.is_prime(n) or not gmpy2.is_prime(n+1) :
+            if n% 2 ==0 :
+                f1, f2 = get_factors(n//2), get_factors(n+1)
+            else :
+                f1, f2 = get_factors(n), get_factors((n+1)//2)
+
+            F = sorted(f1 + f2)
+            T = n*(n+1)//2
+            # F = get_factors( T  )
+            if max(F) <= prime :
+                print('n=', n ,'       T(n) = ' , T,'          n=',f1 , '        n+1= ',f2 ,'         F=',F )# ,'       fact(n) =', get_factors(n) )
+                S+=n
+        n+=1
+        if n == 5*10**3 : break
 
     return print('\nAnswer : \t', S)
 

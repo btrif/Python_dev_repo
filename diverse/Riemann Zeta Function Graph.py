@@ -3,6 +3,7 @@
 # FB - 20130721
 import math
 from PIL import Image, ImageDraw
+
 imgx = 512; imgy = 512
 image = Image.new("RGB", (imgx, imgy))
 draw = ImageDraw.Draw(image)

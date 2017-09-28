@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Solved by Bogdan Trif    ( ͡° ͜ʖ ͡°)     @
+# Solved by Bogdan Trif    ( ͡° ͜ʖ ͡°)     @    Completed on Wed, 18 Jan 2017, 21:22
 #The  Euler Project  https://projecteuler.net
 '''
             Diophantine reciprocals II          -           Problem 110
@@ -127,7 +127,7 @@ def aolea_sol(n=10**3) :
 
 # aolea_sol(n = 4*10**6)
 
-# Answer : 4000000 Number :  9350130049860600
+# Answer : 4.000.000 Number :  9350130049860600
 # Solutions : 4018613.0     Divisors: 8037225              List [2, 2, 2, 3, 3, 3, 5, 5, 7, 7, 11, 13, 17, 19, 23, 29, 31, 37]
 
 t2  = time.time()

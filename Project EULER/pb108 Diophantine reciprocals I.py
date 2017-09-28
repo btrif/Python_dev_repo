@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Solved by Bogdan Trif @
+# Solved by Bogdan Trif @   Completed on Sat, 10 Dec 2016, 23:25
 #The  Euler Project  https://projecteuler.net
 '''
             Diophantine reciprocals I           -          Problem 108
@@ -36,8 +36,6 @@ print('Check the proximity of a number to another:\t',math.isclose(4, 4.00000000
 
 print(5/Fraction(6) + 3/Fraction(12))
 print('\n----------------------------')
-
-
 
 
 class GET_DIVISORS(object):
@@ -215,7 +213,7 @@ def solution_iter_pb108():
         if gmpy2.is_prime(n) == False :
             if len(GET_DIVISORS().factorise(n)) > 7 :
                 rec = get_reciprocals(n)
-                print( n, rec)
+                # print( n, rec)
                 if rec > 1000 :
                     ans = n
                     break

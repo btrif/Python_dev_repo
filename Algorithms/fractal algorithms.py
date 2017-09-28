@@ -28,7 +28,7 @@ print('\n--------------- STEP 1 - BUILD THE MAIN LOOP------------------')
 # Assure yourself that FIRST this is working properly
 
 # We start at the position (0,1) after one step:
-# We use only standard step sizes of powers of 3 :
+# We use only standard step sizes of powers of 2 :
 n=128
 pos = [0,1]
 step = 1
@@ -73,7 +73,7 @@ print('\nPosition after ',n ,' steps is :   ' ,dragon(n) )
 print('\n--------------- STEP 3 -  Implementing MEMOIZATION  ------------------')
 ########## STEP 2 - Implementing MEMOIZATION       #############
 # As we can see above if we print the results in the while loop we have many times
-# that the recursing call is calculating the same step numbers. For large computations this
+# that the recursive call is calculating the same step numbers. For large computations this
 # really slows down the whole calculation. The solution is to implement MEMOIZATION.
 # Basically we keep track of the already calculated values and we simply do this by using a
 # dictionary as the dictionary is hashed object and is very fast.
@@ -86,7 +86,7 @@ t1  = time.time()
 
 D = { 1 : [0,1] }
 def dragonM(n) :
-    ''':Desciption: Dragon with MEMOIZATION      '''
+    ''':Description: Dragon with MEMOIZATION      '''
     global D
     pos = [0,1]
     step = 1

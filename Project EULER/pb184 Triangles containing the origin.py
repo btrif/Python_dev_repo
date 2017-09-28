@@ -42,6 +42,8 @@ def cartesian_to_barycentric(x1, y1, x2, y2, x3, y3):
     """
     if (x1==x2==0) or (x1==x3==0) or (x2==x3==0) : return False
     if (y1==y2==0) or (y1==y3==0) or (y2==y3==0) : return False
+    if ( x1==-x2 and y1==-y2 ) or ( x1==-x3 and y1==-y3 ) or ( x2==-x3 and y2==-y3 ) : return False
+
     try :
         alpha = (((y2 - y3) * (0 - x3) + (x3 - x2) * (0 - y3)) /   ((y2 - y3) * (x1 - x3) + (x3 - x2) * (y1 - y3)))
     except :
@@ -54,6 +56,8 @@ def cartesian_to_barycentric(x1, y1, x2, y2, x3, y3):
         ZeroDivisionError
 
     gamma = 1 - alpha - beta
+    # print('alpha=', alpha, '    beta=', beta, '   gamma=', gamma)
+    if gamma < 1e-10 : return False
 
     return alpha > 0 and beta > 0 and gamma > 0
 
@@ -136,36 +140,31 @@ def plot_triangle(A, B, C):
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-LIM = 3
+LIM = 2
 
-Q_1 = Quad_I_points(LIM)
+Q_0 = Quad_I_points(LIM)
+Q_1 = [ (i[0], i[1] ) for i in Q_0   ]
 print('\nQuad_1 : \t',Q_1[:50] )
-Q_2 = [ (-i[0], i[1] ) for i in Q_1 if i[0] != 0  ]
+Q_2 = [ (-i[0], i[1] ) for i in Q_0 if i[0] != 0  ]
 print('Quad_2 : \t',Q_2[:50] )
-Q_3 = [ (-i[0], -i[1] ) for i in Q_1 if i[1] != 0   ]
+Q_3 = [ (-i[0], -i[1] ) for i in Q_0 if i[1] != 0   ]
 print('Quad_3 : \t',Q_3[:50]  )
-Q_4 = [ ( i[0], -i[1] ) for i in Q_1 if ( i[0] != 0  and  i[1] !=0 ) ]
+Q_4 = [ ( i[0], -i[1] ) for i in Q_0 if ( i[0] != 0  and  i[1] !=0 ) ]
 print('Quad_4 : \t',Q_4[:50] )
 
 print('\n--------------------------')
 
-############  CASE 1    -  2 points in Quad 1, 1 point in Quad 2 :
+############  CASE 1    -  2 points in Quad 1, 1 point in Quad 3 :
 D = {}
-filter = 2.5
-count, CNT = 0, {}
+filter = 1.5
+count, CNT = 0, { '0': 0 }
 for i in range(len(Q_1)) :
+    (x1, y1) = Q_1[i]
     for j in range(i+1, len(Q_1)) :
+        (x2, y2) = Q_1[j]
         for k in range(len(Q_3)) :
-            # print( Q_1[i] , Q_1[j] , Q_3[k] )
-            # ( ax, ay), (bx, by), (cx, cy ) =  Q_1[i] , Q_1[j] , Q_3[k]
-            # print( ( ax, ay), (bx, by), (cx, cy ) )
-            # p = ax*by - ay*bx > 0       # Computing individual Triangles
-            # q = bx*cy - by*cx > 0
-            # r = cx*ay - cy*ax > 0
-            # print(p, q, r)
-            # count += p == q == r        # Here he uses the property that the partial areas must be either Positive or Negative
-
-            (x1, y1), (x2, y2), (x3, y3) = Q_1[i] , Q_1[j] , Q_3[k]       # BARYCENTRIC COORDINATES
+            (x3, y3) =  Q_3[k]
+             # BARYCENTRIC COORDINATES
             if cartesian_to_barycentric(x1, y1, x2, y2, x3, y3):
                 # A = tuple(sorted(( (x1, y1), (x2, y2), (x3, y3) )))
                 # a1, a2, a3, a4, a5, a6 = A[0][0], A[0][1], A[1][0], A[1][1], A[2][0], A[2][1]
@@ -175,6 +174,7 @@ for i in range(len(Q_1)) :
                 T = get_triangle_sides( x1, y1, x2, y2, x3, y3 )
                 Y = sorted(T)
                 signature = ''.join([str(i) for i in Y ]) +'.' +str(X)
+                print('case 1 : ' , Q_1[i] , Q_1[j] , Q_3[k], '       ', X )
 
                 if len(set(T)) == 1 :     CNT[signature] = 1
                 if len(set(T)) == 2 :     CNT[signature] = 4
@@ -183,14 +183,11 @@ for i in range(len(Q_1)) :
 # @2017-04-05- I left here. I must work with the triangle shifting margins to see if the shifted triangle for the
 # same edges still are within the circle
 
-
                     # if len(Z) in [1,2] : CNT[signature] = 8
                     # if len(Z) == 3 : CNT[signature] = 12
-
-                if Area == filter :
-                    print('case 1 : ' , (x1, y1), (x2, y2), (x3, y3) ,'      area=' ,  Area , '     ', X, '    sides = ', Y,'    type=', len(set(T)) ,'      sign=' , signature,'  ',CNT[signature]  )
+                # if Area == filter :
+                #     print('case 1 : ' , (x1, y1), (x2, y2), (x3, y3) ,'      area=' ,  Area , '     ', X, '    sides = ', Y,'    type=', len(set(T)) ,'      sign=' , signature,'  ',CNT[signature]  )
                     # plot_triangle(Q_1[i], Q_1[j],Q_3[k] )      # Here we plot each triangle
-
 
                 if int(Area*2) not in D :
                     D[int(Area*2)] = [X]  ;
@@ -208,88 +205,91 @@ for i in range(len(Q_1)) :
 
 
 
-     ################ CASE 2   ######################
+     ################ CASE 2   ######################  Q1, Q2, Q3
     for l in range(len(Q_2)) :
         for m in range(len(Q_3)) :
-            (x1, y1), (x2, y2), (x3, y3) = Q_1[i] , Q_2[l] , Q_3[m]
-            if cartesian_to_barycentric(x1, y1, x2, y2, x3, y3):
-                Area = triangle_area( x1, y1, x2, y2, x3, y3 )
+            (x4, y4), (x5, y5) =  Q_2[l] , Q_3[m]
+            X2 = relative_center( x1, y1, x4, y4, x5, y5)
+            if cartesian_to_barycentric(x1, y1, x4, y4, x5, y5):
+                CNT['0'] += 1
+                print('case 2 : ' , Q_1[i] , Q_2[l] , Q_3[m] , '       ', X2)
+                # Area = triangle_area( x1, y1, x2, y2, x3, y3 )
                 # Y = make_abs_coord( (x1, y1), (x2, y2), (x3, y3)  )
-                X = relative_center( x1, y1, x2, y2, x3, y3)
-                T = get_triangle_sides( x1, y1, x2, y2, x3, y3 )
-                Y = sorted(T)
-                Z = set([ int(i) for i in str(X) ])
-                signature = ''.join([str(i) for i in Y ]) +'.' +str(X)
-
-                if len(set(T)) == 1 :
-                    # if len(Z) == 1 :
-                        CNT[signature] = 1
-                    # if len(Z) == 2 :  CNT[signature] = 2
-                    # if len(Z) == 3 :  CNT[signature] = 4
-                if len(set(T)) == 2 :
-                    # if len(Z) == 2 :
-                        CNT[signature] = 4
-                    # if len(Z) == 3 :  CNT[signature] = 8
-
-                if len(set(T)) == 3 : CNT[signature] = 8
-
-                if Area == filter :
-                    print('case 2 : ' , (x1, y1), (x2, y2), (x3, y3) ,'      area=' ,  Area , '     ', X, '    sides = ', Y,'    type=', len(set(T))  ,'      sign=' , signature,'  ',CNT[signature]  )
-                    # plot_triangle( Q_1[i], Q_2[l], Q_3[m])      # Here we plot each triangle
-
-
+                # X = relative_center( x1, y1, x2, y2, x3, y3)
+                # T = get_triangle_sides( x1, y1, x2, y2, x3, y3 )
+                # Y = sorted(T)
+                # Z = set([ int(i) for i in str(X) ])
+                # signature = ''.join([str(i) for i in Y ]) +'.' +str(X)
+                #
+                # if len(set(T)) == 1 :
+                #     # if len(Z) == 1 :
+                #         CNT[signature] = 1
+                #     # if len(Z) == 2 :  CNT[signature] = 2
+                #     # if len(Z) == 3 :  CNT[signature] = 4
+                # if len(set(T)) == 2 :
+                #     # if len(Z) == 2 :
+                #         CNT[signature] = 4
+                #     # if len(Z) == 3 :  CNT[signature] = 8
+                #
+                # if len(set(T)) == 3 : CNT[signature] = 8
+                #
+                # if Area == filter :
+                #     print('case 2 : ' , (x1, y1), (x2, y2), (x3, y3) ,'      area=' ,  Area , '     ', X, '    sides = ', Y,'    type=', len(set(T))  ,'      sign=' , signature,'  ',CNT[signature]  )
+                #     # plot_triangle( Q_1[i], Q_2[l], Q_3[m])      # Here we plot each triangle
 
 
-                if int(Area*2) not in D :
-                    D[int(Area*2)] = [X]  #; CNT[int(Area*2)] = 0
-
-                    if len(set(T)) == 1 :                        count += 1
-                    if len(set(T)) == 2 :                        count += 4
-                    if len(set(T)) == 3 :                        count += 8
 
 
-                elif int(Area*2) in D :
-                    if X not in D[int(Area*2)] :
-                        D[int(Area*2)].append(X)
+                # if int(Area*2) not in D :
+                #     D[int(Area*2)] = [X]  #; CNT[int(Area*2)] = 0
+                #
+                #     if len(set(T)) == 1 :                        count += 1
+                #     if len(set(T)) == 2 :                        count += 4
+                #     if len(set(T)) == 3 :                        count += 8
+                #
+                #
+                # elif int(Area*2) in D :
+                #     if X not in D[int(Area*2)] :
+                #         D[int(Area*2)].append(X)
+                #
+                #         if len(set(T)) == 1 :                            count += 1
+                #         if len(set(T)) == 2 :                            count += 4
+                #         if len(set(T)) == 3 :                            count += 8
 
-                        if len(set(T)) == 1 :                            count += 1
-                        if len(set(T)) == 2 :                            count += 4
-                        if len(set(T)) == 3 :                            count += 8
-
-
-        ##############    CASE 3            #############
-        # for n in range(len(Q_4)) :
-        #     (x1, y1), (x2, y2), (x3, y3) = Q_1[i] , Q_2[l] , Q_4[n]
-        #     Area = triangle_area( x1, y1, x2, y2, x3, y3 )
-        #     # Y = make_abs_coord( (x1, y1), (x2, y2), (x3, y3)  )
-        #     X = relative_center( x1, y1, x2, y2, x3, y3)
-        #     T = get_triangle_sides( x1, y1, x2, y2, x3, y3 )
-        #     Y = sorted(T)
-        #     signature = ''.join([str(i) for i in Y ]) +'.' +str(X)
-        #     if cartesian_to_barycentric(x1, y1, x2, y2, x3, y3):
-        #         if Area == filter :
-        #             print('case 3 : ' , (x1, y1), (x2, y2), (x3, y3) ,'      area=' ,  Area , '     ', X, '    sides = ', Y, '    type=', len(set(T)) ,'      sign=' , signature  )
-        #         s = str(X)
-        #
-        #         if len(set(T)) == 1 : CNT[signature] = 1
-        #         if len(set(T)) == 2 : CNT[signature] = 4
-        #         if len(set(T)) == 3 : CNT[signature] = 8
-        #
-        #         if int(Area*2) not in D :
-        #             D[int(Area*2)] = [X] #;  CNT[int(Area*2)] = 0
-        #
-        #             if len(set(T)) == 1 :                        count += 1
-        #             if len(set(T)) == 2 :                        count += 4
-        #             if len(set(T)) == 3 :                        count += 8
-        #
-        #
-        #         elif int(Area*2) in D :
-        #             if X not in D[int(Area*2)] :
-        #                 D[int(Area*2)].append(X)
-        #
-        #                 if len(set(T)) == 1 :                            count += 1
-        #                 if len(set(T)) == 2 :                            count += 4
-        #                 if len(set(T)) == 3 :                            count += 8
+        #############    CASE 3            #############
+        for n in range(len(Q_4)) :
+            (x6, y6) = Q_4[n]
+            # Area = triangle_area(  x1, y1, x4, y4, x6, y6 )
+            X3 = relative_center( x1, y1, x4, y4, x6, y6)
+            # T = get_triangle_sides(  x1, y1, x4, y4, x6, y6 )
+            # Y = sorted(T)
+            # signature = ''.join([str(i) for i in Y ]) +'.' +str(X)
+            if cartesian_to_barycentric( x1, y1, x4, y4, x6, y6):
+                CNT['0'] += 1
+                print( 'case 3 : ' ,Q_1[i] , Q_2[l] , Q_4[n] , '       ', X3)
+                # if Area == filter :
+                #     print('case 3 : ' , (x1, y1), (x2, y2), (x3, y3) ,'      area=' ,  Area , '     ', X, '    sides = ', Y, '    type=', len(set(T)) ,'      sign=' , signature  )
+                # s = str(X)
+                #
+                # if len(set(T)) == 1 : CNT[signature] = 1
+                # if len(set(T)) == 2 : CNT[signature] = 4
+                # if len(set(T)) == 3 : CNT[signature] = 8
+                #
+                # if int(Area*2) not in D :
+                #     D[int(Area*2)] = [X] #;  CNT[int(Area*2)] = 0
+                #
+                #     if len(set(T)) == 1 :                        count += 1
+                #     if len(set(T)) == 2 :                        count += 4
+                #     if len(set(T)) == 3 :                        count += 8
+                #
+                #
+                # elif int(Area*2) in D :
+                #     if X not in D[int(Area*2)] :
+                #         D[int(Area*2)].append(X)
+                #
+                #         if len(set(T)) == 1 :                            count += 1
+                #         if len(set(T)) == 2 :                            count += 4
+                #         if len(set(T)) == 3 :                            count += 8
 
 
 # @2017-03-10, 18: 00 - I left here that I must analyze why for I3 I obtain 108 results instead of 90
@@ -314,7 +314,6 @@ print('\nCNT : \n',CNT)
 Total = sum([v for k,v in CNT.items() ])
 print('\nTotal = ', Total, '  <-- this one matters')
 
-print('\nAnswer :\t', count)
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')

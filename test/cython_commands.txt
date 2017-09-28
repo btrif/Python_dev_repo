@@ -1,0 +1,81 @@
+.LOG
+11:39 AM 7/25/2017
+
+STEPS
+
+1. Create a file example_cython.pyx with extension *.pyx which contains
+the actual Python Code
+
+example :
+def test_function(x):
+    y = 0
+    for i in range(x):
+        y += i
+    return y
+
+BECOMES :
+
+cpdef double test_function(int x):
+    cdef double y = 0
+    cdef int i
+    for i in range(x):
+        y += i
+    return y
+
+
+
+
+_____________________________
+
+2. Create a file called setup.py which contains the following lines
+
+from distutils.core import setup
+from Cython.Build import cythonize
+
+setup(ext_modules = cythonize('example_cython.pyx'))
+
+_____________________________
+
+3. Execute the following command :
+
+
+D:\Google Drive\COMPUTING & PROGRAMMING\PYTHON\Work\test>C:\Util\Python35\python.exe setup.py build_ext --inplace
+
+A folder build will be created in windows and in the original folder
+the files :
+
+example_cython.c
+example_cython.pyd (*.so in Linux )
+	will be created
+
+_____________________________
+
+
+4. Create the folder called 'dep' & the file testing.py :
+- in dep you will copy the file *.so (Linux) or the file *.pyd (Windows)
+- the file testing.py will contain :
+
+import example_cython
+import time
+
+t1  = time.time()
+
+print( ' test_function : \t' ,example_cython.test_function(10**7) )
+
+t2  = time.time()
+print('Completed in :', round((t2-t1)*1000,6), 'ms')
+
+_____________________________
+
+5. Run :
+D:\Google Drive\COMPUTING & PROGRAMMING\PYTHON\Work\test>C:\Util\Python35\python.exe testing.py
+
+It will run almost 100 x faster !!!
+Cython is  81.21 x   faster
+
+_____________________________
+
+
+
+
+

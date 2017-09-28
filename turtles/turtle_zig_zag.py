@@ -11,19 +11,20 @@ def simpleLoop(a, b, c):
 simpleLoop(4, 400, 44)
 
 turtle.setpos(-40, -30)
-def ZigZag(turtle, z, ya, x, yb, w, u, color, t):
-    for i in range(z):
-        turtle.speed(u)
+def ZigZag(turtle, rng, ya, x, yb, w, speed, color, t):
+    for i in range(rng):
+        turtle.speed(speed)
         turtle.color(color)
         turtle.pensize(t)
-        turtle.color(color)
+
         turtle.forward(ya)
         turtle.left(x)
+        turtle.color("blue")
         turtle.forward(yb)
         turtle.right(w)
        
 
-ZigZag(turtle, 25 , 68, 40, 18, 90, 0, '#ee1199#', 5)
+ZigZag(turtle, 25 , 68, 40, 18, 9, 4, '#ee1199#', 5)
 
 window.exitonclick()
     

@@ -85,3 +85,9 @@ class PartitionRefinement:
                 self._partition[x] = F
             self._sets[id(F)] = F
             del self._sets[id(S)]
+
+
+S = {1,4,9,16}
+A = PartitionRefinement(S)
+
+print(A.refine(S))

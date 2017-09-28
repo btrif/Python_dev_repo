@@ -20,6 +20,51 @@ from math import factorial
 from gmpy2 import fac
 import operator, functools
 
+import math
+import sys
+
+class ChineseRemainderTheorem():
+    """
+    Solve
+        x = a (mod m)
+        x = b (mod n)
+    where m and n are coprime.
+    """
+    def solve(self, a, m, b, n):
+        q = m*n
+        (x, y) = self._extended_gcd(m, n)
+        root = a + (b - a) * x * m
+        return ((root % q) + q) % q
+
+    def _extended_gcd(self, a, b):
+        (x, y) = (0, 1)
+        (last_x, last_y) = (1, 0)
+        while b != 0:
+            (q, r) = divmod(a, b);
+            (a, b) = (b, r)
+            (x, last_x) = (last_x - q * x, x)
+            (y, last_y) = (last_y - q * y, y)
+        return (last_x, last_y)
+
+class ModInverse():
+    """
+    Solve ax = 1 (mod m).
+    """
+    def get(self, a, m):
+        g, x, y = self._extended_gcd(a, m)
+        if g != 1:
+            raise Exception('modular inverse does not exist')
+        else:
+            return x % m
+
+    def _extended_gcd(self, a, b):
+        if a == 0:
+            return (b, 0, 1)
+        else:
+            g, y, x = self._extended_gcd(b % a, a)
+            return (g, x - (b // a) * y, y)
+
+
 def prime_sieve(n):       # SECOND FASTEST        o(^_^)o
     sieve = [True] * n
     for i in range(3, int(n**0.5)+1, 2):

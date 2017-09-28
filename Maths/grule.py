@@ -35,7 +35,7 @@ def grule( n ):
     x = []
     w = []
 
-    for i in xrange( m ):
+    for i in range( m ):
         t    = (4*i+3)*math.pi/(4*n+2)
         x0   = (1.0-(1.0-1.0/n)/(8.0*n*n))*math.cos(t)
         pkm1 = 1.0

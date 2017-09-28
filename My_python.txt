@@ -22,7 +22,7 @@ Out[37]: [66.25, 333, 333, '343re%', 1234.5, 'sd', '###']
 
 
 ==============================================================
-#	STRING
+#	STRING --> IMMUTABLE
 In [23]: b='123213sdfds%^&'
 In [25]: print(b)
 123213sdfds%^&
@@ -77,7 +77,7 @@ In [168]: for i in matrix:
 
 ==============================================================
 
-#	SETS (unordered collection with no duplicate elements)
+#	SETS (unordered collection with no duplicate elements) --> MUTABLE
 #Set objects also support mathematical operations like union, intersection, difference, and symmetric #difference.
 basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
 In [172]: type(basket)

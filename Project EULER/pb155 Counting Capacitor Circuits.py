@@ -177,10 +177,6 @@ print(' = = gmpy2.mpq :' ,a ,'      ' , a.numerator, '      ' ,a.denominator)   
 
 print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
 
-
-'''
-
-
 print('\n--------------------------SOLUTION 1,  VERY VERY GOOD --------------------------')
 t1  = time.time()
 # The Python library's Fraction class and sets made this easy to do, although it does take 1:27 in pypy.  Here is my code:
@@ -237,7 +233,7 @@ def main():
         tm.append(time.time()  )
         print('%s %s %s %s' % (c, len(found_circuits), datetime.datetime.now(), round(tm[-1]-tm[-2], 4) ))
 
-main()
+# main()
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1),6), 's\n\n')

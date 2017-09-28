@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Solved by Bogdan Trif @
+# Solved by Bogdan Trif @   Completed on Fri, 1 Sep 2017, 15:41
 #The  Euler Project  https://projecteuler.net
 '''
 Searching a triangular array for a sub-triangle having minimum-sum      -       Problem 150
@@ -11,7 +11,7 @@ In the example below, it can be easily verified that the marked triangle satisfi
 
 
 We wish to make such a triangular array with one thousand rows, so we generate 500500
-pseudo-random numbers sk in the range ±219, using a type of random number generator
+pseudo-random numbers sk in the range ±2**19, using a type of random number generator
 (known as a Linear Congruential Generator) as follows:
 
 t := 0
@@ -70,22 +70,12 @@ def build_triangle(up_lim):
         for j in range(0, i+1):
             tmp.append(next(LCG))
         T.append(tmp)
-        print(str(i)+'.   '  , tmp)
+        # print(str(i)+'.   '  , tmp)
     return T
 
-T = build_triangle(500500)
+T = build_triangle(5050)
 
 def find_triangle_up_sum(triangle , row,  i, j ) :
-    S, T = 0, triangle
-    S+= sum( T[row][i:j] )
-    for k in range(1,  j-i ) :
-        S+= sum( T[row-k][ i : j-k]  )
-        # print(k, )
-    return S
-
-# def triangle_go_left():
-
-def find_triangle_sum_down(triangle , i, j, size ) :
     ''' Function to calculate the sum of a triangle of given size found at a position i,j
     :param triangle: triangle array, nested list
     :param i: int, row number
@@ -93,10 +83,28 @@ def find_triangle_sum_down(triangle , i, j, size ) :
     :param size: size of the triangle
     :return: the sum of the triangle    '''
     S, T = 0, triangle
-    for k in range(0, size) :
+    S+= sum( T[row][i:j] )
+    for k in range(1,  j-i ) :
+        S+= sum( T[row-k][ i : j-k]  )
+        # print(k, )
+    return S
+
+
+
+def find_triangle_sum_down(triangle , i, j, min_size ) :
+    ''' Function to calculate the sum of a triangle of given size found at a position i,j
+    :param triangle: triangle array, nested list
+    :param i: int, row number
+    :param j: int, column number
+    :param size: size of the triangle
+    :return: the sum of the triangle    '''
+    S, T = 0, triangle
+    for k in range(0, min_size) :
         S+= sum( T[i+k][ j : j+k+1] )
         # print(i, j, k ,T[i+k][j:j+k+1]  )
     return S
+
+
 
 print('\n------------- Test Kadane Minimum -sum -----------\n')
 
@@ -184,8 +192,6 @@ print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 print('\n================  My FIRST SOLUTION,   ===============\n')
 t1  = time.time()
 
-
-
 # for k in range(len(T)) :
 #     i2, j2, smin = 0,0, 10**8
 #     for i in range(len(T[k])):        # BRUTE FORCE CHECK #
@@ -216,14 +222,63 @@ def smart_brute_force(size_start , T) :       # SMART BRUTE FORCE TRY
     return print('\nAnswer : \t', J_min,'  ;   size=',size_m, ' ;   start row :' ,ii , ' ,  start col :', jj )
 
 
-2017-02-19, 11:52 --- IT REMAINS FOR A JAVA BRUTE FORCE APPROACH !!!!
+# 2017-02-19, 11:52 --- IT REMAINS FOR A JAVA BRUTE FORCE APPROACH !!!!
 
-smart_brute_force(308 , T)
+# smart_brute_force(1 , T)
 
 
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1),6), 's\n\n')
+
+
+
+print('\n================  My SECOND SOLUTION,  2 sec if we limit to 10 rows ===============\n')
+t1  = time.time()
+
+T =  build_triangle(500500)
+# ss = 0
+# for i in range(len(T)) :
+#     ss += sum(T[i])
+#     print(T[i] , '           ',sum(T[i]))
+# print('total sum = ', ss )
+
+def find_triangle_position_going_down(triangle , i, j   ) :
+    ''' Find the sum of all possible triangles at a position i,j
+    :param triangle: triangle array, nested list
+    :param i: int, row number
+    :param j: int, column number
+    :return: smallest  sum of the  triangle    '''
+    S, T, s_temp, dim = 1e8, triangle, 0, 0
+    for k in range(0, len(T)- i ) :
+        s_temp += sum( T[i+k][ j : j+k+1] )
+        if s_temp < S :
+            S = s_temp
+            dim = k+1
+            # print('row, col =',i, j, '     ; len_row = ',k+1 , '    s_temp = ', s_temp        )
+    return S, dim
+
+Ts = find_triangle_position_going_down( T, 0, 0 )
+print('\n find_triangle_position_going_down : \t', Ts )
+
+def an_interesting_brute_force_approach(T, min_dim):
+    SUM, temp_sum = 1e8, 0
+    for row in range( len(T)-min_dim ) :
+        print("we are at the row :  " , row)
+        # if row == 10 : break
+        for col in range( row+1 ) :
+            temp_sum, dim = find_triangle_position_going_down(T, row, col )
+            if temp_sum < SUM :
+                SUM = temp_sum
+                print( ' ----   row, col , dim = ', row, col, dim ,'-----------------------', SUM   )
+    return print('\n Smallest possible minimum-sum : \t', SUM )
+
+an_interesting_brute_force_approach(T, 1 )
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
 
 # print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
 # print('\n--------------------------SOLUTION 1,   --------------------------')
