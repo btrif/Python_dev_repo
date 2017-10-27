@@ -59,8 +59,8 @@ def prime_sieve_numpy(n):                       ### o(^_^)o  FASTEST  o(^_^)o  #
     for i in range(1,int(n**0.5)//3+1):
         if sieve[i]:
             k=3*i+1|1
-            sieve[       k*k//3     ::2*k] = False
-            sieve[k*(k-2*(i&1)+4)//3::2*k] = False
+            sieve[       k*k//3    :: 2*k ] = False
+            sieve[ k*(k-2*(i&1)+4)//3 :: 2*k ] = False
     return numpy.r_[2,3,((3*numpy.nonzero(sieve)[0][1:]+1)|1)]
 
 
@@ -365,7 +365,7 @@ print('\n',len(tmp2) ,' primes generated in :', round((t2-t1)*1000,4), 'ms')    
 
 ######################################
 
-print('\n\n=============  FACTOR DECOMPOSITION  ===================')
+print('\n\n=========  FACTOR DECOMPOSITION, FACTORIZE, FACTORING  =============')
 
 def factors(a):
     '''Outputs a list of the unique prime factors of its input; The Second Fastest Algorithm
@@ -535,7 +535,8 @@ class PrimeTable():    #  ( ͡° ͜ʖ ͡°)  ### !! FIRST FASTEST
 class Factorization():
 
     ''' Based on a prebuilt prime sieve, and we must pay attention that the prime up range is not
-    to low, so that we don't miss a prime when we first factor . As default the value is set to 10.000   '''
+    to low, so that we don't miss a prime when we first factor . As default the value is set to 10.000
+      So we need uprange /2         '''
     def __init__(self):
         self.prime_table = PrimeTable(10**4)
 
@@ -662,7 +663,7 @@ print('Here we test the GET_DIVISORS CLASS :  ',GET_DIVISORS().divisors(90))
 
 print('\n----------- PAIR FACTORING OF A NUMBER -------------------')
 
-def pair_Factors(n):        # VERY EFFICIENT !!!! SUPER INTELLIGENT ALGORITHM
+def all_Factorizations(n):        # VERY EFFICIENT !!!! SUPER INTELLIGENT ALGORITHM
     '''Pair Factoring, VERY EFFICIENT !
     :param n:
     :return:     '''
@@ -676,7 +677,7 @@ def pair_Factors(n):        # VERY EFFICIENT !!!! SUPER INTELLIGENT ALGORITHM
             i += 1
     return combis
 
-def pair_Factors_rec(n):        # Recursive Pair Factoring, Just a little bit more slow
+def all_Factorizations_rec(n):        # Recursive Pair Factoring, Just a little bit more slow
     def factor(n, i, combi, combis):
         while i * i <= n:
             if n % i == 0:
@@ -687,8 +688,8 @@ def pair_Factors_rec(n):        # Recursive Pair Factoring, Just a little bit mo
     return factor(n, 2, [], [])
 
 
-print('pair_Factors : \t', pair_Factors(90))
-print('pair_Factors_rec : \t', pair_Factors(90))
+print('pair_Factors : \t', all_Factorizations(180))
+print('pair_Factors_rec : \t', all_Factorizations_rec(180))
 
 print('\n------------------  Digital Root of a number --------------------  ')
 

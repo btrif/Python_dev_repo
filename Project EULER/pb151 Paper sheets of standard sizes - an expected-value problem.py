@@ -7,7 +7,8 @@ Paper sheets of standard sizes: an expected-value problem       -   Problem 151
 A printing shop runs 16 batches (jobs) every week and each batch requires
 a sheet of special colour-proofing paper of size A5.
 
-Every Monday morning, the foreman opens a new envelope, containing a large sheet of the special paper with size A1.
+Every Monday morning, the foreman opens a new envelope,
+containing a large sheet of the special paper with size A1.
 
 He proceeds to cut it in half, thus getting two sheets of size A2.
 Then he cuts one of them in half to get two sheets of size A3 and so on
@@ -43,53 +44,68 @@ import time, gmpy2
 # So we can't compute the expectation by counting outcomes and dividing by an.
 
 # starts with : 1A2 , 1A3, 1A4 , 1 A5
-@ 2017-03-24 - I heoped to be able to solve this problem at this moment. but i do not understand enough
-the decisional tree algorithms. Must study those first beginning with the binary tree
+# @ 2017-03-24 - I heoped to be able to solve this problem at this moment. but i do not understand enough
+# the decisional tree algorithms. Must study those first beginning with the binary tree
 
-
+print()
 ## CONVENTION : A1 = 1, A2 = 2, A3, = 4, A4 = 8, A5 =16
 
-def cut_sheet(sheet):
-    ''' :CONVENTION:   sheet sizes are :  A1 = 1,   A2 = 2,     A3, = 4,     A4 = 8,     A5 =16
-    '''
-    S = []
-    while sheet != 16 :
-        sheet = sheet << 1
-        S.append(sheet)
-    return S
+# def cut_sheet(sheet):
+#     ''' :CONVENTION:   sheet sizes are :  A1 = 1,   A2 = 2,     A3, = 4,     A4 = 8,     A5 =16
+#     '''
+#     S = []
+#     while sheet != 16 :
+#         sheet = sheet << 1
+#         S.append(sheet)
+#     return S
+#
+# print('\ncut_sheet function : \t ', cut_sheet(2) )
+#
+# F = [  2**i for i in range(1,5) ]
+# print(F)
+#
+# Week = dict()
+# Week[2] = F[:]
+# print('the start of the Week :\t',Week,'\n')
+#
+# i , cnt = 0, 2
+#
+# while len(F) >2 :
+#     if F[i] == 16 :
+#         cnt += 1
+#         F.pop( i)
+#         Week[cnt] = F[:]
+#         print(str(cnt)+'.    ',F)
+#     else :
+#         if F[i] != 16 :
+#             cnt+=1
+#             H = cut_sheet(F[i])
+#             F.pop( i)
+#             F.extend(H)
+#             print(str(cnt)+'.    ',F)
+#             Week[cnt] = F[:]
+#         else : i+=1
+#         if i == len(F)-1 :
+#             i = 0
+#
+# print('\n',Week)
 
-print('\ncut_sheet function : \t ', cut_sheet(2) )
+# We start with a batch of size A1 and 0 bathes of sizes A2, A3, A4, A5
+A = [ 1, 0, 0, 0, 0 ]
 
-F = [  2**i for i in range(1,5) ]
-print(F)
-
-Week = dict()
-Week[2] = F[:]
-print('the start of the Week :\t',Week,'\n')
-
-i , cnt = 0, 2
-
-while len(F) >2 :
-    if F[i] == 16 :
-        cnt += 1
-        F.pop( i)
-        Week[cnt] = F[:]
-        print(str(cnt)+'.    ',F)
-    else :
-        if F[i] != 16 :
-            cnt+=1
-            H = cut_sheet(F[i])
-            F.pop( i)
-            F.extend(H)
-            print(str(cnt)+'.    ',F)
-            Week[cnt] = F[:]
-        else : i+=1
-        if i == len(F)-1 :
-            i = 0
-
-print('\n',Week)
+def pick_batch(A, no):
+    A[no] -= 1
+    for i in range(no, len(A)):
+        A[i]+=1
+    return A
 
 
+# def evolution(A):
+#     pick_prob = [ i/sum(A) for i  in A ]
+
+
+
+print([ i/sum(A) for i  in A ])
 
 
 

@@ -2,11 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 fig = plt.figure()
-ax = fig.add_subplot(1,1,1)
 
+ax = fig.add_subplot(1,1,1)
 
 def grid():
     # major ticks every 5, minor ticks every 1
+
     major_ticks = np.arange(0, 51, 5)
     minor_ticks = np.arange(0, 51, 1)
 

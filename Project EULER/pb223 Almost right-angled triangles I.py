@@ -5,13 +5,14 @@
         Almost right-angled triangles I     -       Problem 223
 
 Let us call an integer sided triangle with sides a ≤ b ≤ c barely acute if the sides satisfy
-a**2 + b**2 = c**2 + 1.
+a^2 + b^2 = c^2 + 1.
 
 How many barely acute triangles are there with perimeter ≤ 25,000,000  (2.5*10**7)  ?
 
 
 '''
 import time
+from gmpy2 import mpq
 from math import gcd, sqrt
 
 import math
@@ -31,7 +32,7 @@ def brute_force( up_lim) :       # @2017-09-23 - Brute Force method was correcte
     u = up_lim//2
     cnt=0
     for b in range(1, u):
-        for a in range(2, b+1):
+        for a in range(4, b+1):
             c_sq = a*a + b*b - 1
             # print('a, b, c_sq = ' , a, b, c_sq)
             if  is_square(c_sq) :
@@ -45,7 +46,7 @@ def brute_force( up_lim) :       # @2017-09-23 - Brute Force method was correcte
     return print('\nAnswer : \t', cnt +u - 1 )
 
 # up_lim = 10**2
-up_lim = 25*10**3
+up_lim = 25*10**4
 # brute_force(  up_lim )
 
 
@@ -84,11 +85,12 @@ def my_first_soln( lim) :
                 c = int(sqrt(Sq1[i]-1 ))
                 if a+b+c <= lim :
                     cnt+=1
-                    print(str(cnt)+'.      a = ', a, '    b=' ,  b, '     c=',c,'      perim=', a+b+c , '         c^2+1 = ', c )
+                    print(str(cnt)+'.      a = ', a, '    b=' ,  b, '     c=',c,'      perim=', a+b+c , '         c^2+1 = ', c**2+1,'           (c-b)/(a-1)= (a+1)/(c+b)= ' , mpq(c-b, a-1) )
 
     return print('\nAnswer : \t', cnt +lim//2 - 1)
 
-my_first_soln( 25*10**2 )
+# my_first_soln( 25*10**2 )
+my_first_soln( 10**3 )
 
 # @2017-03-28 - I left here, I must use the a**2 -1 decomposition
 ## CHECKS

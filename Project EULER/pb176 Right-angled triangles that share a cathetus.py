@@ -9,7 +9,8 @@ all have one of the shorter sides (catheti) equal to 12.
 
 It can be shown that no other integer sided right-angled triangle exists with one of the catheti equal to 12.
 
-Find the smallest integer that can be the length of a cathetus of exactly 47547 different integer sided right-angled triangles.
+Find the smallest integer that can be the length of a cathetus of exactly
+47547 different integer sided right-angled triangles.
 
 
 '''
@@ -59,7 +60,7 @@ We then must multiply all these to obtain the desired trainagle !!
 
 @2017-04-29 - Actually we need to find a x which in combinations with other numbers y smaller or bigger than x
 => x**2 + y**2 is a perfect square.  In the example given :
-(9,12,15), (12,16,20), (5,12,13) and (12,35,37) => x=12 form with 4 different y's perfect squares
+(9,12,15), (12,16,20), (5,12,13) and (12,35,37) => x=12 form together with 4 different y-s perfect squares
 in this case the range of y's is :   9 <= y <= 35
 
 

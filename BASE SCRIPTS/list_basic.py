@@ -78,6 +78,9 @@ print(np.prod([2,3,3,5]))                           # Product of the elements in
 print(np.prod([[1.,2.],[3.,4.]]))                    # Even when the input array is two-dimensional:
 print(np.prod([[1.,2.],[3.,4.]], axis=1))           # But we can also specify the axis over which to multiply:
 
+
+
+
 print('\n================= LIST BASIC OPERATIONS ========================')
 
 L=[9,6,16,0,54,11,3, 11, 0, 6, 11]
@@ -660,13 +663,18 @@ print('Multiple each element of the TUPLE with a number : \t ', tuple(map(5 .__m
 print('\n-------------- Perform tuple element wise operations ------------')
 ### Method I - Using numpy
 import numpy
-a = numpy.power((5, 9), (5, 2 ))
+a = numpy.power((3, 2), (6, 7 ))
 print('Element wise power operation on tuples : ', a)
 
 ### Method II , Using zip:
-a = [1,2,3,4]
-b = [2,3,4,5]
-print('Element wise power operation on tuples : ',   [ a**b for a,b in zip(a,b)] )
+print('\n-------------- Multiply two lists element wise -------------------')
+lista = [1,2,3,4]
+listb = [2,3,4,5]
+print(lista)
+print(listb)
+print('multiply element wise two lists ', [ a*b for a,b in zip( lista, listb) ] )
+
+print('Multiply Element wise two lists : ',   [ a*b for a,b in zip(lista,listb) ] )
 
 print('\n---------------- Second, Third Largest Number in the list using heapq----------------')
 el = [20,67,3,2.6,7,74,2.8,90.8,52.8,4,3,2,5,7]

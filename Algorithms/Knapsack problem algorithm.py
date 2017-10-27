@@ -1,5 +1,4 @@
 
-
 Items = [ (100, 3), (20, 2), (60, 4), (40, 1)  ]        # The table with Items, first index :Values, Second : Weight
 print(Items)
 

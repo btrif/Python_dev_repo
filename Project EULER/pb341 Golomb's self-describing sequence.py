@@ -21,12 +21,12 @@ Find ΣG(n**3) for 1 ≤ n < 10**6.                    ...........   => the rang
 
 '''
 import time, zzz
-from math import log
+from math import log, sqrt
 
 G = dict()
 G[1] =1
 
-phi = (1+ 5**(1/2))/2
+phi = (1+ 5**(1/2)) /   2
 
 a = lambda n : phi**(2-phi) * n**(phi-1)        # Approximative Asimptotic Function
 
@@ -45,6 +45,21 @@ t1  = time.time()
 # https://en.wikipedia.org/wiki/Golomb_sequence
 # http://planetmath.org/sites/default/files/texpdf/40245.pdf
 # http://www.sciencedirect.com/science/article/pii/0022314X9290024J
+# https://stackoverflow.com/questions/12786087/golombs-sequence
+
+import functools
+
+@functools.lru_cache(maxsize=None)
+def g(n) :
+    if n == 1 : return 1
+    else :
+        return g( n - g  (g(n-1) )  ) +1
+
+
+print(  g(1000) )
+
+@2017-10-11, 22:00
+# scooping - the sequence repeats itself in zooming
 
 
 t2  = time.time()

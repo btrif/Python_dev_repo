@@ -61,9 +61,15 @@ while n < 10**7 :
 
 print(len(Fib), Fib)
 
+def build_zeck(Fib):
+    D = {}
+    for i in range( len(Fib)) :
+        D[ Fib[i]  ] = 10**i
+
+    return D
 
 
-def write_as_Fibonacci(n, cnt):
+def write_as_Fibonacci(n, cnt):     # Recursive algorithm
     ind = binary_search(n, Fib)
 
     n = n - Fib[ind]
@@ -76,16 +82,6 @@ def write_as_Fibonacci(n, cnt):
 
 
 
-print('\nwrite_as_Fibonacci : \t', write_as_Fibonacci( 100 ,0 )  )
-
-# ALGORITHM RUDIMENTAR  !!!     BIARY SEARCH IS SLOW !
-S = 0
-for i in range(1, 10**3):
-    w = write_as_Fibonacci(i, 0)
-    S+= w
-    print(str(i)+'.          ', w )
-
-print('\nAnswer : \t', S)
 
 
 
@@ -93,24 +89,57 @@ print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
 
+print(build_zeck(Fib))
 
 
+print('\nwrite_as_Fibonacci : \t', write_as_Fibonacci( 100 ,0 )  )
 
+# ALGORITHM RUDIMENTAR  !!!     BINARY SEARCH IS SLOW !
+def binary_search_algorithm(up) :
+    S = 0
+    for i in range(1, up):
+        w = write_as_Fibonacci(i, 0)
+        S+= w
+        print(str(i)+'.          ', w,'        ', S )
+
+    print('\nAnswer : \t', S)
+
+binary_search_algorithm(10**2+15)
+
+
+# http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibrep.html            !!!!!!!!!
+#
+# https://oeis.org/wiki/Zeckendorf_representation
+# http://www.theoremoftheday.org/Binomial/Zeckendorf/TotDZeckendorf.pdf
+# https://math.osu.edu/sites/math.osu.edu/files/henderson_zeckendorf.pdf
+
+
+# NICE & Easy
+# 4 The Fibonacci base system
+#
+# Going back to the decimal number system, what if we labelled the columns with the Fibonacci
+# numbers instead of powers of 10? We follow the usual conventions of larger column sizes being on the LEFT:
+# ... 13 8 5 3 2 1
+# We will show that a number is represented in this system by putting Fib after it: e.g.:
+# 8	5	3	2	1
+# ten =	1	0	0	1	0_Fib =	8 + 2
+# which distinguishes it from ten thousand and ten (10010) in decimal.
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 print('\n================  My FIRST SOLUTION,   ===============\n')
-# t1  = time.time()
+t1  = time.time()
 
 
 
+# for i in range(1,100):
+#     print(str(i)+'.        bin = ',  bin(i) )
 
 
 
-
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
 # print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')

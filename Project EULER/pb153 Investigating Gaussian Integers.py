@@ -2,9 +2,9 @@
 # Solved by Bogdan Trif @   Completed on Tue, 21 Mar 2017, 21:16
 #The  Euler Project  https://projecteuler.net
 '''
-Investigating Gaussian Integers     -       Problem 153
+                    Investigating Gaussian Integers     -       Problem 153
 
-As we all know the equation x2=-1 has no solutions for real x.
+As we all know the equation x^2=-1 has no solutions for real x.
 If we however introduce the imaginary number i this equation has two solutions: x=i and x=-i.
 If we go a step further the equation (x-3)2=-4 has two complex solutions: x=3+2i and x=3-2i.
 x=3+2i and x=3-2i are called each others' complex conjugate.
@@ -190,7 +190,7 @@ print('\n--------------------------SOLUTION 1, 5 sec  --------------------------
 t1  = time.time()
 
 # ==== Tue, 22 Mar 2016, 09:24, Min_25, Japan
-# Here is an O(n3/4)O(n3/4) solution.
+# Here is an O(n3/4) solution.
 # We can speed up the calculation by computing the weighted number of lattice points within a circle.
 # Theoretically, we can compute the answer in O(n**2/3(log log n)**1/3) time.
 #
@@ -426,10 +426,38 @@ if __name__ == '__main__':
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n--------------------------SOLUTION 4,   --------------------------')
+print('\n--------------------------SOLUTION 4,  10 min --------------------------')
 t1  = time.time()
 
+# This one tool me quite a while to solve.
+# I looked at various ways but eventually came up with a way to solve it in a reasonable time.
+#
+# Like many other I went through all possible values for a and b in z = a + bi.
+#
+# Runs in about 6 minutes.
 
+import time
+from math import gcd
+
+start = time.time()
+N = 10**8
+total = 0
+# Include 'n' for all values
+total += int((N + 1)/2*N)
+for a in range(1,int(N/2+1)):
+    # Include all times where 'a' is an integer divisor of 'N' (b == 0)
+    total += (int(N/a)-1)*a
+    # Include all times where a == b: add 2a for each multiple of 2a
+    total += int(N/(2*a))*2*a
+# Include all other cases where a!=b, a>b, b!=0
+for a in range(2,int(N**0.5)+1):
+    for b in range(1,a):
+        if gcd(a,b) != 1: continue
+        n = a**2 + b**2
+        for x in range(1,int(N/n)+1):
+            total += int(N/(n*x))*(a+b)*2*x
+print(N,int(total))
+print("This took %0.3f seconds." % (time.time()-start))
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')

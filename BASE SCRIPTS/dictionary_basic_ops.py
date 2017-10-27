@@ -234,7 +234,7 @@ print('\n ----------------- Dictionary comprehensions -------------------')
 m = {x: x ** 2 for x in range(5)}
 print( m )
 
-print('-------- VERY USEFUL to use to GENERATE VARIABLES DYNAMICALLY ------------- ')
+print('-------- VERY USEFUL to use to GENERATE (variables , vars ) VARIABLES DYNAMICALLY (dynamically) ------------- ')
 m = {x: 'A' + str(x) for x in range(10)}
 print( m )
 

@@ -53,9 +53,15 @@ def get_k4( rad_array ):
         :return: the radius of the 4-th circle which is in between them     '''
 
     r0, r1, r2 = rad_array
-    k0, k1, k2 = 1/r0, 1/ r1, 1/r2
-    k4 = k1 + k2 + k0 + 2 * sqrt( k0*k1 + k0*k2 + k1*k2 )
-    return 1/k4
+    # IMPORTANT !!! If we have a straight line always put the radius r2 = 0 at the end like ( 4, 4, 0 )
+    if r2 != 0 :
+        k0, k1, k2 = 1/r0, 1/ r1, 1/r2
+        k4 = k1 + k2 + k0 + 2 * sqrt( k0*k1 + k0*k2 + k1*k2 )
+        return 1/k4
+    else :
+        k0, k1 = 1/r0, 1/ r1
+        k4 = k1 + k0 + 2 * sqrt( k0*k1 )
+        return 1/k4
 
 # @2017-09-17,, 12:45    Mda, folosesc formula gresit !!! I'm tired'
 
@@ -127,7 +133,7 @@ def Iterative_circle( iterations) :
     gapsArea = round( 1- (Area / (pi * a0**2)), 8)
     return print('\nArea not covered by circles ( Gaps Area ) = ', gapsArea )      # Area not covered by circles ( Gaps Area ) =  0.00396087
 
-# Iterative_circle(10)
+Iterative_circle(10)
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,6), 'ms\n\n')

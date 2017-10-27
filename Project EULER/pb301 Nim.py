@@ -51,21 +51,27 @@ def Brute_Force_Nim(lim) :
         print(str(i)+'.        ',  i , 2*i , 3*i   ,'      ' ,bin(i) , bin(2*i) , bin(3*i) , '          = ',X(i)   )
     return print('\n Loosing Configurations : \t',  cnt )
 
-Brute_Force_Nim(10)         #   Loosing configurations : 2178309
+Brute_Force_Nim(4)         #   Loosing configurations : 2178309
 
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1) , 2), 's\n\n')      #   Completed in : 599.736 s
 
-print('\n================  My FIRST SOLUTION,   ===============\n')
+print('\n===========  My FIRST SOLUTION,  After looking in Euler Forum, Fibonacci  ===============\n')
 t1  = time.time()
 
-# OBSERVATION
+# OBSERVATION :when i = 2 reapting ones : bin(i) = 110, 01100 or 3, 4, 5, ... repeating ones
+# the result will always be 0 because
 
+def Fibonacci(n) :
+    F = [ 0, 1 ]
+    for i in range(n) :
+        F = [ F[1], sum(F) ]
+        print(F)
 
+    return print('\nAnswer : \t', sum(F))
 
-
-
+Fibonacci(30)
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
@@ -124,6 +130,9 @@ print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 # i.e. Number of solutions for 6-bits = sum of number of solutions for 4- and 5-bits
 # Instant Fibonacci!
 
+# ==== Sat, 28 Feb 2015, 01:52, _maddin_, Germany
+# Turns out, it's all numbers that don't have two consecutive ones in it's binary representation. That makes the answer fibonacci(32)
+
 
 print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
 print('\n--------------------------SOLUTION 1,  INSTANT --------------------------')
@@ -157,8 +166,8 @@ t1  = time.time()
 
 # ====Thu, 15 Dec 2016, 10:10, mbh038
 # I played for a while with bitwise operations in Python, then simply printed the sums of values for
-# which  X(n,2n,3n)=0X(n,2n,3n)=0 for n≤2kn≤2k for kk from 1 to 20. Et voila!
-# One sees that for n≤2nn≤2n, the answer is the n+2n+2th Fibonacci term.
+# which  X(n,2n,3n)=0 for n≤2k for k from 1 to 20. Et voila!
+# One sees that for n≤2n, the answer is the n+2th Fibonacci term.
 # I don't yet have an explanation for that, but here is the code, using Dijkstra's algorithm
 # for the Fibonacci numbers, from his 1978 note EWD654. About 50μs.
 
@@ -241,31 +250,73 @@ t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
-# print('\n--------------------------SOLUTION 4,   --------------------------')
-# t1  = time.time()
+print('\n--------------------------SOLUTION 4,   --------------------------')
+t1  = time.time()
+
+# ==== Fri, 13 Feb 2015, 09:20, jyjz2008, Python  , China
 #
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 5,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 6,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+# n⊕(2×n)⊕(3×n)=0
+# that is to say: n⊕(2×n)=3×n
+# ∴ n⊕(2×n)=n+(2×n)
+# ∴ in the binary form of n, there should be NO consecutive 1.
+# The calculation is straight forward now.
+# ----------------------------------------------------------------------------------------------
+# Python program as follows:
+
+ends_with_0 = [0, 1]
+ends_with_1 = [0, 1]
+
+limit = 30
+while len(ends_with_0) <= limit:
+    new_0 = ends_with_0[-1] + ends_with_1[-1]
+    new_1 = ends_with_0[-1]
+    ends_with_0.append(new_0)
+    ends_with_1.append(new_1)
+print (ends_with_0[-1] + ends_with_1[-1])
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 5,  Dynamic Programming --------------------------')
+t1  = time.time()
+
+# === Mon, 29 Feb 2016, 02:35, brainiac1530 ,USA
+# The answer being a Fibonacci number was lost on me.
+# I used plain old dynamic programming, realizing there could be no consecutive bits set.
+# I used a little reduce/xor magic to verify the algorithm with smaller limits first,
+# and I had to add one to make the solution inclusive to 2**30.
+# , just printing the sorted partial sums does make the Fibonacci connection obvious in hindsight.
+
+sums = { 1:1, 2:1 }
+for i in range(2,30):
+    sums[1<<i] = 1 + sum( sums[ 1<< i-j ] for j in range(2, 1+i) )
+    print(1 + sum( sums[ 1<< i-j ] for j in range(2, 1+i))  )
+
+print(sum(sums.values())+1)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 6,   --------------------------')
+t1  = time.time()
+
+# === Wed, 8 Jan 2014, 10:20, ChopinPlover, Taiwan
+# X(n,2n,3n)=0  iff the binary representation of nn contains no successive '1's.
+
+def get_zero_count(n):
+    count = 1, 0
+
+    for k in range(n):
+        count = (count[0] + count[1], count[0])
+    return sum(count)
+
+
+print(get_zero_count(30))
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 #
 #
 # print('\n--------------------------SOLUTION 7,   --------------------------')

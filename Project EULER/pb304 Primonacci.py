@@ -1,5 +1,5 @@
 #!/usr/bin/python                   ( ͡° ͜ʖ ͡°)
-# Solved by Bogdan Trif @
+# Solved by Bogdan Trif @       Completed on Mon, 25 Sep 2017, 12:33
 #The  Euler Project  https://projecteuler.net
 '''
             Primonacci      -       Problem 304
@@ -172,6 +172,20 @@ print('\nCompleted in :', round((t2-t1), 2), 's\n\n')
 # Thu, 5 Jun 2014, 18:09, leonid, Japan
 # I used Cassini's identity to find the fibonacci value, and miller-rabin to test primality.
 # https://en.wikipedia.org/wiki/Fibonacci_number#Other_identities
+
+# ===Wed, 6 Oct 2010, 14:44, Pasztorsandor, Hungary
+# The basic idea that the Fibonacci series mod m is absulutely periodic for every m.
+# In this case the period is 900788112.
+
+# I totally didn't notice / ignored the fact that F(n) mod m is periodic mod m.
+# So really if you had enough memory you can compute F(n) mod m in O(1).
+# If not, then it's still O(log m) and not O(log n).
+#
+# === Sat, 9 Oct 2010, 07:11, David__M, Australia
+# I used sage and some number theory, which made it a simple idea, not so easy to implement though.
+# Found the the cycles for fibonacci numbers modulo each of the factors of 1234567891011.
+# Awkwardly, the largest of them was over six hundred thousand, with a cycle length over a million...
+# After that, it was a matter of using the chinese remainder theorem...
 
 
 print('\n================  My FIRST SOLUTION, SLOW, 3 min  ===============\n')

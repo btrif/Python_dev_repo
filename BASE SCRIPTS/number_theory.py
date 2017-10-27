@@ -69,5 +69,25 @@ def Euler_totient(n):   # o(^_^)o  @2017-01-23, 10:30 by Bogdan Trif
 
 N = 100001051
 print('\nEuler_totient function : \t N=',N ,'\t' ,Euler_totient(N))
-print('eulerphi function  : \t N=', N, '\t', eulerphi(N))
+# print('eulerphi function  : \t N=', N, '\t', eulerphi(N))
 
+print('\n-------------------- Lucky Numbers --------------------------')
+
+def lucky_numbers(lim):     # © o(^_^)o  MAde by Bogdan Trif  @ 2017-10-27, 12:00
+    X = list(range(1, lim+1, 2))
+#     print(X)
+    i = 2
+    Y=X[:]
+    while i < 32 :
+        I = Y[i-1]
+        # print('======',i, ' I=',I, Y[I-1]  ,'   ',len(X), (len(X)//i))
+
+        Y[I-1::I] = [0] * (len(X)//I )
+        X =  [l for l in Y if l != 0 ]
+#         print(X)
+        Y=X[:]
+        i+=1
+
+    return X
+
+print(lucky_numbers(1000))

@@ -80,7 +80,7 @@ print('inverse fibonacci : \t' , inverse_fib(28) )
 
 for n in range(17+1) :
     d = D(n)
-    print(str(n)+'       D('+str(n)+')    =' , d ,'     ' , d//100  )
+    print(str(n)+'       D('+str(n)+')    =' , d ,'     ' , divmod(d,100)  )
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()

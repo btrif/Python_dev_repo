@@ -7,6 +7,8 @@ import operator
 # If the input iterable is empty, the output iterable will also be empty.
 #
 # Roughly equivalent to:
+import functools
+
 
 def accumulate(iterable, func=operator.add):
     'Return running totals'
@@ -116,14 +118,14 @@ for combination in combinations([2, 3, 5, 7, 11, 13], 3):
     print (combination, end='  ')
 
 
-print('\n-------------- Cartesian products (itertools.product) -------------------')
+print('\n\n-------------- Cartesian products (itertools.product) -------------------')
 for p in itertools.product([1, 2, 3], [4, 5]): print(p, end= ' ;  ')
 print()
 for p in itertools.product([0, 1], repeat=4):
     print ( ''.join(str(x) for x in p), end=' ;  ' )
 
 
-print('\n --------------- Chaining iterables (itertools.chain) ------------------')
+print('\n\n --------------- Chaining iterables (itertools.chain) ------------------')
 
 a = [1, 2, 3, 4]
 for p in itertools.chain(itertools.combinations(a, 2), itertools.combinations(a, 3)):
@@ -184,6 +186,11 @@ print('\n---------------------- Equivalent of the Arbitrary Sized FOR NESTED LOO
 for a, b, c, d in itertools.product(range(1, 4+1), repeat=4):
     print(a, b,c, d, end='   ')
 
+for x in itertools.product(range(1, 4+1), repeat=4):
+    print(x, end='   ')
+
+for x in itertools.product(range(1, 3+1), repeat=6):
+    print(x, end='   ')
 
 print('\n\n ============== INTRO TO ITERTOOLS ===============')
 # Python provides a great module for creating your own iterators.
@@ -542,3 +549,21 @@ print(cp)
 # It means that you are passing in 3 arguments instead of one.
 # If you want, try calling it with the asterisk pre-pended to arrays and see what happens.
 
+print('\n-------------- Combinations  of all elements to use for products, factoring, factorize ---------')
+
+P1 = [ 2,3,5,7 ]
+# ==== The next approaches are equivalent, but the first is more efficient
+
+Q1 = [1]
+for i in P1 :
+    Q1 += [ i*j for j in Q1 ]
+print(Q1)
+
+# === Same result can be achieved with
+Q2 = [1]
+for i in range(1, len(P1)+1 ) :
+    c = list(combinations(P1, i))
+    for j in c :
+        # print( functools.reduce(operator.mul, j) , end='   ')
+        Q2.append(functools.reduce(operator.mul, j))
+print(Q2)

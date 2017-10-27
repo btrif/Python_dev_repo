@@ -116,47 +116,49 @@ print('\nProbability that 9 Pyramidal Dices  beats 6 Cubic Dices : ', round(S,7)
 
 # It works, just uncomment it  !!!
 
-# print('\n------------------------    PLOTTING   -----------------------')
-#
-# import numpy as np
-# import matplotlib.pyplot as plt
-#
-# fig = plt.figure(num=None, figsize=(16, 10), dpi=80, facecolor='w', edgecolor='#33ff88')
-#
-# ax = fig.add_subplot(1,1,1)
-#
-# ## the data
-# N = 36
-# D66 = P66
-# D49 = P49
-#
-# ## necessary variables
-# ind = np.arange(N)                # the x locations for the groups
-# width = 1                      # the width of the bars
-#
-# ## the bars
-# rects1 = ax.bar(ind, D66, width, color='blue' , alpha=0.7 )
-# rects2 = ax.bar(ind, D49, width, color='red', alpha=0.5)
-#
-# # axes and labels
-# ax.set_xlim(-width , len(ind)+width)
-# ax.set_ylim(0, 0.12)
-# ax.set_ylabel('Scores')
-# ax.set_title('Probabilities ')
-# xTickMarks = [str(i) for i in range(1,37)]
-# ax.set_xticks(ind+width)
-# xtickNames = ax.set_xticklabels(xTickMarks)
-# plt.grid(True)
-#
-# plt.setp(xtickNames, rotation=15, fontsize=14)
-#
-# ## add a legend
-# ax.legend( (rects1[0], rects2[0]), ('D66', 'D49') )
-# # ax.legend( rects1, 'D66' )
-# # fig = plt.gcf()
-# # fig.set_size_inches(20, 15)
-# plt.show()
+print('\n------------------------    PLOTTING   -----------------------')
 
+def plot() :
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    fig = plt.figure(num=None, figsize=(16, 10), dpi=80, facecolor='w', edgecolor='#33ff88')
+
+    ax = fig.add_subplot(1,1,1)
+
+    ## the data
+    N = 36
+    D66 = P66
+    D49 = P49
+
+    ## necessary variables
+    ind = np.arange(N)                # the x locations for the groups
+    width = 1                      # the width of the bars
+
+    ## the bars
+    rects1 = ax.bar(ind, D66, width, color='blue' , alpha=0.7 )
+    rects2 = ax.bar(ind, D49, width, color='red', alpha=0.5)
+
+    # axes and labels
+    ax.set_xlim(-width , len(ind)+width)
+    ax.set_ylim(0, 0.12)
+    ax.set_ylabel('Scores')
+    ax.set_title('Probabilities ')
+    xTickMarks = [str(i) for i in range(1,37)]
+    ax.set_xticks(ind+width)
+    xtickNames = ax.set_xticklabels(xTickMarks)
+    plt.grid(True)
+
+    plt.setp(xtickNames, rotation=15, fontsize=14)
+
+    ## add a legend
+    ax.legend( (rects1[0], rects2[0]), ('D66', 'D49') )
+    # ax.legend( rects1, 'D66' )
+    # fig = plt.gcf()
+    # fig.set_size_inches(20, 15)
+    plt.show()
+
+plot()
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')

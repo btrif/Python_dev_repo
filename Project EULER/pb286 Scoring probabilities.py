@@ -18,17 +18,18 @@ Find q and give your answer rounded to 10 decimal places.
 import time, zzz
 from itertools import combinations, permutations, combinations_with_replacement, product
 
-def P_scoring( x , q ) :
+def Probabilty_scoring( x , q ) :
     return 1-x/q
 
 def total_score( q ) :
     S= 0
     for x in range(1, 50+1) :
-        S += P_scoring(x, q)
-        print(x,'      ',  P_scoring(x, q) )
+        S += Probabilty_scoring(x, q)
+        print(x,'      ',  Probabilty_scoring(x, q) )
     return S
 
-print('\ntotal_score : \t', total_score(50.0001))
+print('\ntotal_score : \t', total_score(50.001))
+# print('\ntotal_score : \t', total_score(42.5))
 
 
 

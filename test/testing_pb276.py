@@ -5,7 +5,7 @@ import time
 t1  = time.time()
 
 
-print( 'test_function cython : \t'  ,  pb276.Primitive_integer_sided_triangles (10**7 ) )
+print( 'test_function cython : \t'  ,  pb276.Primitive_integer_sided_triangles (10**4 ) )
 # print( 'test_function cython : \t'  ,  pb276.Ccombinations(3, [1,2,3,4,5,6] ) )
 
 

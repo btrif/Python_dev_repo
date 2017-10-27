@@ -200,7 +200,7 @@ def solve_sudoku(M) :
                 # This resets the row, col of the matrix and removes the previous assignment M[row][col] = num
                 # else IF FALSE :
             M[row][col] = 0
-        print(num, (row, col) , M)
+        # print(num, (row, col) , M)
 
     return False
 
@@ -226,10 +226,9 @@ def main_solve_all_sudokus() :
 
 
 solve_sudoku(M)
-
-# if solve_sudoku(M) :
-#     show_complete(M, 12)
+if solve_sudoku(M) :
+    show_complete(M, 12)
 
 
 t2  = time.time()
-print('\nCompleted in :', round((t2-t1),6), 's\n\n')            #   Completed in : 69.630983 s
+print('\nCompleted in :', round((t2-t1),6), 's\n\n')            #   Completed in : 69.63 s

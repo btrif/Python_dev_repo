@@ -36,32 +36,33 @@
     <bookmark url="file://$PROJECT_DIR$/Project EULER/pb173 Using up to one million tiles.py" line="125" />
     <bookmark url="file://$PROJECT_DIR$/Project EULER/pb186 Connectedness of a network.py" line="227" />
     <bookmark url="file://$PROJECT_DIR$/Project EULER/pb407 Idempotents.py" line="196" />
+    <bookmark url="file://$PROJECT_DIR$/Project EULER/pb229 Four Representations using Squares.py" line="166" mnemonic="E" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10b92eea-3e93-4012-8265-1f1b659587bd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb102_triangles.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb104 Pandigital Fibonacci ends.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb314 - test with 50 - The Mouse on the Moon.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb345 Matrix Sum.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb120 Square remainders.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb108 Diophantine reciprocals I.py" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb119 Digit power sum.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb314 - test with 50 - The Mouse on the Moon.py" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb314_grid_circle.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simple scripts/histogram.py" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb102 Triangle containment.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Matlibplots/_circle.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb122 - Efficient exponentiation.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb130 Composites with prime repunit property.py" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb125 Palindromic sums.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project EULER/pb088 Product-sum numbers.py" afterPath="$PROJECT_DIR$/Project EULER/pb088 Product-sum numbers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Matlibplots/grid_circle.py" afterPath="$PROJECT_DIR$/Matlibplots/grid_circle.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project EULER/pb179 Consecutive positive divisors.py" afterPath="$PROJECT_DIR$/Project EULER/pb179 Consecutive positive divisors.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project EULER/pb205 Dice Game.py" afterPath="$PROJECT_DIR$/Project EULER/pb205 Dice Game.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project EULER/pb132 Large repunit factors.py" afterPath="$PROJECT_DIR$/Project EULER/pb132 Large repunit factors.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Matlibplots/Plots/plot 05 - Histogram of IQ.py" afterPath="$PROJECT_DIR$/Matlibplots/Plots/plot 05 - Histogram of IQ.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project EULER/pb314 The Mouse on the Moon.py" afterPath="$PROJECT_DIR$/Project EULER/pb314 The Mouse on the Moon.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simple scripts/histogram.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb120 Square remainders.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb102_triangles.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb130 Composites with prime repunit property.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb104 Pandigital Fibonacci ends.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb345 Matrix Sum.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb122 - Efficient exponentiation.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Project EULER/pb108 Diophantine reciprocals I.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Matlibplots/_circle.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simple scripts/for_nested_loop.py" afterPath="$PROJECT_DIR$/simple scripts/for_nested_loop.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project EULER/pb179 Consecutive positive divisors.py" afterPath="$PROJECT_DIR$/Project EULER/pb179 Consecutive positive divisors.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project EULER/pb314 The Mouse on the Moon.py" afterPath="$PROJECT_DIR$/Project EULER/pb314 The Mouse on the Moon.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project EULER/pb205 Dice Game.py" afterPath="$PROJECT_DIR$/Project EULER/pb205 Dice Game.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Matlibplots/grid_circle.py" afterPath="$PROJECT_DIR$/Matlibplots/grid_circle.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project EULER/pb078 Coin partitions.py" afterPath="$PROJECT_DIR$/Project EULER/pb078 Coin partitions.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Matlibplots/Plots/plot 05 - Histogram of IQ.py" afterPath="$PROJECT_DIR$/Matlibplots/Plots/plot 05 - Histogram of IQ.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project EULER/pb132 Large repunit factors.py" afterPath="$PROJECT_DIR$/Project EULER/pb132 Large repunit factors.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project EULER/pb088 Product-sum numbers.py" afterPath="$PROJECT_DIR$/Project EULER/pb088 Product-sum numbers.py" />
     </list>
     <ignored path="PYTHON.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,59 +82,143 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pb251 Cardano Triplets.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project EULER/pb251 Cardano Triplets.py">
+      <file leaf-file-name="pb223 Almost right-angled triangles I.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project EULER/pb223 Almost right-angled triangles I.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="353" column="0" lean-forward="false" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
-              <folding>
-                <element signature="e#547#563#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pb301 Nim.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project EULER/pb301 Nim.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-600">
-              <caret line="62" column="13" lean-forward="true" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+            <state relative-caret-position="247">
+              <caret line="92" column="20" lean-forward="false" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pb230 Fibonacci Words.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Project EULER/pb230 Fibonacci Words.py">
+      <file leaf-file-name="N Queens Problem.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Algorithms/Recursion/N Queens Problem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="62" column="12" lean-forward="false" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="12" />
+            <state relative-caret-position="204">
+              <caret line="239" column="80" lean-forward="false" selection-start-line="239" selection-start-column="80" selection-end-line="239" selection-end-column="80" />
               <folding>
-                <element signature="e#1136#1152#0" expanded="true" />
+                <element signature="e#1948#1966#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Fibonacci.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Algorithms/Fibonacci.py">
+      <file leaf-file-name="pb096 SuDoku.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project EULER/pb096 SuDoku.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="293">
+              <caret line="232" column="0" lean-forward="false" selection-start-line="232" selection-start-column="0" selection-end-line="233" selection-end-column="90" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pb151 Paper sheets of standard sizes - an expected-value problem.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project EULER/pb151 Paper sheets of standard sizes - an expected-value problem.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="216">
-              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="16" selection-end-column="12" />
+              <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="99" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pb300 - Protein folding.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project EULER/pb300 - Protein folding.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="28" column="64" lean-forward="false" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pb297 Zeckendorf Representation.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project EULER/pb297 Zeckendorf Representation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="113" column="2" lean-forward="true" selection-start-line="113" selection-start-column="2" selection-end-line="113" selection-end-column="72" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="array_numpy.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NumPy-Tutorial/array_numpy.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="271">
+              <caret line="87" column="39" lean-forward="true" selection-start-line="87" selection-start-column="39" selection-end-line="87" selection-end-column="39" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_primes_work_tool.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Algorithms/_primes_work_tool.py">
+      <file leaf-file-name="permutations.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Algorithms/Recursion/permutations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="389" column="0" lean-forward="false" selection-start-line="389" selection-start-column="0" selection-end-line="392" selection-end-column="86" />
+            <state relative-caret-position="384">
+              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding>
-                <element signature="e#18#51#0" expanded="true" />
+                <element signature="e#471#482#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="partition.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Algorithms/Recursion/partition.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pb276 Primitive Triangles.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project EULER/pb276 Primitive Triangles.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-144">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#404#415#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list_basic.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BASE SCRIPTS/list_basic.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="16224">
+              <caret line="676" column="81" lean-forward="false" selection-start-line="676" selection-start-column="46" selection-end-line="676" selection-end-column="81" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pb510 Tangent Circles.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project EULER/pb510 Tangent Circles.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="111">
+              <caret line="78" column="24" lean-forward="false" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="25" />
+              <folding>
+                <element signature="e#702#718#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pb443 GCD sequence.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project EULER/pb443 GCD sequence.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="48" column="34" lean-forward="false" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
+              <folding>
+                <element signature="e#658#674#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -143,98 +228,57 @@
         <entry file="file://$PROJECT_DIR$/Project EULER/pb248 Numbers for which Euler’s totient function equals 13!.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="24">
-              <caret line="72" column="18" lean-forward="false" selection-start-line="72" selection-start-column="18" selection-end-line="72" selection-end-column="18" />
-              <folding>
-                <element signature="e#313#329#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="factoring_squares_benchmark.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Algorithms/factoring_squares_benchmark.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="84" column="18" lean-forward="false" selection-start-line="83" selection-start-column="3" selection-end-line="84" selection-end-column="18" />
-              <folding>
-                <element signature="e#51#62#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pb207 Integer partition equations.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project EULER/pb207 Integer partition equations.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="111" column="54" lean-forward="false" selection-start-line="111" selection-start-column="54" selection-end-line="111" selection-end-column="54" />
+              <caret line="1" column="37" lean-forward="true" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pb349 Langton's ant.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project EULER/pb349 Langton's ant.py">
+      <file leaf-file-name="_primes_work_tool.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Algorithms/_primes_work_tool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1728">
-              <caret line="72" column="28" lean-forward="false" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
+            <state relative-caret-position="216">
+              <caret line="97" column="58" lean-forward="true" selection-start-line="91" selection-start-column="0" selection-end-line="97" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pb534 Weak Queens.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project EULER/pb534 Weak Queens.py">
+      <file leaf-file-name="prime_sieve_algorithm.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Algorithms/prime_sieve_algorithm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="417">
+              <caret line="39" column="21" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="39" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sport_mining_ver02.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/work/web/WEB_MINING/sport_mining_ver02.py">
+      <file leaf-file-name="number_theory.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BASE SCRIPTS/number_theory.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="398" column="139" lean-forward="false" selection-start-line="398" selection-start-column="122" selection-end-line="398" selection-end-column="139" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-                <element signature="e#937#944#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="294">
+              <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pb167 Investigating Ulam sequences.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project EULER/pb167 Investigating Ulam sequences.py">
+      <file leaf-file-name="pb156 Counting Digits.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project EULER/pb156 Counting Digits.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="34" column="57" lean-forward="false" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
-              <folding>
-                <element signature="e#1762#1788#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="-12600">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pb304 Primonacci.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project EULER/pb304 Primonacci.py">
+      <file leaf-file-name="pb242 Odd Triplets.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project EULER/pb242 Odd Triplets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="239" column="32" lean-forward="false" selection-start-line="238" selection-start-column="32" selection-end-line="239" selection-end-column="32" />
-              <folding>
-                <element signature="e#569#581#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pb380 Amazing Mazes!.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Project EULER/pb380 Amazing Mazes!.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+            <state relative-caret-position="384">
+              <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -253,72 +297,78 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>a =  8</find>
-      <find>is_square</find>
-      <find>is</find>
-      <find>a =  8</find>
-      <find>c^2+1 =  23</find>
-      <find>c^2+1 =  333</find>
-      <find>c= 57</find>
-      <find>c^2+1 =  145</find>
-      <find>i4</find>
-      <find>class</find>
       <find>is_squa</find>
-      <find>h</find>
-      <find>heapq</find>
-      <find>prec</find>
-      <find>pre</find>
-      <find>pr</find>
-      <find>p</find>
-      <find>c</find>
-      <find>contex</find>
-      <find>context</find>
-      <find>.</find>
-      <find>.prec</find>
-      <find>Complet</find>
-      <find>jamal</find>
-      <find>totie</find>
-      <find>get_factors</find>
-      <find>itertools</find>
-      <find>get_fac</find>
-      <find>ABBA</find>
-      <find>ABBABBABABBABBABABBABABBABBABABBABBABABBABABBABBABABBABABBABBABABBABBABABBABABBABBABABBAB</find>
+      <find>multiply</find>
+      <find>Multipl</find>
+      <find>(-15, 9</find>
+      <find>788</find>
+      <find>10648</find>
+      <find>l</find>
+      <find>lru_cahce</find>
+      <find>lru_cahc</find>
+      <find>lru_cah</find>
+      <find>lru_ca</find>
+      <find>lru_cach</find>
+      <find>100</find>
+      <find>2/5</find>
+      <find>1/5</find>
+      <find>1/11</find>
+      <find>lru_cache</find>
+      <find>nump</find>
+      <find>numpy_</find>
+      <find>numpy_m</find>
+      <find>mo</find>
+      <find>module_</find>
+      <find>module_num</find>
+      <find>nu</find>
+      <find>numpy</find>
+      <find>numpy_arr</find>
+      <find>column</find>
+      <find>800</find>
+      <find>1010</find>
+      <find>(c-b)/(a-1)=</find>
     </findStrings>
     <replaceStrings>
-      <replace>line[nr]</replace>
-      <replace>X</replace>
-      <replace>*1000,2)</replace>
-      <replace>print('\nCompleted in :', round((t2-t1)*1000,2), 'ms\n\n')</replace>
-      <replace>H</replace>
-      <replace>Q</replace>
-      <replace>M</replace>
-      <replace>L</replace>
-      <replace>A</replace>
-      <replace>N</replace>
-      <replace>cnt1</replace>
-      <replace>rcount1</replace>
-      <replace>col1</replace>
-      <replace>row1</replace>
-      <replace>rcount2</replace>
-      <replace>ccount2</replace>
-      <replace>col2</replace>
-      <replace>cnt2</replace>
-      <replace>row2</replace>
-      <replace>b0</replace>
-      <replace>Arr_1</replace>
-      <replace>Memo</replace>
-      <replace>=</replace>
       <replace>b</replace>
       <replace>c</replace>
       <replace>j</replace>
       <replace># Complet</replace>
       <replace>t</replace>
+      <replace>Diff</replace>
+      <replace>Nrs</replace>
+      <replace>-3::</replace>
+      <replace>-4::</replace>
+      <replace>-5::</replace>
+      <replace>left_ind</replace>
+      <replace>CE</replace>
+      <replace>a</replace>
+      <replace>angleB</replace>
+      <replace>angleC</replace>
+      <replace>angle_A</replace>
+      <replace>angle_B</replace>
+      <replace>angle_C</replace>
+      <replace>x_</replace>
+      <replace>AEG</replace>
+      <replace>left_ind1</replace>
+      <replace>M_ind</replace>
+      <replace>Q</replace>
+      <replace>one_jump_Monte_Carlo</replace>
+      <replace>,</replace>
+      <replace>u1</replace>
+      <replace>baseconvert</replace>
+      <replace>r_A</replace>
+      <replace>r_B</replace>
+      <replace>*</replace>
     </replaceStrings>
     <dirStrings>
       <dir>D:\Google Drive\COMPUTING &amp; PROGRAMMING\PYTHON\Work\Project EULER</dir>
       <dir>D:\Google Drive\COMPUTING &amp; PROGRAMMING\PYTHON\Work\BASE SCRIPTS</dir>
       <dir>D:\Google Drive\COMPUTING &amp; PROGRAMMING\PYTHON\Work\Algorithms</dir>
       <dir>D:\Google Drive\COMPUTING &amp; PROGRAMMING\PYTHON\Work</dir>
+      <dir>D:\Google Drive\COMPUTING &amp; PROGRAMMING\Python_dev_repo\BASE SCRIPTS</dir>
+      <dir>D:\Google Drive\COMPUTING &amp; PROGRAMMING\Python_dev_repo\Algorithms</dir>
+      <dir>D:\Google Drive\COMPUTING &amp; PROGRAMMING\Python_dev_repo\Project EULER</dir>
+      <dir>D:\Google Drive\COMPUTING &amp; PROGRAMMING\Python_dev_repo</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -331,57 +381,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Project EULER/pb110 Diophantine reciprocals II.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb108 Diophantine reciprocals I.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb157 Solving the diophantine equation 1/a+1/b= p/10n.py" />
-        <option value="$PROJECT_DIR$/Project EULER/a.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb084 Monopoly odds.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb283.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb283 Integer sided triangles with integral area-perimeter.py" />
-        <option value="$PROJECT_DIR$/Algorithms/benchmark divisors.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb157 Solving the diophantine equation.py" />
-        <option value="$PROJECT_DIR$/Project EULER/_template Euler.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb215 Crack-free Walls.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb171 Finding numbers for which the sum of the squares.py" />
-        <option value="$PROJECT_DIR$/test/testing_pb276.py" />
-        <option value="$PROJECT_DIR$/test/setup_pb390.py" />
-        <option value="$PROJECT_DIR$/test/testing_pb390.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb213 Flea Circus.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb380 Amazing Mazes!.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb011 Largest product in a grid.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb390 Triangles with non rational sides and integral area.py" />
-        <option value="$PROJECT_DIR$/test/pb390.pyx" />
-        <option value="$PROJECT_DIR$/Project EULER/pb160 Factorial trailing digits.py" />
-        <option value="$PROJECT_DIR$/Algorithms/NUMBER_THEORY.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb386 Maximum length of an antichain.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb223 Almost right-angled triangles I.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb358 Cyclic Numbers.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb493 Under The Rainbow.py" />
-        <option value="$PROJECT_DIR$/Algorithms/Fibonacci.py" />
-        <option value="$PROJECT_DIR$/Project EULER/PB258 A lagged Fibonacci sequence.py" />
-        <option value="$PROJECT_DIR$/Algorithms/factoring_squares_benchmark.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb167 Investigating Ulam sequences.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb304 Primonacci.py" />
-        <option value="$PROJECT_DIR$/Project EULER/_Euler_template.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb207 Integer partition equations.py" />
-        <option value="$PROJECT_DIR$/Algorithms/benchmark_factorise.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb534 Weak Queens.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb581 47-smooth triangular numbers.py" />
-        <option value="$PROJECT_DIR$/turtles/circle.py" />
-        <option value="$PROJECT_DIR$/turtles/turtle_zig_zag.py" />
-        <option value="$PROJECT_DIR$/turtles/pb349 - Langton ant.py" />
-        <option value="$PROJECT_DIR$/turtles/turtle_polygon.py" />
-        <option value="$PROJECT_DIR$/turtles/turtle_1.py" />
-        <option value="$PROJECT_DIR$/turtles/turtle_canvas.py" />
-        <option value="$PROJECT_DIR$/turtles/turtle_christmas.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb349 - Langton's ant.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb349 Langton's ant.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb234 Semidivisible numbers.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb268 Counting numbers with at least four distinct.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb271 Modular Cubes, part 1.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb308 An amazing Prime-generating Automaton.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb226 A Scoop of Blancmange.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb286 Scoring probabilities.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb332 Spherical triangles.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb359 Hilbert's New Hotel.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb335 Gathering the beans.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb217 Balanced Numbers.py" />
+        <option value="$PROJECT_DIR$/BASE SCRIPTS/base_conversion.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb284 Steady Squares.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb425 Prime connection.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb451 Modular inverses.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb506 Clock sequence.py" />
+        <option value="$PROJECT_DIR$/BASE SCRIPTS/module_itertools.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb491 Double pandigital number divisible by 11.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb475 Music festival.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb265 Binary Circles.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb255 Rounded Square Roots.py" />
+        <option value="$PROJECT_DIR$/Project EULER/_euler_template.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb354 Distances in a bee's honeycomb.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb199 Iterative Circle Packing.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb510 Tangent Circles.py" />
+        <option value="$PROJECT_DIR$/BASE SCRIPTS/module_operator.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb252 Convex Holes.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb153 Investigating Gaussian Integers.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb153 Gaussian Integers II.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb276 Primitive Triangles.py" />
         <option value="$PROJECT_DIR$/Algorithms/_primes_work_tool.py" />
+        <option value="$PROJECT_DIR$/Algorithms/prime_sieve_algorithm.py" />
+        <option value="$PROJECT_DIR$/BASE SCRIPTS/list_basic.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb233 Lattice points on a circle.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb233.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb275 Balanced Sculptures.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb229 Four Representations using Squares.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb242 Odd Triplets.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb349 Langton's ant.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb443 GCD sequence.py" />
         <option value="$PROJECT_DIR$/Project EULER/pb248 Numbers for which Euler’s totient function equals 13!.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb251 Cardano Triplets.py" />
-        <option value="$PROJECT_DIR$/BASE SCRIPTS/bitwise Special Operators Types.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb301 Nim.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb230 Fibonacci Words.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb223 Almost right-angled triangles I.py" />
+        <option value="$PROJECT_DIR$/Algorithms/backtracking/permutations.py" />
+        <option value="$PROJECT_DIR$/Algorithms/backtracking/Hamiltonian Cycle.py" />
+        <option value="$PROJECT_DIR$/test/testing_pb276.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb096 SuDoku.py" />
+        <option value="$PROJECT_DIR$/Algorithms/Recursion/permutations.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb151 Paper sheets of standard sizes - an expected-value problem.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb300 - Protein folding.py" />
+        <option value="$PROJECT_DIR$/BASE SCRIPTS/number_theory.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb297 Zeckendorf Representation.py" />
+        <option value="$PROJECT_DIR$/Algorithms/Recursion/N Queens Problem.py" />
       </list>
     </option>
   </component>
@@ -461,44 +511,6 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="External Dependencies">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="C:">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Users">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Bogdan">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT=".PyCharmCE2017.1">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="system">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="python_stubs">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="448512412">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="web">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
@@ -557,7 +569,7 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Work">
+            <PATH_ELEMENT USER_OBJECT="Python_dev_repo">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -571,7 +583,7 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Work">
+            <PATH_ELEMENT USER_OBJECT="Python_dev_repo">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -589,29 +601,7 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Work">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="test">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="dep">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="PYTHON">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Work">
+            <PATH_ELEMENT USER_OBJECT="Python_dev_repo">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -629,11 +619,11 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Work">
+            <PATH_ELEMENT USER_OBJECT="Python_dev_repo">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Machine Learning">
+            <PATH_ELEMENT USER_OBJECT="NumPy-Tutorial">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -647,7 +637,7 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Work">
+            <PATH_ELEMENT USER_OBJECT="Python_dev_repo">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -665,11 +655,55 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Work">
+            <PATH_ELEMENT USER_OBJECT="Python_dev_repo">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="Algorithms">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="PYTHON">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Python_dev_repo">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Algorithms">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Recursion">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="PYTHON">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Python_dev_repo">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Algorithms">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="backtracking">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -684,7 +718,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Project EULER/pb114_test.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.23474178" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
@@ -744,8 +778,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pb230 Fibonacci Words">
-    <configuration default="false" name="pb251 Cardano Triplets" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.N Queens Problem">
+    <configuration default="false" name="permutations (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algorithms/Recursion" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PYTHON" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algorithms/Recursion/permutations.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="pb151 Paper sheets of standard sizes - an expected-value problem" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -757,13 +809,13 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="PYTHON" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project EULER/pb251 Cardano Triplets.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project EULER/pb151 Paper sheets of standard sizes - an expected-value problem.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="pb248 Numbers for which Euler’s totient function equals 13!" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="pb297 Zeckendorf Representation" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -775,31 +827,13 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="PYTHON" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project EULER/pb248 Numbers for which Euler’s totient function equals 13!.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project EULER/pb297 Zeckendorf Representation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="pb301 Nim" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project EULER" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PYTHON" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project EULER/pb301 Nim.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="bitwise Special Operators Types" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="number_theory" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -811,25 +845,25 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="PYTHON" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BASE SCRIPTS/bitwise Special Operators Types.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BASE SCRIPTS/number_theory.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="pb230 Fibonacci Words" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="N Queens Problem" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project EULER" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Algorithms/Recursion" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="PYTHON" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Project EULER/pb230 Fibonacci Words.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Algorithms/Recursion/N Queens Problem.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -932,19 +966,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.pb251 Cardano Triplets" />
-      <item index="1" class="java.lang.String" itemvalue="Python.pb248 Numbers for which Euler’s totient function equals 13!" />
-      <item index="2" class="java.lang.String" itemvalue="Python.pb301 Nim" />
-      <item index="3" class="java.lang.String" itemvalue="Python.bitwise Special Operators Types" />
-      <item index="4" class="java.lang.String" itemvalue="Python.pb230 Fibonacci Words" />
+      <item index="0" class="java.lang.String" itemvalue="Python.permutations (1)" />
+      <item index="1" class="java.lang.String" itemvalue="Python.pb151 Paper sheets of standard sizes - an expected-value problem" />
+      <item index="2" class="java.lang.String" itemvalue="Python.pb297 Zeckendorf Representation" />
+      <item index="3" class="java.lang.String" itemvalue="Python.number_theory" />
+      <item index="4" class="java.lang.String" itemvalue="Python.N Queens Problem" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.pb230 Fibonacci Words" />
-        <item index="1" class="java.lang.String" itemvalue="Python.pb301 Nim" />
-        <item index="2" class="java.lang.String" itemvalue="Python.bitwise Special Operators Types" />
-        <item index="3" class="java.lang.String" itemvalue="Python.pb251 Cardano Triplets" />
-        <item index="4" class="java.lang.String" itemvalue="Python.pb248 Numbers for which Euler’s totient function equals 13!" />
+        <item index="0" class="java.lang.String" itemvalue="Python.N Queens Problem" />
+        <item index="1" class="java.lang.String" itemvalue="Python.pb297 Zeckendorf Representation" />
+        <item index="2" class="java.lang.String" itemvalue="Python.number_theory" />
+        <item index="3" class="java.lang.String" itemvalue="Python.permutations (1)" />
+        <item index="4" class="java.lang.String" itemvalue="Python.pb151 Paper sheets of standard sizes - an expected-value problem" />
       </list>
     </recent_temporary>
     <configuration default="true" type="tests" factoryName="Attests">
@@ -995,14 +1029,14 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_pb251_Cardano_Triplets_py - 2017.09.27 at 19h 12m 52s.xml">
+    <history-entry file="Unittests_in_pb251_Cardano_Triplets_py - 2017.09.30 at 18h 49m 29s.xml">
       <configuration name="Unittests in pb251 Cardano Triplets.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_pb283_Integer_sided_triangles_for_which_the_area-perimeter_ratio_is_integral_py - 2017.09.09 at 13h 48m 58s.xml">
-      <configuration name="Unittests in pb283 Integer sided triangles for which the area-perimeter ratio is integral.py" configurationId="tests" />
+    <history-entry file="Unittests_in_pb251_Cardano_Triplets_py - 2017.10.23 at 18h 56m 50s.xml">
+      <configuration name="Unittests in pb251 Cardano Triplets.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_pb283_Integer_sided_triangles_for_which_the_area-perimeter_ratio_is_integral_py - 2017.09.15 at 22h 25m 54s.xml">
-      <configuration name="Unittests in pb283 Integer sided triangles for which the area-perimeter ratio is integral.py" configurationId="tests" />
+    <history-entry file="Unittests_in_pb266_Pseudo_Square_Root_py - 2017.10.12 at 10h 38m 30s.xml">
+      <configuration name="Unittests in pb266 Pseudo Square Root.py" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_pb283_Integer_sided_triangles_with_integral_area-perimeter_py - 2017.09.16 at 16h 17m 31s.xml">
       <configuration name="Unittests in pb283 Integer sided triangles with integral area-perimeter.py" configurationId="tests" />
@@ -1028,21 +1062,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.32713348" sideWeight="0.49273607" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2802198" sideWeight="0.5096852" order="11" side_tool="true" content_ui="tabs" x="6" y="329" width="1668" height="369" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41089672" sideWeight="0.225" order="9" side_tool="true" content_ui="tabs" x="6" y="331" width="1668" height="365" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.553916" sideWeight="0.23612824" order="9" side_tool="true" content_ui="tabs" x="6" y="331" width="1668" height="365" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.28992072" sideWeight="0.29418886" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263889" sideWeight="0.48768473" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25985223" sideWeight="0.49031478" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26633784" sideWeight="0.5482546" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12823674" sideWeight="0.49031478" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31935883" sideWeight="0.5482546" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.47252747" sideWeight="0.49273607" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26666668" sideWeight="0.4517454" order="1" side_tool="true" content_ui="tabs" x="670" y="208" width="339" height="611" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4978022" sideWeight="0.775" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4971623" sideWeight="0.7638718" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21674877" sideWeight="0.5253054" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298397" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1088,6 +1123,11 @@
           <line>4</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Algorithms/prime_sieve_algorithm.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -1099,31 +1139,20 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="53" />
+      <option name="time" value="57" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb110 Diophantine reciprocals II.py">
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb354 Distances in a bee's honeycomb.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1968">
-          <caret line="129" column="13" lean-forward="false" selection-start-line="129" selection-start-column="13" selection-end-line="129" selection-end-column="13" />
+        <state relative-caret-position="336">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb213 Flea Circus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1256">
-          <caret line="181" column="0" lean-forward="true" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
-          <folding>
-            <element signature="e#610#626#0" expanded="true" />
-            <element signature="e#6654#6655#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb011.txt">
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb351 Hexagonal orchards.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1131,423 +1160,410 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb011 Largest product in a grid.py">
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb199 Iterative Circle Packing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10704">
-          <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+        <state relative-caret-position="240">
+          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="63" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb221 Alexandrian Integers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BASE SCRIPTS/module_operator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="24" column="9" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb252 Convex Holes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3768">
+          <caret line="161" column="0" lean-forward="false" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+          <folding>
+            <element signature="e#1157#1173#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb096 SuDoku_2017-02-15.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6840">
+          <caret line="142" column="38" lean-forward="true" selection-start-line="142" selection-start-column="38" selection-end-line="142" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb266 Pseudo Square Root.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb390 Triangles with non rational sides and integral area.py">
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb166 Criss Cross.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-48">
-          <caret line="149" column="12" lean-forward="false" selection-start-line="149" selection-start-column="4" selection-end-line="149" selection-end-column="12" />
-          <folding />
+        <state relative-caret-position="-1368">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/pb390.pyx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb303 Multiples with small digits.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-288">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb223 Almost right-angled triangles I.py">
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb390 Triangles with non rational sides and integral area.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="74" column="8" lean-forward="false" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="25" />
-          <folding>
-            <element signature="e#417#428#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb358 Cyclic Numbers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="10" lean-forward="false" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb185 Number Mind.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-1872">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb211 Divisor Square Sum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1536">
+          <caret line="67" column="32" lean-forward="false" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb184 Triangles containing the origin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4800">
-          <caret line="136" column="33" lean-forward="true" selection-start-line="136" selection-start-column="33" selection-end-line="136" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NumPy-Tutorial/array_numpy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2109">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NumPy-Tutorial/numpy_matrix_manipulation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="63" column="59" lean-forward="false" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb451 Modular inverses.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-576">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/PB258 A lagged Fibonacci sequence.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="74" column="92" lean-forward="false" selection-start-line="74" selection-start-column="92" selection-end-line="74" selection-end-column="92" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb215 Crack-free Walls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb386 Maximum length of an antichain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-48">
-          <caret line="88" column="21" lean-forward="false" selection-start-line="88" selection-start-column="21" selection-end-line="88" selection-end-column="21" />
-          <folding>
-            <element signature="e#645#661#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb493 Under The Rainbow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1248">
-          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Algorithms/NUMBER_THEORY.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding>
-            <element signature="e#1508#1519#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb160 Factorial trailing digits.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="957">
-          <caret line="64" column="43" lean-forward="false" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
-          <folding>
-            <element signature="e#398#409#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb380 Amazing Mazes!.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/work/web/WEB_MINING/sport_mining_ver02.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="398" column="139" lean-forward="false" selection-start-line="398" selection-start-column="122" selection-end-line="398" selection-end-column="139" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#937#944#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb167 Investigating Ulam sequences.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="34" column="57" lean-forward="false" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
-          <folding>
-            <element signature="e#1762#1788#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb304 Primonacci.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="239" column="32" lean-forward="false" selection-start-line="238" selection-start-column="32" selection-end-line="239" selection-end-column="32" />
-          <folding>
-            <element signature="e#569#581#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Algorithms/factoring_squares_benchmark.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="84" column="18" lean-forward="false" selection-start-line="83" selection-start-column="3" selection-end-line="84" selection-end-column="18" />
-          <folding>
-            <element signature="e#51#62#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Project EULER/pb207 Integer partition equations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="111" column="54" lean-forward="false" selection-start-line="111" selection-start-column="54" selection-end-line="111" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Algorithms/benchmark_factorise.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb534 Weak Queens.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turtles/turtle_turtles_ninja.py">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/turtles/turtle_colors and dots .py">
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb153 Gaussian Integers II.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="e#111#144#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="177">
+          <caret line="103" column="21" lean-forward="false" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/turtles/turtle_christmas.py">
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb249 Prime Subset Sums.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-696">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="-936">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb251 Cardano Triplets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3384">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb239 Twenty-two Foolish Primes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1512">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb153 Investigating Gaussian Integers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="115" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BASE SCRIPTS/list_basic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16224">
+          <caret line="676" column="81" lean-forward="false" selection-start-line="676" selection-start-column="46" selection-end-line="676" selection-end-column="81" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/turtles/turtle_canvas.py">
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb233.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="24" column="14" lean-forward="false" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+        <state relative-caret-position="79">
+          <caret line="131" column="29" lean-forward="true" selection-start-line="131" selection-start-column="29" selection-end-line="131" selection-end-column="29" />
           <folding>
-            <element signature="e#52#95#0" expanded="true" />
+            <element signature="e#751#768#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/turtles/turtle_arrow2.py">
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb233 Lattice points on a circle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="13" column="17" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="13" selection-end-column="17" />
+        <state relative-caret-position="24">
+          <caret line="1" column="68" lean-forward="true" selection-start-line="1" selection-start-column="68" selection-end-line="1" selection-end-column="68" />
+          <folding>
+            <element signature="e#497#513#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb275 Balanced Sculptures.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="32" column="47" lean-forward="true" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/turtles/turtle_polygon.py">
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb229 Four Representations using Squares.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turtles/turtle_arrow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="13" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turtles/circle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="24" />
+          <caret line="0" column="51" lean-forward="false" selection-start-line="0" selection-start-column="51" selection-end-line="0" selection-end-column="51" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#881#897#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/turtles/turtle_zig_zag.py">
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb156 Counting Digits.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turtles/turtle_spiral_galaxy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-12600">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turtles/pb349 - Langton ant.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="31" column="15" lean-forward="true" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb349 - Langton's ant.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb581 47-smooth triangular numbers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="60" column="31" lean-forward="false" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
-          <folding>
-            <element signature="e#395#411#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Project EULER/pb349 Langton's ant.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1728">
-          <caret line="72" column="28" lean-forward="false" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
+        <state relative-caret-position="24">
+          <caret line="1" column="80" lean-forward="false" selection-start-line="1" selection-start-column="80" selection-end-line="1" selection-end-column="80" />
+          <folding>
+            <element signature="e#875#891#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb242 Odd Triplets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Algorithms/_primes_work_tool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="389" column="0" lean-forward="false" selection-start-line="389" selection-start-column="0" selection-end-line="392" selection-end-column="86" />
+        <state relative-caret-position="216">
+          <caret line="97" column="58" lean-forward="true" selection-start-line="91" selection-start-column="0" selection-end-line="97" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb443 GCD sequence.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="48" column="34" lean-forward="false" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
           <folding>
-            <element signature="e#18#51#0" expanded="true" />
+            <element signature="e#658#674#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb510 Tangent Circles.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="78" column="24" lean-forward="false" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="25" />
+          <folding>
+            <element signature="e#702#718#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb223 Almost right-angled triangles I.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="92" column="20" lean-forward="false" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algorithms/backtracking/matrix_paths_from_TL_to_BW.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algorithms/Recursion/partition.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algorithms/backtracking/Hamiltonian Cycle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-380">
+          <caret line="107" column="14" lean-forward="false" selection-start-line="107" selection-start-column="14" selection-end-line="107" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cython_commands.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-168">
+          <caret line="41" column="113" lean-forward="true" selection-start-line="41" selection-start-column="57" selection-end-line="41" selection-end-column="113" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/setup_pb276.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/testing_pb276.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="85" lean-forward="false" selection-start-line="7" selection-start-column="85" selection-end-line="7" selection-end-column="85" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/pb276.pyx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-395">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb276 Primitive Triangles.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-144">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#404#415#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NumPy-Tutorial/array_numpy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="87" column="39" lean-forward="true" selection-start-line="87" selection-start-column="39" selection-end-line="87" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algorithms/Recursion/permutations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="e#471#482#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb151 Paper sheets of standard sizes - an expected-value problem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="99" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/_euler_template.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb300 - Protein folding.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="28" column="64" lean-forward="false" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algorithms/py_to_exe.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#32#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algorithms/prime_sieve_algorithm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="39" column="21" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="39" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Project EULER/pb248 Numbers for which Euler’s totient function equals 13!.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
-          <caret line="72" column="18" lean-forward="false" selection-start-line="72" selection-start-column="18" selection-end-line="72" selection-end-column="18" />
-          <folding>
-            <element signature="e#313#329#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb251 Cardano Triplets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="353" column="0" lean-forward="false" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
-          <folding>
-            <element signature="e#547#563#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BASE SCRIPTS/bitwise Special Operators Types.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="56" column="72" lean-forward="true" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="72" />
+          <caret line="1" column="37" lean-forward="true" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb301 Nim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-600">
-          <caret line="62" column="13" lean-forward="true" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/_Euler_template.py">
+    <entry file="file://$PROJECT_DIR$/Matlibplots/Plots/plot 05 - Histogram of IQ.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb002 Fibonacci.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Algorithms/Fibonacci.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="16" selection-end-column="12" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb230 Fibonacci Words.py">
+    <entry file="file://$PROJECT_DIR$/BASE SCRIPTS/number_theory.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="62" column="12" lean-forward="false" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="12" />
+        <state relative-caret-position="294">
+          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb297 Zeckendorf Representation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="113" column="2" lean-forward="true" selection-start-line="113" selection-start-column="2" selection-end-line="113" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb096 SuDoku.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="232" column="0" lean-forward="false" selection-start-line="232" selection-start-column="0" selection-end-line="233" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algorithms/Recursion/N Queens Problem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="239" column="80" lean-forward="false" selection-start-line="239" selection-start-column="80" selection-end-line="239" selection-end-column="80" />
           <folding>
-            <element signature="e#1136#1152#0" expanded="true" />
+            <element signature="e#1948#1966#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -2,6 +2,13 @@
 # immutable, cannot change element values
  # represented with parentheses
 print('--------------TUPLES BASIC OPERATIONS ------------------')
+print('----------Join two tuples -------------------')
+a=(1,2,3) ; b=4
+print(a,'     ', b)
+c = a+(b,)
+print('The joined tuple is :', c)
+
+
 te = ()
 t = (2,"one",3, 'two')
 print(t[0])

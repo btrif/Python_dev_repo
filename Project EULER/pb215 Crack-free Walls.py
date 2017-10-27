@@ -19,7 +19,38 @@ Calculate W(32,10).
 '''
 import time, zzz
 
-must make a function which do a partition only in elements of 2 and 3
+# must make a function which do a partition only in elements of 2 and 3
+def partition_nr_into_given_set_of_nrs(nr, S):
+    nrs = sorted(S, reverse=True)
+    def inner(n, i):
+        if n == 0:
+            yield []
+        for k in range(i, len(nrs)):
+            # if len([nrs[k]]) > lim : break
+            if nrs[k] <= n:
+                for rest in inner(n - nrs[k], k):
+                    # if len([nrs[k]] + rest) > lim : break
+                    yield [nrs[k]] + rest
+    return list(inner(nr, 0))
+
+
+
+
+def unique_permutations(lst):
+    ''':Description: Takes a list and makes ONLY Unique Permutations of a list with repeated elements.
+    :param lst: type list
+    :return:    a list of lists containing all the permutations
+    '''
+    if len(lst) == 1:
+        yield (lst[0],)
+    else:
+        unique_lst = set(lst)
+        for first_element in unique_lst:
+            remaining_lst = list(lst)
+            remaining_lst.remove(first_element)
+            for sub_permutation in unique_permutations(remaining_lst):
+                yield (first_element,) + sub_permutation
+
 
 
 
@@ -30,8 +61,24 @@ print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
 
+def brute_force(u,v) :
+    S = [  2,3 ]
+    L =[]
+    P = partition_nr_into_given_set_of_nrs(u, S )
+    # print(P)
+    for part in P :
+        u = list(unique_permutations(part))
+        # print( u)
+        L+= u
+
+    print(len(L), L)
+
+    for i in range(len(L)) :
+        print(str(i+1)+'.     ', L[i])
 
 
+
+brute_force( 9, 3)
 
 
 t2  = time.time()

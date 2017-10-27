@@ -25,12 +25,35 @@ There exist two distinct solutions to the 4-queens puzzle:
 
  https://github.com/mission-peace/interview/blob/master/src/com/interview/recursion/NQueenProblem.java
 
+Backtracking Algorithm
+The idea is to place queens one by one in different columns, starting from the leftmost column.
+When we place a queen in a column, we check for clashes with already placed queens.
+In the current column, if we find a row for which there is no clash,
+we mark this row and column as part of the solution.
+If we do not find such a row due to clashes then we backtrack and return false.
+
+1) Start in the leftmost column
+2) If all queens are placed
+    return true
+3) Try all rows in the current column.  Do following for every tried row.
+    a) If the queen can be placed safely in this row then mark this [row,
+        column] as part of the solution and recursively check if placing
+        queen here leads to a solution.
+    b) If placing queen in [row, column] leads to a solution then return
+        true.
+    c) If placing queen doesn't lead to a solution then umark this [row,
+        column] (Backtrack) and go to step (a) to try other rows.
+3) If all rows have been tried and nothing worked, return false to trigger
+    backtracking.
+
 '''
 
 
 import numpy as np
+import time
 
 M= np.zeros( ( 5 , 5 ), dtype=int)
+# Here we place two queens
 M[1][1] = 1
 M[3][4] = 1
 print(M)
@@ -38,7 +61,7 @@ print(M)
 def get_free_squares(M ) :
     '''         © Made by Bogdan Trif @ 2017-09-12
         :Description: In the N Queens problem get all the occupied squares as 1 ones
-        and unoccupied squares as zeros.
+        and AVAILABLE squares as zeros.
 
     :param M: Matrix to analyze
     :return: grid 2D,  all the unoccupied squares as zeros, occupied squares as ones    '''
@@ -121,27 +144,109 @@ def is_row_free(M, row) :
     N = get_free_squares(M)
     if  sum(N[row]) == len(N[row]) :
         return False
-    return
+    return True
 
-def next_free_pos(M, pos) :
-    ''' :Description: returns the next available position in the same row
-
-    :param M:
-    :param row:
-    :param pos:
-    :return:
-    '''
-    row = pos[0]
-    if is_row_free(M, row) :
-        for i in range(len(M[row])):
+# def next_free_pos(M, pos) :
+#     ''' :Description: returns the next available position in the same row
+#
+#     :param M:
+#     :param row:
+#     :param pos:
+#     :return:
+#     '''
+#     row = pos[0]
+#     if is_row_free(M, row) :
+#         for i in range(len(M[row])):
 
 
 
 print(' get_free_squares : \n' , get_free_squares(M) )
 
 
-print('is_row_free : \t', is_row_free(M, 4) )
+# print('is_row_free : \t', is_row_free(M, 4) )
 
 
-def solveQueens(M):
-    pos = (0 , 0)
+# def solveQueens(M):
+#     pos = (0 , 0)
+
+
+################################   BACKTRACKING ALGORITHM #################
+print('\n-------------------BACKTRACKING ALGORITHM ----------------------- ')
+t1  = time.time()
+
+
+dim = 10
+M= np.zeros( ( dim , dim ), dtype=int)
+
+def print_board(board):
+    for i in range(len(M)):
+        print(M[i])
+
+print_board(M)
+
+# An utility function to check if a queen can be placed on board[row][col]. Note that this
+# function is called when "col" queens are  already placed in columns from 0 to col -1.
+# So we need to check only left side for  attacking queens
+
+def is_location_safe(board, row, col):
+    # Check row
+    if  sum(board[row]) > 0 :
+        return False
+
+    # Check column
+    if sum(M[ : , col ] ) > 0 :
+        return False
+
+    # Check diagonal 1
+    if sum( M.diagonal(col-row)) > 0 :
+        return False
+
+    # Check diagonal 2 -> M[::-1] is the transpose matrix
+    if sum( M[::-1].diagonal(row+col-len(board)+1)) > 0 :
+        return False
+
+    return True
+
+def find_empty_row(board, pos ):
+
+    for row in range(len(board)):
+        if sum(board[row]) == 0:
+            pos[0], pos[1] = row, 0
+            return True
+    return False
+
+
+def solve_Queens( M ):
+    pos = [0,0]
+    #   If all queens are placed    return true
+    if not find_empty_row(M, pos):
+        return True
+
+    row, col = pos
+
+    for col in range(len(M[row])) :
+        if is_location_safe(M, row, col):
+            M[row][col] = 1
+
+            if solve_Queens(M):
+                return True
+
+            # Backtracking
+            M[row][col] = 0
+
+    return False
+
+
+N = solve_Queens(M)     # VICTORY . IT works !!!!! I made it @ 2017-10-27, 16:51
+print('\n')
+print_board(M)
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1),6), 's\n\n')            #   Completed in : 69.63 s
+
+
+
+
+
+

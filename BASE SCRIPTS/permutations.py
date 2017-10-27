@@ -228,6 +228,73 @@ print('\nThe Permutation Function calc_perm :\t',calc_perm(lst))
 print('\nThe Permutation Function calc_perm :\t',calc_perm([1,2,3,4]))
 
 
+print('\n------------- Class to compute total number of permutations of a list ----------------------')
+
+class Compute_List_Permutations_Number() :
+    ''' o(^_^)o MAde by Bogdan Trif @ 2017-10-11, 13:30
+    It has many functions:
+    1. factorial
+    2. count all the occurences of int elements of a list
+    3. computes the nr of permutations of an int list
+    4. computes the nr of permutations of a list without leading zeros. Euler pb 171
+    '''
+
+#     def __init__(self ):
+#         self.lst = lst
+#         self.length = len(lst)
+#         print(self.lst, self.length)
+
+    def fact(self, n):
+        nr = 1
+        for i in range(1, n+1):
+            nr *= i
+        return nr
+
+    def count_elem(self, lst ):        # Nice function, made by Bogdan Trif @ 2017-04-09, 13:30
+        X = []
+        for i in set(lst):
+#             print(i, lst.count(i), end='; ')
+            X.append((i, lst.count(i) ))
+#         print(X)
+        return X
+
+    def compute_permutations( self, lst ) :
+        L = self.count_elem(lst)
+#         print( L )
+        num, den = len(lst), 1
+        for x in L :
+            den *= self.fact(x[1])
+        return self.fact(num)//den
+
+    def compute_permutations_without_leading_zeros( self, lst ) :
+        L = self.count_elem(lst)
+        if L[0][0] !=0 :
+            return self.compute_permutations(lst)
+        else :
+            o, S = len(L), 0
+            for i in range(1, o) :
+                P =  [ L[j][1] if i!=j else L[j][1]-1 for j in range(len(L)) ]
+#                 print(i, L, ' P=',P)
+
+                den, num = 1, sum(P)
+                for k in P :
+#                     print('k =', k)
+                    den *= self.fact(k)
+#                     print('den=  ', den, '  sum(P) = ', sum(P))
+
+                S+= int( self.fact(num)/den )
+            return S
+
+
+lst = [ 4, 4, 1, 1, 1, 0, 0 ]
+print('given the list : \t' , lst)
+K = Compute_List_Permutations_Number()
+print('Count occurences : \t', K.count_elem(lst) )
+print('Compute all unique permutations : \t',K.compute_permutations(lst))
+print('Compute all unique permutations without leading zeros : \t',K.compute_permutations_without_leading_zeros(lst))
+
+
+
 print('\n------------------ PERMUTATION CALCULATION FORMULA OF MULTIPLE ELEMENTS -------------------')
 # The formula is Perm(total_elem_nr) / [ Perm(elem_1) *Perm(elem_2) * ...* Perm(elem_n) ]
 
@@ -269,4 +336,5 @@ print('\n------------------- Permutation of a string ---------------------')
 from itertools import permutations
 for i in permutations("1234", 4):
     print("".join(i), end='  ')
+
 

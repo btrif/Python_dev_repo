@@ -349,16 +349,17 @@ t1  = time.time()
 
 
 l={0:0}
-def F(m,n):
-  x=1
-  if n>m:
+def F(m , n ):
+    x=1
+    if n>m:
+        return x
+    if m in l:
+        return l[m]
+    for i in range( (m-n)+1 ):
+        for j in range(n, (m-i)+1):
+            x += F( m-i-j-1, n)
+    l[m]=x
     return x
-  if m in l: return l[m]
-  for i in range((m-n)+1):
-    for j in range(n,(m-i)+1):
-      x+=F(m-i-j-1,n)
-  l[m]=x
-  return x
 
 print (F(50,3))
 

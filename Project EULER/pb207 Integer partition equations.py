@@ -126,36 +126,88 @@ print(m+1)
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-# print('\n--------------------------SOLUTION 3,   --------------------------')
-# t1  = time.time()
+print('\n--------------------------SOLUTION 3,   --------------------------')
+t1  = time.time()
+
+# ==== Tue, 20 Aug 2013, 20:13, ChopinPlover, Taiwan
+# Let x=2t, then the equation turns to x^2−x−k=0.
 #
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-# print('\n--------------------------SOLUTION 4,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-# print('\n--------------------------SOLUTION 5,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 6,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
+# x=1+(√1 + 4k) / 2  is an integer.
+# In other words, 1+4k=(2a+1)^2  for some integer a.
+# So k=a(a+1)  for some integer aa.  Also, 2^t=x=a+1.
+# t is an integer if a+1 is a power of two.
+
+def main():
+    power2 = set(2**i for i in range(20))
+    good_count = 0
+    for a in range(1, 2**19):
+        if a + 1 in power2:
+            good_count += 1
+        if good_count * 12345 < a:
+            print('''P(%d) = %d/%d''' % (a*(a+1), good_count, a))
+            break
+
+main()
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------------------SOLUTION 4,   --------------------------')
+t1  = time.time()
+
+# ==== Sat, 11 Jan 2014, 20:32, Nicolas Patrois, France
+from math import log
+den=1
+num=int(log(den+1)/log(2))
+
+while num*12345>=den:
+  den+=1
+  num=int(log(den+1)/log(2))
+
+print(den*(den+1))
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------------------SOLUTION 5,   --------------------------')
+t1  = time.time()
+
+# === Sun, 21 Dec 2014, 07:40, Kes, USA
+# Nothing new here. Runs in <5ms in Python; <1ms in PyPy
+
+perfect_count = 0
+x = 2
+while(True):
+    if not x & x-1: #check if x is power of 2
+        perfect_count += 12345
+    if perfect_count < x-1:
+        answer = x*(x-1)
+        break
+    x += 1
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 6,   --------------------------')
+t1  = time.time()
+
+# === Thu, 12 Apr 2012, 04:52, ving, SUA
+# Silly problem.  Count the powers of 2 among the first n numbers (starting at 2) until count/n becomes less than 1/12345,
+# then print n(n+1). What's the point? 8 lines of code in Python:
+
+cnt, pow2 = 0, 2
+
+for n in range(2, 1000000):
+    if n == pow2:
+        cnt += 1
+        pow2 *= 2
+    if n > cnt * 12345:
+        break
+
+print(n*(n+1))  # Answer: 44043947822
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+

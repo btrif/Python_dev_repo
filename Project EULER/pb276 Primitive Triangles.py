@@ -9,7 +9,6 @@ An integer sided triangle (a,b,c) is called primitive if gcd(a,b,c)=1.
 How many primitive integer sided triangles exist with a perimeter not exceeding 10 000 000 (10**7) ?
 '''
 import time
-from math import gcd
 from pyprimes import factorise
 import functools, operator, itertools
 
@@ -52,7 +51,7 @@ def Primitive_integer_sided_triangles(perim) :
         print(" ========= size " , a, " ========== " )
         for b in range(a, (p-a)//2 + 1 ) :
         # for b in range(a, 31 ) :
-        #     print(" a= ",  a , "  ;  b = ", b ,end ='   ')
+            print(" a= ",  a , "  ;  b = ", b ,end ='   ')
 
                     # CASE 1
             if gcd(a,b)  == 1 :
@@ -72,21 +71,23 @@ def Primitive_integer_sided_triangles(perim) :
                     # print(list(C))
                     for j in C :
                         f = functools.reduce( operator.mul , j)
-                        # print(" i = ", i ,"    ",f )
+                        print(" i = ", i ,"    ",f )
                         if i%2 == 1 :
                             cnt -= ((p-a-2*b)//f) +1
-                            # print( " - cnt1 = " , ((p-a-2*b)//f) +1,'     ', cnt  )
+                            print( " - cnt1 = " , ((p-a-2*b)//f) +1,'     ', cnt  )
                         if i%2 == 0 :
                             cnt +=  ((p-a-2*b)//f) +1
-                            # print( " + cnt2 = " , ((p-a-2*b)//f) +1 ,'     ', cnt  )
-    return print ('\nAnswer : \t', cnt)
+                            print( " + cnt2 = " , ((p-a-2*b)//f) +1 ,'     ', cnt  )
 
-Primitive_integer_sided_triangles(10**4)
+    print ('\nAnswer : \t', cnt)
+    return cnt
+
+Primitive_integer_sided_triangles(10**2)
 
 
 
 t2  = time.time()
-print('\nCompleted in :', round((t2-t1)*1000,2), 'ms\n\n')
+print('\nCompleted in :', round((t2-t1) , 2), 's\n\n')
 
 print('\n================  My FIRST SOLUTION,   ===============\n')
 # t1  = time.time()

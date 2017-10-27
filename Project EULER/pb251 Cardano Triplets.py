@@ -1,5 +1,5 @@
 #!/usr/bin/python                   o(^_^)o         ( ͡° ͜ʖ ͡°)
-# © Solved by Bogdan Trif @
+# © Solved by Bogdan Trif @ Completed on Wed, 27 Sep 2017, 19:00
 #The  Euler Project  https://projecteuler.net
 '''
 Cardano Triplets            -           Problem 251
@@ -180,6 +180,87 @@ t2  = time.time()
 print('\nCompleted in :', round((t2-t1) , 4 ), 's\n\n')
 
 
+#===== IDEAS ==========
+# === Wed, 24 Jun 2009, 16:39, daniel.is.fischer, Germany
+# First, like everybody, I found
+# a = 3k+2
+# b2*c = (k+1)2*(8k+5).
+# For fixed k, a+b+c is minimal if b = 2c, which is then approximately 24/3*k,
+# so the smallest possible sum for fixed k is about 3*(1+21/3)*k,
+# giving an approximate limit of N/6.78 for k (an exact limit takes some fiddling, with N/6.77 you're on the safe side).
+# But the largest possible value for the sum is obtained for b = 1, when
+# a+b+c [gt] 8k3, and on the other end, when b is as large as possible, it is typically of order k3/2.
+# So for large k, most of the possible values of b lead to sums exceeding the limit.
+#
+# The question is then, is it worth the trouble to factorise (k+1) and (8k+5) for all interesting k?
+# The answer is, sadly, "apparently not".
+# It takes longer to collect the factors and then combine them,
+# than it takes to just let some variable traverse the admissible range and check if it's good by a trial division -
+# at least if you organise that properly.
+#
+# If we look again at b2*c = (k+1)2*(8k+5), we see that we must write 8k+5 = s*u2 with a squarefree s,
+# then b can be any divisor of u*(k+1) and c = s*((u*(k+1))/b)2.
+# Now, if we base our algorithm on k, we have to find s and u, that is, factorise 8k+5.
+# That's not good, avoiding the factorisations is our goal.
+#
+# So we base our algorithm on s (and then u).
+# If 8k+5 = s*u2 with squarefree s, then s ≡ 5 (mod 8) and u is odd. Conversely, if u is odd and m ≡ 5 (mod 8), then m*u2 ≡ 5 (mod 8).
+#
+# The first step is finding the squarefree s ≡ 5 (mod 8) which are small enough to generate triplets below the limit. That's
+#
+#
+# If s = 8i+5 is squarefree, the samllest sum of a Cardano triplet derived from s is
+# (3i+2) + (i+1) + (8i+5) = 12i+8. 12i+8 ≤ N means i [lt] (N+4)/12.
+#
+# Next, for a squarefree s = 8i+5, count the triplets.
+# Determine the largest u so that 8k+5 = (8i+5)*u2 can generate a legitimate triplet, i.e. k < N/6.77 (or something of the sort).
+# Outer loop over odd u from 1 to that limit.
+# Given s*u2 = 8k+5, we easily find (k+1) = (s*u2+3)/8, a = (3*s*u2+1)/8 and set b0 = u*(k+1).
+# Then all Cardano triplets with that a have c = s*d2, b = b0/d for some divisor d of b0.
+# We need N ≥ a+b+c = a + b0/d + s*d2 ≥ a + b0/d + s,
+# hence d ≥d1 = ceiling(b0/(N-a-s)). If b0 is odd and d1 even, increment d1.
+# Then we know that a + b + c ≥ a + b0/d + s*d12, hence d ≥ d2 = ceiling(b0/(N-a-s*d12)).
+# Iterate once more to have the starting value of d close to the first that gives a sum not exceeding the limit.
+# Inner loop over d, incrementing by 2 for odd b0.
+# If d is a divisor of b0 and the sum is small enough,
+# count, break when the upper end of the range of possible d is reached.
+
+# === Wed, 24 Jun 2009, 20:39, Yuval Dor, ISrael
+# (lots of edits...)
+#
+# I too tried to look at b^2*c first but there's a faster approach.
+#
+# Let:
+#
+# k = 0
+# b = 1
+# c = 5
+#
+# In every step, increment b by 1, c by 8, and k by 1.
+#
+# a = 3*k + 2
+#
+# This always yields a solution that satisfies the equation but not necessarily the condition. It's provable by induction.
+#
+# To find other solutions, find the square part of c (the square part of 24, for example, is 2, because 24 = 2^3*3).
+# It is very easy to find the square part of a number because you only have to scan primes, p, such that p^3 is smaller than the number.
+#
+# Divide c by its square part (squared), multiply b by the square part of c.
+# This yields the maximum value of b and the minimal value of c for this particular value of a.
+# Can't make c smaller than this: the square root of all of its divisors is irrational.
+# If this doesn't satisfy the condition, no other pair will: because b0 is smaller than c0,
+# and we multiply c0 by a square factor and b by same factor not squared.
+#
+# You don't have to factor b*(square part of c), it's easier to just go through numbers and
+# see if they divide it and if they satisfy the condition, and break the loop if c*(divisor)^2 > max - happens very fast,
+# because usually the square part of c is 1. For every divisor of b, of course, the triplet (a, b/divisor, c*(divisors^2)) is valid.
+#
+# To make things faster I stored all square divisors of all numbers that equal 5 modulo 8 (i.e, possible c's)
+# in a dictionary except "trivial" prime square divisors less than 100 to save space (checked manually for these). Works pretty fast.
+#
+# That is all. Nice question.
+
+
 print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
 print('\n--------------------------SOLUTION 1,   --------------------------')
 t1  = time.time()
@@ -319,10 +400,46 @@ t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
-print('\n--------------------------SOLUTION 2,   --------------------------')
+print('\n--------------------------SOLUTION 2,   6 min --------------------------')
 t1  = time.time()
 
+# === Sat, 20 Jun 2009, 12:03, tolstopuz, Russia
+# 2'42" on E8400.
 
+def tolstopuz() :
+    import math
+
+    nmax = 110000000
+
+    sf = (nmax // 2 + 1) * [True]
+
+    for i in range(1, nmax + 1, 2):
+        if sf[i // 2]:
+            j = 3
+            while True:
+                ii = i * j ** 2
+                if ii > nmax:
+                    break
+                sf[ii // 2] = False
+                j += 2
+
+    s = 0
+
+    for c in range(5, nmax + 1, 8):
+        if sf[c // 2]:
+            d = int(math.sqrt(nmax // c))
+            for bb in range(1, nmax + 1, 2):
+                a = (1 + 3 * bb ** 2 * c) // 8
+                b = (3 * bb + bb ** 3 * c) // 8
+                if a + b // d + c > nmax:
+                    break
+                for dd in range(1, min(b, d) + 1):
+                    if b % dd == 0 and a + b // dd + c * dd ** 2 <= nmax:
+                        s += 1
+
+    print(s)
+
+tolstopuz()
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')

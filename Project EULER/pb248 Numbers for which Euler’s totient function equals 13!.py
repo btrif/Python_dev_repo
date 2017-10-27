@@ -11,8 +11,11 @@ Find the 150,000th such number.
 
 
 '''
+import operator
 import time, zzz
+from gmpy2 import fac, is_prime
 
+import functools
 from pyprimes import factorise
 
 def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
@@ -40,6 +43,21 @@ def euler_totient(n):           # Remark : For large array better use Sieve appr
 print('euler_totient : \t', euler_totient(600))
 print('euler_totient : \t', euler_totient(90))
 
+def pair_Factors(n):        # VERY EFFICIENT !!!! SUPER INTELLIGENT ALGORITHM
+    '''Pair Factoring, VERY EFFICIENT !
+    :param n:
+    :return:     '''
+    todo, combis = [(n, 2, [])], []
+    while todo:
+        n, i, combi = todo.pop()
+        while i * i <= n:
+            if n % i == 0:
+                combis += combi + [i, n//i],
+                todo += (n//i, i, combi+[i]),       # If needed only PAIRS (a,b) comment this line !!!
+            i += 1
+    return combis
+
+
 def Euler_Totient_Sieve(n):
     ''' Constructs a SIEVE of totients up to n
     :param n: up range number
@@ -61,29 +79,84 @@ print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
 def brute_force( tot ) :
+    ALL = set()
     cnt = 0
     for n in range(1, 10**5) :
         t = euler_totient(n)
         if t == tot :
             cnt+=1
+            ALL.add(n)
             print(str(cnt)+'.      n=' , n, '      t=', t , '     n=', get_factors(n) )
+    print('\nALL =',ALL)
+    print('\nnumbers = ', cnt)
+    return ALL
 
-    return print('\nnumbers = ', cnt)
+BF = brute_force( 2*3*4*5*6*7 )
 
-brute_force( 720*8 )
+
+
+print()
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1) , 2), 's\n\n')
+
+print('\n================  My FIRST SOLUTION,   ===============\n')
+t1  = time.time()
+
+tot = 5040
+Z = pair_Factors(2*3*4*5*6*7)
+print('\nlen(Z) = ',len(Z))
+print(Z[:1000])
+CNT= set()
+for I in Z :
+    tmp = []
+    nr = functools.reduce(operator.mul, I  )
+    # print(I,'         ' , nr )
+    Prms, NonP = set(), []
+    for x in I :
+        if is_prime(x+1) :  Prms.add(x+1)
+        else :   NonP.append(x)
+    print('I = ' , I , '      Prms= ', Prms , '            NonP  = ', NonP)
+
+    if len(Prms) >= 2 :
+        y1 = functools.reduce(operator.mul , Prms)
+
+        # CASE 1
+        if len(NonP) == 0 :
+            n = y1
+
+
+        # CASE 2
+        if len(NonP) > 0 :
+            Fct = set()
+            for c in NonP :
+                d = set(get_factors(c))
+                Fct = Fct.union(d)
+            if len(Fct.difference(Prms)) == 0:
+                y2 = functools.reduce(operator.mul , NonP )
+                n = y1*y2
+                # if n > 5040 :
+                #     CNT.add(n)
+                #     print('case 2  ' , str(len(CNT))+'.    ',I , '       n = ', n , '        Prms=', sorted(Prms) ,'       NonP= ', NonP)
+
+        if n > tot :
+            CNT.add(n)
+            CNT.add(2*n)
+            print( str(len(CNT))+'.    ',I , '       n = ', n , '        Prms=', sorted(Prms) ,'       NonP= ', NonP)
+
+print('\nTotal count = ', len(CNT) )
+print(CNT)
+
+print('\nBF.difference(CNT )length difference : ', len(BF.difference(CNT)))
+print( BF.difference(CNT))
+
+print('\nCNT.difference(BF )length difference : ', len(CNT.difference(BF)))
+print( CNT.difference(BF))
+
+# @2017-10-15 - I must investigate the 3-rd case : n = 17724, 11956,  16764, etc...
+
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-
-print('\n================  My FIRST SOLUTION,   ===============\n')
-# t1  = time.time()
-
-
-
-
-
-# t2  = time.time()
-# print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
 
 # print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')

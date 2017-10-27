@@ -67,17 +67,24 @@ print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
 # down, up = 10**13+8*10**11+7*10**10+6*10**9+8*10**8+8*10**7+6*10**6+4*10**5 , 10**14
-down, up = 10**4 , 10**5
-L = up - down
-S=0
-cnt = 0
-for n in range(down, up) :
-    cnt+=1
-    a = Heron_integer_arithmetic(n)
-    S+=a[1]
-    print(str(n)+'.    ' , a, '        ' ,  sqrt(n) , '        ' ,  S/cnt )
+def brute_force_verification(down, up, step) :
 
-print('\nAnswer : \t', round(S/L, 10 ) , '                ',  S/L )
+    L = up - down
+    S=0
+    cnt = 0
+    for n in range(down, up, step) :
+        cnt+=1
+        a = Heron_integer_arithmetic(n)
+        S+=a[1]
+        print(str(n)+'.    ' , a, '        ' ,  sqrt(n) , '        ' ,  S/cnt )
+
+    return print('\nAnswer : \t', round(S/L, 10 ) , '                ',  S/L )
+
+# down, up, step = 10**4 , 10**5, 10**0
+down, up, step = 10**13 , 10**14, 10**7
+brute_force_verification(down, up, step)
+
+# @2017-10-16 - The value should look something like :  4.447450333333333
 
 # OBS : 2017-02-21 --> Must Do Reverse Engineering on that function
 # There are values of 6,5,4

@@ -1,6 +1,26 @@
 import time
 
+print('===========  PROBLEM DESCRIPTION ==============')
+'''
+A tourist wants to make a good trip at the weekend with his friends.
+They will go to the mountains to see the wonders of nature, so he needs to pack well for the trip.
+He has a good knapsack for carrying things, but knows that he can carry a maximum of only 4kg in it,
+and it will have to last the whole day.
+He creates a list of what he wants to bring for the trip but the total weight of all items is too much.
 
+He then decides to add columns to his initial list detailing their weights and a numerical value
+representing how important the item is for the trip.
+Here is the list: actually  look in items , each pair represents ( "map", 9, 150) --> ( name, weight, value )
+
+TASK :
+The tourist can choose to take any combination of items from the list, but only one of each item is available.
+He may not cut or diminish the items, so he can only take whole units of any item.
+Task
+Show which items the tourist can carry in his knapsack so that their total weight does not exceed 400 dag [4 kg],
+and their total value is maximized.
+
+[dag = decagram = 10 grams]
+'''
 
 print('---------------- Dynamic programming solution ---------------------------' )
 t1  = time.time()
@@ -55,7 +75,7 @@ def knapsack01_dp(items, limit):
 
 bagged = knapsack01_dp(items, 400)
 print(bagged)
-print("Bagged the following items : \n" + ',  '.join(sorted(item for item,_,_ in bagged)))
+print("\nBagged the following items : \n" + ',  '.join(sorted(item for item,_,_ in bagged)))
 val, wt = totalvalue(bagged)
 print("\nfor a total value of %i and a total weight of %i" % (val, -wt))
 

@@ -218,6 +218,13 @@ print('Test_string : ' , Test_string.title() )
 
 print('findnth , returns the index of the 2-nd occurence :\t',findnth(Test_string, 'abc', 2) )
 
+print('\n---------------- Find , Count all the characters occurences in string --------------')
+import collections
+results = collections.Counter('422')
+print('Count all character occurences in string and output as dictionary : \n'  )
+print('Length of dict: ' , len(results) , results )
+
+
 print('\n------------------- ,  REPLACE  the n-th occurence of a string  -------------------')
 
 def replacenth(source, old, new, n):
