@@ -92,3 +92,13 @@ class ModInverse():
         else:
             g, y, x = self._extended_gcd(b % a, a)
             return (g, x - (b // a) * y, y)
+
+
+def is_pandigital(n):
+    if len(str(n)) == 10 :
+        N = list([int(i) for i in str(n)])
+#         print(N, len(set(N)))
+        if len(set(N)) == 10 :
+            return True
+    return False
+

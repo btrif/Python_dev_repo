@@ -19,6 +19,7 @@ What is f(10**25)?
 
 '''
 import time
+from functools import lru_cache
 from math import log2
 
 D = { 1 : 1}
@@ -49,14 +50,60 @@ print('\n--------------------')
 # for i in range(16):
 #     print(x<<i, end='  ')
 
+
+def partition_nr_into_given_set_of_nrs(nr, S,  lim=10 ):
+    nrs = sorted(S, reverse=True)
+    def inner(n, i, lim ):
+        if lim >= 0 :
+            if n == 0:
+                yield []
+            for k in range(i, len(nrs)):
+                if nrs[k] <= n:
+                    for rest in inner(n - nrs[k], k , lim-1 ):
+
+                        yield [nrs[k]] + rest
+    return list(inner(nr, 0, lim))
+
+S = []
+i = 0
+while 2**i < 10**25 :
+    print(str(i)+'.  ', 2**i )
+    S.append(2**i)
+    i+=1
+
 print('\n--------------------------TESTS------------------------------')
+t1  = time.time()
 
 
+##### The Recursive algorithm translated from  C++  http://euler.stephan-brumme.com/169/
+#   Works until 10**5
+
+@lru_cache()            # improves performance by a factor of 2x
+def solve(x, minAdd =1) :
+    if x == 0 : return 1
+
+    result = 0
+    current = minAdd
+
+    while current <= x :
+        # try to remove current 2^k once
+        result += solve(x- current , current*2 )
+
+        if x >= 2* current :
+            result += solve(x-2*current, current*2 )
+
+        # process 2^(k+1)
+        current *= 2
+
+    return result
 
 
+print(   solve(10**5, 1)  )
 
+# http://sieverything.blogspot.ro/2011/10/problem-169-projecteulernet.html
 
-
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1) , 4), 's\n\n')
 
 print('\n================  My FIRST SOLUTION,   ===============\n')
 # t1  = time.time()

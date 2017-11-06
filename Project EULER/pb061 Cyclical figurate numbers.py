@@ -57,6 +57,7 @@ def isOctagonal(n):
     else:  return False
 
 def gen_Triangular(n):
+    '''  Computes the triangular number of n '''
     return int(n*(n+1)/2)
 
 def gen_Square(n):

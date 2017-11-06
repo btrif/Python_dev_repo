@@ -105,7 +105,7 @@ def next_palindrome_gen(n):
         bar = str(int(Z)+1)
         yield bar+bar[:X][::-1]
 
-G = next_palindrome_gen('1000')
+G = next_palindrome_gen('10000000')
 for i in range(10):
     p = next(G)
     print(str(i+1)+'.  ', p, end='      ')

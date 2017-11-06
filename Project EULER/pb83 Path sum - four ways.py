@@ -1,64 +1,69 @@
-#  Created by Bogdan Trif on 14-10-2017 , 5:18 PM.
+#  Created by Bogdan Trif on 01-11-2017 , 7:59 PM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-                Modular Cubes, part 1           -               Problem 271
+                Path sum: four ways             -               Problem 83
 
-For a positive number n, define S(n) as the sum of the integers x, for which 1<x<n and
-x^3 ≡ 1 (mod n) .
+NOTE: This problem is a significantly more challenging version of Problem 81.
 
-When n=91, there are 8 possible values for x, namely : 9, 16, 22, 29, 53, 74, 79, 81.
+In the 5 by 5 matrix below, the minimal path sum from the top left to the bottom right,
+by moving left, right, up, and down, is indicated in bold red and is equal to 2297.
 
-Thus, S(91) = 9+16+22+29+53+74+79+81 = 363.
 
-Find S(13082761331670030) .
+Find the minimal path sum, in matrix.txt (right click and "Save Link/Target As..."),
+a 31K text file containing a 80 by 80 matrix,
+from the top left to the bottom right by moving left, right, up, and down.
+
 
 '''
 import time, zzz
 
-def egcd(a, b):         #Extended Euclidian Algorithm
-    if a == 0:
-        return (b, 0, 1)
-    else:
-        g, y, x = egcd(b % a, a)
-        return (g, x - (b // a) * y, y)
+filename = "pb081_matrix.txt"
+def load_file(filename):
+    with open(filename) as f:
+        matrix = [list(map(int, line.split(","))) for line in f.readlines()]
+    f.close()
+    return matrix
 
-def modinv(a, m):       # Modular Inverse
-    g, x, y = egcd(a, m)
-    if g != 1:
-        raise Exception('modular inverse does not exist')
-    else:
-        return x % m
+matrix = load_file(filename)
 
-print('modinv Modular Inverse :\t', modinv(91**3, 9))
-print('modinv Modular Inverse :\t', modinv(91**3, 16))
 
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-def brute_force_test(n=91):
-    for x in range(2 , n ) :
-        if pow(x, 3, n ) == 1 :
-            print('x = ' + str(x) +'     ;    x^3 = 1    ( mod '+str(n)+' )'  )
-
-brute_force_test(91)
-
-# @2017-10-14 - NOTE - This is classical example of Chinese Reminder Theorem
-
-BEST
-https://math.stackexchange.com/questions/983971/modular-arithmetic-root     !!!!!
+M=  [[131, 673, 234, 103, 18], \
+        [201, 96,  342, 965, 150],\
+        [630, 803, 746, 422, 111],\
+        [537, 699, 497, 121, 956],\
+        [805, 732, 524, 37,  331]]
 
 
-https://math.stackexchange.com/questions/1678528/a-perfect-square-cubes-congruences
-https://stackoverflow.com/questions/2049413/modular-cubes-in-c-sharp
-https://math.stackexchange.com/questions/1789169/show-that-the-cube-of-any-integer-is-congruent-to-0-or-pm-1-pmod-7
-http://data.at.preempted.net/INDEX/articles/CRT.pdf
-https://www.di-mgt.com.au/crt.html
-http://www.eclasshome.com/attach/upload3/wh_54948731.pdf
-https://math.stackexchange.com/questions/15721/solve-x3-equiv-1-pmod-p-for-x
-http://www.math.umbc.edu/~campbell/Math413Spr03/Notes/8-9_Equations.html
-https://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm#The_algorithm
+def three_ways_path( matrix ) :
+
+    M = matrix
+    gridSize = len(M)
+    sol = [0 for i in range(gridSize)]
+
+    #   initialise solution :
+    for i in range(0, gridSize ) :
+        sol[i] = M[i][gridSize - 1]
+
+    for i in range(gridSize-2,-1, -1 ) :
+        #   Traverse down :
+        sol[0] += M[0][i]
+        for j in range(1, gridSize) :
+           sol[j] = min ( sol[j - 1] + M[j][i], sol[j] + M[j][i] )
+
+        #   Traverse up :
+        for j in range(gridSize -2, -1, -1) :
+            sol[j] = min( sol[j], sol[j+1] + M[j][i] )
+
+    print('The Complete path is : ',sol)
+    return print('\nThe minimal path is : \t', min(sol))
+
+three_ways_path(M)
+
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')

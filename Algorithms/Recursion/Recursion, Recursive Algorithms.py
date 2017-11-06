@@ -76,7 +76,7 @@ print(Fib_rec(10))      # Already for n > 30 it takes looooong to complete
 
 ####################################################
 
-print('\n--------------------    Recursive Solution for PASCAL TRIANGLE       ------------------------------------------')
+print('\n--------------------    Recursive Solution for Lattice paths in PASCAL TRIANGLE       ------------------------------------------')
 
 def lattice_paths(a, b):
     if a == 0 or b == 0:
@@ -176,7 +176,7 @@ def rec_loop_for(i):        # *©** Made by Bogdan Trif in 2017-02
         rec_loop_for(i-1)
         for i in range(i):
             print(L[0:i+1])
-        print(';')
+        print('---')
     else:
         return
 
@@ -301,7 +301,7 @@ def combinations_by_subset(seq, r):
     else:
         yield tuple()
 
-list(combinations_by_subset([1,2,3,4,5], 3)   )
+print ( list(combinations_by_subset( [1,2,3,4,5], 3)   ) )
 
 
 print('\n--------------------------NUMBER PARTITION RECURSIVE FUNCTION ---------------------')
@@ -329,8 +329,8 @@ def descartes(x):
 def f(x, n):
     if not n: return 0
     a, b, c = x
-    d=descartes(x)
-    return 1/d**2 +f ((a, b, d), n-1 ) +f((a, c, d ), n-1)+f ((b, c, d ) , n-1 )
+    d = descartes(x)
+    return 1/d**2 + f ((a, b, d), n-1 ) + f((a, c, d ), n-1)  +  f ((b, c, d ) , n-1 )
 
 k = 3 - 2*3**0.5
 

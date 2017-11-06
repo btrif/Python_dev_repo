@@ -1,64 +1,57 @@
-#  Created by Bogdan Trif on 14-10-2017 , 5:18 PM.
+#  Created by Bogdan Trif on 04-11-2017 , 6:40 PM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-                Modular Cubes, part 1           -               Problem 271
+Look and say sequence           -       Problem 419
 
-For a positive number n, define S(n) as the sum of the integers x, for which 1<x<n and
-x^3 ≡ 1 (mod n) .
+The look and say sequence goes 1, 11, 21, 1211, 111221, 312211, 13112221, 1113213211, ...
+The sequence starts with 1 and all other members are obtained by describing the previous member in terms of consecutive digits.
+It helps to do this out loud:
+1 is 'one one' → 11
+11 is 'two ones' → 21
+21 is 'one two and one one' → 1211
+1211 is 'one one, one two and two ones' → 111221
+111221 is 'three ones, two twos and one one' → 312211
+...
 
-When n=91, there are 8 possible values for x, namely : 9, 16, 22, 29, 53, 74, 79, 81.
+Define A(n), B(n) and C(n) as the number of ones, twos and threes in the n'th element of the sequence respectively.
+One can verify that A(40) = 31254, B(40) = 20259 and C(40) = 11625.
 
-Thus, S(91) = 9+16+22+29+53+74+79+81 = 363.
+Find A(n), B(n) and C(n) for n = 10^12.
+Give your answer modulo 2^30 and separate your values for A, B and C by a comma.
+E.g. for n = 40 the answer would be 31254,20259,11625
 
-Find S(13082761331670030) .
 
 '''
 import time, zzz
-
-def egcd(a, b):         #Extended Euclidian Algorithm
-    if a == 0:
-        return (b, 0, 1)
-    else:
-        g, y, x = egcd(b % a, a)
-        return (g, x - (b // a) * y, y)
-
-def modinv(a, m):       # Modular Inverse
-    g, x, y = egcd(a, m)
-    if g != 1:
-        raise Exception('modular inverse does not exist')
-    else:
-        return x % m
-
-print('modinv Modular Inverse :\t', modinv(91**3, 9))
-print('modinv Modular Inverse :\t', modinv(91**3, 16))
 
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-def brute_force_test(n=91):
-    for x in range(2 , n ) :
-        if pow(x, 3, n ) == 1 :
-            print('x = ' + str(x) +'     ;    x^3 = 1    ( mod '+str(n)+' )'  )
+# def brute_force_analysis():
+#     f = 1
+#     for
 
-brute_force_test(91)
+from itertools import groupby
+def lookandsay(number):
+	return ''.join( str(len(list(g))) + k  for k,g in groupby(number) )
 
-# @2017-10-14 - NOTE - This is classical example of Chinese Reminder Theorem
+up = 40
+numberstring='1'
+for i in range(1, up):
+    print (str(i)+'.    ', numberstring)
+    numberstring = lookandsay(numberstring)
+print(str(up)+'.    ', numberstring)
 
-BEST
-https://math.stackexchange.com/questions/983971/modular-arithmetic-root     !!!!!
 
+# https://math.stackexchange.com/questions/1618532/conways-cosmological-theorem-on-look-and-say-sequences
 
-https://math.stackexchange.com/questions/1678528/a-perfect-square-cubes-congruences
-https://stackoverflow.com/questions/2049413/modular-cubes-in-c-sharp
-https://math.stackexchange.com/questions/1789169/show-that-the-cube-of-any-integer-is-congruent-to-0-or-pm-1-pmod-7
-http://data.at.preempted.net/INDEX/articles/CRT.pdf
-https://www.di-mgt.com.au/crt.html
-http://www.eclasshome.com/attach/upload3/wh_54948731.pdf
-https://math.stackexchange.com/questions/15721/solve-x3-equiv-1-pmod-p-for-x
-http://www.math.umbc.edu/~campbell/Math413Spr03/Notes/8-9_Equations.html
-https://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm#The_algorithm
+A = str(numberstring).count('1')
+B = str(numberstring).count('2')
+C = str(numberstring).count('3')
+print('\n1-s = ', A, '        2-s = ', B, '        3-s = ', C)
+
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')

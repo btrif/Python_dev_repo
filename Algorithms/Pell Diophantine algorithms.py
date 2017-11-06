@@ -1,4 +1,4 @@
-
+from gmpy2 import is_square
 
 def p137v2(limit,D=5,P0=1,Q0=2):
 
@@ -75,7 +75,7 @@ def solve_pell_equation(D, N):
         if D == 0: # There is only 1 solution
             yield 0, 0
             return
-        elif D < 0 or not __is_perfect_square(D): # No solutions
+        elif D < 0 or not is_square(D): # No solutions
             return
         else:
             t = 0
@@ -89,7 +89,7 @@ def solve_pell_equation(D, N):
         else:
             trivial_solution = (1, 0)
 
-            if __is_perfect_square(D): # There is only 1 primitive solution
+            if is_square(D): # There is only 1 primitive solution
                 yield trivial_solution
                 return
 
@@ -131,7 +131,7 @@ def solve_pell_equation(D, N):
     # Generalized Pell equation
     elif N > 0:
         if D == 0:
-            if __is_perfect_square(N):
+            if is_square(N):
                 n == int(N ** 0.5)
                 x = n
                 y = 0
@@ -148,7 +148,7 @@ def solve_pell_equation(D, N):
 
             x_square = N
             for y in range(y_bound + 1):
-                if __is_perfect_square(x_square):
+                if is_square(x_square):
                     x = int(x_square ** 0.5)
                     yield (x, y)
                 x_square += D * (2 * y + 1)
@@ -171,13 +171,13 @@ def solve_pell_equation(D, N):
                     d_y_square = x * x - N
                     if (d_y_square % D == 0):
                         y_square = d_y_square // D
-                        if __is_perfect_square(y_square):
+                        if is_square(y_square):
                             y = int(y_square ** 0.5)
                             primitive_solutions.extend([(x, y), (-x, y)])
             else:
                 for y in range(y_bound + 1):
                     x_square = N + D * y * y
-                    if __is_perfect_square(x_square):
+                    if is_square(x_square):
                         x = int(x_square ** 0.5)
                         primitive_solutions.extend([(x, y), (-x, y)])
 
@@ -239,13 +239,13 @@ def solve_pell_equation(D, N):
                     d_y_square = x * x - N
                     if (d_y_square % D == 0):
                         y_square = d_y_square // D
-                        if __is_perfect_square(y_square):
+                        if is_square(y_square):
                             y = int(y_square ** 0.5)
                             primitive_solutions.extend([(x, y), (-x, y)])
             else:
                 for y in range(y_bound + 1):
                     x_square = N + D * y * y
-                    if __is_perfect_square(x_square):
+                    if is_square(x_square):
                         x = int(x_square ** 0.5)
                         primitive_solutions.extend([(x, y), (-x, y)])
 

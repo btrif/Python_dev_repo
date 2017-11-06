@@ -2,8 +2,8 @@
 # Solved by Bogdan Trif @
 #The  Euler Project  https://projecteuler.net
 '''
-Investigating Ulam sequences
-Problem 167
+            Investigating Ulam sequences            -           Problem 167
+
 For two positive integers a and b, the Ulam sequence U(a,b) is defined by
 U(a,b)1 = a, U(a,b)2 = b and for k > 2, U(a,b)_k is the smallest integer greater than U(a,b)(k-1)
 which can be written in exactly one way as the sum of two distinct previous members of U(a,b).
@@ -25,18 +25,18 @@ import time
 
 
 
-### 2, 5 --> WE NEED ONLY THIS
+### 2, 5 --> WE NEED  THIS !!!!
 # 2, 5, 7, 9, 11, 12, 13, 15, 19, 23, 27, 29, 35, 37, 41, 43, 45, 49, 51, 55, 61, 67, 69, 71, 79, 83, 85, 87, 89, 95, 99, 107,
 # 109, 119, 131, 133, 135, 137, 139, 141, 145, 149, 153, 155, 161, 163, 167, 169, 171, 175, 177, 181, 187, 193,
 # 195, 197, 205, 209, 211, 213, 215, 221, 225, 233, 235, 245
 
 
-### 2, 7 --> WE NEED ONLY THIS
+### 2, 7 --> AND  THIS ...
 # 2, 7, 9, 11, 13, 15, 16, 17, 19, 21, 25, 29, 33, 37, 39
 
 ### ...................  ###
 
-### 2, 21 --> WE NEED ONLY THIS
+### 2, 21 --> UNTIL  THIS  !
 # 2, 21, 23,
 
 
@@ -53,7 +53,7 @@ def Ulam_gen(n, lim) :
             print(n)
         if n==1: break
 
-Ulam_gen(155, 10300)
+# Ulam_gen(155, 10300)
 
 
 
@@ -199,9 +199,37 @@ print()
 # https://books.google.ro/books?id=1lCHYj5eV-EC&pg=PA85&lpg=PA85&dq=Ulam+sequence+algorithm&source=bl&ots=ccdsfVKnlk&sig=tZDbMn0S8LgyDNKnDYDW5tipXQU&hl=en&sa=X&ved=0ahUKEwj0vpXJkpjSAhVHhiwKHUqCBfw4ChDoAQg-MAY#v=onepage&q=Ulam%20sequence%20algorithm&f=false
 
 
+
+
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
+
+def generate_Ulam_2_5(count):
+    U25=[2 , 5 ]
+
+    while len(U25) < count :
+        D = dict()
+        for i in range(len(U25)) :
+            for j in range(i+1, len(U25)) :
+                n = U25[i]+U25[j]
+                if n not in D : D[ n ] = 1
+                else : D[n] +=1
+
+        # print([ k for k,v in D.items() ] )
+        n_min = min([ k for k,v in D.items() if (  k > U25[-1] and v == 1 ) ])
+        # print('chosen = ' ,n_min )
+        U25.append(n_min)
+
+    return U25
+
+print('\ngenerate_Ulam_2_5 : \n' )
+U2_5 = generate_Ulam_2_5( 100 )
+
+print(U2_5[:100])
+
+for i in range(1, len(U2_5)) :
+    print( U2_5[i-1], U2_5[i] ,'       diff = ' ,   U2_5[i] - U2_5[i-1] ,'     ', U2_5[i-1]%4 )
 
 
 

@@ -264,7 +264,7 @@ t2  = time.time()
 print('\nCompleted in :', round((t2-t1)/60, 6), 'min\n\n')
 
 
-print('\n================  My SECOND SOLUTION,   ===============\n')
+print('\n==============  My SECOND SOLUTION,  20 sec  ===============\n')
 t1  = time.time()
 
 def second_solution( lim ):
@@ -289,7 +289,7 @@ def second_solution( lim ):
 
     return print('\nAnswer : \t', S)
 
-# second_solution(10**4)              #       Answer : 	 878454337159
+second_solution(10**3)              #       Answer : 	 878454337159       Completed in : 0.358437 min
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)/60, 6), 'min\n\n')

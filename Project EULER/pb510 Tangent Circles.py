@@ -10,9 +10,9 @@ Let rA, rB and rC be the radii of A, B and C respectively.
 
 p510_tangent_circles.png
 
-Let S(n) = Σ r_A + r_B + r_C, for 0 < r_A ≤ r_B ≤ n where r_A, r_B and r_C are integers.
+Let S(n) = Σ ( r_A + r_B + r_C ) , for 0 < r_A ≤ r_B ≤ n where r_A, r_B and r_C are integers.
 
-The only solution for 0 < r_A ≤ r_B ≤ 5 is r_A = 4, r_B = 4 and rC = 1,
+The only solution for 0 < r_A ≤ r_B ≤ 5 is r_A = 4, r_B = 4 and r_C = 1   ,
 so S(5) = 4 + 4 + 1 = 9.
 
 You are also given S(100) = 3072.
@@ -69,34 +69,43 @@ def some_brute_force_first(lim) :
                 r_C = int(r_C)
                 S_n += ( r_A + r_B + r_C)
                 # if is_prime(int(r_C)) :
-                if is_square(r_C) :# == False  and is_prime(r_C)== False :
+                if (r_B/r_A )%1 != 0  :
+                # if not is_square( r_B//r_C )  :
+                # if is_square(r_C) :# == False  and is_prime(r_C)== False :
                     print('r_A = ', r_A, ' ,   r_B = ', r_B , ' ,   r_C = ', r_C, '          r_B/r_A =', r_B/r_A ,
-                          '        gcd(A,B,C)=  ', gcd3(r_A, r_B, r_C) , '      gcd_A_B = ',gcd(r_A, r_B) , '      gcd_A_C = ',gcd(r_A, r_C), '      gcd_B_C = ',gcd(r_B, r_C) )
+                          '        gcd(A,B,C)=  ', gcd3(r_A, r_B, r_C) , '      gcd_A_B = ',gcd(r_A, r_B) , '      gcd_A_C = ',gcd(r_A, r_C), '      gcd_B_C = ',gcd(r_B, r_C) ,'         B/C= ',  r_B/r_C )
 
 
     return print('\nS(n) = ', S_n )
 
-some_brute_force_first(2000)
+some_brute_force_first(20000)
 
 
 # CASES :
 # 1.  r_C - prime => r_A = R_B = R_C *4
 # 2. r_C - square =>
 
+# https://www.cut-the-knot.org/pythagoras/TangentCirclesSangaku.shtml
+@2017-11-02     -   I need to solve some kind of Pell equation of the form 1/sqrt(r_C) = 1/ sqrt(r_A) + 1/sqrt(r_B)
+where r_C is the smallest circlein between the two bigger circles and the line
 
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
 print('\n================  My FIRST SOLUTION,   ===============\n')
-# t1  = time.time()
+t1  = time.time()
+
+# def first_soln(up):
+#     S_n = 0
+#     for r_C in range(1, up ) :
+#         for k in range( 1,  1000 ):
 
 
 
 
-
-# t2  = time.time()
-# print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
 
 # print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')

@@ -24,6 +24,7 @@ def closest_product_subset_list_algorithm() :
     print(P1)
     print(P2)
 
+    #### Nice way to obtain all factors combinations
     Q1, Q2 = [1], [1]
     for i in P1 :
         Q1 += [ i*j for j in Q1 ]

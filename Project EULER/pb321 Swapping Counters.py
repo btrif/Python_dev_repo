@@ -1,64 +1,38 @@
-#  Created by Bogdan Trif on 14-10-2017 , 5:18 PM.
+#  Created by Bogdan Trif on 02-11-2017 , 8:17 PM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-                Modular Cubes, part 1           -               Problem 271
+Swapping Counters           -           Problem 321
 
-For a positive number n, define S(n) as the sum of the integers x, for which 1<x<n and
-x^3 ≡ 1 (mod n) .
+A horizontal row comprising of 2n + 1 squares has n red counters placed at one end and n blue counters at the other end,
+being separated by a single empty square in the centre.
+For example, when n = 3.
 
-When n=91, there are 8 possible values for x, namely : 9, 16, 22, 29, 53, 74, 79, 81.
+p321_swapping_counters_1.gif
+A counter can move from one square to the next (slide) or can jump over another counter (hop) as long as the square next to that counter is unoccupied.
 
-Thus, S(91) = 9+16+22+29+53+74+79+81 = 363.
+p321_swapping_counters_2.gif
+Let M(n) represent the minimum number of moves/actions to completely reverse the positions of the coloured counters; that is, move all the red counters to the right and all the blue counters to the left.
 
-Find S(13082761331670030) .
+It can be verified M(3) = 15, which also happens to be a triangle number.
+
+If we create a sequence based on the values of n for which M(n) is a triangle number then the first five terms would be:
+1, 3, 10, 22, and 63, and their sum would be 99.
+
+Find the sum of the first forty terms of this sequence.
+
 
 '''
 import time, zzz
-
-def egcd(a, b):         #Extended Euclidian Algorithm
-    if a == 0:
-        return (b, 0, 1)
-    else:
-        g, y, x = egcd(b % a, a)
-        return (g, x - (b // a) * y, y)
-
-def modinv(a, m):       # Modular Inverse
-    g, x, y = egcd(a, m)
-    if g != 1:
-        raise Exception('modular inverse does not exist')
-    else:
-        return x % m
-
-print('modinv Modular Inverse :\t', modinv(91**3, 9))
-print('modinv Modular Inverse :\t', modinv(91**3, 16))
 
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-def brute_force_test(n=91):
-    for x in range(2 , n ) :
-        if pow(x, 3, n ) == 1 :
-            print('x = ' + str(x) +'     ;    x^3 = 1    ( mod '+str(n)+' )'  )
-
-brute_force_test(91)
-
-# @2017-10-14 - NOTE - This is classical example of Chinese Reminder Theorem
-
-BEST
-https://math.stackexchange.com/questions/983971/modular-arithmetic-root     !!!!!
+C = [ 0, 0, 0, 1, 1, 1 ]
 
 
-https://math.stackexchange.com/questions/1678528/a-perfect-square-cubes-congruences
-https://stackoverflow.com/questions/2049413/modular-cubes-in-c-sharp
-https://math.stackexchange.com/questions/1789169/show-that-the-cube-of-any-integer-is-congruent-to-0-or-pm-1-pmod-7
-http://data.at.preempted.net/INDEX/articles/CRT.pdf
-https://www.di-mgt.com.au/crt.html
-http://www.eclasshome.com/attach/upload3/wh_54948731.pdf
-https://math.stackexchange.com/questions/15721/solve-x3-equiv-1-pmod-p-for-x
-http://www.math.umbc.edu/~campbell/Math413Spr03/Notes/8-9_Equations.html
-https://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm#The_algorithm
+
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')

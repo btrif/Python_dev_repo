@@ -107,6 +107,8 @@ brute_force_verification(down, up, step)
 # 45399.     (213, 2)          213.0704108974308          2.9441242937853107
 # 45400.     (213, 2)          213.07275752662517          2.944097624360894
 
+https://www.youtube.com/watch?v=iaBEKo5sM7w
+
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 

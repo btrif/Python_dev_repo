@@ -9,6 +9,7 @@
 #
 # The code below runs in 0.020 seconds.
 
+from math import sqrt, cos, sin, pi
 
 p_max = 100 * 10**6
 cnt = 0
@@ -110,3 +111,46 @@ def Heron_area_perimeter(a,b,c):
 from math import gcd
 def gcd3(a, b, c):
     return gcd(gcd(a, b), c)
+
+
+def compute_Heron_area_after_coordinates( p1, p2, p3 ) :
+    a = sqrt( (p1[0]-p2[0])**2 +  ( p1[1]-p2[1] )**2  )
+    b = sqrt( (p1[0]-p3[0])**2 +  ( p1[1]-p3[1] )**2 )
+    c = sqrt(  (p2[0]-p3[0])**2 +  ( p2[1]-p3[1] )**2 )
+    s = (a+b+c)/2
+
+    return sqrt( s*(s-a)*(s-b)*(s-c) )
+
+
+def Heron_area_perimeter(a,b,c):
+    s= (a+b+c)/2
+    return (s*(s-a)*(s-b)*(s-c))**(1/2)
+
+angleC = lambda a,b,c : acos( ( a**2 + b**2 - c**2) / (2*a*b) )*180/pi
+
+angleA =  lambda a,b,c : acos(( b**2 + c**2 - a**2) / (2*b*c))*180/pi
+
+angleB =  lambda a,b,c : acos( (c**2 + a**2 - b**2) / (2*c*a))*180/pi
+
+CE = lambda a,b,c : (sqrt( (a*b)*(a+b+c)*(a+b-c)) )/ (a+b)
+BG = lambda a,b,c : (sqrt( (a*c)*(a+c+b)*(a+c-b) ))/ (a+b)
+
+y =  lambda B_G, c, angleB :   sqrt( B_G*B_G + c*c - (2*B_G*c * cos( (angleB*pi)/(2*180) ) ))
+
+x =  lambda C_E, a, angleC :   sqrt(C_E*C_E + a*a - (2*C_E*a * cos( (angleC*pi)/(2*180) ) ))
+
+GE =  lambda x, y, angleA :   sqrt(x*x + y*y - (2*x*y * cos( (angleA*pi)/180 ) ))
+
+
+
+def Heronian_angles_area_after_coordinates( p1, p2, p3 ) :
+    from math import sqrt, cos, sin, pi, acos, asin
+    a = sqrt( (p1[0]-p2[0])**2 +  ( p1[1]-p2[1] )**2  )
+    b = sqrt( (p1[0]-p3[0])**2 +  ( p1[1]-p3[1] )**2 )
+    c = sqrt(  (p2[0]-p3[0])**2 +  ( p2[1]-p3[1] )**2 )
+    angleC =  acos( ( a**2 + b**2 - c**2) / (2*a*b) )*180/pi
+    angleA =  acos(( b**2 + c**2 - a**2) / (2*b*c))*180/pi
+    angleB =  acos( (c**2 + a**2 - b**2) / (2*c*a))*180/pi
+    return angleC, angleB, angleA , angleC+ angleB+ angleA
+
+Heronian_angles_area_after_coordinates((0,0) , (6, 6), (2, -1) )

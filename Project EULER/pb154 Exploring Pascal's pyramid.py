@@ -322,7 +322,9 @@ def  smart_brute_force(layer, zeros ):
         print('row = ',m,'     row_cnt= ', row_cnt,'       gen_cnt :', gen_cnt )
     return print('\nAnswer : \t', gen_cnt)
 
-# smart_brute_force(2*10**5, 12 )         #   Answer : 	 479742450
+smart_brute_force(2*10**5, 12 )         #   Answer : 	 479742450
+
+
 # smart_brute_force(20, 2)
 
 t2  = time.time()

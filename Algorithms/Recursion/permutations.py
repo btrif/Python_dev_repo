@@ -31,14 +31,25 @@ def permute( L , r,  l   ) :
             L[i], L[r] = L[r], L[i]
 
 
-
-
 permute(L, 0, len(L))
 print(P[:200])
 
-
-
 # print( list(permutations1(L))[:200])
+
+
+L = [1, 2, 3]
+
+def permu(L, a ):           # @2017-10-30, 15:20, by Bogdan Trif
+    if a == len(L) :
+        print(L[:])
+    for i in range(a, len(L)):
+        L[i], L[a] = L[a], L[i]
+        permu(L, a+1)
+        # Backtracking
+        L[i], L[a] = L[a], L[i]
+
+permu(L, 0)
+
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')

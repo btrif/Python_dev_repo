@@ -12,9 +12,9 @@ i.e. never form a "running crack".
 
 For example, the following 9×3 wall is not acceptable due to the running crack shown in red:
 
-There are eight ways of forming a crack-free 9×3 wall, written W(9,3) = 8.
+There are eight ways of forming a crack-free 9×3 wall, written W( 9 , 3 ) = 8.
 
-Calculate W(32,10).
+Calculate W( 32 , 10 ).
 
 '''
 import time, zzz
@@ -26,15 +26,28 @@ def partition_nr_into_given_set_of_nrs(nr, S):
         if n == 0:
             yield []
         for k in range(i, len(nrs)):
-            # if len([nrs[k]]) > lim : break
+
             if nrs[k] <= n:
                 for rest in inner(n - nrs[k], k):
-                    # if len([nrs[k]] + rest) > lim : break
+
                     yield [nrs[k]] + rest
     return list(inner(nr, 0))
 
 
+def combinations(N, length) :
+    if length == 0:
+        print('---'*20)
+        yield []
 
+    for i in range(len(N)) :
+        for j in combinations( N[i+1:], length-1 ) :
+            print(i,j ,  '       ', N[i+1:],  j , '       ' , [ N[i] ] + j )
+
+            if [N[i]][-1] != 2 :
+                yield [ N[i] ] + j
+
+N= [ 1, 2, 4, 8, 16, 32 ]
+print( '\nResult :\n',list( combinations(N, 4) ) )
 
 def unique_permutations(lst):
     ''':Description: Takes a list and makes ONLY Unique Permutations of a list with repeated elements.
@@ -52,6 +65,25 @@ def unique_permutations(lst):
                 yield (first_element,) + sub_permutation
 
 
+def check_compatibility(prev_row, current_row):
+    ''' Returns False if there is no compatibility, e.g. there are running cracks from a row to another '''
+    if len(prev_row) == len(current_row) :
+        length = len(prev_row)-1
+    else :
+        length = min( len(prev_row) , len(current_row) )
+
+    l1, l2 = 0, 0
+    S = set()
+    for i in range( length ):
+        l1 += prev_row[i]
+        l2 += current_row[i]
+        S = S.union({l1, l2})
+#         print (l1, l2,'    ', S )
+
+        if len(S) != 2*(i+1) :
+            return False
+
+    return True
 
 
 
@@ -61,24 +93,68 @@ print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
 
-def brute_force(u,v) :
-    S = [  2,3 ]
-    L =[]
-    P = partition_nr_into_given_set_of_nrs(u, S )
-    # print(P)
+
+r1, r2 = (3, 3, 3), (2, 2, 2, 3)
+check_compatibility(r1, r2)
+
+
+
+print('-----'*20)
+
+
+# def Walls(N , length, max, counter) :
+#
+#     if length == 0 : yield []
+#
+#     for i in range(len(N)) :
+#         for j in Walls( N[i+1:], length-1, max, counter ) :
+# #             print(i,j ,  '       ', N[i+1:], '  ', j , '       ' , [ N[i] ] + j ,'    ', length)
+#             S = [ N[i] ] + j
+#
+#             if 1 < len( [ N[i] ] + j )  :
+#
+#                 print(S , '       comb this  ', S[0],'      with that    ' ,S[1], '     check_comp = ',check_compatibility( S[0], S[1] )  , '        ' ,length)
+#                 # if not check_compatibility( S[0], S[1] )  :
+#                 #     continue
+#
+#
+#             if len( [ N[i] ] + j ) == max :
+#                 counter +=1
+#                 print(str(counter)+'.      ',  [ N[i] ] + j  )
+#
+#             yield [ N[i] ] + j
+#
+#
+# K =  list( Walls( R , 3, 3 , 0 ) )
+# print('\nThere are : ', len(K),'\n', K )
+
+# def solve_Walls(R) :
+#     pos = 0
+
+
+def ugly_ugly_brute_force_small_case( cols , rows) :
+    S = [ 2 , 3 ]
+    P = partition_nr_into_given_set_of_nrs( cols, S )
+    print(P)
+    R = []
     for part in P :
         u = list(unique_permutations(part))
-        # print( u)
-        L+= u
+        R+= u
 
-    print(len(L), L)
+    print('R : ', len(R),'\n', R)
 
-    for i in range(len(L)) :
-        print(str(i+1)+'.     ', L[i])
+    good = 0
+    for i in range(len(R)) :
+        for j in range(len(R)) :
+            if check_compatibility(R[i], R[j]  ) :
+                for k in range(len(R)) :
+                    if check_compatibility(R[j] ,  R[k]   ) :
+                        good += 1
+                        print(str(good)+'.      ' ,  i, j, k,  '          ' , R[i] ,  R[j] ,  R[k] )
 
+    return print( '\nAnswer : ' + str(good) )
 
-
-brute_force( 9, 3)
+ugly_ugly_brute_force_small_case( 9 , 3)
 
 
 t2  = time.time()

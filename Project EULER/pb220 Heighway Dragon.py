@@ -161,6 +161,7 @@ t1  = time.time()
 def dragon_path(n):
     length = 1
     pos = [0,1]
+
     while length < n :
         pos = [ pos[0]+pos[1], -pos[0]+pos[1] ]
         length*=2
@@ -168,7 +169,9 @@ def dragon_path(n):
     if length == n :  return pos
 
     diff = length - n
+
     pos2 = dragon_path(diff)
+
     pos2 = [ -pos2[1], pos2[0] ]
 
     return [ pos[0]+pos2[0]  , pos[1]+pos2[1] ]
@@ -385,7 +388,7 @@ print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 # http://ecademy.agnesscott.edu/~lriddle/ifs/heighway/heighway.htm
 
 print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
-print('\n--------------------------SOLUTION 0,  SUPER ELEGANT & SIMPLE --------------------------')
+print('\n--------------------------SOLUTION 0,  ITERATION, SUPER ELEGANT & SIMPLE --------------------------')
 t1  = time.time()
 
 # # ====Thu, 11 Dec 2008, 22:27, quilan, USA
@@ -394,16 +397,18 @@ t1  = time.time()
 
 
 def D(n):
-    x=y=x2=y2=0; s=n;
-    if(n&1==0): y2=-1;
-    while(s>0):
-        stv=s&3;
-        if(stv==1): x2,y2=x-y2,x2+y;
-        if(stv==2): x2,y2=-y2-1,x2;
-        if(stv==3): x2,y2=x2-y-1,y2+x;
-        x,y=x+y+1,y-x;
-        s>>=1;
-    return x2,y2+1;
+    x = y = x2 = y2 = 0;
+    s=n;
+    if ( n & 1 == 0 ) :
+        y2 = -1;
+    while ( s>0 ):
+        stv = s & 3;
+        if (stv == 1) :  x2, y2 = x-y2, x2+y;
+        if (stv == 2) : x2, y2 = -y2-1, x2;
+        if (stv == 3) : x2, y2 = x2-y-1, y2+x;
+        x, y = x+y+1, y-x;
+        s >>= 1
+    return x2,  y2+1
 
 #================================
 
@@ -416,7 +421,7 @@ print ("Time taken: ",(1000*(time()-start)) )
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n--------------------------SOLUTION 1,  JUST BEAUTIFUL --------------------------')
+print('\n--------------------------SOLUTION 1, RECURSION,  JUST BEAUTIFUL --------------------------')
 t1  = time.time()
 
 # ==== Sat, 6 Feb 2016, 00:53, Thierry Machicoane, Switzerland
@@ -471,7 +476,7 @@ t1  = time.time()
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n--------------------------SOLUTION 3,   --------------------------')
+print('\n--------------------------SOLUTION 3, RECURSION  --------------------------')
 t1  = time.time()
 
 # ==== Fri, 20 Jan 2012, 08:06, Turing Machine, USA
@@ -503,7 +508,7 @@ if __name__ == "__main__":
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n--------------------------SOLUTION 4,   --------------------------')
+print('\n--------------------------SOLUTION 4,  ITERATION --------------------------')
 t1  = time.time()
 
 # ==== Mon, 3 Jun 2013, 13:24, tom.wheldon, England
@@ -518,7 +523,7 @@ t1  = time.time()
 N = 10**12
 
 D = {0: complex(0,1), 1: complex(1,1)}
-for n in range(2,41):
+for n in range(2, 41 ):
     D[n] = D[n-2]*complex(0,-2)
 
 bn = format(N, 'b')

@@ -530,17 +530,18 @@ class PrimeTable():    #  ( ͡° ͜ʖ ͡°)  ### !! FIRST FASTEST
                 self.primes.append(i)
             for j in range(i + i, self.bound + 1, i):
                 visited[j] = True
-        print('Prime count:', len(self.primes))
+        print('Prime count:', len(self.primes) ,'           ATTENTION , LARGEST PRIME Included = ', self.primes[-1] ,'       !!!!!!!!!!!! ' )
 
 class Factorization():
 
     ''' Based on a prebuilt prime sieve, and we must pay attention that the prime up range is not
     to low, so that we don't miss a prime when we first factor . As default the value is set to 10.000
       So we need uprange /2         '''
-    def __init__(self):
-        self.prime_table = PrimeTable(10**4)
+    def __init__(self, bound):
+        self.bound = bound
+        self.prime_table = PrimeTable(bound)
 
-    def get_divisors(self, n):
+    def get_factors(self, n):
         d = n
         f = {}
         for p in self.prime_table.primes:
@@ -555,8 +556,14 @@ class Factorization():
         if d > 1:
             f[d] = 1
             #raise Exception('prime factor should be small', d)
+        return f
+
+
+    def get_divisors(self, n) :
+        f = self.get_factors(n)
         unpacking = [[p**e for e in range(f[p] + 1)] for p in f]
         return sorted([self._product(divisor) for divisor in itertools.product(*unpacking)])
+
 
     def _product(self, list):
         result = 1
@@ -565,9 +572,11 @@ class Factorization():
         return result
 
 
-F  = Factorization()
-print( F.get_divisors(180180) )
 
+F  = Factorization(10**4)
+print( F.get_factors(180180) )
+print( F.get_divisors(180180) )
+print('\n------------------')
 
 def get_divisors(n):      ### ( ͡° ͜ʖ ͡°)  SECOND FASTEST ,  MUST BE IMPROVED !! It is a sqrt(n) Algorithm
     from math import sqrt

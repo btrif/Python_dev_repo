@@ -4,8 +4,10 @@
 '''
                             Path sum: three ways        -       Problem 82
 NOTE: This problem is a more challenging version of Problem 81.
+
 The minimal path sum in the 5 by 5 matrix below, by starting in any cell in the left column and
-finishing in any cell in the right column, and only moving up, down, and right, is indicated in red and bold; the sum is equal to 994.
+finishing in any cell in the right column, and only moving up, down, and right, is indicated in red and bold;
+the sum is equal to 994.
 
                            131 673 234 103 18
                            201 96  342 965 150
@@ -29,7 +31,9 @@ def load_file(filename):
     return matrix
 
 matrix = load_file(filename)
-# for i in matrix :    print(i)
+matricea = deepcopy(matrix)
+
+for i in matrix :    print(i)
 
 # mT = transpose(matrix)
 # print('\n',mT)
@@ -75,94 +79,9 @@ M_test = [ [100,	100,	90,	100,	100],
 # min_three_ways_path(M_test)
 # min_three_ways_path(matrix)
 
-# FAILED :
-# Smallest path cost : 	 312831
-
-# print()
-# for i in range(len(B)): print(B[i])
-# print()
-#
-#
-# # print(mT[0])
-# for i in range(1, len(mT)-1):
-#     for j in range(0, len(mT)):
-#         if B[i][j] ==1 :
-#             if i == 1 or i == len(mT)-1 :        # 2-nd row (#1) and last row
-#                 mT[i][j] +=  M[i-1][j]
-#
-#             #if j%2 == 0 :
-#             if i < len(mT)-1 and j < len(mT)-2 :
-#                 if M[i-1][j+1] + M[i][j+1] < M[i-1][j] :        # Go To LEFT   __|
-#                     mT[i][j] += ( mT[i-1][j+1] + mT[i][j+1] )
-#
-#                 elif  M[i][j+1] +M[i+1][j+1] < M[i][j+1] :        # Go To RIGHT  |__
-#                     mT[i][j] += M[i][j+1] +M[i+1][j+1]
-#
-#                 else :
-#                     mT[i][j] += M[i-1][j]
-#
-#     print(mT[i])
-# print()
 # Characters :  ∟ ∟  ┐ ┐  ┐ ∟  ┌ ┌ ┐ _|
 
 
-# for i in range(len(mT)): print(mT[i])
-
-
-# matrix = deepcopy(m)        #              You must use deepcopy !!!!!!!!!!!!!!!!!!!!!!
-#
-# for i in range(1,len(m)):
-#     matrix[0][i] += matrix[0][i-1]
-#     matrix[i][0] += matrix[i-1][0]
-#     print(matrix[i])
-#
-# print('---------------- ')
-#
-# for i in range(1,len(m)):
-#     for j in range(1,len(m)):
-#             matrix[i][j] += min(matrix[i-1][j], matrix[i][j-1])
-#     print(matrix[i])
-
-
-
-
-
-
-
-
-
-
-
-
-
-#Matrix as it is :
-# for i in range(0,len(m)):
-#     for j in range(0, len(m)):
-#             if j == 0  :
-#                 continue
-#             if j == len(m)-1 :
-#                 m[i][j] += m[i][j-1]
-#
-#             elif i == 0 and len(m)-1 >  j>0 :
-#                 m[i][j] += min(m[i][j-1], m[i+1][j] )
-#
-#             elif i == len(m)-1 and len(m)-1 >  j > 0 :
-#                 m[i][j] += min(m[i][j-1], m[i-1][j] )
-#
-#             else:
-#                 print(m[i-1][j], m[i+1][j], m[i][j-1])
-#                 m[i][j] += min( m[i-1][j], m[i+1][j], m[i][j-1] )
-#                 if ( j <  len(m)-1 and mtx[i-1][j] < mtx[i+1][j] and  mtx[i-1][j] < mtx[i][j+1]   ) :
-#                      print( mtx[i-1][j] , mtx[i+1][j], mtx[i][j+1] )
-#                      fix_point = m[i][j]
-#                      m = [row[:] for row in mtx]
-#                      i = i - 1
-#                      m[i][j] +=fix_point
-#                      m[i+1][j] = 10**4
-#
-#             # print(m[i][j])
-#             # print(mtx[i][j])
-#     print(m[i])
 
 print('\n================  My FIRST SOLUTION,  DP ===============\n')
 t1  = time.time()
@@ -190,13 +109,11 @@ def three_ways_path( matrix ) :
     print('The Complete path is : ',sol)
     return print('\nThe minimal path is : \t', min(sol))
 
-three_ways_path(matrix)
+three_ways_path(matrix)             #       Answer  : 260324
 
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-
-
 
 
 print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
@@ -303,6 +220,7 @@ for i in range(1,len(matrix[0])):
                 min_sum = _sum
         matrix[j][i] = min_sum
 min_path = minimum
+
 for m in range(len(matrix)):
     if matrix[m][i] < min_path:
         min_path = matrix[m][i]
@@ -317,9 +235,11 @@ t1  = time.time()
 from functools import reduce
 
 def euler82():
-    f = open(filename, 'r' ).read()
-    f = list( map(lambda x:  map( int, x.split(',')), f.splitlines() ) )
-    f =  map( list, zip(*f))[::-1]
+    # f = open(filename, 'r' ).read()
+    # f = list( map(lambda x:  map( int, x.split(',')), f.splitlines() ) )
+    # f =  map( list, zip(*f))[::-1]
+    f = matrix
+
     def func(x,y):
         s = map(reduce.add,x,y)
         def part(s,x):
@@ -343,36 +263,283 @@ def euler82():
         return part(s,x)
     return min(reduce(func,f))
 
-euler82()
+# euler82()
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-# print('\n--------------------------SOLUTION 4,   --------------------------')
-# t1  = time.time()
+print('\n--------------------------SOLUTION 4,   --------------------------')
+t1  = time.time()
+
+import math
+
+matrix = deepcopy(matricea)
+
+def costValue(row, col):
+    if row<0 or row > len(costs)-1:
+        return math.inf
+    if col < 0 or col > len(costs[row])-1:
+        return math.inf
+    return costs[row][col]
+
+def leastCost () :
+    # start at last column: this is copy of matrix column
+    for row in range(len(matrix)): costs[row][-1] = matrix[row][-1]
+
+    # next, look to the previous column and get cost of coming
+    # from the left
+    # then we go down looking for cost of moving upards
+    # and afterwards sweep up looking at cost of moving down
+    for col in range(len(matrix[0])-2,-1,-1):
+        # scanning downwards
+        for row in range(len(matrix)):
+            # cost of going right
+            costs[row][col] = matrix[row][col] + costValue(row,col+1)
+            # cost of going up
+            costs[row][col] = min(costValue(row,col),
+                        matrix[row][col]+costValue(row-1,col))
+        # scanning upwards
+        for row in range(len(matrix[row])-1,-1,-1):
+            costs[row][col] = min(costValue(row,col),
+                        matrix[row][col]+costValue(row+1,col))
+        # helps with debugging
+        # showCosts()
+
+    return min(row[0] for row in costs)
+
+def showCosts():
+    for row in costs:
+        print(row)
+    print()
+
+
+
+costs = [[math.inf]*len(row) for row in matrix]
+
+answer = leastCost()
+print(answer)
+
+
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------------------SOLUTION 5, Dijkstra  algorithm   --------------------------')
+t1  = time.time()
+
+# ==== Thu, 25 Aug 2016, 20:32, mbh038, England
+# About 160 ms in Python.
 #
+# I use Dijkstra's algorithm ( I wanted to get the hang of this),
+# and construct a graph of the matrix as a dictionary (hash table),
+# indexed by coordinate and with the coordinates of all directly connected points as a list among
+# the values attached to each index, as defined by the movement rules.
 #
+# If, as in this problem, the start node and end node are anywhere along an edge,
+# then I add virtual nodes to the graph, one for each edge on which the path starts or finishes,
+# of zero value but connected to all real points along its corresponding edge, as they are to it.
 #
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-# print('\n--------------------------SOLUTION 5,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 6,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
+# The code is exactly the same as for problems 81 and 83.
+
+
+from timeit import default_timer as timer
+import math as m
+
+def PE_0082(filename = filename , sn='vl',  fn='vr',  rules='udr' ):
+    start = timer()
+    M = readfile(filename)
+    graph = gm(M,  rules , sn , fn )
+    print('Minimum path sum:',dijkstra(graph,sn,fn))
+    print ('Elapsed time: ',timer()-start,'s')
+
+def readfile(filename):
+    """returns matrix as a list of rows"""
+    with open(filename,'r') as file:
+        data  = file.readlines()
+    return [[int(x) for x in line.split(',')] for line in data]
+
+def gm(M,  rules, sn, fn ):
+    """returns a graph as a dictionary,indexed by coordinate. The values of each
+    element are a list of three components - the first is the total cost of visiting
+    that element along the chosen path, the second is the cost of that element and
+    the third is a list of coordinates of the elements to which the element is
+    directly connected. as determined by the rules.
+
+    sn and fn are the start and finish nodes
+
+    'vl','vr','vt' and 'vb are virtual nodes. If used, they denote/finishing starting anywhere
+    on the left,right, top or bottom  edges. .
+    """
+    rows, cols = len(M),len(M[0])
+    nodes = {(r,c):[m.inf,M[r][c],[]] for r in range(rows) for c in range(cols)}
+    movedict = {'u':(-1,0),'d':(1,0),'l':(0,-1),'r':(0,1)}
+    moves = [movedict[rule] for rule in [letter for letter in rules]]
+
+    for node in nodes:
+        for n in moves:
+            nodes[node][2].append(tuple(p+q for p, q in zip(node, n)))
+
+    if sn=='vl':
+        nodes['vl'] = [m.inf,0,[(r,0) for r in range(rows)]]
+        for r in range(rows):
+            nodes[(r,0)][2].append('vl')
+
+    if fn == 'vr':
+        nodes['vr'] = [m.inf,0,[(r,cols-1) for r in range(rows)]]
+        for r in range(rows):
+            nodes[(r,cols-1)][2].append('vr')
+
+    if fn == 'vt':
+        nodes['vt'] = [m.inf,0,[(0,c) for c in range(cols)]]
+        for c in range(cols):
+            nodes[(0,c)][2].append('vt')
+
+    if fn == 'vb':
+        nodes['vb'] = [m.inf,0,[(rows-1,c) for c in range(cols)]]
+        for c in range(cols):
+            nodes[(rows-1,c)][2].append('vb')
+    return nodes
+
+def dijkstra( graph, sn , fn ):
+    """uses Dijkstra's algorithm to find the lowest cost path between the start
+      and finish nodes in the graph. Returns the cost of that path.
+    """
+    nv = {}
+    cn = sn
+    graph[cn][0] = graph[cn][1]
+    while 1:
+        for nn in graph[cn][2]:
+            try:
+                value = graph[cn][0] + graph[nn][1]
+                if value < graph[nn][0]:
+                    graph[nn][0] = value
+                    nv[nn] = graph[nn]
+            except KeyError:
+                pass
+        cnv, cn = min((v[0],k) for k,v in nv.items())
+        if cn == fn: break
+        del(nv[cn])
+    return int(nv[fn][0])
+
+PE_0082(filename,  sn='vl', fn='vr',rules='udr'  )
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 6, NetworkX library  --------------------------')
+t1  = time.time()
+
+# === Mon, 28 Mar 2016, 17:52, juancroldan , Spain
+# Using Python NetworkX library
+
+import networkx as nx
+import matplotlib.pyplot as plt
+
+g = nx.DiGraph()
+
+with open(filename , "r") as f:
+	rows = f.read().split("\n")
+matrix = [list(map(int,n.split(","))) for n in rows]
+
+# weight considered when entering the node
+height = len(matrix)
+width = len(matrix[0])
+for y in range(0,height):
+	# add origin and end edges
+	g.add_edge("origin",(0,y),weight=matrix[y][0])
+	g.add_edge((width-1,y),"end",weight=0)
+	# horizontal edges
+	for x in range(0,width-1):
+		g.add_edge((x,y),(x+1,y),weight=matrix[y][x+1])
+
+# add vertical edges
+for x in range(0,width):
+	for y in range(0,width-1):
+		g.add_edge((x,y),(x,y+1),weight=matrix[y+1][x])
+	for y in range(1,width):
+		g.add_edge((x,y),(x,y-1),weight=matrix[y-1][x])
+
+path = nx.astar_path(g,"origin","end")
+
+total = sum(g[n1][n2]['weight'] for n1,n2 in zip(path[:-1],path[1:]))
+print(total)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+
+print('\n--------------------------SOLUTION 7,   --------------------------')
+t1  = time.time()
+
+# ===Fri, 8 Jul 2016, 12:35,  merkez3110, Turkey
+# Too long for a python code, clear though.
+
+def main():
+    n = 80
+    matrix = [[0 for col in range(n)] for row in range(n)]
+    data_file = open(filename, 'r')
+
+    row = 0
+    for line in data_file.readlines():
+        col = 0
+
+        for num in line.split(','):
+            matrix[row][col] = int(num)
+            col += 1
+
+        row += 1
+
+    data_file.close()
+    vector_min_next = [matrix[row][n - 1] for row in range(n)]
+
+    for col in range(n - 2, -1, -1):
+        vector_min_hist = list.copy(vector_min_next)
+
+        for row in range(n):
+            min_tmp_upward = vector_min_hist[row]
+            min_tmp_downwd = vector_min_hist[row]
+            sum_tmp_downwd = 0
+            sum_tmp_upward = 0
+
+            for row_downwd in range(row - 1, -1, -1):
+                sum_tmp_downwd += matrix[row_downwd][col]
+                tot_tmp = sum_tmp_downwd + vector_min_hist[row_downwd]
+
+                if tot_tmp < min_tmp_downwd:
+                    min_tmp_downwd = tot_tmp
+
+            for row_upward in range(row + 1, n):
+                sum_tmp_upward += matrix[row_upward][col]
+                tot_tmp = sum_tmp_upward + vector_min_hist[row_upward]
+
+                if tot_tmp < min_tmp_upward:
+                    min_tmp_upward = tot_tmp
+
+            vector_min_next[row] = min(min_tmp_downwd, min_tmp_upward) + matrix[row][col]
+
+    print(min(vector_min_next[row] for row in range(n)))
+    return
+
+
+main()
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+
+print('\n--------------------------SOLUTION 8,   --------------------------')
+t1  = time.time()
+
+# ===
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
 
 
 

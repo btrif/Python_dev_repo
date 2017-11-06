@@ -45,9 +45,9 @@ def brute_force( up_lim) :       # @2017-09-23 - Brute Force method was correcte
 
     return print('\nAnswer : \t', cnt +u - 1 )
 
-# up_lim = 10**2
-up_lim = 25*10**4
-# brute_force(  up_lim )
+up_lim = 10**3
+# up_lim = 25*10**4
+brute_force(  up_lim )
 
 
 
@@ -96,7 +96,8 @@ my_first_soln( 10**3 )
 ## CHECKS
 # solutions for perimeter < 10^4 is equal to 13656
 #  <= 20,000 that would make 29257 triangles
-
+https://arxiv.org/pdf/1508.07562.pdf
+https://benvitalenum3ers.wordpress.com/2015/12/09/diophantine-equation-x2-y2-z2-1-almost-pythagorean-triples/
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1),2), 's\n\n')

@@ -44,3 +44,4 @@ def draw():
 def mousePressed():
     grid[mouseY/w][mouseX/w] = -1 * grid[mouseY/w][mouseX/w]  
     # integer division is good here!
+

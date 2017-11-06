@@ -1,64 +1,49 @@
-#  Created by Bogdan Trif on 14-10-2017 , 5:18 PM.
+#  Created by Bogdan Trif on 02-11-2017 , 11:33 PM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-                Modular Cubes, part 1           -               Problem 271
+                            Luxury Hampers          -               Problem 236
 
-For a positive number n, define S(n) as the sum of the integers x, for which 1<x<n and
-x^3 ≡ 1 (mod n) .
+Suppliers 'A' and 'B' provided the following numbers of products for the luxury hamper market:
 
-When n=91, there are 8 possible values for x, namely : 9, 16, 22, 29, 53, 74, 79, 81.
+                Product	                                'A'	                                                    'B'
+            Beluga Caviar	                         5248	                                                640
+            Christmas Cake	                        1312	                                                    1888
+            Gammon Joint	                        2624	                                                    3776
+            Vintage Port	                            5760	                                                    3776
+            Champagne Truffles	                3936	                                                    5664
 
-Thus, S(91) = 9+16+22+29+53+74+79+81 = 363.
+Although the suppliers try very hard to ship their goods in perfect condition,
+there is inevitably some spoilage - i.e. products gone bad.
 
-Find S(13082761331670030) .
+The suppliers compare their performance using two types of statistic:
+
+The five per-product spoilage rates for each supplier are equal to the number of products gone bad
+divided by the number of products supplied, for each of the five products in turn.
+
+The overall spoilage rate for each supplier is equal to the total number of products gone bad
+divided by the total number of products provided by that supplier.
+
+To their surprise, the suppliers found that each of the five per-product spoilage rates was worse (higher)
+for 'B' than for 'A' by the same factor (ratio of spoilage rates),
+m>1; and yet, paradoxically, the overall spoilage rate was worse for 'A' than for 'B', also by a factor of m.
+
+There are thirty-five (35) m>1 for which this surprising result could have occurred,
+the smallest of which is 1476/1475.
+
+What's the largest possible value of m?
+
+Give your answer as a fraction reduced to its lowest terms, in the form u/v.
+
 
 '''
 import time, zzz
-
-def egcd(a, b):         #Extended Euclidian Algorithm
-    if a == 0:
-        return (b, 0, 1)
-    else:
-        g, y, x = egcd(b % a, a)
-        return (g, x - (b // a) * y, y)
-
-def modinv(a, m):       # Modular Inverse
-    g, x, y = egcd(a, m)
-    if g != 1:
-        raise Exception('modular inverse does not exist')
-    else:
-        return x % m
-
-print('modinv Modular Inverse :\t', modinv(91**3, 9))
-print('modinv Modular Inverse :\t', modinv(91**3, 16))
 
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-def brute_force_test(n=91):
-    for x in range(2 , n ) :
-        if pow(x, 3, n ) == 1 :
-            print('x = ' + str(x) +'     ;    x^3 = 1    ( mod '+str(n)+' )'  )
 
-brute_force_test(91)
-
-# @2017-10-14 - NOTE - This is classical example of Chinese Reminder Theorem
-
-BEST
-https://math.stackexchange.com/questions/983971/modular-arithmetic-root     !!!!!
-
-
-https://math.stackexchange.com/questions/1678528/a-perfect-square-cubes-congruences
-https://stackoverflow.com/questions/2049413/modular-cubes-in-c-sharp
-https://math.stackexchange.com/questions/1789169/show-that-the-cube-of-any-integer-is-congruent-to-0-or-pm-1-pmod-7
-http://data.at.preempted.net/INDEX/articles/CRT.pdf
-https://www.di-mgt.com.au/crt.html
-http://www.eclasshome.com/attach/upload3/wh_54948731.pdf
-https://math.stackexchange.com/questions/15721/solve-x3-equiv-1-pmod-p-for-x
-http://www.math.umbc.edu/~campbell/Math413Spr03/Notes/8-9_Equations.html
-https://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm#The_algorithm
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')

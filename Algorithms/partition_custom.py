@@ -4,7 +4,7 @@
 print('------------------------ My first function ---------------------')
 S = [ 1, 4, 9, 16 ]
 
-def partition_nr_into_given_set_of_nrs(nr , S):
+def partition_nr_into_given_set_of_nrs(nr , S):         # Very primitive function
     ''' Made by Bogdan Trif @ 2017-10-06, 20:00.
         :Description:  does the partition of a number into the given set of numbers. Example :
         take the number 9, and the set of numbers = {1, 4, 9}. It will yield the following partitions :
@@ -19,6 +19,7 @@ def partition_nr_into_given_set_of_nrs(nr , S):
     :return: lst, the list with all partitions
     '''
     lst = set()
+    S = sorted(S, reverse=False)
     # Build the base case :
     M = [1]*(nr%S[0]) + [S[0]] * (nr //S[0])
     # print(M)
@@ -88,17 +89,18 @@ print(partition_nr_into_given_set_of_nrs(9, S))
 
 print('\n-------------------  Recursive approach, with LIMIT  ---------------------- \n')
 
-def partition_nr_into_given_set_of_nrs(nr, S, lim):
+def partition_nr_into_given_set_of_nrs(nr, S,  lim=10 ):
     nrs = sorted(S, reverse=True)
-    def inner(n, i):
-        if n == 0:
-            yield []
-        for k in range(i, len(nrs)):
-            if nrs[k] <= n:
-                for rest in inner(n - nrs[k], k):
-                    if len([nrs[k]] + rest) > lim : break
-                    yield [nrs[k]] + rest
-    return list(inner(nr, 0))
+    def inner(n, i, lim ):
+        if lim >= 0 :
+            if n == 0:
+                yield []
+            for k in range(i, len(nrs)):
+                if nrs[k] <= n:
+                    for rest in inner(n - nrs[k], k , lim-1 ):
+
+                        yield [nrs[k]] + rest
+    return list(inner(nr, 0, lim))
 
 S = [  1,4,9,16 ]
 print(partition_nr_into_given_set_of_nrs(40, S, 10))
