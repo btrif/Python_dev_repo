@@ -31,16 +31,22 @@ What is the length of the minimal sequence describing D24 ?
 import time, zzz
 import numpy as np
 import matplotlib.pyplot as plt
+from math import sqrt
 
 def generate_pixels( N, plot = False ):
     cnt = 0
     X, Y = [], []
     for x in range(0, 2**N) :
+        Z = []      # used to display y max
         for y in range(0, 2**N) :
             if  ( x- 2**(N-1) )**2 + ( y - 2**(N-1) )** 2 <= ( 2**(2*N-2)) :
+            # if  ( x )**2 + ( y  )** 2 <= ( 2**(2*N-2)) :
                 cnt += 1
                 X.append(x+0.5) ; Y.append(y+0.5)
-                print( str(cnt)+ '.       x, y =  ', x , y ,'          black' ,'          ', ( x - 2**(N-1) )**2, ( y - 2**(N-1) )** 2 , ( 2**(2*N-2))  )
+                Z.append(y)
+            # if  ( x- 2**(N-1) )**2 + ( y - 2**(N-1) )** 2 == ( 2**(2*N-2)) :
+        y_max = max(Z)
+        print( str(cnt)+ '.      x, y =  ', x , y_max ,'        x^2= ', ( x - 2**(N-1) )**2,  '       y^2=' , ( y_max - 2**(N-1) )** 2 , '        R^2 = '  ,( 2**(2*N-2))  )
 
     if plot == True :
         ######     START PLOT    ###########
@@ -79,17 +85,34 @@ def generate_pixels( N, plot = False ):
 
         plt.grid(True)
 
-        plt.scatter(X, Y, color = 'slateblue', marker = 's' , s = 200  )
+        plt.scatter(X, Y, color = 'slateblue', marker = 's' , s = 500  )
 
         plt.show()
 
 
-generate_pixels( 6 , True )
+# generate_pixels( 5 , True )
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
+uncompressed = lambda N : sum([ 2**(2*i) for i in range(0, N)  ]) + 2*2**(2*N)          # CORRECT !
 
+print('uncompressed : ', uncompressed(5)  )
+
+N = 5
+for x in range( 2**N):
+    z = int(sqrt( ( 2**(2*N-2)) - ( x- 2**(N-1) )**2  ))
+    y_max = z + 2**(N-1)
+    y_min = 2**N - y_max
+    pix = min( y_max-y_min+1, 2**N  )
+    print('x = '  ,x, '     y_min = ' ,y_min, '     y_max = ' ,y_max, '      pixels =  ' , pix )
+
+
+# @2017-11-13,  It remains to solve this problem via recursion when I will master it better than
+# I am right now ! When it will come that day ? I AM curious !
+
+### STUDY CASE :
+# D5 :  minimal length =  499
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')

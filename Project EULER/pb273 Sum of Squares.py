@@ -1,94 +1,45 @@
-#  Created by Bogdan Trif on 06-11-2017 , 8:26 PM.
+#  Created by Bogdan Trif on 11-11-2017 , 9:11 PM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-Geometric triangles         -           Problem 370
+                    Sum of Squares          -           Problem 273
 
-Let us define a geometric triangle as an integer sided triangle with sides a ≤ b ≤ c so that
-its sides form a geometric progression, i.e. b^2 = a · c .
+Consider equations of the form: a^2 + b^2 = N ,    0 ≤ a ≤ b,   a, b and N integer.
 
-An example of such a geometric triangle is the triangle with sides a = 144, b = 156 and c = 169.
+For N=65 there are two solutions:
+a=1, b=8        and
+a=4, b=7.
 
-There are 861.805 geometric triangles with perimeter ≤ 10^6 .
+We call S(N) the sum of the values of a of all solutions of a^2 + b^2 = N,        0 ≤ a ≤ b, a, b and N integer.
 
-How many geometric triangles exist with perimeter ≤ 2.5·10^13 ?
+Thus S(65) = 1 + 4 = 5.
+
+Find ∑S(N), for all squarefree N ONLY divisible by primes of the form 4k+1 with 4k+1 < 150.
 
 
 '''
 import time, zzz
-from pyprimes import factorise
-from gmpy2 import is_prime
 
-def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
-    ''' Decompose a factor in its prime factors. This function uses the pyprimes module. THE FASTEST  '''
+def prime_sieve_generator(lower, upper):      #FIFTH FASTEST
+    """  Sieve of Eratosthenes
+    Create a candidate list within which non-primes will be marked as None.         """
+    cand = [i for i in range(3, upper + 1, 2)]
+    end = int(upper ** 0.5) // 2
 
-    return [val for sublist in [[i[0]]*i[1] for i in factorise(n)] for val in sublist]
-
-
-#print(list(i[0] for i in list(factorise(3932273))))
-
-
-import itertools
-class PrimeTable():    #  ( ͡° ͜ʖ ͡°)  ### !! FIRST FASTEST
-    def __init__(self, bound):
-        self.bound = bound
-        self.primes = []
-        self._sieve()
-
-    def _sieve(self):
-        visited = [False] * (self.bound + 1)
-        visited[0] = visited[1] = True
-        for i in range(2, self.bound + 1):
-            if not visited[i]:
-                self.primes.append(i)
-            for j in range(i + i, self.bound + 1, i):
-                visited[j] = True
-        print('Prime count:', len(self.primes) ,'           ATTENTION , LARGEST PRIME Included = ', self.primes[-1] ,'       !!!!!!!!!!!! ' )
-
-class Factorization():
-
-    ''' Based on a prebuilt prime sieve, and we must pay attention that the prime up range is not
-    to low, so that we don't miss a prime when we first factor . As default the value is set to 10.000
-      So we need uprange /2         '''
-    def __init__(self, bound):
-        self.bound = bound
-        self.prime_table = PrimeTable(bound)
-
-    def get_factors(self, n):
-        d = n
-        f = {}
-        for p in self.prime_table.primes:
-            if d == 1 or p > d:
-                break
-            e = 0
-            while d % p == 0:
-                d = d // p
-                e += 1
-            if e > 0:
-                f[p] = e
-        if d > 1:
-            f[d] = 1
-            #raise Exception('prime factor should be small', d)
-        return f
+    # Loop over candidates (cand), marking out each multiple.
+    for i in range(end):
+        if cand[i]:
+            cand[cand[i] + i::cand[i]] = [None] * ( (upper // cand[i]) - (upper // (2 * cand[i])) - 1 )
+    # Filter out non-primes and return the list.
+    return [2] + [ i for i in cand if i and i > lower ]
 
 
-    def get_divisors(self, n) :
-        f = self.get_factors(n)
-        unpacking = [[p**e for e in range(f[p] + 1)] for p in f]
-        return sorted([self._product(divisor) for divisor in itertools.product(*unpacking)])
+primes = [ i for i in prime_sieve_generator( 2, 150) if  i%4 == 1  ]
+print(primes)
 
 
-    def _product(self, list):
-        result = 1
-        for number in list:
-            result *= number
-        return result
-
-
-F  = Factorization( 100000 )
-print( F.get_divisors(36) )
-
-
+https://en.wikipedia.org/wiki/Brahmagupta#Pell.27s_equation
+https://projecteuler.chat/viewtopic.php?f=50&t=1793&start=20
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()

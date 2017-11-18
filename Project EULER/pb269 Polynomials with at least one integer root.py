@@ -1,54 +1,59 @@
-#  Created by Bogdan Trif on 02-11-2017 , 11:41 PM.
+#  Created by Bogdan Trif on 16-11-2017 , 12:10 PM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-                        Licence plates          -       Problem 371
+Polynomials with at least one integer root          -           Problem 269
 
-Oregon licence plates consist of three letters followed by a three digit number (each digit can be from [0..9]).
+A root or zero of a polynomial P(x) is a solution to the equation P(x) = 0.
+Define P_n as the polynomial whose coefficients are the digits of n.
 
-While driving to work Seth plays the following game:
-Whenever the numbers of two licence plates seen on his trip add to 1000 that's a win.
+For example,            P_5703(x) = 5x^3 + 7x^2 + 3.
 
-E.g. MIC-012 and HAN-988 is a win and RYU-500 and SET-500 too. (as long as he sees them in the same trip).
+We can see that:
 
-Find the expected number of plates he needs to see for a win.
-Give your answer rounded to 8 decimal places behind the decimal point.
+P_n(0) is the last digit of n,
+P_n(1) is the sum of the digits of n,
+P_n(10) is n itself.
 
-Note: We assume that each licence plate seen is equally likely to have any three digit number on it.
+Define Z(k) as the number of positive integers, n,
+not exceeding k for which the polynomial P_n has at least one integer root.
+
+It can be verified that                 Z(100 000) is 14696.
+
+What is Z(10^16)?
 
 
 '''
 import time, zzz
-from random import randint
+
+# === UNDERSTANDING OF THE PROBLEM ===
+# Smallest polynomial with integer root  is  k = 10 ==> P_10(x) = x,
+# next is P_11(x) = x+1, third is P_12(x) = x+2 ...
+#
+# The largest polynomial is :  k =10^16 => P_10^16(x) = x^16
+# the previous one was P_9...9 = 9*x^15+9*x^14 +... + 9x + 9
+
+=== LINKS ====
+http://www.sparknotes.com/math/algebra2/polynomials/section4.rhtml
+https://brilliant.org/wiki/rational-root-theorem/
+http://www.sosmath.com/algebra/factor/fac10/fac10.html
+http://imomath.com/index.php?options=622&lmm=0
+http://www.wolframalpha.com/input/?i=plot(x%5E4+%2B+2x%5E3+%E2%80%93+7x%5E2+%E2%80%93+8x+%2B+12)
+http://www.purplemath.com/modules/rtnlroot.htm
+
+## Is Pascal Triangle polynom with root = -1    and is  P_14641
+http://www.wolframalpha.com/input/?i=plot(x%5E4+%2B+4x%5E3+%2B+6x%5E2+%2B+4x+%2B+1)
+
+## Is Pascal Triangle polynom with root = -1    and is  P_1331
+http://www.wolframalpha.com/input/?i=plot(x%5E3+%2B+3x%5E2+%2B+3x%5E1+%2B++1)
+
+=== KEYWORDS
+Rational Root Theorem
+Rational Zeros of Polynomials
+
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
-
-def Monte_carlo_simulation(runs) :
-    S = 0.
-
-    for run in range(runs) :
-        Plates = [  randint(1, 999) ]
-        flag = False
-
-        while flag == False :
-            n = randint(1, 999)
-            for x in Plates:
-                if n + x == 1000 :
-                    flag = True
-                    break
-
-            Plates.append(n)
-        S+= len(Plates)
-    print('\nExpected number of plates = ', S/runs )
-    return S/runs
-
-
-# Monte_carlo_simulation(10**5)           #   Expected number of plates =  40.70064
-Monte_carlo_simulation(10**6)           #   Expected number of plates =  40.613682      40.643342    40.607116
-
-
-
 
 
 

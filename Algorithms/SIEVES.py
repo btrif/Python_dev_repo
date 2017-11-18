@@ -185,7 +185,7 @@ print('Euler_Totient_Sieve :\n' , Euler_Totient_Sieve(100))
 
 ######### TOTIENT AND FACTORIZATION AT ONCE  #############
 print('\n---------------   Sieve Factorization and Totient Sieve at once  -----------------')
-def sieve_factorization(n):   # Sieve Factorization and Totient Sieve at once
+def sieve_totient_factorization(n):   # Sieve Factorization and Totient Sieve at once
     ''':Description: Sieve Factorization and Totient Sieve at once
         The factorization is done only with the largest prime powers
         This is needed for the Idempotents Euler Problem 407             '''
@@ -206,4 +206,65 @@ def sieve_factorization(n):   # Sieve Factorization and Totient Sieve at once
 
     return print('\n',F,'\n', T)
 
-sieve_factorization(20)
+sieve_totient_factorization(20)
+
+
+#########  LARGEST FACTOR SIEVE  FACTORIZATION  #############
+def sieve_largest_factor(lim):
+    primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+    sieve = [0]*(lim+1)
+    # print(sieve)
+    for p in primes :
+#         print( p  , ((lim)//(p)) )
+        sieve[p :: p ] = [p] * ( (lim)//(p))
+    print(sieve)
+    return sieve
+
+
+
+sieve_largest_factor(20)
+
+
+
+################ SIEVE FACTORIZATION ##################
+def sieve_factorization(n):   # Sieve Factorization and Totient Sieve at once
+    ''':Description: Sieve Factorization            '''
+
+    from collections import defaultdict
+    F = defaultdict(list)
+
+    for p in range(2, n+1):
+        if p not in F :
+            for i in range(p+p, n+1, p ) :
+                j, k = i, 1
+                while j % p == 0 :
+                    j //= p
+                    F[i].append(p)
+
+
+    return print('\n',F)
+
+sieve_factorization(500)
+
+
+def sieve_factorization(n):   # Sieve Factorization and Totient Sieve at once
+    ''':Description: Sieve Factorization as Dictionary Count            '''
+
+    from collections import defaultdict
+    F = defaultdict(dict)
+
+    for p in range(2, n+1):
+        if p not in F :
+            for i in range(p+p, n+1, p ) :
+                j, k = i, 0
+                while j % p == 0 :
+                    j //= p
+                    k+=1
+                F[i][p] = k
+
+
+    return print('\n',F)
+
+sieve_factorization(50)
+
+#####################################

@@ -456,8 +456,10 @@ print (sum(matchSum(d, 11, 0, 0, 0) for d in range(1, 10)))
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n--------------------------SOLUTION 2,   --------------------------')
+print('\n--------------------------SOLUTION 2, Binary Search  --------------------------')
 t1  = time.time()
+
+# ====Sun, 9 Mar 2014, 18:33, ChopinPlover, Taiwan
 
 class Problem():
     def __init__(self):

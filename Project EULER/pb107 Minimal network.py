@@ -361,7 +361,7 @@ p107Boruvka(filename)
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n--------------------------SOLUTION 4,   --------------------------')
+print('\n--------------------------SOLUTION 4,  Prim  --------------------------')
 t1  = time.time()
 
 # Thu, 10 Nov 2016, 22:03, Khalid, Saudi Arabia

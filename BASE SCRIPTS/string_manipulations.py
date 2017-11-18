@@ -22,7 +22,7 @@ print( 'Completely Reverse the entire String :', str(i)+str(i)[::-1 ] )
 
 print('----------------------')
 
-L=[9,6,16,0,54,11,3, 11, 0, 6, 11]
+L=[ 9, 6, 16, 0, 54, 11, 3, 11, 0, 6, 11 ]
 print("Join a list of numbers in a string :",  ''.join( str(i) for i in  L ) )
 
 #Last few elements

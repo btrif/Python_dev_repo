@@ -1,54 +1,37 @@
-#  Created by Bogdan Trif on 02-11-2017 , 11:41 PM.
+#  Created by Bogdan Trif on 16-11-2017 , 11:55 AM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-                        Licence plates          -       Problem 371
+                Cutting Squares         -           Problem 270
 
-Oregon licence plates consist of three letters followed by a three digit number (each digit can be from [0..9]).
+A square piece of paper with integer dimensions N×N is placed with a corner at the origin
+and two of its sides along the x- and y-axes.
+Then, we cut it up respecting the following rules:
 
-While driving to work Seth plays the following game:
-Whenever the numbers of two licence plates seen on his trip add to 1000 that's a win.
+We only make straight cuts between two points lying on different sides of the square, and having integer coordinates.
+Two cuts cannot cross, but several cuts can meet at the same border point.
+Proceed until no more legal cuts can be made.
 
-E.g. MIC-012 and HAN-988 is a win and RYU-500 and SET-500 too. (as long as he sees them in the same trip).
+Counting any reflections or rotations as distinct,
+we call C(N) the number of ways to cut an N×N square.
 
-Find the expected number of plates he needs to see for a win.
-Give your answer rounded to 8 decimal places behind the decimal point.
+For example, C(1) = 2 and
+C(2) = 30 (shown below).
 
-Note: We assume that each licence plate seen is equally likely to have any three digit number on it.
+p270_CutSquare.gif
+
+What is C(30) mod 10^8 ?
 
 
 '''
 import time, zzz
-from random import randint
+
+http://mathworld.wolfram.com/ConnectedGraph.html
+http://mathworld.wolfram.com/AdjacencyMatrix.html
+https://en.wikipedia.org/wiki/Connected_component_%28graph_theory%29
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
-
-def Monte_carlo_simulation(runs) :
-    S = 0.
-
-    for run in range(runs) :
-        Plates = [  randint(1, 999) ]
-        flag = False
-
-        while flag == False :
-            n = randint(1, 999)
-            for x in Plates:
-                if n + x == 1000 :
-                    flag = True
-                    break
-
-            Plates.append(n)
-        S+= len(Plates)
-    print('\nExpected number of plates = ', S/runs )
-    return S/runs
-
-
-# Monte_carlo_simulation(10**5)           #   Expected number of plates =  40.70064
-Monte_carlo_simulation(10**6)           #   Expected number of plates =  40.613682      40.643342    40.607116
-
-
-
 
 
 

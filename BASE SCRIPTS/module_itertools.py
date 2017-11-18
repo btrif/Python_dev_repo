@@ -186,11 +186,25 @@ print('\n---------------------- Equivalent of the Arbitrary Sized FOR NESTED LOO
 for a, b, c, d in itertools.product(range(1, 4+1), repeat=4):
     print(a, b,c, d, end='   ')
 
-for x in itertools.product(range(1, 4+1), repeat=4):
+print('\n--------------------------')
+for x in itertools.product(range(0, 4+1), repeat=4):
     print(x, end='   ')
 
+print('\n--------------------------')
 for x in itertools.product(range(1, 3+1), repeat=6):
     print(x, end='   ')
+
+
+print('\n=======  Equivalent of the Arbitrary Sized FOR NESTED LOOPS  with SPECIFIC  LIMITon each element  =========')
+for x in itertools.product(*map(range, (5, 3, 2, 2))) :
+    print(x, end='   ')
+
+print('\n--------------------------')
+
+for x in itertools.product(range(5), range(3), range(2), range(2)) :
+    print(x, end='   ')
+
+
 
 print('\n\n ============== INTRO TO ITERTOOLS ===============')
 # Python provides a great module for creating your own iterators.

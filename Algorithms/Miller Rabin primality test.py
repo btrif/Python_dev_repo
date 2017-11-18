@@ -1,4 +1,6 @@
-import random
+import random, time
+
+
 
 def Miller_Rabin(p, k = 50):  # Miller-Rabin primality test
     if p == 2: return True
@@ -19,5 +21,12 @@ def Miller_Rabin(p, k = 50):  # Miller-Rabin primality test
             return False
     return True
 
+t1  = time.time()
+
+
 print( Miller_Rabin(151681868531) )
 print( Miller_Rabin(931609520341274652367578460852510282407178386733656844055367044369114498629648976054002050099910463009) )
+
+
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')

@@ -1,50 +1,59 @@
-#  Created by Bogdan Trif on 02-11-2017 , 11:39 PM.
+#  Created by Bogdan Trif on 16-11-2017 , 12:43 PM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-                    Geometric triangles         -           Problem 370
+    Largest prime factors of consecutive numbers            -       Problem 526
 
-Let us define a geometric triangle as an integer sided triangle with sides a ≤ b ≤ c so
-that its sides form a geometric progression, i.e. b^2 = a · c .
+Let f(n) be the largest prime factor of n.
 
-An example of such a geometric triangle is the triangle with sides :
-a = 144, b = 156 and c = 169.
+Let g(n) = f(n) + f(n+1) + f(n+2) + f(n+3) + f(n+4) + f(n+5) + f(n+6) + f(n+7) + f(n+8),
 
-There are 861.805 geometric triangles with perimeter ≤ 10^6 .
+the sum of the largest prime factor of each of nine consecutive numbers starting with n.
 
-How many geometric triangles exist with perimeter ≤ 2.5·10^13   ?
+Let h(n) be the maximum value of g(k) for 2 ≤ k ≤ n.
 
+You are given:
+
+        f(100) = 5,       f(101) = 101 ,....   =>       g(100) = 409
+
+                But the largest is not g(100) , instead it is : g(99) = 514
+
+                and therefore  =>                   h(100) = 417
+
+h(10^9) = 4896292593
+
+Find h(10^16).
 
 '''
 import time, zzz
-from pyprimes import factorise
-from gmpy2 import is_prime
+import numpy
+from collections import deque
 
-def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
-    ''' Decompose a factor in its prime factors. This function uses the pyprimes module. THE FASTEST  '''
+def prime_sieve_numpy(n):                       ### o(^_^)o  FASTEST  o(^_^)o  ###  Highly Efficient !!!
+    """ Input n>=6, Returns a array of primes, 2 <= p < n
+    http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n/3035188#3035188 """
+    sieve = numpy.ones(n//3 + (n%6==2), dtype=numpy.bool)
+    for i in range(1,int(n**0.5)//3+1):
+        if sieve[i]:
+            k=3*i+1|1
+            sieve[       k*k//3    :: 2*k ] = False
+            sieve[ k*(k-2*(i&1)+4)//3 :: 2*k ] = False
+    return numpy.r_[2,3,((3*numpy.nonzero(sieve)[0][1:]+1)|1)]
 
-    return [val for sublist in [[i[0]]*i[1] for i in factorise(n)] for val in sublist]
 
-
-#print(list(i[0] for i in list(factorise(3932273))))
-
-
-import itertools
 class PrimeTable():    #  ( ͡° ͜ʖ ͡°)  ### !! FIRST FASTEST
     def __init__(self, bound):
         self.bound = bound
         self.primes = []
         self._sieve()
 
-    def _sieve(self):
-        visited = [False] * (self.bound + 1)
-        visited[0] = visited[1] = True
-        for i in range(2, self.bound + 1):
-            if not visited[i]:
-                self.primes.append(i)
-            for j in range(i + i, self.bound + 1, i):
-                visited[j] = True
-        print('Prime count:', len(self.primes) ,'           ATTENTION , LARGEST PRIME Included = ', self.primes[-1] ,'       !!!!!!!!!!!! ' )
+    def _sieve(self):       # FOURTH      o(^_^)o
+        sieve = [True] * self.bound
+        for i in range(3, int(self.bound**0.5)+1, 2):
+            if sieve[i]:
+                sieve[ i*i :: 2*i ] = [False] * ( (self.bound-i*i-1) // (2*i) +1 )
+        self.primes = [2] + [i for i in range(3, self.bound , 2) if sieve[i] ]
+        print('Prime count:', len(self.primes) ,'           ATTENTION , LARGEST PRIME Included = ', self.primes[-1] ,'       !!!!!!!!!!!! \n' )
 
 class Factorization():
 
@@ -52,7 +61,6 @@ class Factorization():
     to low, so that we don't miss a prime when we first factor . As default the value is set to 10.000
       So we need uprange /2         '''
     def __init__(self, bound):
-        self.bound = bound
         self.prime_table = PrimeTable(bound)
 
     def get_factors(self, n):
@@ -85,52 +93,50 @@ class Factorization():
             result *= number
         return result
 
+def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
+    ''' Decompose a factor in its prime factors. This function uses the pyprimes module. THE FASTEST  '''
+    from pyprimes import factorise
+    return [val for sublist in [[i[0]]*i[1] for i in factorise(n)] for val in sublist]
 
-F  = Factorization( 10**6 )
-print( F.get_divisors(36) )
+
+# === IDEA --> Here we need the density of primes in a span of 8 numbers because :
+# For the example given :
+# g(100) = f(100) + f(101) +  f(102) + f(103) +  f(104) + f(105) +  f(106) + f(107) + f(108) =
+# 5 + 101 + 17 + 103 + 13 + 7 + 53 + 107 + 3 = 409
+# But this means that there is some other 8 span numbers with larger sum. Here are 3 large primes !
+# Question : Are there 4 large primes whose sum is greater. Let's check !
+#                 And... it seems that g(99) = 417 . QED !!!!
+
+# ===== IDEA TO SOLVE THE PROBLEM !!!
+# We must find the span of 8 numbers which have the greatest large primes :
+# similar to 101, 103, 107 which are primes
+# For this we need a function to check the density of primes ! The problem is that factorization  impossible
+# and the primes are always certainly above 10^15
+
+
+#####   PROOF OF CONCEPT  ###########
+
+F  = Factorization(10**4)
+
+def proof_of_concept(lim) :
+    h = 0
+    queue_9 = deque()
+    for i in range( 2, lim + 9 ):
+        f = max( get_factors(i))
+        if len(queue_9) == 9 : queue_9.popleft()
+        queue_9.append(f)
+        g = sum(queue_9)
+        if g > h :   h = g
+        print(str(i)+'.   ',   f ,    ' g('+str(i-8)+') =  ' , g          , '       queue9  =   ' , queue_9 )
+
+    return print('\nAnswer: \t h = ', h)
+
+proof_of_concept(100)
 
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-
-def brute_force_testing(lim):           # @2017-11-07 - Algorithm confirmed for small limits
-    cnt = 1
-    b=2
-    while b < lim/3 :
-        if b % 10**5 == 0 : print(b)
-
-        cnt+=1          # We add triangles like 3,3,3 ; 6, 6, 6,
-
-        if not is_prime(b) :
-            Dvs = F.get_divisors(b*b)
-
-            # print( str(b)+'.         ', b*b   , '          ',  Dvs  )
-
-            e = 0
-            while Dvs[e] < b :
-                a  =  Dvs[e]
-                c = b*b//a
-                if a+b+c <= lim and a+b > c :
-                    print(str(b)+ '.         ' ,a , b, c , '       a= ' , F.get_factors(a)  ,'        b=',  F.get_factors(b) ,'        c=',  F.get_factors(c) )
-                    cnt+=1
-
-                e+=1
-
-        b+=1
-
-    return print('\nGeom Triangles = ', cnt)
-
-# brute_force_testing(10**6)                    #           Geom Triangles =  861805        CORRECT !
-brute_force_testing(10**5)
-
-#### REFERENCE VALUES :
-# lim = 10^4 there are 6427 triangles
-# lim = 10^5 there are 75243 triangles
-
-# @2017-11-07- This problems needs a sublinear algorithm ( < O(n) ).
-# KEY OBSERVATION : Numbers with huge prime factors differences must be ignored .
-# Must do some kind of pre-build SMART factorization !
 
 
 t2  = time.time()

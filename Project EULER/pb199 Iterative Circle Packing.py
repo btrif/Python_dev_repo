@@ -176,7 +176,7 @@ problem.solve()
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n--------------------------SOLUTION 2,  soddy circles --------------------------')
+print('\n--------------------------SOLUTION 2,  soddy circles , RECURSION--------------------------')
 t1  = time.time()
 
 # === Mon, 5 Aug 2013, 20:23, ytsr, Python, china
@@ -244,13 +244,13 @@ print(euler199(10))
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n--------------------------SOLUTION 4,   --------------------------')
+print('\n--------------------------SOLUTION 4,  RECURSION  --------------------------')
 t1  = time.time()
 
 # ==== Sat, 6 Sep 2014, 04:53, muffoosta
 #
 # I don't know any of these theorems. I did the geometry based on tangency and relative positions of the circles,
-# then removing the positions through algebra and some head scratching left me with the relatively simple formula ' \
+# then removing the positions through algebra and some head scratching left me with the relatively simple formula '
 # for finding the inner circle radius. After that recursion finished it up.
 
 def f(a, b, c):

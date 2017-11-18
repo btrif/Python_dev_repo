@@ -60,22 +60,22 @@ t1  = time.time()
 
 
 
-def my_first_solution(up) :
-    P = prime_sieve_generator(1,up)
+def prime_subset_sums(up) :
+    P = prime_sieve_generator( 1, up)
     print(len(P) ,P[:100])
     T = [1] + [ 0 for i in range(sum(P)) ]
 
     for p in P :
-        sp = sum( P[:P.index(p)+1] )
-        print(p,'       ' ,sp )
-        for i in range( sp,  p-1 , -1) :
+        s_sum = sum( P[:P.index(p)+1] )
+        print('prime = ',p,'       s_sum= ' ,s_sum, '     P,index(p)= ', P.index(p) ,'       '  ,P[:P.index(p)+1] )
+        for i in range( s_sum,  p-1 , -1) :
             T[i] = T[i] + T[i-p]
 
     print(T[:100])
     S =   sum( [ T[i] for i in range(len(T))  if is_prime(i) ] )
     return print('\nAnswer : \t' , S%10**16 , '\n', S )
 
-# my_first_solution(5000)             #   Answer : 	 9275262564250418
+prime_subset_sums(5000)             #   Answer : 	 9275262564250418
 
 
 

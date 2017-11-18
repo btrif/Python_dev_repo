@@ -1,54 +1,34 @@
-#  Created by Bogdan Trif on 02-11-2017 , 11:41 PM.
+#  Created by Bogdan Trif on 10-11-2017 , 8:12 PM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-                        Licence plates          -       Problem 371
+                Squares under a hyperbola           -       Problem 247
 
-Oregon licence plates consist of three letters followed by a three digit number (each digit can be from [0..9]).
+Consider the region constrained by 1 ≤ x and 0 ≤ y ≤ 1/x.
 
-While driving to work Seth plays the following game:
-Whenever the numbers of two licence plates seen on his trip add to 1000 that's a win.
 
-E.g. MIC-012 and HAN-988 is a win and RYU-500 and SET-500 too. (as long as he sees them in the same trip).
+Let S1 be the largest square that can fit under the curve.
+Let S2 be the largest square that fits in the remaining area, and so on.
 
-Find the expected number of plates he needs to see for a win.
-Give your answer rounded to 8 decimal places behind the decimal point.
+Let the index of Sn be the pair (left, below) indicating the number of squares to the left
+of Sn and the number of squares below S_n.
 
-Note: We assume that each licence plate seen is equally likely to have any three digit number on it.
+
+The diagram shows some such squares labelled by number.
+S_2 has one square to its left and none below, so the index of S_2 is (1,0).
+
+It can be seen that the index of S_32 is (1,1) as is the index of S50.
+50 is the largest n for which the index of Sn is (1,1).
+
+What is the largest n for which the index of S_n is (3,3)?
 
 
 '''
 import time, zzz
-from random import randint
+
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
-
-def Monte_carlo_simulation(runs) :
-    S = 0.
-
-    for run in range(runs) :
-        Plates = [  randint(1, 999) ]
-        flag = False
-
-        while flag == False :
-            n = randint(1, 999)
-            for x in Plates:
-                if n + x == 1000 :
-                    flag = True
-                    break
-
-            Plates.append(n)
-        S+= len(Plates)
-    print('\nExpected number of plates = ', S/runs )
-    return S/runs
-
-
-# Monte_carlo_simulation(10**5)           #   Expected number of plates =  40.70064
-Monte_carlo_simulation(10**6)           #   Expected number of plates =  40.613682      40.643342    40.607116
-
-
-
 
 
 

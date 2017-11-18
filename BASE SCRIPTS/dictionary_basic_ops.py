@@ -83,8 +83,8 @@ print('\n Interogate about a value :' , list(girls.keys())[list(girls.values()).
 
 
 
-# Reverse the Dictionary , keys become values :
-print('\n-------------  Reverse the Dictionary , keys become values : ----------------------')
+# Reverse the Dictionary , keys become values :  reverse
+print('\n-------------  Reverse ( reverse)  the Dictionary , keys become values : ----------------------')
 new_girls = dict(zip(girls.values(),girls.keys()))
 print(new_girls)
 print(new_girls[19])
@@ -106,9 +106,59 @@ print('---'*15)
 girls.update(boys)
 print('The new dictionary containing GIRLS & BOYS is :     ',girls)
 
+print('\n -------------------- Join, join two dictionaries ---------------------')
+x = {'a':1, 'b': 2}
+y = {'b':10, 'c': 11}
+print('Initial dictionaries :  ', x, y )
+
+print('\n### Mehod I     -   In Python 3.5 or greater')
+z = {**x, **y}
+print(z)
+
+print('\n### Mehod II     -   In Python 2, (or 3.4 or lower) write a function:')
+def merge_two_dicts(x, y):
+    z = x.copy()   # start with x's keys and values
+    z.update(y)    # modifies z with y's keys and values & returns None
+    return z
+
+z = merge_two_dicts(x, y)
+print(z)
 
 
-print('---'*15,'  Dictionary Comprehension  ','---'*15)
+print('\n### Mehod III     ')
+x = {'a':1, 'b': 2 }
+y = {'b':10, 'c': 11 }
+print( list(x.items()) , list(y.items()) )
+print( list(x.items()) + list(y.items()) )
+
+### Transform a list of tuples of two elements directly into a dictionary   !!!!
+z = dict(list(x.items()) + list(y.items()))
+print(z)
+
+
+
+print('\n### Mehod IV     ')
+z = x.copy()
+z.update(y)
+print(z)
+
+print('\n### Mehod V     ')
+z = dict(x, **y)
+
+print(z)
+
+
+
+
+
+
+
+print('\n','---'*15,'  Dictionary Comprehension  ','---'*15)
+
+x = { 2**k : k*(k+1)//2 for k in range(1, 5) }         #       Dictionary Comprehension
+print(x)
+
+
 
 #Python 2.7+ introduces Dictionary Comprehension. Building the dictionary from the list will get you the count as well as get rid of duplicates.
 a = [1,1,1,1,2,2,2,2,3,3,4,5,5]
@@ -116,6 +166,8 @@ d = {x : a.count(x) for x in a}
 print(d)
 a, b = d.keys(), d.values()
 print(a , b)
+
+
 
 print('\n------------------Return the Key with the Largest / Smallest Value--------------------------')
 

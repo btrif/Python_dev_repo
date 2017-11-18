@@ -54,6 +54,8 @@ import time
 import numpy as np
 
 # filePath = r'pb185 Number Mind.txt'
+from copy import deepcopy
+
 filePath = r'pb185 Number Mind_test.txt'
 
 def build_matrices_M_and_Z(filepath):
@@ -75,11 +77,11 @@ def build_matrices_M_and_Z(filepath):
         # V[i+1] = [ [int(i) for i in list(n1)] , int(n2)  ]
     return M, Z
 
-M, Z = build_matrices_M_and_Z(filePath)
+A, B = build_matrices_M_and_Z(filePath)
 
-print('\nM potential matrix : \n', M)
-# for m in range(len(M)):  print(M[m])
-print('\nZ Check Matrix : \t', Z)
+print('\nA potential matrix : \n', A)
+# for m in range(len(A)):  print(A[m])
+print('\nB Check Matrix : \t', B)
 
 
 
@@ -96,9 +98,8 @@ if test == True :
     print('Dot product II : \t' ,np.dot(A,B))
     print( 'Element : A1,0 : \t',A[1][0])
 
+############## START OLD CODE ##################
 
-print('\n================  My FIRST SOLUTION,   ===============\n')
-# t1  = time.time()
 
 # Building the X initial matrix which is the correct mapping of the values :
 # We use the following model to map the correct values in a matrix :
@@ -118,13 +119,13 @@ def build_initial_matrix_X(M) :
             X [j] [M [i][j]]  = 1
     return X
 
-X = build_initial_matrix_X(M)
+# X = build_initial_matrix_X(A)
 # print('X MAIN Matrix obtained from the specified conditions : \n', X, '\n',X.transpose() )
 
 
 # Now once we constructed the main X matrix we eliminate the elements which =0  from the above statement.
 # In the case we study a_7,0 + a_0,1 + a_7,2 + a_9,3 + a_4,4 = 0 so we eliminate those elements !
-print('\nEliminate the 0 elements to simplify the matrix : ,')
+# print('\nEliminate the 0 elements to simplify the matrix : ,')
 
 def clean_main_matrix_X_of_zero_elements( X, Z, M):
     ''':Description: If 0 elements appear in the Z Check Matrix, then the matrix X
@@ -172,7 +173,9 @@ def clean_M_clean_Z(M, Z):
     print( M[: , 0] )
     return M, Z
 
-print('--------- Clean M & Clean Z :---------- \nM Matrix :\n', clean_M_clean_Z(M, Z)[0],'\n\n Z: ', clean_M_clean_Z(M,Z)[1] )
+# print('--------- Clean M & Clean Z :---------- ' )
+# print('\nA Matrix :\n', clean_M_clean_Z(A, B)[0] )
+# print( '\n\n Z: ', clean_M_clean_Z( A, B )[1] )
 
 def check_complete_M_Z(M, Z ):
     def count_10s_in_M(M):
@@ -191,7 +194,7 @@ def check_complete_M_Z(M, Z ):
 
     return False
 
-print('\ncheck_complete_main_matrix : \t',check_complete_M_Z(M, Z),'\n------------------------' )
+# print('\ncheck_complete_main_matrix : \t',check_complete_M_Z(A, B),'\n------------------------' )
 
 # M1 = np.array([[1, 10, 10],[10,4,10],[10,10,10], [10, 10, 2]])
 # Z1 = np.array([0, 0, 0, 0])
@@ -309,38 +312,117 @@ def solve_number_mind(X, Z, M):
 
     print('\n',X)
 
-    # pos = [0, 0]
-    # if not find_next_avail_pos(X, pos) :
-    #     print('TRUE !!!!!!!!!!!')
-    #     return True
-    #
-    #     # We assign list values to row and col that we got from find_next_empty_location function
-    # row, col = pos[0], pos[1]
-    # print('row, col = ', row, col )
-    #
-    # for row in range(len( X.transpose()[col] )) :
-    #     if X[row][col] == 1 :
-    #         num = col
-    #         print('>>> ',X[row][col],'     ', num)
+################        FINISH OLD CODE          ###############
 
 
-# solve_number_mind(X, Z, M)
-# print(X)
+print('\n================  My FIRST SOLUTION,   ===============\n')
+t1  = time.time()
+
+A, B = build_matrices_M_and_Z(filePath)
+N = [0]* len(A[0])
+
+print('\nA potential matrix : \n', A)
+# for m in range(len(A)):  print(A[m])
+print('\nB Check Matrix : \t', B)
+
+NR = ''     # Here we deposit the chosen digits
+
+def initial_cleanup_of_zero(A, B):
+    for i in range(len(B)) :
+        if B[i] == 0 :
+            J = A[i]
+            # print(J)
+            for j in range(len(J)):
+                for k in range(len(A)) :
+                    if J[j] == A[k][j] :
+                        A[k][j] = -1
+    print('\n',A)
+    return A
+
+#  Initial cleaning of zeros  :
+A = initial_cleanup_of_zero(A, B)
 
 
-# print('\n',np.sum(Z))
+
+def find_available_position_column( pos, A, B ) :           # NOT USED, Works by going on columns
+    rows = len(A)
+    cols = len(A[0])
+    rng = cols*rows
+    o = pos[0] + pos[1]*rows
+    print(o)
+    for O in range(o, rng):
+        i, j = divmod(O, rows )[::-1]
+        print('pos = ', i , j  )
+        if A[i][j] >0 and B[i] > 0 :
+            pos = ( i, j )
+            return True
+    return False
 
 
+def find_available_position( pos, A, B ) :
+    rows = len(A)
+    cols = len(A[0])
+    rng = cols*rows
+    o = pos[0]*cols + pos[1]
+    # print(o)
+    for O in range(o , rng):
+        i, j = divmod(O, cols )
+        # print('pos = ', i , j  )
+        if A[i][j] >0 and B[i] > 0 :
+            pos[0] = i
+            pos[1] = j
+            return True
+    return False
+
+print('find_available_position : ' ,find_available_position([ 0, 4 ], A, B ) )
 
 
+column = lambda col, A : A[ : , col]                 # this is because it uses numpy module
+print( column(0, A)  )             # the column of the matrix
 
 
+C = deepcopy(A)
+
+def do_you_mind( A, B, C, N ):
+    pos = [ 0, 0 ]
+
+    if not find_available_position( pos, A, B ) :
+        print('\nN :  ', N)
+        return True
+
+    # pos = find_available_position(pos, A, B)
+    row, col = pos
+
+    while sum(B) != 0 :
+        if B[col] > 0 :         # here actually col is row in A !!!
+            B[col] -= 1
+            N[col] = A[row][col]
+            A[row][col] = -1
+            # update also the next position :
+            # o = pos[0]*len(A[0])+ pos[1]
+            # pos = divmod(o+1, len(A[0])  )
+
+            if do_you_mind( A, B, C, N ) :
+                return True
+
+        # Backtracking here :
+            A[row][col] = C[row][col]
+            B[col] +=1
+            N[col] = 0
+
+    return False
 
 
+do_you_mind( A, B, C, N )
 
 
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+#@2017-11-11 it does NOT update the pos position !!!!!!!!!!!!!!!
+
+
+#@2017-11-10 nu trebuie sa inlocuiesc valorile in matricea A
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
 # print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')

@@ -522,14 +522,12 @@ class PrimeTable():    #  ( ͡° ͜ʖ ͡°)  ### !! FIRST FASTEST
         self.primes = []
         self._sieve()
 
-    def _sieve(self):
-        visited = [False] * (self.bound + 1)
-        visited[0] = visited[1] = True
-        for i in range(2, self.bound + 1):
-            if not visited[i]:
-                self.primes.append(i)
-            for j in range(i + i, self.bound + 1, i):
-                visited[j] = True
+    def _sieve(self):       # FOURTH      o(^_^)o
+        sieve = [True] * self.bound
+        for i in range(3, int(self.bound**0.5)+1, 2):
+            if sieve[i]:
+                sieve[ i*i :: 2*i ] = [False] * ( (self.bound-i*i-1) // (2*i) +1 )
+        self.primes = [2] + [i for i in range(3, self.bound , 2) if sieve[i] ]
         print('Prime count:', len(self.primes) ,'           ATTENTION , LARGEST PRIME Included = ', self.primes[-1] ,'       !!!!!!!!!!!! ' )
 
 class Factorization():
@@ -538,7 +536,6 @@ class Factorization():
     to low, so that we don't miss a prime when we first factor . As default the value is set to 10.000
       So we need uprange /2         '''
     def __init__(self, bound):
-        self.bound = bound
         self.prime_table = PrimeTable(bound)
 
     def get_factors(self, n):
@@ -714,7 +711,8 @@ print('\nDigital Root of a number : \t 467 \t =\t' ,dr(467) )
 
 print('\n------------------  EULER Phi,  Φ (n) of a number, EULER TOTIENT -------------------- ')
 
-def euler_totient(n):           # Remark : For large array better use Sieve approach
+
+def euler_totient( dict_list_int ):           # Remark : For large array better use Sieve approach
     """ **©** Made by Bogdan Trif @ 2017-02-08 .
     returns Euler totient (phi) of n = Φ (n)
         Uses the formula of the Totient  : Φ (n) =  Π {p | n}  n *(1 - 1/p) ;
@@ -724,14 +722,29 @@ def euler_totient(n):           # Remark : For large array better use Sieve appr
         and may also be called Euler's phi function.
         Example : Φ (12) = 4 =   [1,5,7,11]
         https://en.wikipedia.org/wiki/Euler's_totient_function
-        http://marcharper.codes/2015-08-07/totients.html            """
-    from pyprimes import factorise
-    phi = n
-    pfs = list(factorise(n))
-    print(pfs)
+        http://marcharper.codes/2015-08-07/totients.html
+        :D: is a dictionary of the form {p1:k1, p2:k2...}. E.g : for 90 = {2:2, 3:2, 5:1 }
+        or it is a list of the form 180 = [2, 2, 3, 3, 5 ]
+        or it is an INT number
+        """
+    if type(dict_list_int) == dict :
+        pfs = [ i for i in dict_list_int ]
+        phi = 1
+        for a in  [ i**j for i,j in dict_list_int.items() ] :
+            phi *= a
+    if type(dict_list_int) == list :
+        pfs = set(dict_list_int)
+        phi = 1
+        for a in dict_list_int :
+            phi *= a
+    if type(dict_list_int) == int :
+        pfs = [ i[0] for i in factorise(dict_list_int)]
+        phi = dict_list_int
+
     for pf in pfs:
-        phi*=(1-1/pf[0])
+        phi *= (1-1/pf)
     return int(phi)
+
 
 print('euler_totient : \t', euler_totient(600))
 print('euler_totient : \t', euler_totient(90))

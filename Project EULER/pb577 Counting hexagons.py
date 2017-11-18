@@ -1,55 +1,35 @@
-#  Created by Bogdan Trif on 02-11-2017 , 11:41 PM.
+#  Created by Bogdan Trif on 12-11-2017 , 11:26 AM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-                        Licence plates          -       Problem 371
+                                Counting hexagons           -           Problem 577
 
-Oregon licence plates consist of three letters followed by a three digit number (each digit can be from [0..9]).
+An equilateral triangle with integer side length n≥3
+ is divided into n^2 equilateral triangles with side length 1 as shown in the diagram below.
 
-While driving to work Seth plays the following game:
-Whenever the numbers of two licence plates seen on his trip add to 1000 that's a win.
+The vertices of these triangles constitute a triangular lattice with (n+1)(n+2)/2 lattice points.
 
-E.g. MIC-012 and HAN-988 is a win and RYU-500 and SET-500 too. (as long as he sees them in the same trip).
+Let H(n)H(n) be the number of all regular hexagons that can be found by connecting 6 of these points.
 
-Find the expected number of plates he needs to see for a win.
-Give your answer rounded to 8 decimal places behind the decimal point.
+p577_counting_hexagons.png
 
-Note: We assume that each licence plate seen is equally likely to have any three digit number on it.
+For example, H(3)=1,
+H(6)=12 and
+H(20)=966.
 
+Find ∑ { n=3, 12345} H(n)
 
 '''
 import time, zzz
-from random import randint
+
+T = lambda n : n*(n+1)//2            #   '''  Computes the triangular number of n '''
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-def Monte_carlo_simulation(runs) :
-    S = 0.
-
-    for run in range(runs) :
-        Plates = [  randint(1, 999) ]
-        flag = False
-
-        while flag == False :
-            n = randint(1, 999)
-            for x in Plates:
-                if n + x == 1000 :
-                    flag = True
-                    break
-
-            Plates.append(n)
-        S+= len(Plates)
-    print('\nExpected number of plates = ', S/runs )
-    return S/runs
-
-
-# Monte_carlo_simulation(10**5)           #   Expected number of plates =  40.70064
-Monte_carlo_simulation(10**6)           #   Expected number of plates =  40.613682      40.643342    40.607116
-
-
-
-
+n = 6
+for side in range( 1, 3) :
+    print( T( n-side-1 )  )
 
 
 t2  = time.time()

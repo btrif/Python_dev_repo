@@ -114,12 +114,7 @@ print(D)
 D = sum(D)
 res =  D* gmpy2.comb(25,3)  / gmpy2.fac(100)
 
-print('\nAnswer : \t',  "{:.12f}".format(float(res) ) )
-
-### FAILED
-### 0.000000060392          #  100*99*98
-# 0.000000058593            # 100**3
-#   0.000134762752
+print('\nAnswer : \t',  "{:.12f}".format(float(res) ) )             #   Answer : 	 0.001887854841
 
 
 
@@ -129,25 +124,55 @@ t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
-# print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
-# print('\n--------------------------SOLUTION 1,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 2,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
+print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
+print('\n--------------------------SOLUTION 1,  Inclusion-exclusion principle --------------------------')
+t1  = time.time()
+
+
+# === Thu, 8 May 2014, 20:47, ChopinPlover, Taiwan
+# Inclusion-exclusion principle
+
+from math import factorial
+
+
+def C(n, m):
+    return factorial(n) // factorial(m) // factorial(n - m)
+
+def main1():
+    sample_space_size = factorial(100)
+    event_size = C(25, 3) * sum([(-1)**i * C(22, i) * factorial(97-i) for i in range(23)])
+    print(event_size / sample_space_size)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 2,   --------------------------')
+t1  = time.time()
+
+# ==== Sat, 12 May 2012, 02:22, ving, USA
+# Same as linguo in the top spot, in Python 3:
+
+def choose(n, k):
+    return factorial(n) // (factorial(k) * factorial(n-k))
+
+def prob(n, p, s):
+    d = p - s
+    n1 = n - d
+    sign = 1
+    f = 0
+    for k in range(s+1):
+        f += sign * choose(s, k) * factorial(n1 - k)
+        sign = -sign
+    return f * choose(p, d) / factorial(n)
+
+# 22 primes out of 25 below 100
+print("{0:.12f}".format(prob(100, 25, 22)))  # Answer:  0.001887854841
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
 # print('\n--------------------------SOLUTION 3,   --------------------------')
 # t1  = time.time()
 #

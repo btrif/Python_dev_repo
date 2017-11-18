@@ -2,7 +2,7 @@
 # © Solved by Bogdan Trif @
 #The  Euler Project  https://projecteuler.net
 '''
-Harshad Numbers     -       Problem 387
+                Harshad Numbers     -       Problem 387
 
 A Harshad or Niven number is a number that is divisible by the sum of its digits.
 201 is a Harshad number because it is divisible by 3 (the sum of its digits.)

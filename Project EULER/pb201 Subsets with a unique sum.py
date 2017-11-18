@@ -1,55 +1,65 @@
-#  Created by Bogdan Trif on 02-11-2017 , 11:41 PM.
+#  Created by Bogdan Trif on 07-11-2017 , 6:42 PM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-                        Licence plates          -       Problem 371
+                            Subsets with a unique sum               -           Problem 201
 
-Oregon licence plates consist of three letters followed by a three digit number (each digit can be from [0..9]).
+For any set A of numbers, let sum(A) be the sum of the elements of A.
 
-While driving to work Seth plays the following game:
-Whenever the numbers of two licence plates seen on his trip add to 1000 that's a win.
+Consider the set B = {1,3,6,8,10,11}.
+There are 20 subsets of B containing three elements, and their sums are:
 
-E.g. MIC-012 and HAN-988 is a win and RYU-500 and SET-500 too. (as long as he sees them in the same trip).
+sum({1,3,6}) = 10,
+sum({1,3,8}) = 12,
+sum({1,3,10}) = 14,
+sum({1,3,11}) = 15,
+sum({1,6,8}) = 15,
+sum({1,6,10}) = 17,
+sum({1,6,11}) = 18,
+sum({1,8,10}) = 19,
+sum({1,8,11}) = 20,
+sum({1,10,11}) = 22,
+sum({3,6,8}) = 17,
+sum({3,6,10}) = 19,
+sum({3,6,11}) = 20,
+sum({3,8,10}) = 21,
+sum({3,8,11}) = 22,
+sum({3,10,11}) = 24,
+sum({6,8,10}) = 24,
+sum({6,8,11}) = 25,
+sum({6,10,11}) = 27,
+sum({8,10,11}) = 29.
 
-Find the expected number of plates he needs to see for a win.
-Give your answer rounded to 8 decimal places behind the decimal point.
+Some of these sums occur more than once, others are unique.
+For a set A, let U(A,k) be the set of unique sums of k-element subsets of A,
+in our example we find U(B,3) = { 10, 12, 14, 18, 21, 25, 27, 29 } and sum(U(B,3)) = 156.
 
-Note: We assume that each licence plate seen is equally likely to have any three digit number on it.
+Now consider the 100-element set S = {1^2, 2^2, ... , 100^2}.
+S has 100891344545564193334812497256 50-element subsets.
+
+Determine the sum of all integers which are the sum of exactly one of the 50-element subsets of S,
+i.e. find sum(U(S,50)).
 
 
 '''
 import time, zzz
-from random import randint
+
+L = [ i*i for i in range(1,101) ]
+S = set(L)
+print(L)
+
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-def Monte_carlo_simulation(runs) :
-    S = 0.
+smallest_set_sum = sum( [  i*i for i in range(1, 51)] )
+greatest_set_sum = sum( [  i*i for i in range(51, 101)] )
 
-    for run in range(runs) :
-        Plates = [  randint(1, 999) ]
-        flag = False
-
-        while flag == False :
-            n = randint(1, 999)
-            for x in Plates:
-                if n + x == 1000 :
-                    flag = True
-                    break
-
-            Plates.append(n)
-        S+= len(Plates)
-    print('\nExpected number of plates = ', S/runs )
-    return S/runs
+print(smallest_set_sum, greatest_set_sum)
+print(' There are no more than ', greatest_set_sum-smallest_set_sum , '    unique sums')
 
 
-# Monte_carlo_simulation(10**5)           #   Expected number of plates =  40.70064
-Monte_carlo_simulation(10**6)           #   Expected number of plates =  40.613682      40.643342    40.607116
-
-
-
-
+# IDEA --> number partition in 50 ?
 
 
 t2  = time.time()

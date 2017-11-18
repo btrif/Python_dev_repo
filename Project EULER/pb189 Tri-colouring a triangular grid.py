@@ -63,48 +63,54 @@ print(len(r4),r4)
 
 
 def validate_triangle(T):
-    if T[0][0] == T[1][1] : return False
-    if T[1][0] == T[2][1] or T[1][2] == T[2][2]  : return False
-    # if T[2][0] == T[3][1] or T[2][2] == T[3][3] or T[2][4] == T[3][5]  : return False
-    for i in range(1, len(T)):
-        K = [ T[i][j] for j in  range(1, len(T[i]) ) if T[i][j] ==T[i][j-1] ]
-        # print( K )
-        if len(K) > 0 : return False
+    for i in range(1, len(T)) :
+        for j in range(1, len(T[i]), 2 ):
+            if T[i][j] == T[i][j-1] or T[i][j] == T[i][j+1] :   # compare adjacent triangles, same row
+                return False
+            if T[i][j] == T[i-1][j-1] :
+                return False
+
     return True
 
 
 
 
-T=  [ (3,), (1, 3, 1), (1, 2, 3, 1, 2), (2, 2, 1, 3, 1, 2, 2) ]
 
-print('\nvalidate_triangle() test : \t', validate_triangle(T))
+T=    [ (3,),
+       (1, 2, 3),
+    (1, 2, 3, 1, 2),
+(2, 3, 1, 2, 1, 3, 2) ]
+
+print('\nvalidate_triangle test : \t', validate_triangle(T))
 
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-
-cnt=0
-T= []
-for i in r1 :
-    for j in r2 :
-        for k in r3 :
-            for l in r4 :
+def brute_force():
+    cnt=0
+    T= []
+    for i in r1 :
+        for j in r2 :
+            for k in r3 :
+            #     for l in r4 :
                 triang = []
-                triang.extend([ i, j ,k ,l ])
+                # triang.extend([ i, j ,k ,l ])
+                triang.extend([ i, j, k ])
                 if validate_triangle(triang) == True :
                     cnt+=1
                     print(str(cnt)+'.       ', triang )
 
 
+brute_force()               #   31968.        [(3,), (2, 1, 3), (2, 3, 2, 1, 2), (3, 1, 2, 1, 3, 1, 2)]
 
 
 # All of them including Reflexions & Rotations
-# T1 = 3 ; T2 = 24 ;  T3 = 480 ;   T4 = 92160 ;
+# T1 = 3 ; T2 = 24 ;  T3 = 528
 
 
 t2  = time.time()
-print('\nCompleted in :', round((t2-t1),6), 's\n\n')
+print('\nCompleted in :', round((t2-t1) , 4), 's\n\n')
 
 
 print('\n================  My FIRST SOLUTION,   ===============\n')

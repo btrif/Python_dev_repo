@@ -366,7 +366,8 @@ def PE407(lim=10**7):
     M=[0,0]+[1]*(lim-1)
     divs = [[0],[1]]+[[] for x in range(2,lim+1)]
     for a in range(2,lim+1):
-        for j in range(a,lim+1,a): divs[j].append(a)
+        for j in range(a,lim+1,a):
+            divs[j].append(a)
         for u in divs[a]:
             for v in divs[a-1]:
                 n=u*v

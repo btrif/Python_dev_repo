@@ -89,12 +89,21 @@ print()
 print('\n---------------- Bin BINARY,  oct OctoDecimal, dec DECIMAL, hexa, HEXADECIMAL CONVERSIONS -------------')
 
 print('Convert from Decimal to Binary :  ', bin(155))
+# Method 1
+print('Convert from Binary to Decimal :  ', int('10011011', 2))
+# Method 2
 print('Convert from Binary to Decimal :  ', int(0b10011011))
 
 print('Convert from Decimal to Octadecimal :  ', oct(755))
+# Method 1
+print('Convert from Octadecimal to Decimal :  ', int('1363', 8))
+# Method 2
 print('Convert from Octadecimal to Decimal :  ', int(0o1363))
 
 print('Convert from Decimal to Hexadeciamal :  ', hex(755))
+# Method 1
+print('Convert from Hexadeciamal to Decimal :  ', int('2f3', 16))
+# Method 2
 print('Convert from Hexadeciamal to Decimal :  ', int(0x2f3))
 
 

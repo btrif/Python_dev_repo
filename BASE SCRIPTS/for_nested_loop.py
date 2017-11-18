@@ -1,5 +1,92 @@
-######## @ 2017-02-23, 10:47 . Note: I finally learn how to replace those boring nested loops with itertools
 import itertools
+
+'''
+https://stackoverflow.com/questions/47357965/multiple-nested-loops-equivalent-replacement-in-python/47359087#47359087
+
+I have a simple dictionary of the form D = {2: 4, 3: 2, 5: 1, 7: 1}. 
+There are 4 keys which are the primes and 4 values which represent the maximum power. 
+Based on that I want to generate all combinations of the form :
+
+p1^range1 * p2^range2 * p3^range3 * p4^range4
+where range1 to range4 are the ranges corresponding to the values of the dictionary of each prime. 
+For p1 = 2 the range will be range(0, 4+1)
+
+The most simplistic way would be a nested for loop with four levels :
+
+for i1 in range(0, 4+1):
+   for i2 in range(0, 2+1):
+      for i3 in range(0, 1+1):
+         for i4 in range(0, 1+1):
+            n = 2**i1 * 3**i2 * 5**i3 * 7**i4
+which is what I intend and it is correct but this is a non-elegant and mechanical way.
+
+Another way is to use the  itertools.product which works if all the ranges are the same. 
+Basically it is as follows :
+
+for x in itertools.product(range(0, 4+1), repeat=4):
+    print(x, end='   ')
+
+However this will generate all the possible combinations including (2, 2, 3, 4), (4, 4, 2, 3) or (2, 3, 4, 4) which 
+are not valid in my case as the power of 5 (which is the third element in the tuple) will never be 3 
+and the power of 7 will never be 4. I want to limit somehow if possible the range of elements . 
+So in this case the maximum tuple will be (4, 2, 1, 1) corresponding to the powers (values in dictionary D). 
+So basically I need ONLY the range of tuples from (0,0,0,0) to (4,2,1,1).
+
+Is there a way to achieve this without using for loops and do it in a similar approach as with itertools.product?
+
+Many thanks in advance.
+'''
+
+
+
+ ############ Nested loops with custom range for each element ( each loop )     ############
+
+print(' ####### METHOD 1 ')
+for x in itertools.product(*map(range, (5, 3, 2, 2))) :
+    print(x, end='   ')
+
+
+print('\n ####### METHOD 2 ')
+for x in itertools.product(range(5), range(3), range(2), range(2)) :
+    print(x, end='   ')
+
+
+#############################  RECURSION  ##############
+# While itertools is the way to go, this question is an excellent exercise for practicing generator functions:      !!!!!!!!!!
+
+print('\n ####### METHOD 3 - RECURSION - ELEGANT, BEAUTIFUL, Must learn it ############  ')
+
+def multirange(d):
+    if len(d) == 1:
+        for i in range(d[0]):
+            yield [i]
+    elif len(d) > 1:
+        for i in range(d[-1]):
+            for a in multirange(d[:-1]):
+                yield a + [i]
+
+def multirange_b(d):
+    l = len(d)
+    products = [1]
+    for k in d:
+        products.append(products[-1]*k)
+    n = products[-1]
+    for i in range(n):
+        yield [(i%products[j+1])//products[j] for j in range(l)]
+
+for l in multirange([4,3,2]):
+    print(l , end='  ')
+
+print()
+for l in multirange_b([4,3,2]):
+    print(l, end = '  ')
+
+
+
+
+print('\n-----------------------------------------')
+######## @ 2017-02-23, 10:47 . Note: I finally learn how to replace those boring nested loops with itertools
+
 
 for a, b, c, d in itertools.product(range(1, 4+1), repeat=4):
     print(a, b,c, d, end='   ')

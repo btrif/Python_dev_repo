@@ -1,5 +1,5 @@
 
-# STRING MATCHING FINITE STATE MACHINE Algorithm
+############## STRING MATCHING   -   FINITE STATE MACHINE Algorithm            ###############
 
 #################     Approach ##############
                 #                                 First day :
