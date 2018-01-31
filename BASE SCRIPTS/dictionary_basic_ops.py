@@ -253,8 +253,8 @@ print ("Value : %s" %  dict.setdefault('Sex', None))
 # It is equivalent to the get Metod :
 print('Value :', dict.get('Sex'))
 
-print('\n-------------- Sort, Arrange a Dictionary after the keys / values ---------------')
-print('-------------- Sort, after values ---------------')
+print('\n--------------Order, Sort, Arrange a Dictionary after the keys / values ---------------')
+print('-------------- Order, Sort, after values ---------------')
 # METHOD I
 import operator
 x = {1: 1, 2: 2, 3: 3, 4: 2, 5: 5, 6: 6, 7: 7, 8: 2, 9: 3, 10: 10}
@@ -263,6 +263,11 @@ print('Method I - Sort after the VALUES :' ,sorted_x)
 
 # METHOD II -   not what I want at this moment
 print('Method II - Sort after the VALUES :' ,sorted(x, key=x.get))
+
+# METHOD III  -- Using lambda function
+print('Method III - Sort after the VALUES :' , sorted(x.items(), key=lambda i: i[1]) )
+
+
 
 print('-------------- Sort, after keys ---------------')
 

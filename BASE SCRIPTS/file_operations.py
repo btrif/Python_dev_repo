@@ -69,7 +69,13 @@ print(load_file_2(filename))
 print(load_file_3(filename))
 
 
+print('\n--------------------- Read file line by line --------------------------')
 
+def read_file_line_by_line(filename) :
+    with open(filename, 'r') as f :
+        for line in f :
+            print(line.rstrip('\n'))
+    f.close()
 
 
 

@@ -58,8 +58,7 @@ def g(n) :
 
 print(  g(1000) )
 
-@2017-10-11, 22:00
-# scooping - the sequence repeats itself in zooming
+# @2017-10-11, 22:00   # scooping - the sequence repeats itself in zooming
 
 
 t2  = time.time()

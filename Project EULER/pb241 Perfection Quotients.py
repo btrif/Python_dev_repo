@@ -4,7 +4,11 @@
 '''
             Perfection Quotients        -       Problem 241
 
-For a positive integer n, let σ(n) be the sum of all divisors of n, so e.g. σ(6) = 1 + 2 + 3 + 6 = 12.
+For a positive integer n, let σ(n) be the sum of all divisors of n,
+so e.g. σ(6) = 1 + 2 + 3 + 6 = 12.
+
+
+σ(24) = 1 + 2 + 3 + 4 + 6 + 8 + 12 + 24 +  = 60     => p(24) = 60 / 12 = 5/2 = 2 + 1/2
 
 A perfect number, as you probably know, is a number with σ(n) = 2n.
 
@@ -363,9 +367,17 @@ def main_function() :
 
 main_function()
 
-# FAILED :
-#  1553738503452802
-# 16772742100580482
+
+# LINKS & REFERENCES
+# https://oeis.org/A159907/internal
+https://en.wikipedia.org/wiki/Perfect_number
+http://mathworld.wolfram.com/PerfectNumber.html
+http://www-groups.dcs.st-and.ac.uk/history/HistTopics/Perfect_numbers.html
+https://brilliant.org/wiki/perfect-numbers/
+http://mathforum.org/dr.math/faq/faq.perfect.html
+https://www.mersenne.org/primes/
+@2017-11-20 --> The problem may be solved using the same principle as for the perfect numbers
+
 
 
 t2  = time.time()

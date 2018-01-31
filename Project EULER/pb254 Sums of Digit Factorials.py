@@ -1,46 +1,58 @@
-#  Created by Bogdan Trif on 02-11-2017 , 8:17 PM.
+#  Created by Bogdan Trif on 20-11-2017 , 5:51 PM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-Swapping Counters           -           Problem 321
+Sums of Digit Factorials        -       Problem 254
 
-A horizontal row comprising of 2n + 1 squares has n red counters placed at one end and n blue counters at the other end,
-being separated by a single empty square in the centre.
-For example, when n = 3.
 
-p321_swapping_counters_1.gif
-A counter can move from one square to the next (slide) or can jump over another counter (hop) as long as the square next to that counter is unoccupied.
+Define f(n) as the sum of the factorials of the digits of n.
+For example, f(342) = 3! + 4! + 2! = 32.
 
-p321_swapping_counters_2.gif
-Let M(n) represent the minimum number of moves/actions to completely reverse the positions of the coloured counters; that is, move all the red counters to the right and all the blue counters to the left.
+Define sf(n) as the sum of the digits of f(n).
+So sf(342) = 3 + 2 = 5.
 
-It can be verified M(3) = 15, which also happens to be a triangle number.
+Define g(i) to be the smallest positive integer n such that sf(n) = i.
+Though sf(342) is 5, sf(25) is also 5,
+and it can be verified that g(5) is 25.                 g(5) = 25
 
-If we create a sequence based on the values of n for which M(n) is a triangle number then the first five terms would be:
-1, 3, 10, 22, and 63, and their sum would be 99.
+Define sg(i) as the sum of the digits of g(i).
+So sg(5) = 2 + 5 = 7.
 
-Find the sum of the first forty terms of this sequence.
+Further, it can be verified that g(20) is 267               g(20) =  267
+and                     ∑ sg(i) for 1 ≤ i ≤ 20 is 156.
+
+What is ∑ sg(i) for 1 ≤ i ≤ 150   ?
 
 
 '''
 import time, zzz
+from math import factorial
+
+F = [ factorial(i) for i in range(10) ]
+print(F)
+
+def f(n, F) :
+    S =0
+    for i in str(n) :   S += F[int(i)]
+    return S
+
+print( 'function f =  ',f(342, F) )
+
+def sf(n, F):
+    n = f(n, F)
+    return sum( [ int(i) for i in str(n)  ])
+
+print(  'sf = ' , sf(342, F) )
+print(  'sf = ' , sf(25, F) )
+
+# def g(i) :
 
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-C = [ 1, 1, 0, 2, 2 ]       #
-print(C)
-
-def move_red( C ) :     # red are 1's
-    pos = C.index(0)
-    C[pos], C[pos-1] = C[pos-1], C[pos]
-    return C
-
-print( move_red(C) )
-
-
-
+# REFERENCE VALUES :
+# g(45) = 12378889      n start to grow exponentially around i=42, you should find another way.
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
@@ -163,7 +175,4 @@ print('\n================  My FIRST SOLUTION,   ===============\n')
 #
 # t2  = time.time()
 # print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-
-
-
 

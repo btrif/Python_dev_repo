@@ -2,9 +2,11 @@
 # Solved by Bogdan Trif @
 #The  Euler Project  https://projecteuler.net
 '''
-Squarefree Numbers  -   Problem 193
+                            Squarefree Numbers  -   Problem 193
 
-A positive integer n is called squarefree, if no square of a prime divides n, thus 1, 2, 3, 5, 6, 7, 10, 11 are squarefree,
+A positive integer n is called squarefree, if no square of a prime divides n,
+thus 1, 2, 3, 5, 6, 7, 10, 11 are squarefree,
+
 but not 4, 8, 9, 12.
 
 How many squarefree numbers are there below 2**50 ?
@@ -108,11 +110,11 @@ t2  = time.time()
 print('\nCompleted in :', round((t2-t1),6), 's\n\n')            # Completed in : 98426.629782 ms
 
 
-print('\n================  My SECOND SOLUTION,  Not Working ===============\n')
+print('\n================  My SECOND SOLUTION, INCLUSION EXCLUSION,  Not Working ===============\n')
 t1  = time.time()
 import functools, operator
 
-def square_free_combinations(up_nr) :        # Works Up_to   2**50
+def square_free_combinations(up_nr) :
     b, S = up_nr-1, 0
     P = prime_generator(2, int(up_nr**(1/2)) )
     for i in range(2, 4):
@@ -128,7 +130,7 @@ def square_free_combinations(up_nr) :        # Works Up_to   2**50
     return print('\nRESULT :\t', b-S)
 
 
-# square_free_combinations(10**3)
+square_free_combinations( 2**8 )
 
 
 
@@ -143,10 +145,54 @@ print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
 # Method II : Use inclusion/ exclusion (As I did myself)
 
 
-print('\n--------------------------SOLUTION 0,   INCLUSION / EXCLUSION  --------------------------')
+print('\n--------------------------SOLUTION 0, 20 sec ,  Moebius sieve  --------------------------')
 t1  = time.time()
 
 
+# ===  Sat, 28 Jan 2017, 09:19, mbh038, England
+#
+# 7.7 s in Python. I use the identity:
+#
+# Q(n) = ∑ {k=1, n} μ(k) ⌊n / k^2⌋  =  ∑ { k=1, ⌊n√⌋ } μ(k)  ⌊n/k^2⌋
+#
+#
+# In the code I use a sieve to generate the Moebius numbers and vectorise where possible to avoid loops.
+# 90% of the time is taken up in the Moebius sieve, in the part where I do use a loop.
+# I can't see how to avoid this. As it is, though, the sieve is about three times faster than my implementation ' \
+# in Python of Marcus Andrews' Moebius sieve, listed as Algorithm 9 in his fantastic overview to problem 351.
+
+
+import numpy as np
+import time
+
+#find Q, the number of square-free numbers less than n
+def p193(n):
+
+    moebs = moebiusSieve(int(n**.5)+1)
+    ks = np.arange( 1, len(moebs)+1)
+    floors = n//( ks*ks )
+    Q = np.sum( moebs*floors )
+    print( Q )
+
+def moebiusSieve(limit):
+    """returns array of moebius numbers 1<=n<=limit"""
+    P=primeSieve(limit+1) # or any sieve
+    L = np.ones(limit+1).astype(int)
+    for p in P:
+        L[ ::p ] *= -1
+        L[ ::p**2 ] = 0
+    print('L= ', L[1:])
+    return L[1:]
+
+def primeSieve(n):
+    """returns array of primes 2<=p<=n"""
+    sieve=np.ones( n+1, dtype=bool )
+    for i in range( 2, int((n+1)**0.5+1)):
+        if sieve[i] :
+            sieve[ 2*i::i ] = False
+    return np.nonzero(sieve)[0][2:]
+
+p193(2**8)
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
@@ -158,16 +204,17 @@ t1  = time.time()
 
 # ===== Tue, 18 Oct 2016, 15:26, aolea, Spain
 
-import math
+from math import sqrt, floor
 import sympy
-def aolea() :
+
+def aolea( lim ) :
     sum193 = 0
-    for d in range(1, 2**25):
+    for d in range(1, int( sqrt(lim) ) ):
         # print(d, sum193)
-        sum193 = sum193 + sympy.ntheory.mobius(d)*math.floor((2**50)/(d**2))
+        sum193 = sum193 + sympy.ntheory.mobius(d) * floor( lim /(d**2))
     return print(sum193)
 
-# aolea()
+aolea( 2**8 )
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
@@ -446,7 +493,7 @@ t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
-print('\n--------------------------SOLUTION 8, INCLKUSION / Exclusion  ,MUCH TOO SLOW --------------------------')
+print('\n--------------------------SOLUTION 8, INCLUSION / Exclusion  ,MUCH TOO SLOW --------------------------')
 t1  = time.time()
 
 # ===== Wed, 8 May 2013, 19:35, tom.wheldon, England

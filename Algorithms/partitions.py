@@ -235,3 +235,54 @@ y = list(partition_min_max(15 ,3, 1, 6 ))
 print(y)
 
 
+print('\n---------------Partition a number into an UNIQUE set of elements with no repetition - subset sum ------------------ ')
+######## METHOD I
+S = [1, 2, 3, 4, 6, 8, 9, 12, 16]
+
+t1  = time.time()
+
+
+
+def subset(array, num):
+    result = []
+    def find(arr, num, path=()):
+        if not arr:
+            return
+        if arr[0] == num:
+            result.append(path + (arr[0],))
+        else:
+            find(arr[1:], num - arr[0], path + (arr[0],))
+            find(arr[1:], num, path)
+    find(array, num)
+    return result
+
+print( subset(S, 17) )
+
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+
+######## METHOD II
+t1  = time.time()
+
+def mask(lst, m):
+    # pad number to create a valid selection mask
+    # according to definition in the solution laid out
+    m = m.zfill(len(lst))
+    return list(map(lambda x: x[0], filter(lambda x: x[1] != '0', zip(lst, m))))
+
+def subset_sum(lst, target):
+    # there are 2^n binary numbers with length of the original list
+    for i in range(2**len(lst)):
+        # create the pick corresponsing to current number
+        pick = mask(lst, bin(i)[2:])
+        if sum(pick) == target:
+            yield pick
+
+# use 'list' to unpack the generator
+P = list(subset_sum( S , 17))
+print(P)
+
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+
+

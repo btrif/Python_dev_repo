@@ -28,6 +28,12 @@ import time, zzz
 from gmpy2 import mpq
 
 import numpy
+
+def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
+    ''' Decompose a factor in its prime factors. This function uses the pyprimes module. THE FASTEST  '''
+    from pyprimes import factorise
+    return [val for sublist in [[i[0]]*i[1] for i in factorise(n)] for val in sublist]
+
 def prime_sieve_numpy(n):                       ### o(^_^)o  FASTEST  o(^_^)o  ###  Highly Efficient !!!
     """ Input n>=6, Returns a array of primes, 2 <= p < n
     http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n/3035188#3035188 """
@@ -50,24 +56,28 @@ Fractran = [  mpq (17, 91), mpq(78,85 ), mpq(19,51) , mpq(23,38) , mpq(29,33) , 
 
 print(2*Fractran[0])
 
+
+
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-def brute_force_conceptualization() :
+def brute_force_conceptualization(lim) :
     seed = 2
-    for i in range(10**2) :
+    iter2 = 0
+    for i in range(lim) :
         for j in Fractran :
             m = seed *j
             if m%1 == 0 :
                 seed = m
-                print('iter = ', i , '     j= ', j,'         new seed = ', m)
+                # print('iter = ', i , '     j= ', j,'         new seed = ', m)
                 if numpy.math.log2(m) %1 == 0 :
-                    print('iter = ', i , '         new seed = ', m ,'-------- 2-power = ',   int(numpy.math.log2(m)) )
+                    print('iter = ', i , '         new seed = ', m ,'-------- 2-power = ',   int(numpy.math.log2(m)) ,'       ',  i-iter2 , iter2 / i  )
+                    iter2 = i
 
 
                 break
 
-brute_force_conceptualization()
+brute_force_conceptualization(10**5)
 
 
 t2  = time.time()

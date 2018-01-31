@@ -1,44 +1,118 @@
-#  Created by Bogdan Trif on 02-11-2017 , 8:17 PM.
+#  Created by Bogdan Trif on 20-11-2017 , 10:30 PM.
+
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-Swapping Counters           -           Problem 321
+                Fractional Sequences            -           Problem 343
 
-A horizontal row comprising of 2n + 1 squares has n red counters placed at one end and n blue counters at the other end,
-being separated by a single empty square in the centre.
-For example, when n = 3.
+For any positive integer k, a finite sequence ai of fractions xi/yi is defined by:
+a_1 = 1/k and
+a_i = (xi-1+1)/(yi-1-1) reduced to lowest terms for i>1.
 
-p321_swapping_counters_1.gif
-A counter can move from one square to the next (slide) or can jump over another counter (hop) as long as the square next to that counter is unoccupied.
+When ai reaches some integer n, the sequence stops. (That is, when yi=1.)
 
-p321_swapping_counters_2.gif
-Let M(n) represent the minimum number of moves/actions to completely reverse the positions of the coloured counters; that is, move all the red counters to the right and all the blue counters to the left.
+Define f(k) = n.
 
-It can be verified M(3) = 15, which also happens to be a triangle number.
+For example, for k = 20:
 
-If we create a sequence based on the values of n for which M(n) is a triangle number then the first five terms would be:
-1, 3, 10, 22, and 63, and their sum would be 99.
+1/20 → 2/19 → 3/18 = 1/6 → 2/5 → 3/4 → 4/3 → 5/2 → 6/1 = 6
 
-Find the sum of the first forty terms of this sequence.
+So f(20) = 6.
+
+Also            f(1) = 1, f(2) = 2, f(3) = 1 and
+                Σf(k3) = 118937 for 1 ≤ k ≤ 100.
+
+Find Σf(k3) for 1 ≤ k ≤ 2×10^6.
 
 
 '''
 import time, zzz
+# from functools import lru_cache
+# from gmpy2 import mpq
+# from math import gcd
+
+# import sys
+# sys.setrecursionlimit(10**4)
+
+def gcd(a, b):      # GCD
+    """Return greatest common divisor using Euclid's Algorithm."""
+    while b:
+        a, b = b, a % b
+    return a
+
+# @lru_cache(maxsize=None)
+def f_rec(k):
+
+    a1= [1, k ]
+    xi, yi = 1, k
+
+    def sequence( xi, yi ) :
+        if gcd(xi, yi ) != 1 :
+            g = gcd(xi, yi )
+            xi, yi = xi//g, yi//g
+
+        if  (xi/yi) %1 ==0 :
+            return xi//yi
+
+        return sequence( xi+1 , yi-1  )
+
+    return sequence(xi, yi)
+
+
+def f(k):
+
+    xi, yi = 1, k
+
+    while ( xi / yi ) %1 != 0 :
+        if gcd(xi, yi ) != 1 :
+            g = gcd(xi, yi )
+            xi, yi = xi//g, yi//g
+
+        if  (xi/yi) %1 ==0 :
+            return xi//yi
+
+        xi = xi+1
+        yi = yi-1
+
+
+    return xi// yi
+
+
+
+
+
+
+
+print('f_rec test  =  ',  f_rec(34) )
+print('f_rec test  =  ',  f_rec(173**3) )
+
+print('f test  =  ',  f(34) )
+print('f test  =  ',  f(173**3) )
+
+
+
 
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-C = [ 1, 1, 0, 2, 2 ]       #
-print(C)
+def brute_force_concept(lim ) :
+    W = 0
+    for k in range(1, lim+1) :
+    # for k in range(850000, lim+1) :
+        fs = f(k**3)
+        print(str(k) + '.       k^3 = ', k**3,  '       fs =    ' , fs  )
+        W += fs
 
-def move_red( C ) :     # red are 1's
-    pos = C.index(0)
-    C[pos], C[pos-1] = C[pos-1], C[pos]
-    return C
+    print('\nAnswer : ', W )
+    return W
 
-print( move_red(C) )
+brute_force_concept(10**2)
 
+# IDEAS @2017-11-20
+x^3+ 1 = (x+1) (x^2-x+1 )                   factorize smaller numbers
+
+https://en.wikipedia.org/wiki/Fermat%27s_factorization_method
 
 
 
@@ -163,7 +237,4 @@ print('\n================  My FIRST SOLUTION,   ===============\n')
 #
 # t2  = time.time()
 # print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-
-
-
 

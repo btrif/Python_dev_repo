@@ -338,3 +338,38 @@ n = 10
 digits = 8
 
 print ( round(1-(3+3*f((k,1,1),n)+f((1,1,1),n))*k**2, digits) )
+
+
+################ NESTED LOOPS ################
+
+# While itertools is the way to go, this question is an excellent exercise for practicing generator functions:      !!!!!!!!!!
+
+print('\n ####### NESTED LOOPS , METHOD 3 - RECURSION - ELEGANT, BEAUTIFUL, Must learn it ############  ')
+
+def multirange_rec( L ):
+    if len( L ) == 1:
+        for i in range( L [0] ):
+            yield [i]
+    elif len( L ) > 1:
+        for i in range( L [-1] ):
+            for a in multirange_rec( L [:-1] ) :
+                yield a + [i]
+
+def multirange_b(d):
+    l = len(d)
+    products = [1]
+    for k in d:
+        products.append(products[-1]*k)
+    n = products[-1]
+    for i in range(n):
+        yield [(i%products[j+1])//products[j] for j in range(l)]
+
+for l in multirange_rec([4,3,2]):
+    print(l , end='  ')
+
+print()
+for l in multirange_b([4,3,2]):
+    print(l, end = '  ')
+
+
+

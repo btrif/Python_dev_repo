@@ -653,11 +653,13 @@ d.rotate(3)
 print('Initial string: \t', A, '          Right rotation 3 units :\t' , d )
 
 
-print('\n--------- Multiply a list or tuple each element with a number -----------')
+print('\n--------- Multiply a list or tuple each element with a number , element wise-----------')
 
 print('Initial list :', A)
 print('Multiple each element of the LIST with a number : \t ',list(map(5 .__mul__, A )) )
 print('Multiple each element of the TUPLE with a number : \t ', tuple(map(5 .__mul__, A)) )
+
+print('Power each element of the LIST with a number : \t ',list(map(5 .__pow__ , A )) )
 
 
 print('\n-------------- Perform tuple element wise operations ------------')

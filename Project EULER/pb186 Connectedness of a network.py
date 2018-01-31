@@ -262,7 +262,7 @@ def calls_number_solution() :
             return print( '\nCalls : \t', calls , '\t\t PM conn : \t', PMnr_set_len, '    Total nrs :   ', len(TS) )
 
 
-# calls_number_solution()         #       Calls : 	 2325629 , PM conn : 	 990000     Total nrs :    990458
+calls_number_solution()         #       Calls : 	 2325629 , PM conn : 	 990000     Total nrs :    990458
 
 
 

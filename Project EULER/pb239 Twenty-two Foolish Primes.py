@@ -1,5 +1,5 @@
 #!/usr/bin/python                   o(^_^)o         ( ͡° ͜ʖ ͡°)
-# © Solved by Bogdan Trif @
+# © Solved by Bogdan Trif @     Completed on Tue, 14 Nov 2017, 15:53
 #The  Euler Project  https://projecteuler.net
 '''
             Twenty-two Foolish Primes           -           Problem 239
@@ -173,33 +173,82 @@ t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
-# print('\n--------------------------SOLUTION 3,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 4,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 5,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
+print('\n--------------------------SOLUTION 3, RECURSION  --------------------------')
+t1  = time.time()
+
+# ==== un, 10 May 2009, 11:02, paradox, Bulgaria
+# The recursion was more natural to me than the inclusion-exlcusion, besides we only need one coefficient.
+
+from math import factorial
+
+def D(n,k):
+    if(n<1):
+        return factorial(k)
+    else:
+        return (n-1)*D(n-2,k+1)+k*D(n-1,k)
+
+def binomial(n, m ) :
+    return factorial(n) // factorial(m) // factorial(n - m)
+
+ans=D(22,75)*binomial(25,3)/factorial(100)
+print(ans)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 4, Recursion  --------------------------')
+t1  = time.time()
+
+# === Tue, 29 Sep 2009, 17:51, daniel.is.fischer, Germany
+
+fact = [1,1]
+for i in range(2,101):
+    fact.append(i*fact[-1])
+
+ncr = [[1] + [0]*25]
+for r in range(1,26):
+    l = ncr[-1] + [0]
+    nl = [1] + [l[c-1] + l[c] for c in range(1,r+1)] + [0]*(25-r)
+    ncr.append(nl)
+
+def f(n,d={}):
+    if n in d:
+        return d[n]
+    sm=0
+    for i in range(n):
+        sm+=ncr[n][n-i] * f(i,d)/ncr[25][i]
+    d[n] = ncr[25][n]*(fact[75+n]-sm)
+    return d[n]
+
+
+print( f(22,{0 : fact[75]})/float(fact[100]) )
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 5,  Stanley, Enumerative Combinatorics, 2.3: --------------------------')
+t1  = time.time()
+
+# === Fri, 3 Apr 2009, 23:53, tolstopuz, Russia
+# Stanley, Enumerative Combinatorics, 2.3:
+import functools, operator
+
+def fact(n):
+    return functools.reduce(operator.mul, range(1, n + 1), 1)
+
+def c(n, m):
+    return fact(n) // fact(m) // fact(n - m)
+
+print(format(sum((-1)**k * c(22, k) * fact(97 - k) for k in range(23)) * c(25, 3)       / fact(100), '.12f' ) )
+
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
 # print('\n--------------------------SOLUTION 6,   --------------------------')
 # t1  = time.time()
 #

@@ -1,5 +1,5 @@
 #  Created by Bogdan Trif on 27-09-2017 , 7:26 PM.
-# © o(^_^)o  Solved by Bogdan Trif  @
+# © o(^_^)o  Solved by Bogdan Trif  @   Completed on Sat, 18 Nov 2017, 15:51
 #The  Euler Project  https://projecteuler.net
 '''
 
@@ -16,11 +16,13 @@ import operator, random
 import time, zzz
 # from gmpy2 import fac, is_prime
 import functools, itertools, operator
-# from pyprimes import factorise
+from pyprimes import factorise
 
-# def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
-#     ''' Decompose a factor in its prime factors. This function uses the pyprimes module. THE FASTEST  '''
-#     return [val for sublist in [[i[0]]*i[1] for i in factorise(n)] for val in sublist]
+def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
+    ''' Decompose a factor in its prime factors. This function uses the pyprimes module. THE FASTEST  '''
+    return [val for sublist in [[i[0]]*i[1] for i in factorise(n)] for val in sublist]
+from functools import reduce
+
 
 def _prod(L):
     s = 1
@@ -88,6 +90,14 @@ class Factorization():
         for number in list:
             result *= number
         return result
+
+
+def prime_sieve(n):       # FOURTH      o(^_^)o
+    sieve = [True] * n
+    for i in range(3, int(n**0.5)+1, 2):
+        if sieve[i]:
+            sieve[ i*i :: 2*i ] = [False] * ( (n-i*i-1) // (2*i) +1 )
+    return [2] + [i for i in range(3, n , 2) if sieve[i] ]
 
 
 def Miller_Rabin(p, k = 50):  # Miller-Rabin primality test
@@ -440,92 +450,6 @@ t2  = time.time()
 print('\n# Completed in :', round((t2-t1) , 2), ' s\n\n')
 
 
-#
-# print('\n================  My FIRST SOLUTION,   ===============\n')
-# t1  = time.time()
-#
-# def solution1(tot) :
-#     Z = pair_Factors(2*3*4*5*6*7)
-#     print('\nlen(Z) = ',len(Z))
-#     print(Z[:1000],'\n')
-#     CNT= set()
-#     for I in Z :
-#         tmp = []
-#         nr = functools.reduce(operator.mul, I  )
-#         # print(I,'         ' , nr )
-#         Primes, NonPrimes = set(), []
-#         for x in I :
-#             if is_prime(x+1) :  Primes.add(x+1)
-#             else :   NonPrimes.append(x)
-#         Primes = sorted(Primes)
-#         print('\n  -------   I = ' , I , '         Primes= ', Primes , '              NonPrimes  = ', NonPrimes, ' ----')
-#
-#         if len(Primes) >= 2 :
-#             y1 = functools.reduce(operator.mul , Primes)
-#
-#             ### CASE 1    -
-#             if len(NonPrimes) == 0 :
-#                 n = y1
-#                 # print('case 1  ' , str(len(CNT))+'.    ',I , '       n = ', n , '        Prms=', sorted(Primes) ,'       NonP= ', NonPrimes)
-#
-#
-#
-#             ### CASE 2
-#             if len(NonPrimes) > 0 :
-#                 Fct = set()
-#                 for c in NonPrimes :
-#                     d = set(get_factors(c))
-#                     Fct = Fct.union(d)
-#                     # print(' Fct = ', Fct ,'         ', Fct.difference(Primes) )
-#                 if len(Fct.difference(Primes)) == 0:
-#                     y2 = functools.reduce(operator.mul , NonPrimes )
-#                     n = y1*y2
-#
-#                         # CNT.add(n)
-#                     # print('case 2  ' , str(len(CNT))+'.    ',I , '       n = ', n , '        Prms=', sorted(Primes) ,'       NonP= ', NonPrimes)
-#
-#             #### CASE 3 is when we have  I =  [1, 2, 2, 6, 210] but we need only
-#             if n < tot :
-#                 c = I.count(2)
-#                 z = n * 2**c
-#                 if z > tot :
-#                     CNT.add( z )
-#                     # print('case 3  ',str(len(CNT))+'.    ',I , '    count(2)= '   , I.count(2),'.    ' , '       n = ', n , '      '   , z  )
-#
-#             ### CASE 4 - strange case when  n = 12700 = [ 2, 2, 5, 5, 127],
-#             # I = [2, 4, 5, 126], Primes=  [3, 5, 127] , NonPrimes  =  [5]
-#             # if len(NonPrimes) >0 :  three = functools.reduce(operator.mul, NonPrimes  )
-#             # else :three = 1
-#             if len(NonPrimes) == 0 :
-#                 if 3 in Primes  and ( 3 not in NonPrimes ) : # we must eliminate the 3, because this comes from a 2
-#                     w = functools.reduce(operator.mul , list(Primes)+NonPrimes   ) *4 //3
-#                     if euler_totient(w) == 5040 :
-#                         print('CASE 4       I = ', I ,    '       n = ', n ,  '       w=  '   , w , '      ',get_factors(w) )
-#                     if w > tot : CNT.add(w)
-#
-#
-#             if n > tot :
-#                 CNT.add(n)
-#                 CNT.add(2*n)
-#
-#                 # print( str(len(CNT))+'.    ',I , '       n = ', n , '        Primes=', sorted(Primes) ,'       NonPrimes= ', NonPrimes)
-#
-#     print('\nTotal count = ', len(CNT) )
-#     print(CNT)
-#
-#     print('\nBF.difference(CNT )length difference : ', len(BF.difference(CNT)))
-#     print( BF.difference(CNT))
-#
-#     print('\nCNT.difference(BF )length difference : ', len(CNT.difference(BF)))
-#     print( CNT.difference(BF))
-#
-#
-# # @2017-10-15 - I must investigate the 3-rd case : n = 17724, 11956,  16764, etc...
-# # solution1(  fac(7)  )
-#
-# t2  = time.time()
-# print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-
 
 print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
 print('\n--------------------------SOLUTION 1,  147 sec --------------------------')
@@ -685,33 +609,283 @@ t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
 
-# print('\n--------------------------SOLUTION 2,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 3,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 4,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-#
-#
+print('\n--------------------------SOLUTION 2, INVERSE PHI , invphi , 15 sec, INCREDIBLE --------------------------')
+t1  = time.time()
+
+
+
+from gmpy2 import is_prime
+
+# ==== Sun, 7 Jun 2009, 22:28, gianchub, England
+# Google was my friend on this one. It turned up this paper:
+# www.new.dli.ernet.in/rawdataupload/upload/insa/INSA_2/20005a81_22.pdf...
+# That paper is really interesting:
+# Within my library:
+
+def invphi(m):
+    ''' Returns the sorted list of numbers n such that phi(n) = m '''
+    # some special cases
+    if m <= 0:
+        return [0]
+    elif m == 1:
+        return [1, 2]
+    elif m > 1 and m%2 != 0:
+        return []
+
+    # phi(p^d) with p prime
+    def phipd(p, d):
+        return (p-1) * (p**(d-1))
+
+    # returns a decreasing ordered list of all primes p such that p-1 | n
+    def primesFromDivisors(n):
+        divs = set()
+        factors, exps =  zip(* (factorise(n) )   )
+        for i in itertools.product(*(range(x+1) for x in exps)):
+            pp = reduce(lambda x, y : x*y, (factors[j] ** i[j] for j in range(len(i))), 1) + 1
+            if is_prime(pp):
+                divs.add(pp)
+        return sorted(divs, reverse = True)
+
+    # prepares a small table of phis (phi^(-1) sets, to aid the calculation)
+    def smallTable(mmax):
+        M = 2**62
+        primes = prime_sieve(mmax)
+        nnum, nden, nmax = 1, 1, 0
+        for p in primes:
+            nnum, nden = nnum * p, nden * (p-1)
+            if nnum > mmax:
+                nnum, nden = nnum // p, nden // (p-1)
+                nmax = (mmax * nnum) // nden
+                break
+        tmphi = list(range(nmax + 1))
+        sf = [M] * (nmax + 1)
+        for pr in primes:
+            for p in range(pr, nmax + 1, pr):
+                tmphi[p] = (tmphi[p] * (pr - 1)) // pr
+                if pr < sf[p]:
+                    sf[p] = pr
+        for n, m in enumerate(tmphi):
+            if m > mmax:
+                continue
+            if not m in phis:
+                phis[m] = []
+            phis[m].append([n, sf[n]])
+        phis[1][0][1] = M
+
+    # does the calculation (recursively if needed)
+    def calc(m, M):
+        divs = primesFromDivisors(m)
+        if not m in phis:
+            phis[m] = []
+        for p in divs:
+            d = 1
+            ppd = phipd(p, d)
+            while ppd <= m:
+                if m % ppd == 0:
+                    x = m // ppd
+                    if x == 1 or x % 2 == 0:
+                        if not x in phis:
+                            calc(x, M)
+                        for v in phis[x]:
+                            t = (p**d) * v[0]
+                            if v[1] > p:
+                                phis[m].append([t, p])
+                                if m == M:
+                                    res.add(t)
+                d += 1
+                ppd = phipd(p, d)
+
+    # inner vars
+    # results set
+    res = set()
+    # invphi table
+    phis = {}
+    # invphi table dimension
+    mmax = int(m**0.5) + 100
+    smallTable( min(mmax, 5000) )
+    calc(m, m)
+    # return sorted results list
+    return sorted(res)
+
+
+def main2() :
+    from math import factorial
+    res = invphi( factorial(13) )
+    print(res[150000-1] )
+
+main2()
+
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 3,  BEAUTIFUL, SUBLIME, Must learn it --------------------------')
+t1  = time.time()
+
+# ==== Wed, 24 Jun 2009, 01:13, albert, Netherlands
+# I did this one in Python, not Forth. It runs in 7 seconds.
+# Like some people I made a list of primes that are
+# possible candidates. At first I treated the small
+# primes that can occur to a power differently, but
+# after some tinkering an elegant recursive procedure
+# with mere three parameters results, that treats all
+# primes uniformly.
+
+
+# $Id: euler248.py,v 1.7 2009/06/22 19:43:18 albert Exp $
+# Copyright (2008): Albert van der Horst {by GNU Public License
+
+# Euler problem
+
+# What is the 100.000 number where phi(n) = 13!.
+# Euler totient function.
+
+# Analysis:
+# 13! = 2^10 . 3^5 . 5^2 . 7 . 11 . 13
+# Each number N we divide in factors p^n that are either prime or
+# a prime power. Then phi(N) is the product of (p-1).p^(n-1).
+# If p is larger than 13, the power n is just one.
+# If N' is  a remaining product of phi(N) , then either N'+1
+# must be prime, or it must be divisible by some p <= sqrt(13!).
+# Then phi(N) must be divisible by (p-1).
+# Smaller factors must satisfy that p^(n-1) divides 13!
+
+# It has been noted that there are not too many of those numbers.
+# So we make a list, then order that list and find the 100.000 number.
+
+from math import sqrt
+
+def fac(n):
+    result = 1
+    for i in range(n):
+        result *= i+1
+    return result
+
+
+TTF = fac(13)
+
+MAX_SIEVE = 1 + int(sqrt(TTF+1))
+primes = []
+
+solutions = []
+
+def is_prime( p ):
+    if p<4 :
+        if p<2:
+            return 0
+        return 1
+    if p%2 == 0 : return 0
+    s = int(sqrt(p+1))
+    for i in range(3,s+1,2):
+        if p%i == 0: return 0
+    return 1
+
+# Fill the primes with candidates for factors of n.
+# Note that we want at least one entry that is larger
+# than MAX_SIEVE
+def fill():
+    i = 2
+    while 1:
+        if is_prime(i) and ( TTF % (i-1) == 0) :
+            primes.append(i)
+            if i>MAX_SIEVE: break
+        i +=1
+
+# Now we proceed from the smallest entries in the table to the largest,
+# until the part of 13! not taken into account no longer allows for
+# two factors. At each point the remaining factor is inspected,
+# it may be a prime minus one and is accepted, or it must be split further.
+# The criterion to stop is rest < (phi)^2 where phi is the smallest
+# prime power totient that can be expected still.
+
+# Investigate the already found part of n and the remainder of phi(n)
+# with respect to primes larger than the prime with index ip.
+# Successes are added to the list solutions.
+def investigate( remn, remphi, ip):
+    # Is remphi in itself a new prime factor?
+    if is_prime( 1+ remphi ) and (1+remphi) >= primes[ip]:
+        solutions.append( remn*(1+remphi) )
+
+    p = primes[ip]
+    # Subtle: small primes can have power >2.
+    # And phi is a product of (p-1)'s
+    while p <= 13 or remphi > (primes[ip]-1)**2 :
+        pow = p
+        phi = p-1
+        while remphi%phi == 0 :
+            investigate( remn*pow, remphi/phi, ip+1)
+            pow *= p
+            phi *= p
+        ip += 1
+        p = primes[ip]
+
+def doit():
+    fill()
+    investigate( 1, TTF, 0 )
+    solutions.sort()
+    print( "And the 100,000th n with phi(n) = 13! (euler248) is:")
+    print( solutions[100000-1]) # Count from 0!
+
+doit()
+
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 4,   --------------------------')
+t1  = time.time()
+
+# === Sat, 6 Jun 2009, 04:09, BjornEdstrom, Sweden
+# Fun problem! This problem was a breeze for me because I already had code for the inversed phi function. It is slow, but generic.
+
+F = Factorization(10**3)
+
+def inverse_phi(N, a=1):
+    saved = []
+
+    if N < 1:
+        raise ValueError
+
+    if N == 1:
+        if a > 1:
+            return [1]
+        return [1, 2]
+
+    divisors = F.get_divisors(N)
+
+
+    for div in divisors :
+        if (div < a) or (not Miller_Rabin(div + 1)):
+            continue
+        N_ = N / div
+        div += 1
+        P = div
+
+        while True:
+            saved += map(lambda x: x*P, inverse_phi(N_, div))
+            if N_ % div:
+                break
+            P *= div
+            N_ /= div
+
+    return saved
+
+print(  inverse_phi(240) )
+
+
+def euler248():
+    ret = inverse_phi( 1*2*3*4*5*6*7*8*9*10*11*12*13 )
+    ret = list(ret)
+    ret.sort()
+    return ret[150000-1]
+
+print( euler248()  )
+
+
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+
+
 # print('\n--------------------------SOLUTION 5,   --------------------------')
 # t1  = time.time()
 #

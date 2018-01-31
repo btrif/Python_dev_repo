@@ -1,44 +1,39 @@
-#  Created by Bogdan Trif on 02-11-2017 , 8:17 PM.
+#  Created by Bogdan Trif on 20-11-2017 , 11:07 PM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-Swapping Counters           -           Problem 321
+Uphill paths            -           Problem 411
 
-A horizontal row comprising of 2n + 1 squares has n red counters placed at one end and n blue counters at the other end,
-being separated by a single empty square in the centre.
-For example, when n = 3.
+Let n be a positive integer. Suppose there are stations at the coordinates (x, y) = (2i mod n, 3i mod n) for 0 ≤ i ≤ 2n.
+We will consider stations with the same coordinates as the same station.
 
-p321_swapping_counters_1.gif
-A counter can move from one square to the next (slide) or can jump over another counter (hop) as long as the square next to that counter is unoccupied.
+We wish to form a path from (0, 0) to (n, n) such that the x and y coordinates never decrease.
+Let S(n) be the maximum number of stations such a path can pass through.
 
-p321_swapping_counters_2.gif
-Let M(n) represent the minimum number of moves/actions to completely reverse the positions of the coloured counters; that is, move all the red counters to the right and all the blue counters to the left.
+For example, if n = 22, there are 11 distinct stations, and a valid path can pass through at most 5 stations.
+Therefore, S(22) = 5.
 
-It can be verified M(3) = 15, which also happens to be a triangle number.
+The case is illustrated below, with an example of an optimal path:
 
-If we create a sequence based on the values of n for which M(n) is a triangle number then the first five terms would be:
-1, 3, 10, 22, and 63, and their sum would be 99.
+p411_longpath.png
 
-Find the sum of the first forty terms of this sequence.
+It can also be verified that S(123) = 14 and S(10000) = 48.
+
+Find ∑ S(k^5) for 1 ≤ k ≤ 30.
 
 
 '''
 import time, zzz
 
+=== LINKS & IDEAS
+
+https://en.wikipedia.org/wiki/Longest_increasing_subsequence
+http://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/
+https://rosettacode.org/wiki/Longest_increasing_subsequence#C.2B.2B
+
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
-
-C = [ 1, 1, 0, 2, 2 ]       #
-print(C)
-
-def move_red( C ) :     # red are 1's
-    pos = C.index(0)
-    C[pos], C[pos-1] = C[pos-1], C[pos]
-    return C
-
-print( move_red(C) )
-
 
 
 
@@ -163,7 +158,4 @@ print('\n================  My FIRST SOLUTION,   ===============\n')
 #
 # t2  = time.time()
 # print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-
-
-
 

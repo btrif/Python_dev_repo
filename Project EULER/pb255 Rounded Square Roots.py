@@ -71,17 +71,21 @@ def brute_force_verification(down, up, step) :
 
     L = up - down
     S=0
-    cnt = 0
+    cnt, itr = 0, 0
+
     for n in range(down, up, step) :
         cnt+=1
         a = Heron_integer_arithmetic(n)
         S+=a[1]
-        print(str(n)+'.    ' , a, '        ' ,  sqrt(n) , '        ' ,  S/cnt )
+        if a[1] != itr :
+            itr = a[1]
+            print(str(n)+'.    ' , a, '        ' ,  sqrt(n) , '        ' ,  S/cnt )
 
-    return print('\nAnswer : \t', round(S/L, 10 ) , '                ',  S/L )
+    print('\nAnswer : \t', round(S/L, 10 ) , '                ',  S/L )
+    return round(S/L, 10 )
 
 # down, up, step = 10**4 , 10**5, 10**0
-down, up, step = 10**13 , 10**14, 10**7
+down, up, step = 10**13 , 10**14, 10**4
 brute_force_verification(down, up, step)
 
 # @2017-10-16 - The value should look something like :  4.447450333333333
@@ -107,7 +111,7 @@ brute_force_verification(down, up, step)
 # 45399.     (213, 2)          213.0704108974308          2.9441242937853107
 # 45400.     (213, 2)          213.07275752662517          2.944097624360894
 
-https://www.youtube.com/watch?v=iaBEKo5sM7w
+# https://www.youtube.com/watch?v=iaBEKo5sM7w
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')

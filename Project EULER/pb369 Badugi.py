@@ -1,46 +1,65 @@
-#  Created by Bogdan Trif on 02-11-2017 , 8:17 PM.
+#  Created by Bogdan Trif on 07-12-2017 , 12:54 PM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-Swapping Counters           -           Problem 321
+                         Badugi          -           Problem 369
 
-A horizontal row comprising of 2n + 1 squares has n red counters placed at one end and n blue counters at the other end,
-being separated by a single empty square in the centre.
-For example, when n = 3.
+In a standard 52 card deck of playing cards, a set of 4 cards is a Badugi
+if it contains 4 cards with no pairs and no two cards of the same suit.
 
-p321_swapping_counters_1.gif
-A counter can move from one square to the next (slide) or can jump over another counter (hop) as long as the square next to that counter is unoccupied.
+Let f(n) be the number of ways to choose n cards with a 4 card subset that is a Badugi.
 
-p321_swapping_counters_2.gif
-Let M(n) represent the minimum number of moves/actions to completely reverse the positions of the coloured counters; that is, move all the red counters to the right and all the blue counters to the left.
+For example, there are 2598960 ways to choose five cards from a standard 52 card deck,
+of which 514800 contain a 4 card subset that is a Badugi,
 
-It can be verified M(3) = 15, which also happens to be a triangle number.
+so f(5) = 514800.
 
-If we create a sequence based on the values of n for which M(n) is a triangle number then the first five terms would be:
-1, 3, 10, 22, and 63, and their sum would be 99.
-
-Find the sum of the first forty terms of this sequence.
+Find ∑f(n) for 4 ≤ n ≤ 13.
 
 
 '''
 import time, zzz
+from math import factorial
+from itertools import combinations
+
+def choose(n, k):
+    return factorial(n) // (factorial(k) * factorial(n-k))
+
+# ♠ Spades - S ,   ♥ Hearts - H   ,  ♦  Diamonds - D , ♣ Clubs - C
+
+CA = { '2':2, '3':3 , '4':4 , '5':5, '6':6 , '7':7, '8': 8 , '9': 9, 'T':10, 'J':12, 'Q':13, 'K':14, 'A' :15 }
+C = '23456789TJQKA'
+# print(C)
+print(choose(52, 4  ))
+print(choose(52, 5  ))
+print(choose(52, 13  ))
+
+
+CARDS = []
+for i in C :
+    for j in 'SHDC' :
+        # print(i, j)
+        CARDS.append(str(i+j) )
+print(CARDS)
+
 
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-C = [ 1, 1, 0, 2, 2 ]       #
-print(C)
+def brute_force_Acknowledgement( ) :
+    comb = combinations(CARDS, 5)
+    cnt = 0
+    for I in comb :
+        a =  [ o[0] for o in I ]
+        b =  [ o[1] for o in I ]
+        if len(set(a)) >= 4 and len(set(b)) == 4 :
+            cnt+=1
+            print(str(cnt)+ '.    ' ,I )
 
-def move_red( C ) :     # red are 1's
-    pos = C.index(0)
-    C[pos], C[pos-1] = C[pos-1], C[pos]
-    return C
+    print('\nUnique 4-Sets = ', cnt ,'         from  C(52, 4) = 270725  combinations ' )
 
-print( move_red(C) )
-
-
-
+brute_force_Acknowledgement()
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')

@@ -104,6 +104,56 @@ for i in L :
 #######################  MONOTONY  ##################
 print('\n-----------monotonically increasing or monotonically decreasing sequence in a list ---------------- ')
 
+def strictly_increasing(L):
+    return all(x<y for x, y in zip(L, L[1:]))
+
+def strictly_decreasing(L):
+    return all(x>y for x, y in zip(L, L[1:]))
+
+def non_increasing(L):
+    return all(x>=y for x, y in zip(L, L[1:]))
+
+def non_decreasing(L):
+    return all(x<=y for x, y in zip(L, L[1:]))
+
+
+
+is_increasing = lambda L: operator.reduce(lambda a,b: b if a < b else 9999 , L)!=9999
+
+is_decreasing = lambda L: operator.reduce(lambda a,b: b if a > b else -9999 , L)!=-9999
+
+
+
+import itertools
+import operator
+
+def monotone_increasing(lst):
+    pairs = zip(lst, lst[1:])
+    return all(itertools.starmap(operator.le, pairs))
+
+def monotone_decreasing(lst):
+    pairs = zip(lst, lst[1:])
+    return all(itertools.starmap(operator.ge, pairs))
+
+def monotone(lst):
+    return monotone_increasing(lst) or monotone_decreasing(lst)
+
+
+import numpy as np
+
+def monotonic(x):
+    dx = np.diff(x)
+    return np.all(dx <= 0) or np.all(dx >= 0)
+
+
+def monotonic_increase(L) : # Very simple function which must work in many programming languages,  O(n)
+    for i in range(len(L)-1) :
+        if L[i] > L[i+1] :
+            return False
+    return True
+
+#########################################
+
 def longest_run(L):
     """
     Assumes L is a list of integers containing at least 2 elements.

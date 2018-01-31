@@ -67,12 +67,13 @@ def prime_subset_sums(up) :
 
     for p in P :
         s_sum = sum( P[:P.index(p)+1] )
-        print('prime = ',p,'       s_sum= ' ,s_sum, '     P,index(p)= ', P.index(p) ,'       '  ,P[:P.index(p)+1] )
+        print('prime = ',p,'       s_sum= ' ,s_sum, '     P,index(p)= ', P.index(p) ) #,'       '  ,P[:P.index(p)+1] )
         for i in range( s_sum,  p-1 , -1) :
             T[i] = T[i] + T[i-p]
 
     print(T[:100])
     S =   sum( [ T[i] for i in range(len(T))  if is_prime(i) ] )
+
     return print('\nAnswer : \t' , S%10**16 , '\n', S )
 
 prime_subset_sums(5000)             #   Answer : 	 9275262564250418

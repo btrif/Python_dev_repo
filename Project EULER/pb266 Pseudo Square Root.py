@@ -407,9 +407,10 @@ def closest_product_subset_list_algorithm() :
     P1 = primes[:len(primes)//2]
     P2 = primes[len(primes)//2:]
 
-    print(P1)
-    print(P2)
+    print('\nP1 : ' , P1)
+    print('P2 : ' , P2)
 
+    # Here we get all the divisors of the number formed by multiplying elements in the list
     Q1, Q2 = [1], [1]
     for i in P1 :
         Q1 += [ i*j for j in Q1 ]
@@ -420,11 +421,11 @@ def closest_product_subset_list_algorithm() :
 
     Q1 = sorted(Q1, reverse=False)
     Q2 = sorted(Q2, reverse=True)
-    print(Q1[:50])
-    print(Q2[:50])
+    print('\nQ1 : ' , Q1[:50])      # Only first 50 elements
+    print('Q2 : ' , Q2[:50])            # Only LAST 50 elements
 
     # === Same result can be achieved with the following approach
-    def all_factors_combinations(lst) :
+    def all_factors_combinations(lst) :     # !!!!!!!!!!! function not utilized here
         ''' Returns the combinations of all elements from a list, preferable a prime factor list'''
         L =[1]
         for i in range(1, len(lst)+1 ) :
@@ -437,12 +438,13 @@ def closest_product_subset_list_algorithm() :
     # all_factors_combinations(P1)
 
     l1, l2, = len(Q1), len(Q2)
-    print('---- Those two approaches are also equivalent ---- NICE !! ---')
-    target = sqrt( functools.reduce(operator.mul, P1+P2) )
-    target2 = sqrt( Q1[-1] * Q2[0] )
-    print('target1 = ',target ,'      target2 = ', target2)
+    # print('---- Those two approaches are also equivalent ---- NICE !! ---')
+    target1 = sqrt( Q1[-1] * Q2[0] )
+    # target2 = sqrt( functools.reduce(operator.mul, P1+P2) )
+    # print('target1 = ',target ,'      target2 = ', target2)
+    print('target1 = ',target )
 
-    ### Main solution
+    ########### Main solution       ###############
     i, j, best = 0, 0, 0
     while i< l1 and j < l2 :
         curr_prod = Q1[i]*Q2[j]
@@ -467,7 +469,7 @@ def closest_product_subset_list_algorithm() :
 
     return print('\nthe last 16 digits are : ', best%(10**16))
 
-# closest_product_subset_list_algorithm()
+closest_product_subset_list_algorithm()
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1) ,4), 's\n\n')
@@ -519,11 +521,37 @@ print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 print('\n--------------- SOLUTION 2   --------------------------')
 t1  = time.time()
 
-print('\n--------------- SOLUTION 2,  WORSE SCHEME ,  1 min --------------------------')
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------- SOLUTION 2,  BETTER SCHEME ,  1 min --------------------------')
+
+# ==== Sat, 28 Nov 2009, 15:26, Peter de Rivaz, England
+
+# I split the primes into two sets, the first 21 and the second 21.
+# I then generate all possible products made from these sets.
+#
+# ORIGINAL SCHEME
+# Finally I use bisection for each value s2 in the second set to find the value in the first set closest to sqrt(target)/s2.
+#
+# I don't trust the precision of the sqrt function so have put in some ugly fixups to make sure we haven't over or under shot.
+#
+# The makeprods code is inefficient and generates some products greater than the sqrt.
+
 # WORSE SCHEME
 # The first approach I tried was scanning back from the sqrt looking for values which
 # could be constructed from the known primes.  However, this seems to take a very long time
 # (order distance between the sqrt and the actual answer) so is definitely not to be recommended!
+
+# BETTER SCHEME
+# A better scheme is to scan the lists in parallel, one going forward, and one backward based on whether
+# the current product was above or below the target.
+#
+# (Would be even faster if I trusted the precision of sqrt as could avoid the squaring operation in the loop)
+
+
 
 import bisect
 
@@ -568,7 +596,7 @@ def euler266():
             maxt=s1*s2
             print (maxt,s-maxt*maxt)
 
-# euler266()
+euler266()
 
 print('\n---------------- IMPROVED SOLUTION , 45 sec------------------')
 
@@ -736,8 +764,8 @@ def solution5() :
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
+
+
 print('\n--------------------------SOLUTION 6,  30 sec  --------------------------')
 t1  = time.time()
 

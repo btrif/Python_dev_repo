@@ -50,7 +50,7 @@ print(euler_totient(7*7*2))
 
 == > then we make combinations of (1-1/2)(1-1/5)
 in fact we need all combinations from 1 --> 3 inclusive and then add another prime
-Vezi problema 204
+Vezi problema 204 and 248
 
 
 # In number theory, these numbers are called 5-smooth, because they can be characterized as having only 2, 3, or 5 as prime factors.

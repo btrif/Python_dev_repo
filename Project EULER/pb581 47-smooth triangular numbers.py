@@ -5,7 +5,7 @@
 47-smooth triangular numbers            -       Problem 581
 
 A number is p-smooth if it has no prime factors larger than p.
-Let T be the sequence of triangular numbers, ie T(n)=n(n+1)/2.
+Let T be the sequence of triangular numbers, ie T(n) = n(n+1)/2.
 
 Find the sum of all indices n such that T(n) is 47-smooth.
 
@@ -107,7 +107,7 @@ class Factorization():
 
 
 
-
+print('factors =  ', get_factors(18085704))
 
 
 
@@ -140,6 +140,8 @@ def brute_force_testing( prime, lim ) :
             f_12 = sorted(f1 + f2)
             T = n*(n+1)//2
 
+            # print('n=', n , '      n+1=' , n+1 ,'       T(n) = ' , T,'          n=',f1 , '        n+1= ',f2 ,'         f_12=',f_12 )# ,'       fact(n) =', get_factors(n) )
+
             if max(f_12) <= prime :
                 print('n=', n , '      n+1=' , n+1 ,'       T(n) = ' , T,'          n=',f1 , '        n+1= ',f2 ,'         f_12=',f_12 )# ,'       fact(n) =', get_factors(n) )
                 S+=n
@@ -149,7 +151,7 @@ def brute_force_testing( prime, lim ) :
     print('\nAnswer : \t', S )
     return S
 
-# brute_force_testing(11, 10**4)
+# brute_force_testing(31, 10**4)
 
 # until     2*10**7         :           1253782342
 # ('n=', 18113535, '      n+1=', 18113536, '       T(n) = ', 164050084154880L, '          n=', [3, 3, 5, 11, 23, 37, 43], '        n+1= ', [2, 2, 2, 2, 2, 2, 2, 2, 2, 7, 7, 19, 19], '         f_12=', [2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 5, 7, 7, 11, 19, 19, 23, 37, 43])
@@ -189,14 +191,21 @@ def smooth_triangular_numbers(max_p, lim ) :
 
     print( sieve[:100] )
     S = [ i for i in range(1, len(sieve)-1 )  if ( sieve[i] == True and sieve[i+1] == True)  ]
-    print( S[:100] )
+    print( S[::-100] )
+    for a in range(lim-1, 0, -1 ) :
+        if sieve[a] ==True and sieve[a-1] == True :
+            print('Largest number = ', a-1 )
+            break
+
     print('\n Answer :    ' ,  sum(S) )
     return sum(S)
 
-smooth_triangular_numbers(47, 10**9)
+smooth_triangular_numbers(31, 3*10**9)
 # Answer :     11188231245
 
-@2017-11-14     -   I need 16 GB for this problem       !!!!!!!!!
+# @2017-11-14     -   I need 16 GB for this problem       !!!!!!!!!
+# @2017-11-20 - Actually, the solution of the problem is other. CANNOT BE DONE with sieving
+# as the numbers 47-th are too large
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1),4) ,  ' s\n\n')

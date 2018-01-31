@@ -4,6 +4,8 @@ from math import  gcd, sqrt, log
 # The Most basic
 
 # Prime numbers GENERATOR
+from pyprimes import factorise
+
 print('---'*20,'PRIME NUMBERS GENERATOR - METHOD 1','---'*20)
 t1  = time.time()
 
@@ -762,6 +764,43 @@ def Euler_Totient_Sieve(n):
 
 print('Euler Totient Sieve : \t', Euler_Totient_Sieve(600))
 
+
+
+print('\n------------------  INVERSE EULER Phi,  Φ (n) of a number, INVERSE EULER TOTIENT , inverse phi -------------------- ')
+
+F = Factorization(10**3)
+
+def inverse_phi(N, a=1):
+    saved = []
+
+    if N < 1:
+        raise ValueError
+
+    if N == 1:
+        if a > 1:
+            return [1]
+        return [1, 2]
+
+    divisors = F.get_divisors(N)
+
+
+    for div in divisors :
+        if (div < a) or (not Miller_Rabin(div + 1)):
+            continue
+        N_ = N / div
+        div += 1
+        P = div
+
+        while True:
+            saved += map(lambda x: x*P, inverse_phi(N_, div))
+            if N_ % div:
+                break
+            P *= div
+            N_ /= div
+
+    return saved
+
+print(  inverse_phi(240) )
 
 
 print('\n------------------  Divisor Square Sum  - sigma_2 -------------------- ')

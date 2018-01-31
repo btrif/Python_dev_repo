@@ -69,15 +69,15 @@ print( list(k for k,_ in itertools.groupby(s)) )
 print('\n-------------------  Recursive approach, Excelent Job, MUST STUDY IT !  ---------------------- \n')
 
 def partition_nr_into_given_set_of_nrs(nr, S):
-    nrs = sorted(S, reverse=True)
+    S = sorted(S, reverse=True)
     def inner(n, i):
         if n == 0:
             yield []
-        for k in range(i, len(nrs)):
-            if nrs[k] <= n:
-                for rest in inner(n - nrs[k], k):
-                    yield [nrs[k]] + rest
-    return list(inner(nr, 0))
+        for k in range(i, len(S) ):
+            if S[k] <= n:
+                for rest in inner(n - S[k] , k):
+                    yield [ S[k] ] + rest
+    return list( inner(nr, 0) )
 
 S = [ 1, 4, 9, 16 ]
 print(partition_nr_into_given_set_of_nrs(9, S))
@@ -90,26 +90,24 @@ print(partition_nr_into_given_set_of_nrs(9, S))
 print('\n-------------------  Recursive approach, with LIMIT  ---------------------- \n')
 
 def partition_nr_into_given_set_of_nrs(nr, S,  lim=10 ):
-    nrs = sorted(S, reverse=True)
+    ''' :Description: partition a number into a custom set of integers with a limit maximum number of terms
+    :param n: number to partition
+    :param S: integer set
+    :return: list of partitions             '''
+    S = sorted(S, reverse=True)
     def inner(n, i, lim ):
         if lim >= 0 :
             if n == 0:
                 yield []
-            for k in range(i, len(nrs)):
-                if nrs[k] <= n:
-                    for rest in inner(n - nrs[k], k , lim-1 ):
+            for k in range(i, len(S)):
+                if S[k] <= n:
+                    for rest in inner(n - S[k], k , lim-1 ):
 
-                        yield [nrs[k]] + rest
+                        yield [ S[k] ] + rest
     return list(inner(nr, 0, lim))
 
 S = [  1,4,9,16 ]
 print(partition_nr_into_given_set_of_nrs(40, S, 10))
-
-
-
-
-
-
 
 
 # def partition(number):

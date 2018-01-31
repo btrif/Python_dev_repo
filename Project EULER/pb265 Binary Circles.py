@@ -1,5 +1,5 @@
 #  Created by Bogdan Trif on 16-10-2017 , 9:57 PM.
-# © o(^_^)o  Solved by Bogdan Trif  @
+# © o(^_^)o  Solved by Bogdan Trif  @   Completed on Sat, 11 Nov 2017, 13:21
 #The  Euler Project  https://projecteuler.net
 '''
 Binary Circles          -           Problem 265

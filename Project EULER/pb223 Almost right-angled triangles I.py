@@ -7,7 +7,7 @@
 Let us call an integer sided triangle with sides a ≤ b ≤ c barely acute if the sides satisfy
 a^2 + b^2 = c^2 + 1.
 
-How many barely acute triangles are there with perimeter ≤ 25,000,000  (2.5*10**7)  ?
+How many barely acute triangles are there with perimeter ≤ 25,000,000  (25*10**6)  ?
 
 
 '''
@@ -63,41 +63,88 @@ t1 =  time.time()
 
 
 def my_first_soln( lim) :
-    Sq1 = [i*i+1 for i in range(0, lim//2 )]
-    Sq = [ x*x  for x in range(0, lim//2 ) ]
+    A = [ x*x  for x in range(0, lim//2 ) ]
+    C = [i*i+1 for i in range(0, lim//2 )]
 
-    print( len(Sq1) ,Sq1[::-50])
-    print( len(Sq) ,Sq[::-50] ,'\n')
+
+    # print( len(A) ,A[::-50] ,'\n')
+    # print( len(C) ,C[::-50])
+
 
     cnt=0
-    for i in range(4,  len(Sq1) ):
+    for i in range(4,  len(C) ):
         high = i -1
-        low =  math.floor( sqrt( (Sq1[i]-1)/2) )
+        low =  math.floor( sqrt( (C[i]-1)/2) )
         if i%10000 == 0 :
             # print(str(i)+'.       high   =  ', i, high ,  '  Sq1 = ' ,Sq1[i] , '    c_sq+1=', Sq1[i] ,'  high=' ,Sq[high] ,'    low=', low , '   time = ', round((time.time()-t1 ),2),' s' )
             t3 = time.time()
+
         for j in range(high, low, -1) :
             # print( Sq[j]  )
-            b_sq = Sq[j]
-            if is_square( (Sq1[i] - b_sq) ) :
-                a = int(sqrt(Sq1[i] - b_sq))
+            b_sq = A[j]
+            if is_square( (C[i] - b_sq) ) :
+                a = int(sqrt(C[i] - b_sq))
                 b = int(sqrt(b_sq))
-                c = int(sqrt(Sq1[i]-1 ))
+                c = int(sqrt(C[i]-1 ))
                 if a+b+c <= lim :
                     cnt+=1
-                    print(str(cnt)+'.      a = ', a, '    b=' ,  b, '     c=',c,'      perim=', a+b+c , '         c^2+1 = ', c**2+1,'           (c-b)/(a-1)= (a+1)/(c+b)= ' , mpq(c-b, a-1) )
+                    # print(str(cnt)+'.      a = ', a, '    b=' ,  b, '     c=',c,'      perim=', a+b+c , '         c^2+1 = ', c**2+1,'           (c-b)/(a-1)= (a+1)/(c+b)= ' , mpq(c-b, a-1) )
 
     return print('\nAnswer : \t', cnt +lim//2 - 1)
 
 # my_first_soln( 25*10**2 )
-my_first_soln( 10**3 )
+my_first_soln( 10**4 )
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1),6), 's\n\n')
+
+
+
+t1  = time.time()
+
+
+def my_second_soln( lim) :
+    A = [ x*x  for x in range(0, lim//2 ) ]
+    C = [i*i+1 for i in range(0, lim//2 )]
+    # print( len(A) ,A[::-50] ,'\n')
+    # print( len(C) ,C[::-50])
+
+    cnt=0
+    for a in range(4,  len(A) ):
+        if a > lim /3 : break
+        if a%10000 == 0 :
+            print(str(a)+'.        ', a,  '  A = ' ,A[a] , '   time = ', round((time.time()-t1 ),2),' s' )
+            t3 = time.time()
+        a_sq = A[a]
+        for b in range(a, len(A) ) :
+            if a+b > 2*lim /3 : brea/k
+            if  2*b +2 > a*a : break
+            b_sq = A[b]
+            if is_square( a_sq + b_sq -1 ) :
+                c = int(sqrt(a_sq + b_sq -1 ))
+
+
+                if a+b+c <= lim :
+                    cnt+=1
+                    # print(str(cnt)+'.      a = ', a, '    b=' ,  b, '     c=',c,'      perim=', a+b+c , '         c^2+1 = ', c**2+1,'           (c-b)/(a-1)= (a+1)/(c+b)= ' , mpq(c-b, a-1) )
+
+    return print('\nAnswer : \t', cnt +lim//2 - 1)
+
+
+my_second_soln( 10**4 )
+
+
+
+
+
 
 # @2017-03-28 - I left here, I must use the a**2 -1 decomposition
 ## CHECKS
 # solutions for perimeter < 10^4 is equal to 13656
 #  <= 20,000 that would make 29257 triangles
-https://arxiv.org/pdf/1508.07562.pdf
-https://benvitalenum3ers.wordpress.com/2015/12/09/diophantine-equation-x2-y2-z2-1-almost-pythagorean-triples/
+# https://arxiv.org/pdf/1508.07562.pdf
+# https://benvitalenum3ers.wordpress.com/2015/12/09/diophantine-equation-x2-y2-z2-1-almost-pythagorean-triples/
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1),2), 's\n\n')

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Solved by Bogdan Trif @
+# Solved by Bogdan Trif @ Completed on Wed, 15 Nov 2017, 23:59
 #The  Euler Project  https://projecteuler.net
 '''
                     Divisibility of factorials      -       Problem 549
@@ -595,31 +595,262 @@ t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
-# print('\n--------------------------SOLUTION 2,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
+print('\n--------------------------SOLUTION 2,   3 min --------------------------')
+t1  = time.time()
 
-# print('\n--------------------------SOLUTION 3,   --------------------------')
-# t1  = time.time()
+# === Mon, 13 Mar 2017, 22:12, saramfish
+# This was a lot of fun! Right now this runs in just over 2 minutes, but I'm working on improving it.
+
+import math
+
+def is_prime(n):
+    if n<0:
+        return is_prime(-n)
+    if n==0 or n==1:
+        return False
+    else:
+        for d in range(2,int(math.sqrt(n))+1):
+            if n%d==0:
+                return False
+        return True
+
+def do(N=10**8):
+    total = 0
+    small_primes = [i for i in range(int(math.sqrt(N))+1) if is_prime(i)]#small primes, here <10^4
+    #Now we need to store s(p^k) for the small primes.
+    s_sto = []#So s_sto[i][k] gives s( (p_i)^k ).
+    for p in small_primes:
+        s_sto.append([0,p])
+        k = 2
+        while p**k < N:
+            last = s_sto[-1][-1]
+            #If last has p^i power, then it appears i times.
+            mult = 0
+            while last%(p**mult) == 0:
+                mult += 1
+            mult -= 1
+            if s_sto[-1][-mult] == last:
+                s_sto[-1].append(last+p)
+            else:
+                s_sto[-1].append(last)
+            k += 1
+    #So every n < 10**8 is a product of small primes and AT MOST one big prime.
+    s_array = [0 for i in range(N+1)]
+    for pi in range(len(small_primes)):
+        k = 1
+        pk = small_primes[pi]
+        while pk <= N:
+            i = pk
+            while i<=N:
+                s_array[i] = max(s_array[i], s_sto[pi][k])
+                i += pk
+            k += 1
+            pk *= small_primes[pi]
+    #Now, everything = 0 is a big prime.s
+    for si in range(int(math.sqrt(N)),len(s_array)):
+        if s_array[si]==0:
+            sik = si
+            while sik <= N:
+                s_array[sik] = max(s_array[sik],si)
+                sik += si
+    return sum(s_array)
+
+
+# do()
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 3,   --------------------------')
+t1  = time.time()
+
+# ==== Tue, 1 Mar 2016, 11:37, MrDrake, Australia
+# 20s sieve method - the function to find the smallest k such that pn|k! for a prime p was annoying.
+
+def f(x, y):
+    a = 0
+    while y > 1:
+        a += x
+        b = a
+        while y > 1 and b % x == 0:
+            b //= x
+            y //= x
+    return a
+
+N = 10**8
+answer = 0
+
+sieve = list(range(N+1))
+s = [0 for i in range(N+1)]
+
+for i in range(2, N+1):
+    if sieve[i] > 1:
+        k = i
+        while k <= N:
+            s[k] = f(i, k)
+            for j in range(k, N+1, k):
+                sieve[j] //= i
+                s[j] = max(s[j], s[k])
+            k *= i
+
+    answer += s[i]
+
+print(answer)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+print('\n--------------------------SOLUTION 4,   --------------------------')
+t1  = time.time()
+
+# ==== Mon, 7 Mar 2016, 07:05, ktheis, USA
+# Pure python (with some imports...) in 12 sec.
 #
+# 3 sec to generate primes, 6 seconds to tally i with s(i) < sqrt(N), and another 3 sec to tally the rest.
 #
+# Instead of iterating over 2..10^8, I iterated over the function values s(i).
+# For every possible s(i), I determined how many i's exist. Values of s(i) are either prime numbers ' \
+# or low multipliers (<17) of prime numbers, so the outer loop is much shorter
+# (and you don't have to do any factorization, it turns out).
 #
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+# For s(i) = p with p prime, possible i's are p * any divisor of (p-1)!, and i has to be smaller than 10^8.
+# If you save all i's with s(i) < p and i < 10^8 / p, this calculation is straightforward and fast.
 #
-# print('\n--------------------------SOLUTION 4,   --------------------------')
-# t1  = time.time()
+# For s(i) = n * p with p prime and n small, the procedure is a bit trickier, but also fast.
 #
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
+# For p = s(i) > sqrt(10^8) and p prime, things become really easy because possible i's are simply integer multiples of p,
+# making sure again that i stays below 10^8.
+
+
+from collections import defaultdict
+from bisect import bisect
+
+nonprimes = defaultdict(list)
+SRMax = 10000
+Max = SRMax * SRMax
+
+import itertools
+izip = itertools.zip_longest
+chain = itertools.chain.from_iterable
+compress = itertools.compress
+
+def rwh_primes2_python3(n):
+    """ Input n>=6, Returns a list of primes, 2 <= p < n
+    see http://stackoverflow.com/a/3035188 and
+    http://stackoverflow.com/a/33356284
+    """
+    zero = bytearray([False])
+    size = n//3 + (n % 6 == 2)
+    sieve = bytearray([True]) * size
+    sieve[0] = False
+    for i in range(int(n**0.5)//3+1):
+      if sieve[i]:
+        k=3*i+1|1
+        start = (k*k+4*k-2*k*(i&1))//3
+        sieve[(k*k)//3::2*k]=zero*((size - (k*k)//3 - 1) // (2 * k) + 1)
+        sieve[  start ::2*k]=zero*((size -   start  - 1) // (2 * k) + 1)
+    ans = [2,3]
+    poss = chain(izip(*[range(i, n, 6) for i in (1,5)]))
+    ans.extend(compress(poss, sieve))
+    return ans
+
+def prepphase():
+    for ilow, p in enumerate(mmp):
+        if p > SRMax:
+            break
+        mult = 1
+        number = p*p
+        oldexp = 1
+        while number < Max:
+            mult += 1
+            m = mult * p
+            exp = 0
+            while m % p == 0 and number <= Max:
+                m //= p
+                number *= p
+                exp += 1
+            if exp:
+                nonprimes[mult * p].append((p, exp, oldexp))
+            oldexp += exp
+    return ilow
+
+def newprime(i, done):
+    newdone = []
+    C = bisect(done, Max // i)
+    C2 = bisect(done, Max //(i * i))
+    for number in done[:C2]:
+        newdone.append(number * i)
+    del done[C:]
+    done.extend(newdone)
+    done.sort()
+    return done, C
+
+def oldprime(i, toomuch, factor, done):
+    C= 0
+    newdone = []
+    maxprod = Max // factor
+    maxprod2 = Max // i
+    ni = bisect(done,maxprod2)
+    for number in done[:ni]:
+        newnumber = number * factor
+        if number > maxprod or ((newnumber >= toomuch) and (newnumber % toomuch == 0)): #newnumber >= toomuch and
+            continue
+        C += 1
+        if newnumber <= maxprod2:
+            newdone.append(newnumber)
+    del done[ni:]
+    done.extend(newdone)
+    done.sort()
+    return done, C
+
+def firstphase(ilow):
+    done = [1]
+    S = C = 0
+    lowprimes = set(mmp[:ilow])
+    for i in range(2, SRMax+1):
+        if i in lowprimes:
+            done, aC = newprime(i, done)
+            S += aC * i
+            C += aC
+        elif i in nonprimes:
+            for p, exp, oldexp in nonprimes[i]:
+                done, aC = oldprime(i, p**(oldexp+exp+1), p**(oldexp+1), done)
+                S += aC * i
+                C += aC
+    return S, C
+
+def secondphase(S,C,ilow):
+    for np in nonprimes:
+        if np <= SRMax:
+            continue
+        for p, _, _ in nonprimes[np]:
+            aC = Max//(p*p)
+            S += aC * np
+            C += aC
+    for i in mmp[ilow:]:
+        if i > Max:
+            break
+        aC = Max//i
+        S += aC * i
+        C += aC
+    return S, C
+
+mmp = None
+
+def euler549():
+    global mmp
+    mmp = rwh_primes2_python3(Max)
+    ilow = prepphase()
+    S, C = firstphase(ilow)
+    S, C = secondphase(S,C, ilow)
+    print(S, C)
+
+euler549()
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
 # print('\n--------------------------SOLUTION 5,   --------------------------')
 # t1  = time.time()
 #
