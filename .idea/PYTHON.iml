@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Algorithms/subset" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Algorithms" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project EULER" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Maths/Polynomials_Functions" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.5.1 (C:\Util\Python35\python.exe)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

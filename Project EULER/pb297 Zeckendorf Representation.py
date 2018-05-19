@@ -1,5 +1,5 @@
 #!/usr/bin/python                   o(^_^)o         ( ͡° ͜ʖ ͡°)
-# © Solved by Bogdan Trif @
+# © Solved by Bogdan Trif @     Completed on Sun, 22 Apr 2018, 22:06
 #The  Euler Project  https://projecteuler.net
 '''
             Zeckendorf Representation       -       Problem 297
@@ -51,7 +51,7 @@ def fibonacci_gen():
 
 
 f = fibonacci_gen()
-Fib = []
+Fib = [0]
 Fi = set()
 n = next(f)
 while n < 10**7 :
@@ -59,52 +59,73 @@ while n < 10**7 :
     Fib.append(n) ; Fi.add(n)
     n = next(f)
 
-print(len(Fib), Fib)
+print('Fib :',len(Fib), Fib)
+
 
 def build_zeck(Fib):
+    ''':Description: Function to build the Fibonacci bases representation'''
     D = {}
-    for i in range( len(Fib)) :
-        D[ Fib[i]  ] = 10**i
+    for i in range( 1, len(Fib)) :
+        D[ Fib[i]  ] = 10**(i-1)
 
     return D
 
 
-def write_as_Fibonacci(n, cnt):     # Recursive algorithm
-    ind = binary_search(n, Fib)
 
-    n = n - Fib[ind]
-    cnt+=1
-    # print(ind , Fib[ind] , cnt )
-    if n == 0 : return cnt
-
-    if n>0 :
-        return write_as_Fibonacci(n, cnt)
-
+# def count_Fibonacci_terms(n, cnt):     # NOT USED !!! Recursive algorithm, SLOW Algorithm
+#     ind = binary_search(n, Fib)
+#     n = n - Fib[ind]
+#     cnt+=1
+#     # print(ind , Fib[ind] , cnt )
+#     if n == 0 : return cnt
+#     if n>0 :
+#         return count_Fibonacci_terms(n, cnt)
 
 
 
 
+def decompose_in_fibonacci_base(n, Fib, Fib_base ) :
+    ''':Description: Function which write a number in Fibonacci base :
+    :param n: number to decompose, int
+    :param Fib: lst, the list of Fibonacci sequence to use
+    :return: tuple composed of :  int, in binary representation. Example : 4 = 101
+            and  list of Fibonacci numbers                          '''
+
+    fib_base, L = 0, []
+    ind = binary_search(n, Fib )
+    for i in range(ind, 0, -1 ):
+        if Fib[i] <= n :
+            n -= Fib[i]
+            L.append(Fib[i])
+            fib_base += Fib_base[ Fib[i] ]
+            # print( 'ind =', i,'     Fib[i] = ', Fib[i], '       Fib_repr = ', Fib_base[ Fib[i] ] )
+    # print('\nfib_base = ', fib_base)
+    return fib_base, L
+
+
+# decompose_in_fibonacci_base(20, Fib, Fib_base )
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
+Fib_base = build_zeck(Fib)
+print( 'build_zeck : ' , Fib_base )
 
-print(build_zeck(Fib))
 
 
-print('\nwrite_as_Fibonacci : \t', write_as_Fibonacci( 100 ,0 )  )
 
-# ALGORITHM RUDIMENTAR  !!!     BINARY SEARCH IS SLOW !
-def binary_search_algorithm(up) :
+def brute_force_count_Zeckendorf( nr ) :
     S = 0
-    for i in range(1, up):
-        w = write_as_Fibonacci(i, 0)
-        S+= w
-        print(str(i)+'.          ', w,'        ', S )
+    for n in range(1, nr):
+        w = decompose_in_fibonacci_base(n, Fib, Fib_base)[0]
+        S+= str(w).count('1')
+        if n%10**5 == 0 :
+            print('n =' , n ,'        bin_repr =  ', w ,'        terms =', str(w).count('1') )
 
-    print('\nAnswer : \t', S)
+    return print('\nAnswer : \t', S)
 
-binary_search_algorithm(10**2+15)
+brute_force_count_Zeckendorf(10**3)
+
 
 
 # http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibrep.html            !!!!!!!!!
@@ -125,87 +146,518 @@ binary_search_algorithm(10**2+15)
 # ten =	1	0	0	1	0_Fib =	8 + 2
 # which distinguishes it from ten thousand and ten (10010) in decimal.
 
+# @2018-04-20 - STRATEGY --> use the fibonacci representation of the form13_fib = 100000
+# to build by recursion and count the 1's from the previous inter terms :
+# Example :
+# nr of 1's in (14,15,16,17,1,19,20)_fib = nr of 1's in (9, 10, 11, 12)_fib AND (5, 6, 7)_fib
+# NOTE : See that we need a term in plus which is the smallest fibonacci number from the second term
+
+# 10**17 will be represented in Fibonacci bases which will be computed after the above rule !
+
+# Decimal	        Fibonacci representation
+# 0	                0
+# 1	                1
+# 2	                10
+# 3	                100
+# 4	                101
+# 5	                1000
+# 6	                1001
+# 7	                1010
+# 8	                10000
+# 9	                10001
+# 10	                10010
+# 11	                10100
+# 12	                10101
+# 13	                100000
+# 14              	100001
+# 15	                100010
+# 16	                100100
+# 17	                100101
+# 18	                101000
+# 19	                101001
+# 20	                101010
+
+
+
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n================  My FIRST SOLUTION,   ===============\n')
+print('\n================  My FIRST SOLUTION, 2 ms, the most complicated  ===============\n')
+t1  = time.time()
+
+class Zeckendorf_representation(object) :
+    def __init__(self, N ):
+        self.N = N-1
+        self.Fib, self.Fi = self.fibonacci_gen( N )
+        self.Fib_base = self.build_zeck()
+        self.Inter_Fib = self.get_Interior_Fib_terms()
+
+    def get_Fib(self):
+        print(self.Fib)
+        print(self.Fi)
+
+    def binary_search(self, n ):        # VERY FAST ALGORITHM
+        ''':Description: Search for an element in the list and returns the index of it. If it not finds it returns
+            the index of the element closest to its left, the smaller number.
+        :param: **n**- integer, the number to find
+                    **List** - lst type, the list to search for
+        :returns:   int, the index of the element        '''
+        left = 0
+        right = len(self.Fib) -1
+
+        while left <= right:
+            midpoint = (left+right)//2
+            if self.Fib[midpoint] == n: return midpoint
+            elif self.Fib[midpoint] > n: right = midpoint-1
+            else: left = midpoint+1
+        if n > self.Fib[midpoint]: return midpoint
+        else: return (midpoint-1)
+
+    def fibonacci_gen( self, N ):
+        """Fibonacci numbers generator"""
+        a, b = 1, 2
+        A, B = [0], set()
+        while a < N :
+            # yield a
+            A.append(a) ; B.add(a)
+            a, b = b, a + b
+        return A, B
+
+    def build_zeck( self ):
+        ''':Description: Function to build the Fibonacci bases representation'''
+        D = {}
+        for i in range( 1, len(self.Fib)) :
+            D[ self.Fib[i]  ] = 10**(i-1)
+        return D
+
+    def decompose_in_fibonacci_base(self, n ) :
+        ''':Description: Function which write a number in Fibonacci base :
+        :param n: number to decompose, int
+        :param Fib: lst, the list of Fibonacci sequence to use
+        :return: tuple composed of :  int, in binary representation. Example : 4 = 101
+                and  list of Fibonacci numbers                          '''
+
+        fib_base, L = 0, []
+        ind = self.binary_search( n )
+        for i in range(ind, 0, -1 ):
+            if self.Fib[i] <= n :
+                n -= self.Fib[i]
+                L.append(self.Fib[i])
+                fib_base += self.Fib_base[ self.Fib[i] ]
+                # print( 'ind =', i,'     Fib[i] = ', Fib[i], '       Fib_repr = ', Fib_base[ Fib[i] ] )
+        # print('\nfib_base = ', fib_base, '     L=', L)
+        return fib_base, L
+
+
+    def get_Interior_Fib_terms(self) :
+        Inter_Fib = dict()
+        for i in range(4, 7) :
+            inter = ( self.Fib[i-1]+1, self.Fib[i] )
+            # print(i, '.     ', self.Fib[i] ,'    ', (self.Fib[i-1], self.Fib[i])  ,'    ', inter  ,'    ',  )
+            S = 0
+            for j in range( inter[0], inter[1] ) :
+                w = self.decompose_in_fibonacci_base( j )[0]
+                cnt_o = str(w).count('1')
+                S += cnt_o
+                # print(j , '      ', w, '     cnt_o = ',  cnt_o )
+            Inter_Fib[inter] = S
+
+        # print('\nInter_Fib : ', Inter_Fib )
+
+        for i in range(6, len(self.Fib)) :
+            fib_a, fib_b = (self.Fib[i-3]+1, self.Fib[i-2]) , (self.Fib[i-2]+1, self.Fib[i-1])
+            # x = 0
+            f_terms = Inter_Fib[fib_a] + Inter_Fib[fib_b] +(fib_a[1]-fib_a[0] ) +2
+            Inter_Fib[( self.Fib[i-1]+1, self.Fib[i] ) ] = f_terms
+            # print(str(i) +'.    f =  ', self.Fib[i], '    next_seq =  ', ( self.Fib[i-1]+1, self.Fib[i] ) , '       prev_seqs :    fib_a =',   fib_a ,'   fib_b =',fib_b ,'    f_terms=', f_terms )
+
+        print('\nInter_Fib = ', len(Inter_Fib), Inter_Fib,'\n' )
+        return Inter_Fib
+
+    def count_sum_terms_to_Fib( self, n ) :
+        ''':Description: Count the sum of the Fibonacci decomposition terms up to the given Fibonacci number
+           :Example1:  count_sum_terms_to_Fib ( 2) = 1 +1 = 2 :
+           :Example2:  count_sum_terms_to_Fib ( 8) = 6+ 2 +2 +1 = 11
+           :Example3:  count_sum_terms_to_Fib ( 13) = 11 + 2+2+2+3 = 21                        '''
+        if n not in self.Fi :
+            raise ValueError('n must be a Fibonacci number !')
+
+        i = self.binary_search(n)
+        S = i
+        while i > 3 :
+            terms =  self.Inter_Fib[( self.Fib[i-1]+1 , self.Fib[i] )]
+            # print(str(i), '      fib =', self.Fib[i],  '    ' ,   ( self.Fib[i-1]+1 , self.Fib[i])  , '       Inter_Fib :' ,  terms   )
+            S+= terms
+            i-=1
+
+        # print('\n'+'Nr. of terms for '+str(n)+' =', S )
+        return S
+
+    def Zeckendorf_total_sum( self ) :
+        '''Main function  '''
+        S = 0
+        F_FibBase, N_fib =  self.decompose_in_fibonacci_base(self.N )
+        print('\nN = ', self.N, '\ndecompose_in_fibonacci_base : ',  F_FibBase, N_fib )
+
+        for i in range(len(N_fib))  :
+            cnt_to_Fib = self.count_sum_terms_to_Fib( N_fib[i] )
+            # print('mult =' ,i ,'      fib = ' ,N_fib[i] ,'      count_to_sum : ',  cnt_to_Fib,'       increments_to_add : ', N_fib[i] * i )
+            S += cnt_to_Fib + N_fib[i] * i
+
+        print('\nZeckendorf Total Sum =' , S)
+        return S
+
+
+Zeckendorf_representation(10**17 ).Zeckendorf_total_sum()           #   2252639041804718029
+
+
+# @2018-04-21, 23:00 - Now I must get for each Fibonacci number the number of 1's to it !
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
+print('\n--------------------------SOLUTION -1, Recursion  --------------------------')
 t1  = time.time()
 
 
+# === Sat, 19 Jun 2010, 00:40, st1974, Germany
+# Another simple recursion solution
 
-# for i in range(1,100):
-#     print(str(i)+'.        bin = ',  bin(i) )
+def zsum(n):
+    if n<=3: return n
+    f0, f1 = s0, s1 = 1, 2
+    while n-f1 >= f0:
+        s0, s1 = s1, s1 + s0 + f0 -1
+        f0, f1 = f1, f0+f1
+    return s1 + zsum( n-f1) + (n-f1)
 
+print(zsum(10**17-1))
 
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
-# print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
-# print('\n--------------------------SOLUTION 1,   --------------------------')
-# t1  = time.time()
+print('\n--------------------------SOLUTION 0, Recursion  --------------------------')
+t1  = time.time()
+
+
+# === Fri, 18 Jun 2010, 20:42, mastro, Italy
+# This was easy, similar algorithm as others but very short code:
+
+def get_sum_z(n, cache={1: 0}):
+    if n not in cache:
+        prev = fib = 1
+        while fib < n:
+            prev, fib = fib, prev + fib
+        cache[n] = n - prev + get_sum_z(n - prev) + get_sum_z(prev)
+    return cache[n]
+
+print(get_sum_z(10 ** 17))
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+
+
+print('\n--------------------------SOLUTION 1, Recursion  --------------------------')
+t1  = time.time()
+
+
+# === Sat, 6 Aug 2016, 13:44, anumoshsad, Bangladesh
+# I used the idea that S(Fn)=S(Fn−1)+S(Fn−2)+Fn−2−1 where Fn is the n-th Fibonacci and S(m)=∑mi=1z(i).
+# Similarly, if m is not a Fibonacci and Fn is the largest fibonacci less than m, we can write
+# S(m)=S(Fn)+S(m−Fn)+m−Fn.
 #
+# My coding in python looks ugly but it does the job under .5 milliseconds.
+
+def pe297():
+    from time import time
+    start = time()
+
+    s = [0,1,2]
+    while s[-1]<10**18:
+        s.append(s[-1]+s[-2])
+
+    z = [0,1,2,3]
+    for i in range(4,len(s)):
+        z.append(z[i-1]+z[i-2]+s[i-2]-1)
+
+    def find(n):
+        if n<4:return n
+        else:
+            i = 1
+            while True:
+                if s[i]>n:
+                    i-=1
+                    break
+                if s[i]==n: return z[i]
+                i+=1
+            return n-s[i]+ find(n-s[i]) +z[i]
+    print(find(10**17-1), time()-start,"seconds")
+
+
+pe297()
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 2, Iteration  --------------------------')
+t1  = time.time()
+
+# ==== Sun, 23 Aug 2015, 23:49, DrLock, England
+# Interesting problem. Not as hard as it seems to be at first sight.
 #
+# I used the fact that Sk=Sk−1+Sk−2+Fk−3, where Sk=∑{F_k+1−1, n=F_k} z(n)
 #
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+# The last part of the program finds the Zeckendorf's representation of N and compute ∑N−1n=Fiz(n) where Fi
+#  is the largest Fibonacci number smaller than N.
 #
-#
-# print('\n--------------------------SOLUTION 2,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 3,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 4,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 5,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 6,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
-# print('\n--------------------------SOLUTION 7,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
-#
-#
+# Runs very fast (the complexity is O(logN)).
+# Tried with N=10105. It ran in 2 seconds. The answer contains 10,005 digits, starts with a 1 and ends with a 2.
+
+def sigma_z(limit):
+	if limit<1:
+		raise Exception('Invalid Argument: limit={}'.format(limit))
+	elif limit<5:
+		return limit-1
+	# else - general case
+	# We are able to save the whole sequences since it's only required to store O(log(n)) numbers
+	f = [1, 2, 3, 5]
+	s = [1, 1, 3]
+	while f[-1] < limit:
+		s.append(s[-1]+s[-2]+f[-4])
+		f.append(f[-1]+f[-2])
+	if limit == f[-1]:
+		return sum(s)
+	# else
+	f.pop()
+	s.pop()
+	result = sum(s)
+	i = len(f)-1
+	r = limit - f[i]
+	m = 0
+	while r != 0:
+		i -= 2
+		z = f[i]
+		while z>r:
+			i -= 1
+			z = f[i]
+		result += s[i+1] + m * f[i]
+		r -= z
+		m += 1
+	return result
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 3,  Recursion with Memoization, Very Elegant --------------------------')
+t1  = time.time()
+
+# ===Tue, 27 May 2014, 22:07, Paul Crowley, USA
+# Yet another recursion with memoization.
+
+def memo(func):
+    cache = {}
+    def wrap(*args):
+        if args not in cache:
+            cache[args] = func(*args)
+        return cache[args]
+    return wrap
+
+@memo
+def f(i):
+    if i < 2:
+        return 0
+    a, b = 1, 2
+    while b < i:
+        a, b = b, a+b
+    return f(a) + (i - a) + f(i - a)
+
+print( f(10**17))
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 4,   --------------------------')
+t1  = time.time()
+
+# ==== Tue, 17 Apr 2012, 19:57, tolstopuz. Russia
+
+
+f = [1, 2]
+s = [1, 2]
+
+nmax = 10 ** 17 - 1
+
+while True:
+    ff = f[-2] + f[-1]
+    if ff > nmax:
+        break
+    ss = s[-2] + s[-1] + f[-2] - 1
+    f.append(ff)
+    s.append(ss)
+
+c = 0
+
+n = nmax
+for i in reversed(range(len(f))):
+    if n >= f[i]:
+        c += s[i] + n - f[i]
+        n -= f[i]
+
+print(c)
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 5,  Recursion  --------------------------')
+t1  = time.time()
+
+# ==== Sun, 17 Jun 2012, 20:16, ving, USA
+# Another rendition in Python, similar to the above but using tail recursion:
+
+N = 10**6 - 1  # Answer = 7894453
+N = 10**17 - 1  # Answer = 2252639041804718029
+#N = 10**500 - 1
+
+sumz, fibs = [1, 1], [1, 1]
+
+while fibs[-1] < N:
+    sumz.append(sumz[-2] + sumz[-1] + fibs[-2] - 1)
+    fibs.append(fibs[-2] + fibs[-1])
+
+def get_sum_z(n):
+    i = 0
+    while fibs[i+1] <= n:
+        i += 1
+    sz = sumz[i]
+    n -= fibs[i]
+    if n > 0:
+        sz += n + get_sum_z(n)
+    return sz
+
+print(get_sum_z(N))
+
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 6,  Recursion --------------------------')
+t1  = time.time()
+
+# ====Sat, 15 Sep 2012, 03:03, JavaGAR, USA
+# This Python solution uses recursive functions to compute z values and sums of z values.
+# Since the sumZ function uses previous sumZ values recursively, it employs values stored in a list and a dictionary for efficiency.
+# Execution time is less than a second.
+
+fib = [] # List of Fibonacci numbers
+fibZSums = {0: 0, 1: 1, 2: 2, 3: 3} # Dictionary of z(n) values of Fibonacci numbers
+
+def buildFib(maxFib):
+    # Build the list of Fibonacci numbers
+    a = 0
+    b = 1
+    while b <= maxFib:
+        a, b = b, a + b
+        fib.append(a)
+
+def buildFibZSums():
+    # Build the list of sums of z values from 1 to each Fibonacci number
+    for n in range(5, len(fib) - 1):
+        if fib[n] not in fibZSums:
+            fibZSums[fib[n]] = sumZ(fib[n])
+
+def z(n):
+    # Recursive z function
+    if n in fib:
+        return 1
+    else:
+        i = 0
+        while n > fib[i]:
+            i += 1
+        return 1 + z(n - fib[i - 1])
+
+def fIndex(n):
+    # Return the index in fib of the largest Fibonacci number <= n
+    i = 0
+    while n >= fib[i]:
+        i += 1
+    return i - 1
+
+def zeckendorf(n):
+    # Recursive function to return the Zeckendorf representation of n as a list
+    if n in fib:
+        return [n]
+    else:
+        i = 0
+        while n > fib[i]:
+            i += 1
+        f = fib[i - 1]
+        l = [f]
+        l.extend(zeckendorf(n - f))
+        return l
+
+def sumZ(n):
+    # Recursive function to return the sum of z values from 1 to n
+    if n in fibZSums:
+        return fibZSums[n]
+    else:
+        fi = fIndex(n)
+        return sumZ(fib[fi - 1]) + fib[fi - 2] + sumZ(fib[fi - 2]) - 1 + (n - fib[fi]) + sumZ(n - fib[fi])
+
+def main():
+    buildFib(10 ** 18)
+    buildFibZSums()
+    print(sumZ(10 ** 6 - 1))
+    print(sumZ(10 ** 17 - 1))
+
+main()
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+print('\n--------------------------SOLUTION 7,   --------------------------')
+t1  = time.time()
+
+# ==== Sat, 19 Jun 2010, 02:08, tec, China
+
+def Zeckendorf(n):
+    fib = [1,1]
+    while(fib[-1] < n):
+        fib.append(fib[-1]+fib[-2])
+    zeck = [0 for i in fib]
+    for i in range(2,len(fib)):
+        zeck[i] = zeck[i-1] + zeck[i-2] + fib[i-2]
+    s = 0
+    for i in range(len(fib)-1, -1, -1):
+        if n >= fib[i]:
+            s += zeck[i]
+            n -= fib[i]
+            s += n
+    return s
+
+#print Zeckendorf(10**6)
+print (Zeckendorf(10**17))
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
 # print('\n--------------------------SOLUTION 8,   --------------------------')
 # t1  = time.time()
 #

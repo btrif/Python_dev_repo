@@ -18,7 +18,7 @@ How many geometric triangles exist with perimeter ≤ 2.5·10^13   ?
 '''
 import time, zzz
 from pyprimes import factorise
-from gmpy2 import is_prime
+from gmpy2 import is_prime, gcd
 
 def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
     ''' Decompose a factor in its prime factors. This function uses the pyprimes module. THE FASTEST  '''
@@ -97,6 +97,7 @@ t1  = time.time()
 def brute_force_testing(lim):           # @2017-11-07 - Algorithm confirmed for small limits
     cnt = 1
     b=2
+    max_ca = 0
     while b < lim/3 :
         if b % 10**5 == 0 : print(b)
 
@@ -104,7 +105,6 @@ def brute_force_testing(lim):           # @2017-11-07 - Algorithm confirmed for 
 
         if not is_prime(b) :
             Dvs = F.get_divisors(b*b)
-
             # print( str(b)+'.         ', b*b   , '          ',  Dvs  )
 
             e = 0
@@ -112,7 +112,9 @@ def brute_force_testing(lim):           # @2017-11-07 - Algorithm confirmed for 
                 a  =  Dvs[e]
                 c = b*b//a
                 if a+b+c <= lim and a+b > c :
-                    print(str(b)+ '.         ' ,a , b, c , '       a= ' , F.get_factors(a)  ,'        b=',  F.get_factors(b) ,'        c=',  F.get_factors(c) )
+                    if c/a > max_ca :
+                        max_ca = c/a
+                    print(str(b)+ '.         ' ,a , b, c , '       a= ' , get_factors(a)  ,'        b=',  get_factors(b) ,'        c=', get_factors(c) ,'   c/a = ' , c/a  )
                     cnt+=1
 
                 e+=1
@@ -122,16 +124,60 @@ def brute_force_testing(lim):           # @2017-11-07 - Algorithm confirmed for 
     return print('\nGeom Triangles = ', cnt)
 
 # brute_force_testing(10**6)                    #           Geom Triangles =  861805        CORRECT !
-brute_force_testing(10**5)
+brute_force_testing(10**4)
 
 #### REFERENCE VALUES :
 # lim = 10^4 there are 6427 triangles
 # lim = 10^5 there are 75243 triangles
 
-# @2017-11-07- This problems needs a sublinear algorithm ( < O(n) ).
-# KEY OBSERVATION : Numbers with huge prime factors differences must be ignored .
+# @2017-11-07- This problems needs a sublinear algorithm ( < O(n) => O(sqrt(n))   or O ( n * log(n) ).
+# KEY OBSERVATION :
+# 1.          Numbers with huge prime factors differences must be ignored .
+# 2.           b - is a COMPOSITE number ( its prime factorisation is composed of at least 2 primes)
+# 3.          Generate b - But see that for each b there are multiple (a, c) pairs . Example :
+# 72.          48 72 108      a=  [2, 2, 2, 2, 3]         b= [2, 2, 2, 3, 3]         c= [2, 2, 3, 3, 3]
+# 72.          54 72 96        a=  [2, 3, 3, 3]         b= [2, 2, 2, 3, 3]         c= [2, 2, 2, 2, 2, 3]
+# 72.          64 72 81        a=  [2, 2, 2, 2, 2, 2]         b= [2, 2, 2, 3, 3]         c= [3, 3, 3, 3]
+
+# OBSERVATION 2 : limit of c/a ratio approaches e - natural base algorithm c/a =  2.6180073311352206  ( e =2.7182 )
+
 # Must do some kind of pre-build SMART factorization !
 
+# 2018-05-05 - b contain terms from both a, c
+# CONDITION a+b < c : IS  MANDATORY    !!!!!
+
+
+# ==== PROCEDURE ==== :
+# 1.  Generate all COMPOSITE b's from prim factors . --> [2, 3], [2, 5], [2,2,3], [3, 5] ,[2, 3, 3  ]
+# 2.     Balance the square of b , a range is --> [b/2, b] maximum such that a+b > c  ---> ALGORITHM STRONG !!!
+#
+# 3.          2018-06-18, 12:30 - KEY OBSERVATION :          !!!!!!!!!!!!
+# BOTH a & c ARE having at least a factor square or more . Example :
+# 81 108 144        a=  [3, 3, 3, 3]         b= [2, 2, 3, 3, 3]         c= [2, 2, 2, 2, 3, 3] =>
+# This reduces our span search TO  sqrt(25 *10^12) = 5 * 10 ^ 6 = 5.000.000  which is  O( n^(1/2) ) algorithm     AND LESS BECAUSE :
+#  in this example :   363 429 507        a=  [3, 11, 11]         b= [3, 11, 13]         c= [3, 13, 13]
+# 11*11= 121 so we iterate to 11 and multiply by 3 = 363
+# More than that if we raise the bigger power the remaining factor decreases :
+
+# STRATEGY :
+# 1. Find a way to generate all "a" terms :
+# 2. construct "a" from taking care that b >= a and that by forming b it will  result   b <=  c = b^2/a < (a+b)
+# HERE I must find a NICE ALGO !
+#
+#
+# 304 380 475        a=  [2, 2, 2, 2, 19]         b= [2, 2, 5, 19]         c= [5, 5, 19]
+# 304 456 684        a=  [2, 2, 2, 2, 19]         b= [2, 2, 2, 3, 19]         c= [2, 2, 3, 3, 19]
+#
+# 144 156 169        a=  [2, 2, 2, 2, 3, 3]         b= [2, 2, 3, 13]         c= [13, 13]
+# 144 168 196        a=  [2, 2, 2, 2, 3, 3]         b= [2, 2, 2, 3, 7]         c= [2, 2, 7, 7]
+# 144 180 225        a=  [2, 2, 2, 2, 3, 3]         b= [2, 2, 3, 3, 5]         c= [3, 3, 5, 5]
+# 144 192 256        a=  [2, 2, 2, 2, 3, 3]         b= [2, 2, 2, 2, 2, 2, 3]         c= [2, 2, 2, 2, 2, 2, 2, 2]
+# 144 204 289        a=  [2, 2, 2, 2, 3, 3]         b= [2, 2, 3, 17]         c= [17, 17]
+# 144 216 324        a=  [2, 2, 2, 2, 3, 3]         b= [2, 2, 2, 3, 3, 3]         c= [2, 2, 3, 3, 3, 3]
+# 144 228 361        a=  [2, 2, 2, 2, 3, 3]         b= [2, 2, 3, 19]         c= [19, 19]
+#
+#
+# if a = [2, 2, 2, 2, 19] contains a single prime factor  like here   => b mandatory that will contain [ 19 ]
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')

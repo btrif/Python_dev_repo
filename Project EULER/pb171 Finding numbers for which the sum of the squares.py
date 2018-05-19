@@ -2,7 +2,7 @@
 # © Solved by Bogdan Trif @
 #The  Euler Project  https://projecteuler.net
 '''
-Finding numbers for which the sum of the squares of the digits is a square      -           Problem 171
+        Finding numbers for which the sum of the squares of the digits is a square      -           Problem 171
 
 For a positive integer n, let f(n) be the sum of the squares of the digits (in base 10) of n, e.g.
 
@@ -81,8 +81,8 @@ def partition_nr_into_given_set_of_nrs(nr, S ):
                     yield [nrs[k]] + rest
     return list(inner(nr, 0))
 
-S = [  1, 4, 9, 16 ]
-print(partition_nr_into_given_set_of_nrs(40, S ))
+# S = [  1, 4, 9, 16 ]
+# print(partition_nr_into_given_set_of_nrs(40, S ))
 
 
 def partition_nr_into_given_set_of_nrs_limit(nr, S, m=10):
@@ -95,7 +95,7 @@ def partition_nr_into_given_set_of_nrs_limit(nr, S, m=10):
     '''
     nrs = sorted(S, reverse=True)
     def inner(n, i, m):
-        if m > 0:
+        if m >= 0:
             if n == 0:
                 yield []
             for k in range(i, len(nrs)):
@@ -103,6 +103,28 @@ def partition_nr_into_given_set_of_nrs_limit(nr, S, m=10):
                     for rest in inner(n - nrs[k], k, m - 1):
                         yield [nrs[k]] + rest
     return list(inner(nr, 0, m))
+
+def partition_nr_into_given_set_of_nrs_limit_square_root(nr, S, m=10):
+    '''Recursive function to partition a number into a given set of numbers
+    and also having an upper limit lim of the  partition length.
+    :param nr: int, nr to partition, example : 109
+    :param S: set of numbers used for partitioning
+    :param m: int, limit, example m=10 represents the maximum partition length
+    :return: list of partitions , list of lists
+    '''
+    nrs = sorted(S, reverse=True)
+    def inner(n, i, m):
+        if m >= 0:
+            if n == 0:
+                yield []
+            for k in range(i, len(nrs)):
+                if nrs[k] <= n:
+                    for rest in inner(n - nrs[k], k, m - 1):
+                        yield [ int(nrs[k]**(1/2))] + rest
+    return list(inner(nr, 0, m))
+
+
+
 
 def unique_permutations(lst):       # VERY EFFECTIVE
     ''':Description: Takes a list and makes ONLY Unique Permutations of a list with repeated elements.
@@ -216,7 +238,7 @@ t1  = time.time()
 # https://plus.maths.org/content/triples-and-quadruples
 # https://en.wikipedia.org/wiki/Pythagorean_quadruple
 
-## IMportant OBSERVATION : maximum number is 10**20 => 20 digits => maximum square will be :
+## IMportant OBSERVATION : maximum number is 10**20 => 20 digits => maximum square will be LESS THAN :
 # 9**2 +....+ 9**2 = 81*20 = 1620
 # Those numbers must be broken into 2,3,4,.... parts squares such that :
 # So the problem reduces to ways to partition a square into squares :) NICE :)
@@ -235,6 +257,9 @@ t1  = time.time()
 # 9 = 4,4,1
 # 9 = 4,1,1,1,1,1
 # 9 = 1,1,1,1,1,1,1,1,1
+
+Q = [ i*i for i in range(1, 10) ]
+
 
 
 def test_to_establish_formula() :
@@ -255,14 +280,11 @@ def test_to_establish_formula() :
 
 
 
-Q = [ i*i for i in range(1, 10) ]
-print(Q,'\n')
 
-# print( partition_nr_into_given_set_of_nrs_limit_as_square( 442, Q, 20) )
 def first_solution(lim):
     SUM = 0
     SP = []
-    for i in range(1, lim+1):        #  37**2 = 1369 is the biggest square with at least a valid partition of squares
+    for i in range(1, lim+1):
         n = i*i
         P = partition_nr_into_given_set_of_nrs_limit( n, Q, 20)
         print(str(n)+'.    nr_of_part= ', len(P) , '    ',P[:50] )
@@ -291,16 +313,60 @@ first_solution(5)
 
 
 
-
+### SOME IDEAS : https://www.quora.com/What-is-a-formula-to-calculate-the-sum-of-all-the-permutations-of-a-given-number-with-repitations
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1) , 4), 's\n\n')
 
-print('\n================  My FIRST SOLUTION,   ===============\n')
-# t1  = time.time()
+print('\n======= My FIRST SOLUTION,  Not feasable - 3 DAYS !!! OMG !! ===============\n')
+t1  = time.time()
 
+def three_days_some_BRUTE_FORCE_solution() :             ### NO !!! DON'T RUN IT !!!!
 
+    S = [1, 4, 9, 16, 25, 36, 49, 64, 81]
+    print('Main Set: ', S)
+    m=20
 
+    Part_lim = partition_nr_into_given_set_of_nrs_limit_square_root( 100, S, m)
+    print('\npartition_nr_into_given_set_of_nrs_limit : \n', len(Part_lim), Part_lim )
+
+    SUM = 0
+    PART =[]
+    cnt = 0
+    for i in range(1, 40) :
+        Partitions = partition_nr_into_given_set_of_nrs_limit_square_root( i*i, S, m=20 )
+        print('\ni =',i , '  n = ' ,i*i ,'     Partitions : ', len(Partitions), Partitions[:1000] )
+        PART.extend(Partitions)
+        for J in Partitions :
+            cnt += 1
+            zeros = m-len(J)
+            J.extend([0]*zeros)
+            print(str(cnt) + '.    ' , J , len(J) ,'       ', round((time.time()-t1) , 4), ' s' )
+            Comb = itertools.combinations(J, 9)
+            for K in Comb :
+                nines = int(''.join( str(i) for i in  K ))
+                # print(K,'     ', nines)
+                SUM += nines
+
+    print('\nTotal nr of partitions : ', len(PART))         #
+    print('\nANSWER : TOTAL SUM = ', SUM,'    %9 = ', SUM%(10**9) )
+    return SUM%(10**9)
+
+### NOTE : 2018-03-31, 11:50 :  Total nr of partitions :  221372    , With current algorithm it will take  3 DAYS    !!!!!!!!!!!!!!!!!!!!!
+# LAst Partition to investigate is    i = 39   n =  1521      Partitions :  1 [[9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 4]]
+# i = 36   n =  1296      Partitions :  85 [[9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 4, 1],
+# i = 37   n =  1369      Partitions :  28 [[9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 3], [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 2, 2, 1],
+# i = 38   n =  1444      Partitions :  6 [[9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 7, 3, 3], [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 4, 2],
+# i = 39   n =  1521      Partitions :  1 [[9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 4]]
+# i = 40   n =  1600      Partitions :  0 []
+
+### Timing results :
+# 150.     [6, 3, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0] 20         192.412  s
+# 151.     [6, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0] 20         193.7941  s
+# 152.     [6, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] 20         195.1762  s
+# 153.     [6, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0] 20         196.5712  s
+
+# three_days_solution()
 
 
 

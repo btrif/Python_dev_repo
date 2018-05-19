@@ -87,7 +87,7 @@ some_brute_force_first(20000)
 
 # https://www.cut-the-knot.org/pythagoras/TangentCirclesSangaku.shtml
 @2017-11-02     -   I need to solve some kind of Pell equation of the form 1/sqrt(r_C) = 1/ sqrt(r_A) + 1/sqrt(r_B)
-where r_C is the smallest circlein between the two bigger circles and the line
+where r_C is the smallest circle in between the two bigger circles and the line
 
 
 t2  = time.time()

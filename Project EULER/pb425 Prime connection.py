@@ -173,8 +173,7 @@ def is_two_relative(p, ref_prime ,D, E):
     #                 D.add(rp)
     #                 return True
 
-Motherfucker nu-mi iese recursia la cazul 107. Nu am nici o idee cum sa fixez si m-am
-not saturat
+# Motherfucker nu-mi iese recursia la cazul 107. Nu am nici o idee cum sa fixez si m-am saturat
 
 print('is_two_relative : '  ,is_two_relative(107, 107 , D, E ) ,'\n ')
 print('D : ', D)

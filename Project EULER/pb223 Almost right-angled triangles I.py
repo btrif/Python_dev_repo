@@ -93,7 +93,7 @@ def my_first_soln( lim) :
     return print('\nAnswer : \t', cnt +lim//2 - 1)
 
 # my_first_soln( 25*10**2 )
-my_first_soln( 10**4 )
+# my_first_soln( 10**4 )
 
 
 t2  = time.time()
@@ -118,7 +118,7 @@ def my_second_soln( lim) :
             t3 = time.time()
         a_sq = A[a]
         for b in range(a, len(A) ) :
-            if a+b > 2*lim /3 : brea/k
+            if a+b > 2*lim /3 : break
             if  2*b +2 > a*a : break
             b_sq = A[b]
             if is_square( a_sq + b_sq -1 ) :
@@ -132,7 +132,7 @@ def my_second_soln( lim) :
     return print('\nAnswer : \t', cnt +lim//2 - 1)
 
 
-my_second_soln( 10**4 )
+# my_second_soln( 10**4 )
 
 
 
@@ -143,8 +143,29 @@ my_second_soln( 10**4 )
 ## CHECKS
 # solutions for perimeter < 10^4 is equal to 13656
 #  <= 20,000 that would make 29257 triangles
-# https://arxiv.org/pdf/1508.07562.pdf
-# https://benvitalenum3ers.wordpress.com/2015/12/09/diophantine-equation-x2-y2-z2-1-almost-pythagorean-triples/
+
+# https://arxiv.org/pdf/1508.07562.pdf        !!!
+# https://benvitalenum3ers.wordpress.com/2015/12/09/diophantine-equation-x2-y2-z2-1-almost-pythagorean-triples/       !!!
+
+
+# https://www.geeksforgeeks.org/check-whether-number-can-represented-sum-two-squares/
+
+for t in range(1, 10) :
+    x1, x2 = 3*t + 2 ,  3*t  + 1
+    y1, y2 = 4*t + 1 ,  4*t + 3
+    z1, z2 = 5*t + 2 ,   5*t + 3
+    print('APT 1 : ',  x1, y1, z1  )
+    print('APT 2 : ',  x2, y2, z2  )
+
+
+@2018-05-15 - The above is only a part of the solution. the problem can be solved as following :
+1. Generate Primitive Pythagorean Triplets (PTT) of the form : (2i − 1, 2i^2 − 2i, 2i^2 − 2i + 1) with i ≥ 2
+2. Use them to generate two kinds of APT (Almost Pythagorean Triplets)
+to generate the system of 6  linear equations .
+
+Sugestion : try to use a linear solver linalg to solve the system. Otherwise you can already use the already
+    solved ones https://arxiv.org/pdf/1508.07562.pdf
+
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1),2), 's\n\n')

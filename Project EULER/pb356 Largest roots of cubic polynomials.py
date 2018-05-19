@@ -2,7 +2,7 @@
 # © Solved by Bogdan Trif @
 #The  Euler Project  https://projecteuler.net
 '''
-Largest roots of cubic polynomials      -       Problem 356
+            Largest roots of cubic polynomials      -       Problem 356
 
 Let an be the largest real root of a polynomial g(x) = x3 - 2n·x2 + n.
 

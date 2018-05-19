@@ -50,7 +50,7 @@ def strong_Harshad_number(n):
             return True
     return False
 
-def right_truncatable_Harshad_number(n) :
+def right_truncatable_Harshad_number(n) :       # RECURSION
     if len(str(n)) ==1 :
         if Harshad_number(n) :
             return True
@@ -72,6 +72,7 @@ def strong_right_truncatable_Harshad_prime(n):
         if strong_Harshad_number(n) and right_truncatable_Harshad_number(n) :
             return True
     else : return False
+
     return False
 
 
@@ -126,6 +127,33 @@ for length in range( 6, 10) :
         p = gmpy2.next_prime( p )
 
 
+2018-03-28 - We must find a way to generate the numbers RECURSIVELY !!!
+
+# 181.       len: 3
+# 211.       len: 3
+# 271.       len: 3
+# 277.       len: 3
+# 421.       len: 3
+# 457.       len: 3
+# 631.       len: 3
+# 2011.       len: 4
+# 2017.       len: 4
+# 2099.       len: 4
+# 2473.       len: 4
+# 2477.       len: 4
+# 4021.       len: 4
+# 4027.       len: 4
+# 4073.       len: 4
+# 4079.       len: 4
+# 4231.       len: 4
+# 4813.       len: 4
+# 4817.       len: 4
+# 6037.       len: 4
+# 8011.       len: 4
+# 8017.       len: 4
+# 8039.       len: 4
+# 8461.       len: 4
+# 8467.       len: 4
 
 # 20071.       len: 5
 # 20431.       len: 5

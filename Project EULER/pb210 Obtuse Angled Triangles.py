@@ -2,7 +2,7 @@
 # © o(^_^)o  Solved by Bogdan Trif  @       Completed on Fri, 3 Nov 2017, 16:46
 #The  Euler Project  https://projecteuler.net
 '''
-Obtuse Angled Triangles         -           Problem 210
+                Obtuse Angled Triangles         -           Problem 210
 
 Consider the set S(r) of points (x,y) with integer coordinates satisfying |x| + |y| ≤ r.
 Let O be the point (0,0) and C the point (r/4,r/4).

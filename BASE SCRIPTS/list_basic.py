@@ -2,11 +2,13 @@ import numpy as np
 #           List going backwards. Reverse List
 my_lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 print('Original list :  ', my_lst)
-print('\nOutput the list forwards only the ODD INDEX terms  :', my_lst[::2])        # becomes [1, 3, 5, 7, 9, 11]
+
+print('Reversed list :  ', my_lst[::-1] )
+print('Output the list backwards : ', my_lst[::-1],'\n')         # becomes  [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+print('Output the list forwards only the ODD INDEX terms  :', my_lst[::2])        # becomes [1, 3, 5, 7, 9, 11]
 
 print('Output the list forwards only the EVEN INDEX terms  :', my_lst[1::2])        # becomes [2, 4, 6, 8, 10, 12]
-
-print('Output the list backwards : ', my_lst[::-1],'\n')         # becomes  [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 
 print('Output the list backwards jumping 2 by 2, ODD Terms :  ', my_lst[10::-2])                # becomes 11 9 7 5 3 1
 

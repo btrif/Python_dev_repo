@@ -22,15 +22,15 @@ t1  = time.time()
 s = '9'*3
 
 counter = 0
-for k in count(int(s), -1 ):
+for k in count( int(s), -1 ):
 # for i in range(0,18):
 #     k = int('9'+'0'*i)
     S = sum([int(i) for i in list(str(k))])
     # print([int(i) for i in list(str(137*k))])
-    T = sum([int(i) for i in list(str(137*k))])
-    if S == T : #== 18:
+    T_137n = sum([int(i) for i in list(str(137*k))])
+    if S == T_137n : #== 18:
         counter+=1
-        print(str(counter)+'.       n = ',k,'         Sn=' ,S, '  ' ,T,'              137n =' ,137*k)
+        print(str(counter)+'.       n = ',k,'         Sn=' ,S, '     T_137n = ' ,T_137n,'              137n =' ,137*k)
     if k % 10**9 == 0 :
         print(k, counter)
     if k==0 : break
@@ -68,6 +68,8 @@ print('\nAnswer :  ', counter)
 #
 # n =  873          Sn= 18    18               137n = 119601   ON
 # n =  837                                                                     OFF
+
+# https://stackoverflow.com/questions/3031250/sum-of-digits-properties-hint-please
 
 
 t2  = time.time()

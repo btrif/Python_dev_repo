@@ -13,6 +13,8 @@ Two of them are shown below, the others are obtained from these by rotation .
 
 For a radius of 3, there are 360 triangles containing the origin in the interior and having all vertices in I3
 and for I5 the number is 10600 .
+I3 = 360
+I5 = 10600
 
 How many triangles are there containing the origin in the interior and having all three vertices in I105 ?
 
@@ -186,6 +188,34 @@ def plot_triangle(A, B, C):
     plt.ylabel('Triangle points')
     plt.show()
 
+
+def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
+    ''' Decompose a factor in its prime factors. This function uses the pyprimes module. THE FASTEST  '''
+    from pyprimes import factorise
+    return [ i[0] for i in factorise(n)]
+
+def all_multiples_to_limit( n, lim) :
+    ''':Description: Finds all the multiples of a certain number up to a given limit but NOT INCLUDED .
+        :Example:   all_multiples_to_limit( 6, 30) = [ 6, 12, 18, 24 ]
+    :param n: int, number to compute
+    :param lim: int, up range, not included
+    :return: lst, array of ints with multiples of n         '''
+    Div = get_factors(n)
+    # print(Div)
+    # CASE n=0, We take all the numbers up to the limit, but not included
+    if n ==0 :
+        print( [ i for i in range(1, lim) ] )
+        return [ i for i in range(1, lim) ]
+
+    # CASE n!=0 :
+    if lim%n ==0 :    up = lim //n
+    elif lim%n != 0 :    up = lim //n + 1
+    print( up ,[ i*n for i in range(1, up)  ]  )
+    return [ i*n for i in range(1, lim//n)  ]
+
+
+# all_multiples_to_limit( 0, 30 )
+
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
@@ -289,7 +319,7 @@ def triangles_containing_origin_solution( LIM ) :
     print('\nTotal Triangles = ', Total, '  <-- the result')
     print ('Triangles : \n',TRIANG )
 
-triangles_containing_origin_solution(10)
+# triangles_containing_origin_solution(5)
 
 
 # @2017-03-10, 18: 00 - I left here that I must analyze why for I3 I obtain 108 results instead of 90
@@ -298,15 +328,16 @@ triangles_containing_origin_solution(10)
 # @2017-10-08 - I dont know how many particular cases this fucking problem has more !
 # I left here that I must one by one verify each triangle and see what particular case is missing again !
 # VERY HARD PROBLEM  !!!
-# I already spent very much time on this fucking problem !!!
+# I already spent very much time on this  problem !!!
 # But I guess that if I find those cases, finally I am done with this problem !
-# @2017-10-09 - i FOUND THE PROBLEM - It is the relative center rel_center :  855 when they depass the
+# @2017-10-09 - i FOUND THE PROBLEM - It is the relative center rel_center :  855 when they exceeds the
 # 1 character limit --> like 10165 --> Must correct it !  It worked for the radius =3 case because individual
 # squares are always < 10
-@2017-10-09-22:00, UPDATE - I must rehink totally the problem. The number of cases are : 10**12 and
-my algorithm is undeasable !
-LINKS :
-https://stackoverflow.com/questions/33293828/algorithm-to-find-if-triangles-formed-by-set-of-points-contains-origin-or-not-an
+# @2017-10-09-22:00, UPDATE - I must rethink totally the problem. The number of cases are : 10**12 and
+# my algorithm is unfeasible !
+
+############            LINKS :     #################
+# https://stackoverflow.com/questions/33293828/algorithm-to-find-if-triangles-formed-by-set-of-points-contains-origin-or-not-an
 
 #     I5 =      Total Triangles =  15304   <-- the result
 
@@ -315,16 +346,140 @@ t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 print('\n================  My FIRST SOLUTION,   ===============\n')
-# t1  = time.time()
+t1  = time.time()
+
+### STEPS ### 2018-04-04 , 18:00    -   VERY DIFFICULT PROBLEM
+# 1. Step1 - With Farey Sequences generate all the vectors of the form (0, 1), (1, 20), (1,19), ...
+# The first vector limit is pi/4 and the second vector V2 the limit is pi/2 = 180 degrees.
+# We will obtain two lists. the first one : from (0, pi/4) and the second (0, pi/2)
+#
+# 2. Step 2 - After the step 1 we must go in sections between adjacent vectors in the . It takes much less time to take sections and then
+# sum for larger angles . BUT, BUT BUT, must take into account the points found on the VECTORS themselves.
+# So we must use a DATA STRUCTURE which also counts the points from the vectors. This is because we will use
+# larger angles than consecutive vectors in the sequence, we must include them. And this is because the are NOT
+# calculated when we compute points within adjacent Sections.
+#
+# 3. STEP 3 - s Construct function to compute points inside circle sections. Must me at most O(n).
+# 4. STEP 4. - Take care to extend gradually the sectors !
+
+
+
+
+from math import atan, pi, floor, ceil
+
+theta = lambda m1, m2 : atan(abs( (m1-m2)/(1+m1*m2) ))
+# theta(m1, m2)*180/pi
+
+def farey( n, asc=True ):      ####  o(^_^)o  FASTEST  ( ͡° ͜ʖ ͡°)  ### !!! Best Farey Sequence
+    ''':Description: Generates INCREASING FAREY SEQUENCE
+        taken from http://pythonfiddle.com/farey-series-generator/
+        Modified by Bogdan Trif @2017-02-28, 14:00     '''
+    F=[]
+    if asc:
+        a, b, c, d = 0, 1, 1, n
+    else:
+        a, b, c, d = 1, 1, n-1, n
+    i=1
+#     print ("%d/%d" % (a,b),)
+    while (asc and c <= n) or (not asc and a > 0):
+        k = int((n + b)/d)
+        a, b, c, d = c, d, k*c - a, k*d - b
+#         print ("%d/%d" % (a,b),end=' ')
+        F.append((a,b))
+        i+=1
+    return F
+
+R = 2
+
+V1 = []
+x1 = farey(R, asc=True)
+x1.reverse()
+x2 = farey(R, asc=False)
+x2 = [i[::-1] for i in reversed(x2) ]
+print('x2 : ', x2 )
+print('x1 : ', x1 )
+V1.extend(x2)
+V1.extend(x1)
+print('V1: ', len(V1), V1[:200] )
+V_temp = [ (-i[1], i[0] ) for i in V1 ]
+V2 = V1[1:] +V_temp
+print(  'V2: ', len(V2), V2[:200] )
+
+
+cnt=1
+for i1 in range(len(V1)) :
+    # print('v1 = ', V1[i1])
+    for i2 in range(i1+1, len(V2) ) :
+        print(str(cnt)+'.   v1 = ', V1[i1] , '   v2 = ', V2[i2]  )
+        cnt+=1
+
+
+print('\n---------------------------')
+t1  = time.time()
+R_xy = lambda x, y : sqrt(x*x+y*y)
+
+def test_point_inside_circle_sector_BF(R, m1, m2 ):
+    if m1 > m2 :        m1, m2 = m2, m1
+    print('m1 = ', m1, '    m2 = ', m2 )
+    x_down = ceil(1/(max(abs(m1), abs(m2)) ) )
+    # print('x_down = ', x_down , '\n')
+    cnt, acnt = 0, 0
+    for i in range(-R , R ) :
+        y1, y2 = m1*i, m2*i
+
+        y_down, y_up = m1*i , m2*i
+
+        if y_down % 1 == 0 : y_down += 1
+
+        y_min = y2
+        y_max = sqrt( R*R - i*i )
+
+        if abs(y_down) > abs(y_max) :
+            y_down= ( max(y1, y2) )
+            y_up = -y_max
+
+
+
+        diff = abs(ceil(y_down) - ceil(y_up))
+
+        print('\nx = ', i , '    y_down = ', ceil(y_down), '    y_up = ', ceil(y_up) , '   y_min = ', y_min, '   y_max = ', y_max,'     points =',  diff )
+
+
+        acnt += diff
+
+
+        for j in range(1, R ) :
+            # j = -j
+            if y1 < j < y2 and R_xy(i,j) < R  :
+                cnt+=1
+                print(str(cnt)+'.     x= ',i, '   y=' , j ,'      y1(x)= ', y1 ,'      y2(x)= ', y2  )
+
+    print('\nacnt = ', acnt)
+    return acnt
+
+
+R, m1, m2 = 14, -8/21, 3/ 11
+test_point_inside_circle_sector_BF(R, m1, m2 )
+
+2018-04-04 - I left here that I must find a VIABLE SOLUTION : an O(n) algorithm to count the lattice points
+inside a sector circle, between two slopes, m1, m2 and the arc of the cercle
+I am on the good path a, on STEP 2
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+
+
+
+# for y in range(0, R ) :
+#     x_up = sqrt( R*R - y*y  )
+#     print('y =', y , '   ', get_factors(y), '     x_up=' , x_up )
 
 
 
 
 
-
-
-# t2  = time.time()
-# print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
 # print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')

@@ -10,7 +10,9 @@ data = .2*sin(10*x)+ exp(-abs(2-x)**2) + x**(2/3)
 
 # that's the line, you need:
 a = diff(sign(diff(data))).nonzero()[0] + 1 # local min+max
+print('a : ', a)
 b = (diff(sign(diff(data))) > 0).nonzero()[0] + 1 # local min
+print('b : ', b)
 c = (diff(sign(diff(data))) < 0).nonzero()[0] + 1 # local max
 
 
@@ -23,6 +25,6 @@ plt.plot( x, data)
 plt.plot(x[b], data[b], "or", label="min")
 plt.plot(x[c], data[c], "og", label="max")
 
-plt.legend()
+plt.legend(loc=4)
 plt.show()
 

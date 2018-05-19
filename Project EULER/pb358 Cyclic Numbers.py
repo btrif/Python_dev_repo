@@ -1,6 +1,4 @@
 #  Created by Bogdan Trif on 24-09-2017 , 10:22 PM.
-
-
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''

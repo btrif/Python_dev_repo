@@ -18,12 +18,12 @@ def binary_search(n, List):        # VERY FAST ALGORITHM
 
 
 def binary_search(value, last, start, end):
-	global rad_list
-	cur_index = (start+end)/2
-	if value == rad_list[cur_index][0] or (start,end) == last:
-		return cur_index
-	elif rad_list[cur_index][0] < value:
-		return binary_search(value, (start,end), cur_index, end)
-	return binary_search(value, (start,end), 0, cur_index)
+    global rad_list
+    cur_index = (start+end)/2
+    if value == rad_list[cur_index][0] or (start,end) == last:
+        return cur_index
+    elif rad_list[cur_index][0] < value:
+        return binary_search(value, (start,end), cur_index, end)
+    return binary_search(value, (start,end), 0, cur_index)
 
 

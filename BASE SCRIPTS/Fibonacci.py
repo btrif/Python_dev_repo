@@ -135,3 +135,15 @@ fib = Fibonacci()
 
 for i in range(15):
     print( fib(i), end=", ")
+
+
+print('\n----------- Goodrich, & Tamassia & Goldwasser ---------------')
+def good_fibonacci(n):
+    ''' Return pair of Fibonacci numbers, F(n) and F(n-1).'''
+    if n <= 1:
+        return (n,0)
+    else:
+        a, b = good_fibonacci(n-1)
+        return (a+b, a)
+
+print(' good_fibonacci(140) = ', good_fibonacci(140))

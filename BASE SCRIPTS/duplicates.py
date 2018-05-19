@@ -1,5 +1,5 @@
 
-#Very simple and quick way of finding dupes with one iteration in Python is:
+#Very simple and quick way of finding duplicates with one iteration in Python is:
 testList = ['red', 'blue', 'red', 'green', 'blue', 'blue']
 
 testListDict = {}

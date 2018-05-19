@@ -21,8 +21,11 @@ How many triangles ABC with perimeter≤100,000,000  (10**8) exist so that the r
 import time, zzz
 from math import sqrt, cos, sin, pi, acos, asin
 
-# INFO SOURCES :
+# INFO SOURCES :        Angular Bisectors
 # http://www.cut-the-knot.org/triangle/AngleBisectorTheorem.shtml
+
+https://en.wikipedia.org/wiki/Angle_bisector_theorem
+
 
 def Heron_area_perimeter(a,b,c):
     s= (a+b+c)/2
@@ -127,6 +130,9 @@ some_brute_force_for_understanding(10)
 
 # @2017-10-05 - Heron formula gives error for the isosceles triangles because the semiperimeter
 #     if a,b,c = 1, 1, 2  => s= 2 => we will have that s-c ==0 => area = 0
+
+
+
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')

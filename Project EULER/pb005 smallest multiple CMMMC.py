@@ -2,7 +2,7 @@
 # Solved by Bogdan Trif @ 2016-09-14 1:53 PM
 #The  Euler Project  https://projecteuler.net
 '''
-Smallest multiple   -   Problem 5       c.m.m.m.c.
+                Smallest multiple   -   Problem 5       c.m.m.m.c.
 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 '''

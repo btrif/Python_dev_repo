@@ -18,6 +18,7 @@ Towers(4, 'P1', 'P2', 'P3')
 
 # RECURSION  FUNCTION ALGORITHM MULTIPLICATION
 print('\n---------------- Recursive Function Implementation of the multiplication of two numbers : ------------------')
+
 def mult_recursive(a=3, b=9):
     if b == 1:
         return a
@@ -25,6 +26,10 @@ def mult_recursive(a=3, b=9):
         return (a + mult_recursive(a, b-1))             #
 
 print(mult_recursive(22,89))
+
+### Compute the value x n for integer n.
+
+
 
 
 # RECURSION FUNCTION FACTORIAL :
@@ -40,6 +45,7 @@ print(factorial(12))
 # RECURSION FUNCTION for base**POWER :
 print('\n----------------  RECURSION FUNCTION for base**power  :       --------------------')
 
+
 def recursionPower(base=3, exp=6):
     '''         **©** Made by Bogdan Trif in 2017-02-20
                 :base: int or float.    exp: int >= 0
@@ -49,6 +55,25 @@ def recursionPower(base=3, exp=6):
         return (base * recursionPower(base, exp-1))
 
 print(recursionPower(3,5))
+
+print('\n----------------  RECURSION FUNCTION for base**power, MORE Efficient Algorithm  :       --------------------')
+# Goodrich, Tamassia, Goldwasser - Book,  Data Structures and Algorithms in Python 2013
+
+def power(x, n):
+    if n == 0:
+        return 1
+
+    else:
+        partial = power(x, n // 2)     # rely on truncated division
+        result = partial * partial
+
+        if n % 2 == 1:         # if n odd, include extra factor of x
+            result *= x
+
+        return result
+
+power(3,5)
+
 
 # RECURSION Function for Greatest Common Factor - CMMDC, c.m.m.d.c. - Cel Mai Mic Divizor Comun
 print('\n------------   CMMDC - Cel Mai Mare Divizor Comun - The Greatest Common Divisor - GCD ------------------')

@@ -78,6 +78,8 @@ lists = [     ['THE', 'A'],     ['ELEPHANT', 'APPLE', 'CAR'],     ['WALKED', 'DR
 for items in product(*lists):
     print (items)
 
+print('\n\n---------- Simple Combinations between Elements of  Lists -------------------')
+print(list ( itertools.product([1, 2, 3], [4, 5]) ) )       ### we cand reduce them eventually with functools.reduce and operator.mul
 
 print('\n#########   MORE ADVANCED METHODS TO GENERATE PYTHAGOREAN TRIPLETS    #################\n')
 import itertools

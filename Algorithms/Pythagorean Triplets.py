@@ -1,45 +1,54 @@
 
 from itertools import count, product
 from math import gcd
+def gcd3(x, y, z):
+    return gcd(gcd(x, y), z)
 
-def Pythagorean_Triples_gen(plim):          ### ( ͡° ͜ʖ ͡°)  ### Last Modif  by Bogdan Trif @ 2017-01-21, 20:45
-    ''':Description: Generator for Pythagorean Triplets with their multiples until an up_limit, plim
-        which is the Perimeter of the triangle.
-        :Formulas used: :
-    a^2 + b^2 = c^2     ;
-        a = m^2 - n^2       ;
-    b = 2mn     ;
-        c = m^2 + n^2        ;
-            k [ a + b + c = p = 2 * m * ( m + n ) ]     ;
+print('\n---------------- Triangle Primitive Triplets of 90 degrees WITHOUT LIMIT ------------------ ')
 
+
+def Pythagorean_primitive_triplets_gen():    # by Bogdan Trif @ 2018-05-17, 09:30     ### ( ͡° ͜ʖ ͡°)  FASTEST  ( ͡° ͜ʖ ͡°)  ###
+    '''
+     :Formulas used: :
+                a^2 + b^2 = c^2     ;
+                a = m^2 - n^2       ;
+                b = 2mn     ;
+                c = m^2 + n^2        ;
+            k [ a + b + c ] = p = 2 * m * ( m + n ) ]     ;
+
+    :LINK: http://mathforum.org/library/drmath/view/55811.html
     :Usage: >>> next(pythagorean_triple(30))
     Pythagorean triplets with this property that the greatest common divisor of
     any two of the numbers is 1 are called primitive Pythagorean triplets.
-        :param: **plim** --> int,  limit of the perimeter of the triangle
     '''
-    m = 1
-    while 2*m**2 < plim:
-        for n in range( 1 + m%2, m, 2):
-            if gcd(m, n)==1:
-                p = 2 * m * (m+n)
-                a, b, c = m**2-n**2  ,    2*m*n ,     m**2+n**2
-                for k in range(1, plim//p + 1):
-                    yield (k*a, k*b, k*c)
+    m = 2
+    while True :
+        if m%2 == 1 :            n = 2                 # m - ODD
+        if m%2 == 0 :            n = 1                 # m - EVEN
+
+        while n < m :                      ### range(1,m) as we need only a > 0 !!!!!!!!
+            if gcd(m,n) ==1 :           #   Assure that we generate ONLY primitive Pythagorean triplets
+                a = m**2-n**2
+                b = 2*m*n
+                c = m**2 + n**2
+                p = 2*m* (m + n )
+                # print(' m, n = \t',m, n,'            a,b,c =\t',sorted((a,b,c))  ,'      gcd3 = ', gcd3(a,b,c),'     gcd(m,n) = ', gcd(m,n) ,'             p = ',  p )
+                yield a, b, c
+
+            n+=2
         m+=1
 
-P = Pythagorean_Triples_gen(100)
-for i in P:    print( i)
+PT = Pythagorean_primitive_triplets_gen()
+cnt=0
+for i in range(100) :
+    cnt+=1
+    PPT = next(PT)
+    print(str(cnt)+'.     ', PPT )
 
-print('\n---------------------------------')
-######################################
 
+print('\n---------------- Triangle Primitive Triplets of 90 degrees WITH LIMIT ------------------ ')
 
-
-print('\n---------------- Triangle Primitive Triplets of 90 degrees ------------------ ')
-
-##########################################
-
-def Pythagorean_primitive_triplets_gen():    # by Bogdan Trif @ 2017-01-21, 16:30     ### ( ͡° ͜ʖ ͡°)  FASTEST  ( ͡° ͜ʖ ͡°)  ###
+def Pythagorean_primitive_triplets_gen_lim( plim ):    # by Bogdan Trif @ 2018-05-17, 09:30     ### ( ͡° ͜ʖ ͡°)  FASTEST  ( ͡° ͜ʖ ͡°)  ###
     ''':Usage:      >>> pyt = Pythagorean_primitive_triplets_gen()
                         # >>> next(pyt)
                         # >>> for i in Pythagorean_primitive_triplets_gen(): print(i)
@@ -47,22 +56,38 @@ def Pythagorean_primitive_triplets_gen():    # by Bogdan Trif @ 2017-01-21, 16:3
     :param j:   j
     :return:    a,b,c - primitive pythagorean triplet
     '''
-    m = 1
-    while True :
-        for n in range(1, m):           ### range(1,m) as we need only a > 0 !!!!!!!!
-            a = m**2-n**2
-            b = 2*m*n
-            c = m**2 + n**2
-            if gcd(a,b) ==1 :           #   Assure that we generate ONLY primitive Pythagorean triplets
-                # print(' m, n = \t',m, n,'            a,b,c =\t',sorted((a,b,c)))
-                yield a,b,c
+    m = 2
+    while m*m < plim /2 :
+        if m%2 == 1 :            n = 2                 # m - ODD
+        if m%2 == 0 :            n = 1                 # m - EVEN
+
+        while n < m :                      ### range(1,m) as we need only a > 0 !!!!!!!!
+            if gcd(m,n) ==1 :           #   Assure that we generate ONLY primitive Pythagorean triplets
+                p = 2*m* (m + n )           # = 2*m^2 + 2*m*n
+                if p > plim : break
+
+                a = m**2-n**2
+                b = 2*m*n
+                c = m**2 + n**2
+
+                print(' m, n = \t',m, n,'            a,b,c =\t',sorted((a,b,c))  ,'      gcd3 = ', gcd3(a,b,c),'     gcd(m,n) = ', gcd(m,n) ,'             p = ',  p )
+                yield a, b, c
+
+            n+=2
         m+=1
 
-PT = Pythagorean_primitive_triplets_gen()
+PT = Pythagorean_primitive_triplets_gen_lim(10**3)
 cnt=0
-for i in range(100) :
+for PPT in PT :
     cnt+=1
-    print(str(cnt)+'.     ',next(PT))
+    print(str(cnt)+'.     ', PPT )
+
+
+print('\n---------------------------------')
+######################################
+
+
+
 
 
 print('\n-----------------------------------------------------\n')
@@ -191,15 +216,14 @@ print('\n########### MATRIX METHOD TO GENERATE PYTHAGOREAN TRIPLETS ##########\n
 # https://en.wikipedia.org/wiki/Tree_of_primitive_Pythagorean_triples
 # https://en.wikipedia.org/wiki/Formulas_for_generating_Pythagorean_triples
 
-
-def vecprod(M,V):
-  nlM=len(M)
-  return [sum([l[j]*V[j] for j in range(nlM)]) for l in M]
+def vecprod( M , V ):
+  nlM = len(M)
+  return [ sum([l[j]*V[j] for j in range(nlM)]) for l in M ]
 
 pmax=10**2
-A=[[1,-2,2],[2,-1,2],[2,-2,3]]
-B=[[1,2,2],[2,1,2],[2,2,3]]
-C=[[-1,2,2],[-2,1,2],[-2,2,3]]
+A = [[1,-2,2],[2,-1,2],[2,-2,3]]
+B = [[1,2,2],[2,1,2],[2,2,3]]
+C = [[-1,2,2],[-2,1,2],[-2,2,3]]
 listmat=(A,B,C)
 
 liste=[[3,4,5]]
@@ -209,11 +233,11 @@ while liste:
     list2=[]
     for t in liste:
         for m in listmat:
-            t2=sorted(vecprod(m,t))
-            p=sum(t2)
-            if p<pmax:
+            t2 = sorted(vecprod(m,t))
+            p = sum(t2)
+            if p < pmax:
                 list2.append(t2)
-    liste=list(list2)
-    print(liste)
+    liste = list(list2)
+    print(  liste )
 
 

@@ -1,9 +1,9 @@
 #!/usr/bin/python
 import time, functools, itertools
 from math import  gcd, sqrt, log
-# The Most basic
+import numpy as np
 
-# Prime numbers GENERATOR
+# The Most basic Prime numbers GENERATOR
 from pyprimes import factorise
 
 print('---'*20,'PRIME NUMBERS GENERATOR - METHOD 1','---'*20)
@@ -843,9 +843,6 @@ def divisor_sum_sigma(n):           #   σ(n)
 
 test_nr = 429606
 print(' divisor_sum_sigma : \t' ,divisor_sum_sigma(test_nr) )
-
-divisors = get_divisors(test_nr)
-print('Divisor Sum Term by term Verification Check: ', sum(divisors) ,'\n' ,divisors)
 
 
 print('\n-------------------- is CUBE ,  is SQUARE   ----------------------')

@@ -23,7 +23,7 @@ Let's consider only the prime integers q which would have a single valid partiti
 
 The sum of the primes q <100 such that P(q)=1 equals 233.
 
-Find the sum of the primes q <1000000 such that P(q)=1.
+Find the sum of the primes q <10^6 such that P(q)=1.
 
 '''
 import time, zzz
@@ -41,19 +41,25 @@ def get_terms(lim) :
     ''':Description: generate a list of  multiples of 2 & 3 of the form 2^i * 3^j
     :param lim: int, maximum number
     :return: list of multiples of 2 & 3     '''
-    T = []
-    i =0
+    L , T = [], dict()
+    i = 0
     while 2**i < lim :
         j = 0
         while 2**i * 3**j < lim :
             n = 2**i * 3**j
-            # print(n)
-            T.append(n)
+
+            L.append(n)
+            T[n] = (i,j)
+            # print( 'i, j = ', i, j , '    n =', n ,'       L = ', L)
+
             j+=1
         i+=1
 
-    T.sort()
-    return T
+    L.sort()
+    print('L = ', len(L),'  ', L )
+    print('T = ', T)
+    return T, L
+
 
 
 S = [1,4,9]
@@ -155,11 +161,12 @@ t1  = time.time()
 
 def first_solution(lim):
 
-    T = get_terms( lim )
+    T = get_terms( lim )[1]
     T = T[1:]
     print(len(T), T[:250])
 
     primes = prime_sieve(lim)[0:]
+    # primes = [ 1831 ]
     P = set()
 
     Sum = 0
@@ -168,7 +175,7 @@ def first_solution(lim):
         # if p > 20 :   down = binary_search(p/8, T)
         # else : down = 1
         S = T[  : up+1 ]
-        Part = partition_nr_into_given_set_of_nrs(p, S, 6 )
+        Part = partition_nr_into_given_set_of_nrs(p, S, 5 )
         # Part = partition(p, S )
         # Part = partition2(p, S )
 
@@ -179,7 +186,7 @@ def first_solution(lim):
         for part in Part :
             c0 = 0
             part = list(part)
-            # print(part)
+
             for i in range(len(part) ):
                 if c0 > 0 : break
                 for j in range(i+1, len(part)) :
@@ -188,9 +195,11 @@ def first_solution(lim):
                         c0 +=1
 
 
+
             if c0 == 0 :
                 cnt +=1
                 B = part
+                print('p= ' ,p , '    ',part, '    S= ',sum(part) )             # VALID PARTITION
 
         if cnt == 1 :
             Sum += p
@@ -201,20 +210,57 @@ def first_solution(lim):
     print('\nSum of primes = ' , Sum)
     return Sum
 
-first_solution(10**2)
+first_solution(1*10**2)
 
+ #  ----------- chosen prime =   2           [2]
+ # ----------- chosen prime =   3           [3]
+ # ----------- chosen prime =   5           [3, 2]
+ # ----------- chosen prime =   7           [4, 3]
+ # ----------- chosen prime =   13           [9, 4]
+ # ----------- chosen prime =   17           [9, 8]
+ # ----------- chosen prime =   23           [9, 8, 6]
+ # ----------- chosen prime =   43           [27, 16]
+ # ----------- chosen prime =   59           [32, 27]
+ # ----------- chosen prime =   61           [27, 18, 16]
+ # ----------- chosen prime =   113           [81, 32]
+ # ----------- chosen prime =   181           [81, 64, 36]
+ # ----------- chosen prime =   193           [81, 64, 48]
+ # ----------- chosen prime =   199           [81, 64, 54]
+ # ----------- chosen prime =   241           [96, 81, 64]
+ # ----------- chosen prime =   467           [243, 128, 96]
+ # ----------- chosen prime =   479           [243, 128, 108]
+ # ----------- chosen prime =   499           [256, 243]
+ # ----------- chosen prime =   593           [512, 81]
+ # ----------- chosen prime =   643           [256, 243, 144]
+ # ----------- chosen prime =   661           [256, 243, 162]
+ # ----------- chosen prime =   691           [256, 243, 192]
 
 
 print('---------------')
 
-# J = partition_nr_into_given_set_of_nrs(233, primes  , 10)
-# for I in J:
-#     if len(I) == len(set(I)) and 17 in I  :
-#         print(I)
 
 
 # @2017-11-30 -  Must do a recursive approach, build a function which generates recursively and via
 # backtracking lists of non-divisors of each other !
+
+### @2018-04-04 - Taken from http://euler.stephan-brumme.com/333/
+# KEY OBSERVATION : Example : All the numbers must have this property :
+# If we take two numbers n1 = 2^a * 3^b &  n2 = 2^c * 3^d : in order to not have terms divisible :
+# if a > c , then => b < d        &
+# if a < c , then => b > d
+#     IT IS IMPOSSIBLE that either a == c or b ==d because they will be divisor and divident
+# Example :  17 = 8 + 9 = 2^3* 3^0 + 2^0 * 3^ 2   is valid and respects the above RULE
+
+# @2018-05-16 :  STRATEGY :
+# 1. Build a stack with all the powers of 2^i*3^j  and put them in a data structure, Dictionary with elem of the form :
+#     Example 1 :      8 : (3, 0 ) where the first term is i, j from the powers of 2^i and 3^j
+#     Example2 :    48 : (4, 1)           72 :(3, 2) ... and so on  to the limit 10^6
+#
+# 2.  Make combinations of numbers such that their suma < 10^6 and put them in a sieve of the form :
+#  [0, 1, 2, 1, 2, 3, 4, 4 ] where indexes represent the actual numbers and the values represent how many representations
+# an index number has.
+#
+# 3. Select the primes indeces with values of 1 . Sum them.
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1), 4 ), 's\n\n')
@@ -222,46 +268,38 @@ print('\n# Completed in :', round((t2-t1), 4 ), 's\n\n')
 print('\n================  My FIRST SOLUTION,   ===============\n')
 t1  = time.time()
 
-def generate_two__three_non_divisible(nr, power, lim) :
-    L = [  ]
-    S = {2, 3}
-    S  -= {nr}
-    x = sum(S)
-    print(x)
-
-    for j in range( power) :
-        i = 1
-        while x**i * nr**j  < lim :
-            print('x= ',x, '      ' , j , i , '    '  , x**i * nr**j  )
-            L.append( x**i * nr**j )
-
-            i+=1
-
-    print(nr**power ,L )
-    return nr**power, L
 
 
-generate_two__three_non_divisible(3, 1, 10**2)
 
-T = get_terms( 10**5 )
-T = T[1:]  [ :: -1 ]
-print(len(T), T ,'\n\n')
 
-for i in range(11, 14 ) :       # for 10**6 limit is 11+1 with elements < 10**5
-    comb =  combinations(T, i)
-    # print(comb)
-    for J in comb :
-        c = 0
-        for x in range(len(J) ) :
-            if c > 0 :
-                break
-            for y in range(x+1, len(J) ) :
-                # if J[y] % J[x] == 0 :
-                if J[x] % J[y] == 0 :
-                    c+=1
-        if c == 0 :
-            print(J ,'          ', len(J) , sum(J) )
 
+T, V = get_terms( 10**2 )
+
+
+def check_new_elem(L , elem, T) :
+    ''':Description: Checks whether it is safe to add a new element to the list L
+        :Example1: if L = [ 16 ,  24  ] and the new elem is 96 it is invalid since 96 | 16
+            but the elem 27 is valid since 27  do not divide neither 16 neither 24
+        :Example2: if L = [ 4 ,  9  ] and the new elem is 18 it is invalid since 18 | 9
+            but the elem 6 is valid since 6  do not divide neither 4 neither 9    '''
+
+    c, d = T[elem]
+    for i in L :
+        a , b = T[ i ]
+        print( '.       ' , i , '    a, b =' , T[ i ] ,'        c, d = ',  T[elem] ,'      ' ,elem )
+
+        if  (a < c)  and (b > d) == False :
+                return False
+        if ( a > c ) and (b < d )==False :
+                return False
+
+    return True
+
+
+print(' check_new_elem :', check_new_elem( [ 24,  32 ] , 81, T )  )
+
+
+### BACKTRACKING
 
 
 t2  = time.time()

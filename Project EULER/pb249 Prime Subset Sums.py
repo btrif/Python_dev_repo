@@ -85,7 +85,7 @@ print('\nCompleted in :', round((t2-t1)/60, 6), 'min\n\n')          #   Complete
 
 
 print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
-print('\n--------------------------SOLUTION 1,  SLOW , Coin Change PRoblem --------------------------')
+print('\n--------------------------SOLUTION 1,  SLOW , Coin Change Problem --------------------------')
 t1  = time.time()
 
 # ==== Mon, 2 Sep 2013, 11:17, ChopinPlover, Taiwan

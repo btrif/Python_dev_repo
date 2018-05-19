@@ -2,9 +2,9 @@
 # Solved by Bogdan Trif @       Completed on Sat, 7 Jan 2017, 23:07
 #The  Euler Project  https://projecteuler.net
 '''
-I   nvestigating the primality of numbers of the form 2n2-1        -           Problem 216
+                Investigating the primality of numbers of the form 2n2-1        -           Problem 216
 
-Consider numbers t(n) of the form t(n) = 2n2-1 with n > 1.
+Consider numbers t(n) of the form t(n) = 2n^2-1 with n > 1.
 The first such numbers are 7, 17, 31, 49, 71, 97, 127 and 161.
 It turns out that only 49 = 7*7 and 161 = 7*23 are not prime.
 
@@ -25,7 +25,7 @@ def primesieve(n):          ### o(^_^)o  FASTEST  o(^_^)o  ###  Highly Efficient
     return np.nonzero(sieve)[0][2:]
 
 
-print('\n--------------------------TESTS------------------------------')
+print('\n--------------------------TESTS, BRUTE FORCE , 7 min , Completed in : 420.13203 s ------------------------------')
 t1  = time.time()
 
 
@@ -42,11 +42,11 @@ def brute_force(limit = 5*10**7) :
         if n % 10**6 == 0 :        print(n)
     return print('\nAnswer :\t', cnt)
 
-# brute_force(limit = 5*10**7)                    #  Answer :	 5437849
+# brute_force( limit = 5*10**7 )                    #  Answer :	 5437849
 
 
 t2  = time.time()
-print('\nCompleted in :', round((t2-t1),6), 's\n\n')
+print('\nCompleted in :', round((t2-t1),6), 's\n\n')            #   Completed in : 420.13203 s  -- 7 minutes
 
 # ====        GENERAL IDEA :
 # http://math.stackexchange.com/questions/403519/primality-of-the-numbers-in-the-form-of-2n2-1
@@ -84,7 +84,7 @@ t1  = time.time()
 # About 50s in Python. It has taken me a few days to get a solution that works in under a minute.
 # Along the way I have learned a lot about modular square roots, quadratic residues and the like.
 #
-# I start with the premise that if n=ak+b, then if a prime pp divides aa and 2b**2≡1 mod p, 2n**2−1 is composite for all k.
+# I start with the premise that if n=ak+b, then if a prime p divides a and 2b**2≡1 mod p, 2n**2−1 is composite for all k.
 # This is easy to show. Next, we find that there will only be solutions for bb if p mod 8=7 or 1.
 # The fun bit was to realise, using modular arithmetic,  that 2b**2≡1 mod p implies that b=8–√×(4)**(−1) mod p,
 # where the root is mod pp and (4)−1 means the multiplicative inverse of 4 mod p.

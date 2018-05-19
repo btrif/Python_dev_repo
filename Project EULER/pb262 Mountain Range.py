@@ -25,8 +25,8 @@ h=( 5000-0.005*(x*x+y*y+x*y)+12.5*(x+y) ) * exp( -abs(0.000001*(x*x+y*y)-0.0015*
 import time
 
 # Wolfram Alpha Plot
-# http://www.wolframalpha.com/input/?i=(+5000-0.005*(x*x%2By*y%2Bx*y)%2B12.5*(x%2By)+)+*+exp(+-abs(0.000001*(x*x%2By*y)-0.0015*(x%2By)%2B0.7)+)&t=crmtb01
 
+# http://www.wolframalpha.com/input/?i=plot(+5000-0.005*(x*x%2By*y%2Bx*y)%2B12.5*(x%2By)+)+*+exp(+-abs(0.000001*(x*x%2By*y)-0.0015*(x%2By)%2B0.7)+)
 
 
 

@@ -7,7 +7,7 @@ def xuniqueCombinations(items, n):
 
     else:
         for i in range(len(items)):
-            for cc in xuniqueCombinations(items[i+1:],n-1):
+            for cc in xuniqueCombinations(items[i+1:], n-1):
                 yield [items[i]]+cc
 
 

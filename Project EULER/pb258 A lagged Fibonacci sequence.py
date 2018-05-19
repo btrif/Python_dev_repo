@@ -71,7 +71,7 @@ nr = 10**18-1997
 F = fibonacci_matrix(nr, 10**3000 )
 print( '\nAnswer : \t  ', F , '\n', F%mod , fibonacci_matrix(nr, mod ) )
 
-@2017-09-25,  - Nici asta nu iese ! Cred ca e mai complicat !
+@2017-09-25,  - Nici asta nu iese ! Cred ca e mai complicat !       Cayley-Hamilton
 https://discuss.codechef.com/questions/49614/linear-recurrence-using-cayley-hamilton-theorem
 
 t2  = time.time()

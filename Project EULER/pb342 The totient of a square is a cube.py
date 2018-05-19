@@ -48,12 +48,13 @@ def brute_force_test(up) :
         if gmpy2.is_prime(n) == False :
             to = euler_totient(n**2)
             if is_cube(to) :
-                print(str(n)+'.       ', to,'     ',  int (to**(1/3)+0.5) ,'     ' ,get_factors(n), get_factors(to) )
+                print(str(n)+'.      φ(n^2)= ', to,'     ',  int (to**(1/3)+0.5) ,'      n =  ' ,get_factors(n),' ,     φ tot = ' ,get_factors(to) )
 
 
 brute_force_test(10**5)
 
-@ 2017-03-24 - I only started it !
+# @ 2017-03-24 - I only started it !
+# @ 2018-04-05 - Must Use the formula of the totient and reverse it ! Reverse engineering
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')

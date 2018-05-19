@@ -22,6 +22,8 @@ Find ΣG(n**3) for 1 ≤ n < 10**6.                    ...........   => the rang
 '''
 import time, zzz
 from math import log, sqrt
+import sys
+sys.setrecursionlimit(10**6)
 
 G = dict()
 G[1] =1
@@ -32,10 +34,10 @@ a = lambda n : phi**(2-phi) * n**(phi-1)        # Approximative Asimptotic Funct
 
 
 print('Test for a_n function : \t', a(10**3))
-print('\nTest for a_n function : \t', a(10**6))     # Error
-print('Test for a_n function : \t', a(719845))      # Here we already get Errors
-print('Test for a_n function : \t', a(91374964))
-print('Test for a_n function : \t', a(919986484788))        # Huge Error
+# print('\nTest for a_n function : \t', a(10**6))     # Error
+# print('Test for a_n function : \t', a(719845))      # Here we already get Errors
+# print('Test for a_n function : \t', a(91374964))
+# print('Test for a_n function : \t', a(919986484788))        # Huge Error
 
 
 print('\n--------------------------TESTS------------------------------')
@@ -56,7 +58,9 @@ def g(n) :
         return g( n - g  (g(n-1) )  ) +1
 
 
-print(  g(1000) )
+print(  g(10**3) )
+print(  a(10**3) )
+print(  a(10**6) )
 
 # @2017-10-11, 22:00   # scooping - the sequence repeats itself in zooming
 

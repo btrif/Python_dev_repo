@@ -2,8 +2,8 @@
 # © o(^_^)o  Solved by Bogdan Trif  @   Completed on Tue, 17 Oct 2017, 09:05
 #The  Euler Project  https://projecteuler.net
 '''
-Four Representations using Squares
-Problem 229
+                        Four Representations using Squares          -           Problem 229
+
 Consider the number 3600. It is very special, because
 
 3600 = 482 +     362

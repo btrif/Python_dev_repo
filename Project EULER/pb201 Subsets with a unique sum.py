@@ -43,6 +43,9 @@ i.e. find sum(U(S,50)).
 
 '''
 import time, zzz
+from gmpy2 import comb
+
+print('Comb( 100, 50 ) = ', comb(100, 50) )
 
 L = [ i*i for i in range(1,101) ]
 S = set(L)
@@ -55,11 +58,22 @@ t1  = time.time()
 smallest_set_sum = sum( [  i*i for i in range(1, 51)] )
 greatest_set_sum = sum( [  i*i for i in range(51, 101)] )
 
-print(smallest_set_sum, greatest_set_sum)
-print(' There are no more than ', greatest_set_sum-smallest_set_sum , '    unique sums')
+print('smallest_set_sum = ', smallest_set_sum, ' ;   greatest_set_sum = ', greatest_set_sum )
+print(' There are no more than ', greatest_set_sum-smallest_set_sum , '    unique sums' )
 
 
-# IDEA --> number partition in 50 ?
+'''
+https://stackoverflow.com/questions/12533302/project-euler-201
+
+'''
+
+
+def existsRepresentation( nr, max_nr ,nr_of_elem ):
+    n = 0
+    for i in range(nr_of_elem) :
+
+
+
 
 
 t2  = time.time()

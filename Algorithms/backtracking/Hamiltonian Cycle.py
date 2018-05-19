@@ -2,7 +2,11 @@
 '''
 
 https://en.wikipedia.org/wiki/Hamiltonian_path
-Hamiltonian Path in an undirected graph is a path that visits each vertex exactly once. A Hamiltonian cycle (or Hamiltonian circuit) is a Hamiltonian Path such that there is an edge (in graph) from the last vertex to the first vertex of the Hamiltonian Path. Determine whether a given graph contains Hamiltonian Cycle or not. If it contains, then print the path. Following are the input and output of the required function.
+Hamiltonian Path in an undirected graph is a path that visits each vertex exactly once.
+A Hamiltonian cycle (or Hamiltonian circuit) is a Hamiltonian Path such that there is an edge (in graph)
+from the last vertex to the first vertex of the Hamiltonian Path.
+Determine whether a given graph contains Hamiltonian Cycle or not.
+If it contains, then print the path. Following are the input and output of the required function.
 
 Input:
 A 2D array graph[V][V] where V is the number of vertices in graph and graph[V][V] is adjacency matrix

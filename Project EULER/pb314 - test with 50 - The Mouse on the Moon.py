@@ -34,6 +34,21 @@ from math import pi, sqrt, cos, sin, floor
 def toRadians(degrees):
         return (degrees / 180.0) * pi
 
+def radians_to_degrees(radians) :
+    '''radians_to_degrees, Radians to Degrees ,radians to degrees, RADIANS TO DEGREES, rad_to_deg, rad to deg    '''
+    return radians * 180 /pi
+
+def positive_rad(radian) :
+    ''':Description: Transform a negative radian to positive radian '''
+    if radian < 0 :
+        return radian + 2*pi
+
+def positive_deg(degrees) :
+    ''':Description: Transform a negative radian to positive radian '''
+    if degrees < 0 :
+        return degrees + 360
+
+
 def polar_to_X(r, theta):
     alpha = (theta / 180.0) * pi
     x = r * cos(alpha)

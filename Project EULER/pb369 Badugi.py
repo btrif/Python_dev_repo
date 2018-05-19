@@ -27,20 +27,20 @@ def choose(n, k):
 
 # ♠ Spades - S ,   ♥ Hearts - H   ,  ♦  Diamonds - D , ♣ Clubs - C
 
-CA = { '2':2, '3':3 , '4':4 , '5':5, '6':6 , '7':7, '8': 8 , '9': 9, 'T':10, 'J':12, 'Q':13, 'K':14, 'A' :15 }
+CA = { '2':2, '3':3 , '4':4 , '5':5, '6':6 , '7':7, '8': 8 , '9': 9, 'T':10, 'J':12, 'Q':13, 'K':14, 'A' :15 }      #  13 types
 C = '23456789TJQKA'
 # print(C)
-print(choose(52, 4  ))
-print(choose(52, 5  ))
-print(choose(52, 13  ))
-
+print('choose(52, 4  ) :  ', choose(52, 4  ))
+print('choose(52, 5  ) :  ', choose(52, 5  ))
+print('choose(52, 6  ) :  ', choose(52, 6  ))
+print()
 
 CARDS = []
 for i in C :
     for j in 'SHDC' :
         # print(i, j)
         CARDS.append(str(i+j) )
-print(CARDS)
+print(CARDS)                # 52 Cards
 
 
 
@@ -51,15 +51,23 @@ def brute_force_Acknowledgement( ) :
     comb = combinations(CARDS, 5)
     cnt = 0
     for I in comb :
-        a =  [ o[0] for o in I ]
-        b =  [ o[1] for o in I ]
-        if len(set(a)) >= 4 and len(set(b)) == 4 :
-            cnt+=1
-            print(str(cnt)+ '.    ' ,I )
+        for J in combinations(I, 4) :
 
-    print('\nUnique 4-Sets = ', cnt ,'         from  C(52, 4) = 270725  combinations ' )
+            a =  [ o[0] for o in J ]
+            b =  [ o[1] for o in J ]
 
-brute_force_Acknowledgement()
+            if len(set(a)) == 4 and len(set(b)) == 4 :
+                # cnt+=1
+                # print(str(cnt)+ '.    ' ,I ,'          J = ' , J )
+                if J == ('8H', '9S', 'TD', 'JC') :
+                    cnt+=1
+                    print(str(cnt)+ '.    ' ,I ,'          J = ' , J )
+
+                # break
+
+    print('\nUnique 4-SubSets : f(5) = ', cnt ,'         from  : ' ,  choose( 52, 5), '  combinations ' )
+
+brute_force_Acknowledgement()       #   Unique 4-Sets =  514800          from  :  2598960   combinations
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
