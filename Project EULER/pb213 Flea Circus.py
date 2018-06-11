@@ -261,7 +261,7 @@ t1  = time.time()
 
 
 def one_flea_jumps(matrix_size, pos , nr_of_jumps) :
-    '''  Computes the probabilities of  a single feel to reach squares after a certain number of jumps '''
+    '''  Computes the probabilities of  a single flea to reach squares after a certain number of jumps '''
     F = np.zeros((matrix_size,matrix_size), dtype=float)
     F[pos[0] ][pos[1]] = 1
     G = deepcopy(F)

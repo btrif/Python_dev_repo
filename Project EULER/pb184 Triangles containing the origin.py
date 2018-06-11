@@ -356,10 +356,10 @@ t1  = time.time()
 # 2. Step 2 - After the step 1 we must go in sections between adjacent vectors in the . It takes much less time to take sections and then
 # sum for larger angles . BUT, BUT BUT, must take into account the points found on the VECTORS themselves.
 # So we must use a DATA STRUCTURE which also counts the points from the vectors. This is because we will use
-# larger angles than consecutive vectors in the sequence, we must include them. And this is because the are NOT
+# larger angles than consecutive vectors in the sequence, we must include them. And this is because they are NOT
 # calculated when we compute points within adjacent Sections.
 #
-# 3. STEP 3 - s Construct function to compute points inside circle sections. Must me at most O(n).
+# 3. STEP 3 -  Construct function to compute points inside circle sections. Must be at most O(n).
 # 4. STEP 4. - Take care to extend gradually the sectors !
 
 
@@ -416,15 +416,29 @@ for i1 in range(len(V1)) :
 
 print('\n---------------------------')
 t1  = time.time()
+
 R_xy = lambda x, y : sqrt(x*x+y*y)
 
 def test_point_inside_circle_sector_BF(R, m1, m2 ):
-    if m1 > m2 :        m1, m2 = m2, m1
+    ''' R - is the radius of the circle
+        m1 - slope 1,
+        m2 - slope 2
+    :param R:
+    :param m1:
+    :param m2:
+    :return:                        '''
+
+
+    if m1 > m2 :
+        m1, m2 = m2, m1
+
     print('m1 = ', m1, '    m2 = ', m2 )
-    x_down = ceil(1/(max(abs(m1), abs(m2)) ) )
-    # print('x_down = ', x_down , '\n')
+    x_down = ceil( 1/( max((m1), (m2)) ) )      # X_down - represents the lowest value for the x variable
+                                                                    # in the drawn picture I drawn the other side of dots
+    print('x_down = ', x_down , '\n')
+
     cnt, acnt = 0, 0
-    for i in range(-R , R ) :
+    for i in range(x_down , R ) :
         y1, y2 = m1*i, m2*i
 
         y_down, y_up = m1*i , m2*i
@@ -442,28 +456,33 @@ def test_point_inside_circle_sector_BF(R, m1, m2 ):
 
         diff = abs(ceil(y_down) - ceil(y_up))
 
-        print('\nx = ', i , '    y_down = ', ceil(y_down), '    y_up = ', ceil(y_up) , '   y_min = ', y_min, '   y_max = ', y_max,'     points =',  diff )
-
-
         acnt += diff
+        print('\nx = ', i , '    y_down = ', ceil(y_down), '    y_up = ', ceil(y_up) , '   y_min = ', y_min, '   y_max = ', y_max,'     points =',  diff ,'    acnt = ', acnt)
 
 
-        for j in range(1, R ) :
+        #####     2-ND    VERIFICATION METHOD     #####
+        # for j in range(1, R ) :                           #  Dont need optimization as it is a CHECK ALGO O(n^2)
+        for j in range( floor(y1), floor(y2)+1 ) :  #       Here is the optimized version but it is not necessarily needed !
             # j = -j
-            if y1 < j < y2 and R_xy(i,j) < R  :
+            # if y1 < j < y2 and R_xy(i,j) < R  :
+            if y1 < j < y2 and R_xy( i , j) < R  :
                 cnt+=1
-                print(str(cnt)+'.     x= ',i, '   y=' , j ,'      y1(x)= ', y1 ,'      y2(x)= ', y2  )
+            print(str(cnt)+'.     x= ',i, '   y=' , j ,'      y1(x)= ', y1 ,'      y2(x)= ', y2 ,'      R_xy (i,j)= ', R_xy(i,j)  )
 
-    print('\nacnt = ', acnt)
-    return acnt
+    print('\ncnt = ', cnt ,'       acnt = ', acnt )
+    return cnt
 
 
-R, m1, m2 = 14, -8/21, 3/ 11
+R, m1, m2 = 14, 6/11, 3/ 11
+# R, m1, m2 = 14, -8/21, 3/ 11
 test_point_inside_circle_sector_BF(R, m1, m2 )
 
-2018-04-04 - I left here that I must find a VIABLE SOLUTION : an O(n) algorithm to count the lattice points
-inside a sector circle, between two slopes, m1, m2 and the arc of the cercle
-I am on the good path a, on STEP 2
+# 2018-04-04 - I left here that I must find a VIABLE SOLUTION : an O(n) algorithm to count the lattice points
+# inside a sector circle, between two slopes, m1, m2 and the arc of the cercle
+# I am on the good path a, on STEP 2
+# @ 2018-06-07 - Until now I have an O(n^2 ) algorithm. Must get an O(n) algorithm ! . -
+#     -   acnt count search for that algorithm of O(n)
+#     -   cnt count  is an O(n^2) algo which must verify the first !
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
@@ -477,9 +496,6 @@ print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
 
-
-t2  = time.time()
-print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 
 # print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')

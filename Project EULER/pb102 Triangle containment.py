@@ -26,6 +26,8 @@ NOTE: The first two examples in the file represent the triangles in the example 
 import time
 # from pylab import *
 import itertools
+import matplotlib.pyplot as plt
+import numpy as np
 
 filename="pb102_triangles.txt"
 
@@ -82,7 +84,7 @@ def plot_triangle(A, B, C):
     plt.show()
 
 
-def determine_inside_origin(lst) :
+def determine_inside_origin( lst , plotting ) :
     ''':Description: Function to return if the Origin O(0,0) is contained inside the triangle
     :param lst: list in the form : (x1, y1, x2, y2, x3, y3). The function will transform into three points with
         two coordinates and perform further processing.
@@ -116,7 +118,8 @@ def determine_inside_origin(lst) :
     # print( 'Y Min & Max :  ', min(A[1], B[1], C[1]), max(A[1], B[1], C[1]) )
     # print('The cross : ',CR)
     # print('---------------------')
-    plot_triangle(A, B, C)      # Here we plot each triangle
+    if plotting == True :
+        plot_triangle(A, B, C)      # Here we plot each triangle
     if  len(CR['x']) >1 and len(CR['y']) >1 :       # Check if the cuts  of Ox & Oy form a cross :)
         if  max(CR['x']) > 0 and min(CR['x']) < 0 and max(CR['y']) > 0 and min(CR['y']) < 0 :
             return True
@@ -132,7 +135,7 @@ lst = [-100, 200, 900, 100, -100, -700]        # Case when derivative = ∞ ; li
 # lst = [-175, 41, -421, -714, 574, -645]
 # lst = [129, 169, 576, 651,-87, -458]
 
-print('\n Test for the function determine_inside_origin: ', determine_inside_origin(lst) )
+print('\n Test for the function determine_inside_origin: ', determine_inside_origin(lst, True ) )
 
 # A, B, C = [150,100],[-200,180],[-130,-200]
 # plot_triangle(A, B, C)
@@ -146,7 +149,7 @@ def solution_pb102():
     import os
     counter = 0
     for I in triangles:
-        if determine_inside_origin(I) == True :
+        if determine_inside_origin(I , False) == True :
             # print(' ----------------------- TRUE TRUE TRUE TRUE !!!!!!!!!!!!! -----------------')
             counter +=1
         # else : print(' ----------------------- FALSE FALSE ! -----------------')
@@ -198,7 +201,7 @@ t1  = time.time()
 answer = 0
 
 with open(filename, "r") as data_file:
-	ts = [line.rstrip().split(",") for line in data_file]
+    ts = [line.rstrip().split(",") for line in data_file]
 
 for i in ts:
 	x1, y1, x2, y2, x3, y3 = map( int, i)

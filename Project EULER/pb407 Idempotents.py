@@ -340,7 +340,7 @@ print('\n--------------------------SOLUTION 3,  7 min --------------------------
 t1  = time.time()
 
 # ==== Sun, 23 Dec 2012, 17:28, Marcus Stuhr, USA
-# Recall that based on the functional representation of the remainder operation, a**2 ≡ amod n is equivalent to
+# Recall that based on the functional representation of the remainder operation, a**2 ≡ a mod n is equivalent to
 # a=a**2−⌊a**2/n⌋*n, which can be rearranged to a(a−1)/n=⌊a**2/n⌋ .
 # This means n is a factor of a(a−1) where 0≤a<n, with the goal being to maximize a.
 #

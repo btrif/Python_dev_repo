@@ -102,7 +102,7 @@ boys = {'Andrei' : 33, 'Marius' : 12, 'Bogdan' : 2, 'Viorel' : 13, 'Ionut' : 4, 
 print('the boys dictionary is: ', boys)
 print('---'*15)
 
-#Update the first dictionary with the second one, this joins  the girls dictionary with the boys dictionary:
+#Update (extend, Extend) the first dictionary with the second one, this joins  the girls dictionary with the boys dictionary:
 girls.update(boys)
 print('The new dictionary containing GIRLS & BOYS is :     ',girls)
 

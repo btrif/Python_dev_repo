@@ -172,11 +172,11 @@ S -= sub
 print('S 2, 3, 5 = ' , S )
 
 
-@2017-11-20 - Simulation of the problem above works well.
-I must to exclusion- inclusion principles  add combinations of 2, substract conbinations of 3 and so on ...
-However using itertools doesn't work as there are 11 primes in the combination 2,3,5,7,11,13,,17,23,29 < 10^12
-I must use something else as I don;t want to use 11 for loops. Must learn from problems like 248 and so on
-    where inclusion - exclusion is used
+# @2017-11-20 - Simulation of the problem above works well.
+# I must do exclusion- inclusion principles  add combinations of 2, substract conbinations of 3 and so on ...
+# However using itertools doesn't work as there are 11 primes in the combination 2,3,5,7,11,13,,17,23,29 < 10^12
+# I must use something else as I don;t want to use 11 for loops. Must learn from problems like 248 and so on
+#     where inclusion - exclusion is used
 
 
 

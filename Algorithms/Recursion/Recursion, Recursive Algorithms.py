@@ -30,6 +30,22 @@ print(mult_recursive(22,89))
 ### Compute the value x n for integer n.
 
 
+print('\n---------------- gcd - The Greatest Commont Factor : ------------------')
+
+
+def gcd_rec(a, b) :                             #     Made by Bogdan Trif @ 2018-05-21, 1!:00
+
+    if b == 0 :return a
+
+    else :
+        return gcd_rec(b, a%b )
+
+
+print('gcd_rec : \t   ',gcd_rec( 4*3*7*5**2, 3*7*2*5**2) )
+
+### Compute the value x n for integer n.
+
+
 
 
 # RECURSION FUNCTION FACTORIAL :
@@ -397,4 +413,29 @@ for l in multirange_b([4,3,2]):
     print(l, end = '  ')
 
 
+print('\n--------------------------------  Decimal to binary Recursion ----------------------')
 
+def binary_rec(n, s):    # @ Made by Bogdan Trif @ 2018-05-29
+    if n == 1 :
+        return str(1) +s
+    print(n,'  ', n%2)
+
+    return binary_rec(n//2, str(n%2) +s )
+
+print(binary_rec(248, '') )
+
+
+######### More advanced Method      #####
+
+def binary_rec2(n) :
+    ''' :Explanation: Each time it arrives at the recursive call the previous number is mutiplied by 10
+    and add 1 or 0 if n%2 ==0 or 1 . Example : n=11 , just before the last step we have the
+    partial result 101 , the last call : 11%2 = 1  and 10 * 101 = 1010 =>
+    1 + 1010 = 1011 which is the result for n = 11                      '''
+    if n == 1 :
+        return 1
+    print(n,'  ', n//2, '   ', n%2)
+
+    return (n%2 + 10 * binary_rec2(n//2) )
+
+print(binary_rec2(11))

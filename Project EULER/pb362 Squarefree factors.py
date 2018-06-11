@@ -89,6 +89,11 @@ def brute_force_test(lim):
 brute_force_test(10**2)
 
 @2018-05-15 - Error here : n = 100      aF =  [[10, 10], [4, 5, 5], [2, 5, 10], [2, 2, 5, 5]]   len = 4 ;  Shouldn't appear [ 4, 5, 5 ]
+@2018-05-27 - I think it can be done with an O(sqrt(n)) algorithm
+IDEA: take 2: => 2x2 = 4, 2x3 = 6, 2x2x2 = 8, 2x5=10; 2x2x3=12, 2x6 = 12, 2x7 = 14, 2x2x2x2 = 16 ;
+2x3x3 = 18, 6x3 = 18, 2x2x5 = 20, 2x10 = 20
+3x5 = 15, 3x7 = 21 ... and so on ...
+Try to find a formula based on Combinations !
 
 
 t2  = time.time()

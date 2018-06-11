@@ -47,6 +47,9 @@ http://www.wolframalpha.com/input/?i=plot(x%5E4+%2B+4x%5E3+%2B+6x%5E2+%2B+4x+%2B
 ## Is Pascal Triangle polynom with root = -1    and is  P_1331
 http://www.wolframalpha.com/input/?i=plot(x%5E3+%2B+3x%5E2+%2B+3x%5E1+%2B++1)
 
+## root = -2
+http://www.wolframalpha.com/input/?i=roots(5x%5E3+%2B+8x%5E2+%2B+8)
+
 === KEYWORDS
 Rational Root Theorem
 Rational Zeros of Polynomials

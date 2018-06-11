@@ -51,7 +51,8 @@ def A_no_mem(m, n):
 
 print('\nAckermann no memoization function test : \t', A_no_mem(4, 1 ))
 
-
+https://www.saylor.org/site/wp-content/uploads/2011/06/Ackermann-Function.pdf
+http://mathworld.wolfram.com/AckermannNumber.html       <--NOTATION
 
 
 print('\n--------------------------TESTS------------------------------')
