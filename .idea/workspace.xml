@@ -146,17 +146,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pb184 Triangles containing the origin.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pb184 Triangles containing the origin.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Project EULER/pb184 Triangles containing the origin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11208">
-              <caret line="469" column="12" lean-forward="false" selection-start-line="469" selection-start-column="12" selection-end-line="469" selection-end-column="12" />
-              <folding />
+            <state relative-caret-position="274">
+              <caret line="500" column="25" lean-forward="false" selection-start-line="500" selection-start-column="25" selection-end-line="500" selection-end-column="25" />
+              <folding>
+                <element signature="e#954#970#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pb395 Pythagorean tree.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pb395 Pythagorean tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Project EULER/pb395 Pythagorean tree.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="275">
@@ -238,8 +240,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>{2, 3, 5}</find>
-      <find>{3, 4, 7}</find>
       <find>s_=  74</find>
       <find>s_=  139</find>
       <find>s_=  138</find>
@@ -268,6 +268,8 @@
       <find>r</find>
       <find>asser</find>
       <find>assert</find>
+      <find>math</find>
+      <find>gcd3</find>
     </findStrings>
     <replaceStrings>
       <replace>t</replace>
@@ -378,9 +380,9 @@
         <option value="D:/WORK/DEV/bittrex/get_API_bittrex_data.py" />
         <option value="$PROJECT_DIR$/Algorithms/Recursion/decomposeSquares.py" />
         <option value="$PROJECT_DIR$/Project EULER/pb230 Fibonacci Words.py" />
-        <option value="$PROJECT_DIR$/Project EULER/pb184 Triangles containing the origin.py" />
         <option value="$PROJECT_DIR$/Project EULER/pb102 Triangle containment.py" />
         <option value="$PROJECT_DIR$/Project EULER/pb395 Pythagorean tree.py" />
+        <option value="$PROJECT_DIR$/Project EULER/pb184 Triangles containing the origin.py" />
       </list>
     </option>
   </component>
@@ -478,24 +480,6 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="Python_dev_repo">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="PYTHON">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Python_dev_repo">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="turtles">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -666,7 +650,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pb395 Pythagorean tree">
+  <component name="RunManager" selected="Python.pb184 Triangles containing the origin">
     <configuration default="false" name="pb230 Fibonacci Words" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -843,9 +827,9 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.pb395 Pythagorean tree" />
-        <item index="1" class="java.lang.String" itemvalue="Python.pb102 Triangle containment" />
-        <item index="2" class="java.lang.String" itemvalue="Python.pb184 Triangles containing the origin" />
+        <item index="0" class="java.lang.String" itemvalue="Python.pb184 Triangles containing the origin" />
+        <item index="1" class="java.lang.String" itemvalue="Python.pb395 Pythagorean tree" />
+        <item index="2" class="java.lang.String" itemvalue="Python.pb102 Triangle containment" />
         <item index="3" class="java.lang.String" itemvalue="Python.pb230 Fibonacci Words" />
       </list>
     </recent_temporary>
@@ -945,7 +929,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908458" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3441483" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43800697" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908458" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908458" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1097,13 +1081,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/BASE SCRIPTS/sets_basic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-722">
-          <caret line="139" column="80" lean-forward="false" selection-start-line="139" selection-start-column="73" selection-end-line="139" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BASE SCRIPTS/dictionary_basic_ops.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -1443,14 +1420,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Project EULER/pb184 Triangles containing the origin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11208">
-          <caret line="469" column="12" lean-forward="false" selection-start-line="469" selection-start-column="12" selection-end-line="469" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/WORK/DEV/bittrex/update_evolution_markets.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1466,6 +1435,24 @@
           <folding>
             <element signature="e#1256#1272#0" expanded="true" />
             <element signature="e#7221#7258#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/448512412/math.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-360">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project EULER/pb184 Triangles containing the origin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="500" column="25" lean-forward="false" selection-start-line="500" selection-start-column="25" selection-end-line="500" selection-end-column="25" />
+          <folding>
+            <element signature="e#954#970#0" expanded="true" />
           </folding>
         </state>
       </provider>

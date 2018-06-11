@@ -23,7 +23,7 @@ How many triangles are there containing the origin in the interior and having al
 import time, zzz
 from pylab import plt, np
 import itertools, collections
-
+from math import sqrt, gcd
 
 # How many point inside I105 ?
 def Quad_I_points(lim) :
@@ -97,7 +97,7 @@ def get_triangle_sides(x1, y1, x2, y2, x3, y3):
     c = ((x3-x1)**2 + (y3-y1)**2)**(1/2)
     return round(a, 4), round(b,4), round(c,4)
 
-from math import sqrt
+
 # (1, 0), (-1, 2), (-2, -1)
 def isoscel_triangle_8_symmetry( p1,  p2, p3  ) :
     ''' Returns True if it is a 8 symmetry, Return False if it is a 4 symmetry '''
@@ -417,10 +417,30 @@ for i1 in range(len(V1)) :
 print('\n---------------------------')
 t1  = time.time()
 
+
+def get_line_integers(x, y, R) :
+    ''':Description: function which gets all the grid integer points from a line
+    up to the limit radius R. If the last point > R we do not account it.
+    '''
+    x, y = abs(x), abs(y)
+    g = gcd(x, y)
+    b = max(x,y)//g
+
+    # print('g = ', g ,'  b= ', b  ,'   R // b=', R // b )
+
+    if R % b ==0  :
+        return R // b -1
+
+    return R // b
+
+
+
 R_xy = lambda x, y : sqrt(x*x+y*y)
 
-def test_point_inside_circle_sector_BF(R, m1, m2 ):
+def test_point_inside_circle_sector_BF(R, x_1, y_1, x_2, y_2 ):
     ''' R - is the radius of the circle
+        x1, y1 - first point coordinate giving m1
+        x2, y2 - second point coordinate giving m1
         m1 - slope 1,
         m2 - slope 2
     :param R:
@@ -428,11 +448,15 @@ def test_point_inside_circle_sector_BF(R, m1, m2 ):
     :param m2:
     :return:                        '''
 
+    g1, g2 = get_line_integers(x_1, y_1, R),  get_line_integers(x_2, y_2, R)
+    g_count = g1 + g2
+
+    m1 , m2 = abs(y_1/x_1), abs(y_2/x_2)
 
     if m1 > m2 :
         m1, m2 = m2, m1
 
-    print('m1 = ', m1, '    m2 = ', m2 )
+    print('m1 = ', m1, '    m2 = ', m2,  '    g1 = ', g1,  '    g2 = ', g2,  '      g_count = ', g_count   )
     x_down = ceil( 1/( max((m1), (m2)) ) )      # X_down - represents the lowest value for the x variable
                                                                     # in the drawn picture I drawn the other side of dots
     print('x_down = ', x_down , '\n')
@@ -462,20 +486,21 @@ def test_point_inside_circle_sector_BF(R, m1, m2 ):
 
         #####     2-ND    VERIFICATION METHOD     #####
         # for j in range(1, R ) :                           #  Dont need optimization as it is a CHECK ALGO O(n^2)
-        for j in range( floor(y1), floor(y2)+1 ) :  #       Here is the optimized version but it is not necessarily needed !
+        for j in range( ceil(y1), floor(y2)+1 ) :  #       Here is the optimized version but it is not necessarily needed !
             # j = -j
             # if y1 < j < y2 and R_xy(i,j) < R  :
             if y1 < j < y2 and R_xy( i , j) < R  :
                 cnt+=1
             print(str(cnt)+'.     x= ',i, '   y=' , j ,'      y1(x)= ', y1 ,'      y2(x)= ', y2 ,'      R_xy (i,j)= ', R_xy(i,j)  )
 
-    print('\ncnt = ', cnt ,'       acnt = ', acnt )
+    # acnt -= g_count
+    print('\ncnt = ', cnt ,'       acnt = ', acnt ,'          real_acnt = ', acnt-g_count )
     return cnt
 
 
-R, m1, m2 = 14, 6/11, 3/ 11
-# R, m1, m2 = 14, -8/21, 3/ 11
-test_point_inside_circle_sector_BF(R, m1, m2 )
+R, x1, y1, x2, y2 = 14, -21, 3, -21, 8
+
+test_point_inside_circle_sector_BF(R, x1, y1, x2, y2 )
 
 # 2018-04-04 - I left here that I must find a VIABLE SOLUTION : an O(n) algorithm to count the lattice points
 # inside a sector circle, between two slopes, m1, m2 and the arc of the cercle
