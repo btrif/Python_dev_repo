@@ -113,7 +113,7 @@ print('10             ',factorial_non_zero(10**1))
 print('100           ',factorial_non_zero(10**2))
 print('1.000          ',factorial_non_zero(10**3))
 print('10.000          ',factorial_non_zero(10**4))
-print('100.000        ',factorial_non_zero(10**5))
+print('100.000        ',factorial_non_zero(10**5) ,'\n\n')
 # print('1.000.000        ',factorial_non_zero(10**6))
 
 # f(               10)=36288
@@ -148,29 +148,39 @@ def factorial_trailing_digits(n) :
 
 factorial_trailing_digits(2)
 
+print('\n-------------------------- TESTS------------------------------')
+
+def brute_check( down, diff ):
+    P = 1
+    for i in range(down, down+diff +1  ) :
+        P *= i
+
+    return print('\nRes =', P)
+
+brute_check(50, 10)
 
 ### CONCEPT BUILDING  ####
-q = 36288
-for i in range(11, 100+1):
-    # if i % 10 != 0 and i %5 !=0 :
-    if i % 10 == 0 :
-        q //=10
-    else :
-        if i % 25 == 0 and i% 3 ==0 :
-            q *= 3
-            q //=4
-            print(i,'--->     ', q % 10**30 , '               ',  factorial_non_zero(i))
-            continue
-        if i % 25 == 0 and i%2==0 :
-            q //= 4
-            continue
-    q*=i
-    print(i,'     ', q % 10**30 , '               ',  factorial_non_zero(i)  )
-
-
-print('\n Res : ', (q// 10**0) %10**30)
-
-print('obladioblada :' , (pow( 36288, 10, 10**5 )*2**67 ) %10**5    )
+# q = 36288
+# for i in range(11, 100+1):
+#     # if i % 10 != 0 and i %5 !=0 :
+#     if i % 10 == 0 :
+#         q //=10
+#     else :
+#         if i % 25 == 0 and i% 3 ==0 :
+#             q *= 3
+#             q //=4
+#             print(i,'--->     ', q % 10**30 , '               ',  factorial_non_zero(i))
+#             continue
+#         if i % 25 == 0 and i%2==0 :
+#             q //= 4
+#             continue
+#     q*=i
+#     print(i,'     ', q % 10**30 , '               ',  factorial_non_zero(i)  )
+#
+#
+# print('\n Res : ', (q// 10**0) %10**30)
+#
+# print('obladioblada :' , (pow( 36288, 10, 10**5 )*2**67 ) %10**5    )
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n')
@@ -179,7 +189,7 @@ print('\n================  My FIRST SOLUTION,   ===============\n')
 t1  = time.time()
 
 
-https://en.wikipedia.org/wiki/Wilson%27s_theorem
+# https://en.wikipedia.org/wiki/Wilson%27s_theorem
 
     # else :
     #     if q %25 == 0 :

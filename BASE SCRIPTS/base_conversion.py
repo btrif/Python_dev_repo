@@ -3,15 +3,15 @@
 
 # Converting an Integer to a String in Any Base
 
-def toStr(n, base ):
+def toStr(n, base ):        # Recursion Solution
    '''Very elegant. Works Fine. 2017-10-16 - Has problems for huge numbers > 500 digits. Because of the
    sys.getrecursionlimit() . I tried o increase it to sys.setrecursionlimit(10000000) and
    when dealing with 2000 digit numbers fails again .
 
-   :param n:
-   :param base:
-   :return:
-   '''
+   :param n:, int, number to transform in the other base
+   :param base:int, base
+   :return: int, the number n transformed in the new base                      '''
+
    convertString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefg"
    # print(len(convertString))
    if n < base:

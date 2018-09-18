@@ -157,11 +157,20 @@ def BruteForce_check( how_many ) :
 BruteForce_check(1000)
 
 
-@2018-05-16 :
-https://stackoverflow.com/questions/32216606/python-program-to-detect-intersection-of-one-dimensional-line-segments
-https://stackoverflow.com/questions/244452/what-is-an-efficient-algorithm-to-find-area-of-overlapping-rectangles
-https://github.com/adrianN/line_intersection/blob/master/README.md
-http://jeffe.cs.illinois.edu/teaching/373/notes/x06-sweepline.pdf
+# @2018-05-16 :
+# https://www.hackerearth.com/practice/math/geometry/line-sweep-technique/tutorial/       !!!!!!!!!!
+# https://pdfs.semanticscholar.org/presentation/b904/8991fc6dceb30da2db063194ffa0bdab8d06.pdf
+# https://courses.csail.mit.edu/6.006/spring11/lectures/lec24.pdf     !!!
+# https://www.youtube.com/watch?v=phrSBwaBs7o
+#
+# https://stackoverflow.com/questions/32216606/python-program-to-detect-intersection-of-one-dimensional-line-segments
+# https://stackoverflow.com/questions/244452/what-is-an-efficient-algorithm-to-find-area-of-overlapping-rectangles
+# https://github.com/adrianN/line_intersection/blob/master/README.md
+# http://jeffe.cs.illinois.edu/teaching/373/notes/x06-sweepline.pdf
+
+
+
+
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')

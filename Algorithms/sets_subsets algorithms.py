@@ -1,17 +1,17 @@
 
 # What is the recursive solution for finding all subsets of a given array?
-def subsets(nums):      # Returns all the subsets of the main set
-  if nums is None: return None
-  subsets = [[]]
-  next = []
-  for n in nums:
-    for s in subsets:
-      next.append(s + [n])
-    subsets += next
+def subsets( nums ):      # Returns all the subsets of the main set
+    if nums is None: return None
+    subsets_ = [[]]
     next = []
-  return subsets
+    for n in nums:
+        for s in subsets_ :
+            next.append(s + [n])
+        subsets_ += next
+        next = []
+    return subsets_
 
-print(subsets([2,3,5,7,11,13]))
+print(subsets( [ 2, 3, 5, 7, 11, 13 ] ) )
 
 
 ###########################

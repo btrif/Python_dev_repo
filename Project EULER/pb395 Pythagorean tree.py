@@ -223,7 +223,7 @@ t1  = time.time()
 
 A, B = (0, 0 ) , (5, 0)
 def pythagorean_tree( A, B  ) :
-    x_max , y_min, y_max = 0, 0, 1e19
+    x_max , y_min, y_max = 0, 1e19, 0
     E = get_base(A, B, 'clockwise')
     print('E : ', E)
 

@@ -1,5 +1,6 @@
 from operator import mul
 from functools import reduce
+
 def f(n, m, q):
     """ probability that, in a lineup of n integers,
     the first m are in order, the next q are not """

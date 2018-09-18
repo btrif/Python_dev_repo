@@ -67,6 +67,19 @@ https://stackoverflow.com/questions/12533302/project-euler-201
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
+# What is the recursive solution for finding all subsets of a given array?
+def subsets( nums ):      # Returns all the subsets of the main set
+    if nums is None: return None
+    subsets_ = [[]]
+    next = []
+    for n in nums:
+        for s in subsets_ :
+            next.append(s + [n])
+        subsets_ += next
+        next = []
+    return subsets_
+
+print(subsets( [ 2, 3, 5, 7, 11, 13 ] ) )
 
 
 
@@ -115,7 +128,7 @@ def just_a_test(lim) :
 
 # just_a_test(20)
 
-
+print('\n-------------------- Hard Brute Force -----------------------')
 def hard_brute_force(lim, elem) :           #### @2018-05-28, 14:10        IT WORKS FINE !!!
 
     Y = dict()
@@ -148,7 +161,7 @@ W = hard_brute_force(20, 5 )
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
-print('\n==============   My FIRST SOLUTION, Really, really bad , Correct, but it takes a lifetime   ===============\n')
+print('\n==============   My FIRST SOLUTION, Exponential Algorithm , Correct, but it takes a lifetime   ===============\n')
 t1  = time.time()
 
 def subsets_unique_sum1(lim, elem_nr, visual ) :
@@ -236,7 +249,7 @@ def subsets_unique_sum1(lim, elem_nr, visual ) :
     print('\nANSWER : ',  sum(result) )
     return set(result)
 
-# result = subsets_unique_sum1(100, 50   , False  )
+result = subsets_unique_sum1( 20, 10   , False  )
 
 # print('W :', len(W), W)
 # print('result :', len(result), result)
@@ -344,7 +357,7 @@ def main(lim, elem):
             total_sum += subset_sum
     print(total_sum)
 
-main(10, 3)
+main(10, 5)
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')

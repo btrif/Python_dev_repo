@@ -1,3 +1,19 @@
+
+print('--------------the SIMPLEST POSSIBLE GENERATOR ------------------------')
+
+s = 'abc'
+IT = s.__iter__()       # or   IT = iter(s)
+ #   function returns an iterator object that defines the method __next__()
+print('IT, function returns an iterator object that defines the method __next__() :\t\t ', IT )
+print('next item : ',  IT.__next__() )          #   which accesses elements in the container one at a time.
+print('next item : ',  next(IT) )           #  IT.__next__() and next(IT) are equivalent
+
+
+
+
+print('\n--------------------------------------')
+
+
 def Blum_Blum_Shub_gen():           # EFFICIENT GENERATOR
     '''     s_0 = 290797
             s_(n+1) = s_n×s_n (modulo 50515093)
@@ -114,5 +130,4 @@ def unique_permutations(lst):       # VERY EFFECTIVE
 
 K = unique_permutations(X)
 print(K)
-for  cnt, i in enumerate(K):
-    print(cnt,'    ',  next(K)  )
+# for  cnt, i in enumerate(K):     print(str(cnt) +'.    ',  next(K)  )

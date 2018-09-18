@@ -7,7 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Project EULER" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Maths/Polynomials_Functions" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.5.1 (C:\Util\Python35\python.exe)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6.4 (C:\Users\Bogdan\Anaconda3\python.exe)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="EDX - MITx 6.00.1x - Introduction to Computer Science and Programming Using Python" />
     <orderEntry type="module" module-name="web" />

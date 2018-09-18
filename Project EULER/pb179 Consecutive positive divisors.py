@@ -82,9 +82,9 @@ def pb179(limit):
 
     divisors = [0]*(limit)
     for i in range(2, int(sqrt(limit))):
-        s=i**2
+        s = i**2
         divisors[s] += 0.5
-        for j in range(i+s, limit, i):
+        for j in range( i+s, limit, i):
             divisors[j] += 1
     return print(sum(divisors[i] == divisors[i - 1] for i in range(3, limit)))
 

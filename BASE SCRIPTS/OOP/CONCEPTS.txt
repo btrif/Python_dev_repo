@@ -1,0 +1,71 @@
+What are the 4 basics of OOP?
+What are four principles of OOP, How aggregation is different than Composition ?
+Encapsulation. Encapsulation is the mechanism of hiding of data implementation by restricting access to public methods.
+Abstraction. ...
+Inheritance. ...
+Polymorphism.
+
+
+ABSTRACT METHOD
+An abstract method is a method that is declared, but contains no implementation.
+
+ABSTRACT CLASS
+Abstract classes may not be instantiated, and require subclasses to provide implementations for the abstract methods.
+Subclasses of an abstract class in Python are not required to implement abstract methods of the parent class.
+- What is the point of having an abstract class ?
+Only a subclass which defines all of the pure virtual functions can be instantiated.
+The purpose of an abstract class is to define some common behavior that can be inherited by multiple subclasses,
+without implementing the entire class.
+
+- Can an abstract class have a constructor ?
+Yes when we define a class to be an Abstract Class it cannot be instantiated but
+that does not mean an Abstract class cannot have a constructor.
+Each abstract class must have a concrete subclass which will implement the abstract methods of that abstract class. ...
+Same case applies to abstract classes.
+
+- Can you inherit from abstract class?
+Abstract classes cannot be instantiated, but they can be subclassed.
+When an abstract class is subclassed, the subclass usually provides implementations for all of the abstract methods in its parent class.
+However, if it does not, then the subclass must also be declared abstract .
+
+
+METACLASS
+- What is a meta class in Python?
+A metaclass is the class of a class.
+Like a class defines how an instance of the class behaves, a metaclass defines how a class behaves.
+A class is an instance of a metaclass. ... type is the usual metaclass in Python.
+In case you're wondering, yes, type is itself a class, and it is its own type.
+
+What is an abstract base class ?
+An abstract class is a class that is designed to be specifically used as a base class.
+An abstract class contains at least one pure virtual function.
+You declare a pure virtual function by using a pure specifier ( = 0 ) in the declaration of a virtual member function in the class declaration.
+
+
+INHERITANCE
+- What is inheritance in Python?
+Of course, Python supports inheritance, it even supports multiple inheritance.
+Classes can inherit from other classes.
+A class which inherits from a superclass is called a subclass, also called heir class or child class.
+
+OPERATOR OVERLOADING
+Python Operator Overloading. 11 Replies.
+You have already seen you can use + operator for adding numbers and at the same time to concatenate strings.
+It is possible because + operator is overloaded by both int class and str class.
+The operators are actually methods defined in respective classes.
+
+METHOD OVERRIDDING
+What is overriding in Python?
+Method overriding in Python. ...
+Overriding is the ability of a class to change the implementation of a method provided by one of its ancestors.
+Overriding is a very important part of OOP since it is the feature that makes inheritance exploit its full power.
+
+What is super in Python?
+Essentially, the super function can be used to gain access to inherited methods – from a parent or sibling class –
+that has been overwritten in a class object. Or, as the official Python documentation says:
+“[Super is used to] return a proxy object that delegates method calls to a parent or sibling class of type.
+
+ENCAPSULATION
+What is encapsulation Python?
+In an object oriented python program, you can restrict access to methods and variables.
+This can prevent the data from being modified by accident and is known as encapsulation.

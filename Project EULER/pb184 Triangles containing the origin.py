@@ -23,7 +23,8 @@ How many triangles are there containing the origin in the interior and having al
 import time, zzz
 from pylab import plt, np
 import itertools, collections
-from math import sqrt, gcd
+from math import sqrt, gcd, atan, pi, floor, ceil
+
 
 # How many point inside I105 ?
 def Quad_I_points(lim) :
@@ -222,7 +223,7 @@ t1  = time.time()
 
 
 
-def triangles_containing_origin_solution( LIM ) :
+def first_try_soln( LIM ) :
 
     Q_0 = Quad_I_points( LIM )
     Q_1 = [ (i[0], i[1] ) for i in Q_0   ]
@@ -319,7 +320,7 @@ def triangles_containing_origin_solution( LIM ) :
     print('\nTotal Triangles = ', Total, '  <-- the result')
     print ('Triangles : \n',TRIANG )
 
-# triangles_containing_origin_solution(5)
+# first_try_soln(5)
 
 
 # @2017-03-10, 18: 00 - I left here that I must analyze why for I3 I obtain 108 results instead of 90
@@ -365,16 +366,18 @@ t1  = time.time()
 
 
 
-from math import atan, pi, floor, ceil
+
 
 theta = lambda m1, m2 : atan(abs( (m1-m2)/(1+m1*m2) ))
 # theta(m1, m2)*180/pi
 
-def farey( n, asc=True ):      ####  o(^_^)o  FASTEST  ( ͡° ͜ʖ ͡°)  ### !!! Best Farey Sequence
+def modified_farey( n , asc=True ):      ####  o(^_^)o  FASTEST  ( ͡° ͜ʖ ͡°)  ### !!! Best Farey Sequence
     ''':Description: Generates INCREASING FAREY SEQUENCE
         taken from http://pythonfiddle.com/farey-series-generator/
-        Modified by Bogdan Trif @2017-02-28, 14:00     '''
+        Modified by Bogdan Trif @2017-02-28, 14:00
+         R - represent the maximum radius, with condition a^2+b^2 < R^2     '''
     F=[]
+    R = n+1
     if asc:
         a, b, c, d = 0, 1, 1, n
     else:
@@ -385,33 +388,45 @@ def farey( n, asc=True ):      ####  o(^_^)o  FASTEST  ( ͡° ͜ʖ ͡°)  ### !!
         k = int((n + b)/d)
         a, b, c, d = c, d, k*c - a, k*d - b
 #         print ("%d/%d" % (a,b),end=' ')
-        F.append((a,b))
+        if a*a+b*b<R*R :
+            F.append((a,b))
         i+=1
     return F
 
-R = 2
+def generate_vectors(R) :
 
-V1 = []
-x1 = farey(R, asc=True)
-x1.reverse()
-x2 = farey(R, asc=False)
-x2 = [i[::-1] for i in reversed(x2) ]
-print('x2 : ', x2 )
-print('x1 : ', x1 )
-V1.extend(x2)
-V1.extend(x1)
-print('V1: ', len(V1), V1[:200] )
-V_temp = [ (-i[1], i[0] ) for i in V1 ]
-V2 = V1[1:] +V_temp
-print(  'V2: ', len(V2), V2[:200] )
+    V1 = []
+    x1 = modified_farey(R-1, asc=True)
+    x1.reverse()
+    x2 = modified_farey(R-1 ,asc=False)
+    x2 = [i[::-1] for i in reversed(x2) ]
+    print('x2 : ', x2 )
+    print('x1 : ', x1 )
+    V1.extend(x2)
+    V1.extend(x1)
+    V_temp = [ (-i[1], i[0] ) for i in V1 ]
+    V2 = V1[:] + V_temp
+
+    # print('V_temp = ', V_temp[:200])
+    # print('V1 = ', V1[:200])
+    # print('V2 = ', V2[:200])
+    # V_temp = [ (-i[1], i[0] ) for i in V1 ]
+    V2 += [ (-1,0 ) ]
+    # V1 = V_temp[:]
+    print('\nV1: ', len(V1),'   ' ,V1[:200] )
+    print(  'V2: ', len(V2),'   ' ,V2[:200] )
+
+    ### Just printing   #########
+    # cnt=1
+    # for i1 in range(len(V1)) :
+    #     # print('v1 = ', V1[i1])
+    #     for i2 in range(i1+1, len(V2) ) :
+    #         print(str(cnt)+'.   v1 = ', V1[i1] , '   v2 = ', V2[i2]  )
+    #         cnt+=1
 
 
-cnt=1
-for i1 in range(len(V1)) :
-    # print('v1 = ', V1[i1])
-    for i2 in range(i1+1, len(V2) ) :
-        print(str(cnt)+'.   v1 = ', V1[i1] , '   v2 = ', V2[i2]  )
-        cnt+=1
+    return V1, V2
+
 
 
 print('\n---------------------------')
@@ -420,18 +435,22 @@ t1  = time.time()
 
 def get_line_integers(x, y, R) :
     ''':Description: function which gets all the grid integer points from a line
-    up to the limit radius R. If the last point > R we do not account it.
-    '''
+    up to the limit radius R. If the last point > R we do not account it.    '''
     x, y = abs(x), abs(y)
     g = gcd(x, y)
-    b = max(x,y)//g
+    x , y = x//g, y//g
 
-    # print('g = ', g ,'  b= ', b  ,'   R // b=', R // b )
+    a = R // sqrt(x*x+y*y)
 
-    if R % b ==0  :
-        return R // b -1
+    # print('g = ', g ,'    x,y = ', x, y , '    a = ', a )
+    if a*a*(x*x + y*y) == R*R :
+        return int(a-1)
 
-    return R // b
+    return int(a)
+
+
+
+
 
 
 
@@ -439,15 +458,15 @@ R_xy = lambda x, y : sqrt(x*x+y*y)
 
 def test_point_inside_circle_sector_BF(R, x_1, y_1, x_2, y_2 ):
     ''' R - is the radius of the circle
-        x1, y1 - first point coordinate giving m1
-        x2, y2 - second point coordinate giving m1
-        m1 - slope 1,
-        m2 - slope 2
-    :param R:
-    :param m1:
-    :param m2:
-    :return:                        '''
+        x1, y1 - first point coordinate giving m1 - slope 1,
+        x2, y2 - second point coordinate giving m2 - slope 2
+    :OBSERVATION: We will not include the point
+    :param R: int, radius limit of the circle
+    :param x1, y1: vector 1
+    :param x2, y2: vector 2
+    :return: int, number of points                      '''
 
+    ### We need to exclude the point which are exactly on the sector vector m2
     g1, g2 = get_line_integers(x_1, y_1, R),  get_line_integers(x_2, y_2, R)
     g_count = g1 + g2
 
@@ -498,7 +517,7 @@ def test_point_inside_circle_sector_BF(R, x_1, y_1, x_2, y_2 ):
     return cnt
 
 
-R, x1, y1, x2, y2 = 14, -21, 3, -21, 8
+R, x1, y1, x2, y2 = 3, -2, 0, 2, 1
 
 test_point_inside_circle_sector_BF(R, x1, y1, x2, y2 )
 
@@ -508,6 +527,44 @@ test_point_inside_circle_sector_BF(R, x1, y1, x2, y2 )
 # @ 2018-06-07 - Until now I have an O(n^2 ) algorithm. Must get an O(n) algorithm ! . -
 #     -   acnt count search for that algorithm of O(n)
 #     -   cnt count  is an O(n^2) algo which must verify the first !
+
+# @2018-06-13 - Important observation :           !!!!!!!!!!!!!!!!!!!!
+# 1.  V1 is from (0, pi/2) and V2 is from (0+i, pi/2)
+# 2.  V1 is from (0, pi/2) and V2 is from (pi/2, pi)
+I still obtain duplicates. Must do a dictionary and keep track of duplicates !
+
+
+def triangles_with_origin(R) :
+    T = set()
+    V1, V2 = generate_vectors(R)
+    CNT = 0
+    for i in range( len(V2)//2 ):
+    # for i in range( 1 ):
+        x1, y1 = V2[i]
+        n1 = get_line_integers(x1, y1, R  )               # count the number of points on the vector V1, which is a multiplier
+        print('-------------------')
+        print( 'V1= ' , V2[i] ,'       n1 =', n1 )
+        cnt1, cnt2, cnt = 0, 0, 0
+        for j in range(i+1, len(V2)-2) :
+            x2, y2 = V2[j]
+            x3, y3 = V2[j+1]
+            n3 = get_line_integers(x3, y3, R  )
+            n2 = get_line_integers(x2, y2, R  )               # count the number of points on the vector V2, which is a multiplier
+            mult = n1*n3
+            cnt1 += n2      #   cnt1 adds all the point on the inner vectors
+            cnt2 = mult*cnt1
+            CNT += cnt2
+            # v = sorted ((V2[i], V2[j], V2[j+1] ) )
+            print( 'fixed V1= ' , V2[i] ,'     n1 =', n1 , ' ;    between    V2= ' , V2[j] , ' ;   fixed V3 = ', V2[j+1] ,' ;    mult= ', mult,'  ;     n2 =', n2, '     cnt1= ', cnt1, '     cnt2= ', cnt2 )
+
+            # T.add(v)
+        print('CNT = ', CNT )
+
+    print('\nCNT = ', CNT )
+    # print('\nT : ', len(T),'   ', T )
+
+
+triangles_with_origin(2)
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')

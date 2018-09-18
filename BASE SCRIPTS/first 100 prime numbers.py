@@ -1,3 +1,5 @@
+### Primitive algorithm, used here only as an example for the usage of the while loop
+
 prime_count = 1
 start_number = 2
 number_to_check = 2

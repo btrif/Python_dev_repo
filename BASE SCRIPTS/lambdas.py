@@ -1,4 +1,11 @@
+# Lambdas are actually UNAMED FUNCTIONS ( anonymous functions )     !
+# In case that the function is relatively simple we can write a lambda function instead
+# of a regular one
+
 '''
+Unnamed functions (lambda function)
+In Python we can also create unnamed functions, using the lambda keyword:
+
 We can assign a variable to a lambda expression and then invoke the lambda with parentheses.
 We call it like any other function. To get the value 6 in this program, we invoke x. We then print the value it returns (stored in y).
 So:
@@ -106,7 +113,7 @@ print(time.time())
 
 # Use def method.
 i = 0
-while i < 10000000:
+while i < 100:
     square1(1)
     i += 1
 
@@ -114,7 +121,7 @@ print(time.time())
 
 # Use lambda method.
 i = 0
-while i < 10000000:
+while i < 1000:
     square2(1)
     i += 1
 
@@ -146,3 +153,22 @@ from operator import itemgetter
 L = [ 1,  4,5,6, 10, 15,16,17,18, 22, 25,26,27,28]
 for k, g in itertools.groupby( enumerate(L), lambda x_i: x_i[1]-x_i[0] ) :
     print (list(map(itemgetter(1), g)))
+
+
+print('\n-------------------------------------------')
+f1 = lambda x: x**2
+
+# is equivalent to
+
+def f2(x):
+    return x**2
+
+print(f1(4), f2(3))
+#This technique is useful for example when we want to pass a simple function
+# as an argument to another function, like this:
+# map is a built-in python function
+map1 = map(lambda x: x**2, range(-3,4))
+print(map1)
+# in python 3 we can use `list(...)` to convert the iterator to an explicit list
+list1 = list(map(lambda x: x**2, range(-3,4)))
+print(list1)

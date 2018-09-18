@@ -102,7 +102,7 @@ while True:
         depo1+=x
         can-=1
         puan-=25
-        print("\nThis letter {} not in our word! {} healt left.".format(x,can))
+        print("\nThis letter {} not in our word! {} healths left.".format(x,can))
         sleep(0.7)
         print("\nWord:",' '.join(tablo))
         sleep(0.7)

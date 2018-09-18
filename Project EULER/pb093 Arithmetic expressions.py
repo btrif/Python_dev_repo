@@ -93,7 +93,7 @@ print('\nFunction test add_parantheses :  ',add_parantheses(test_exp))
 print('eval Builtin Function Testing:  ',eval( ' 1*(2+(3-4)) ' ))
 print('eval Builtin Function Testing:  ',eval( ' 1+((2*3)-4) ' ))
 
-print('\n======  My FIRST SOLUTION,  VERY SLOW, Must remake it using Reverse Polish Notation =========\n')
+print('\n======  My FIRST SOLUTION,  VERY SLOW, 2min, Must remake it using Reverse Polish Notation =========\n')
 t1  = time.time()
 # Must improve it using https://en.wikipedia.org/wiki/Reverse_Polish_notation
 # Must renounce to the eval expression which is SLOW
@@ -129,7 +129,7 @@ def solve_pb093():
     return print('\nAnswer : ',maxv, X)
 
 
-# solve_pb093()       #   Answer :  51 1258
+solve_pb093()       #   Answer :  51 1258
 
 
 
@@ -235,7 +235,8 @@ def add(a, b):
     return a + b
 
 
-def clean(n):  # Use this to turn all those pesky approx. integer floating points into integers, and we only care about positive integers and approx. integer floating points.
+def clean(n):  # Use this to turn all those pesky approx. integer floating points into integers,
+                        # and we only care about positive integers and approx. integer floating points.
     if n < 0:
         return 0
     if ((n - 0.5) % 1)-0.5 <= 1e-6:

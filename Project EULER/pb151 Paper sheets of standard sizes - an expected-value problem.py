@@ -31,20 +31,33 @@ import time, gmpy2
 
 # For four jobs, starting with an A3 paper, the expected number of times to find exactly
 # one sheet in the envelope (excluding first and last) is 0.5, but that doesn't help you much, does it?
-# Based on the clarifications in the comments, an is the number of ways to choose the sequence of sheets
+# Based on the clarifications in the comments, a_n is the number of ways to choose the sequence of sheets
 # drawn from the envelope, assuming that the sheets are distinguishable (even if the same size).
-# For example, a2=3 counts the following 3 possibilities:
-#
-# {A3}→{A4,A5}→{A4}→{A5}→{}
-# {A3}→{A4,A5}→{A5,A5′}→{A5}→{}
-# {A3}→{A4,A5}→{A5,A5′}→{A5′}→{}
-#
+# For example, a_2=3 counts the following 3 possibilities:
+
+#1   {A3}→{ A4, A5 }→{ A4 }→{ A5 }→ {}            ---> outcome probability  = 1/2 because
+                                                                            # we have chosen A5
+#2   {A3}→{ A4, A5 }→{ A5, A5′ }→{ A5 }→ {}      ---> probability he will pick a single sheet = 1/4 because
+                                                                            # we have chosen A4  and we obtained {A5, A5' } for which the tree splits into 2 posibilities :
+                                                                            # this case chooses the first A5 batch
+#3   {A3}→{ A4, A5 }→{ A5, A5′ }→{ A5′ }→ {}        ---> probability he will pick a single sheet = 1/4  (the same argument as above)
+                                                                                # but here at the 3-rd turn we pick the A5'  batch
+# _________________________________________________________       +
+# 1/2 + 1/4 +1/4 == 1         All the outcomes summed must have  probability = 1
+
 # However, these outcomes need not have equal probabilities. In this case outcome 1 has probability 1/2,
 # while outcomes 2 and 3 each have probability 1/4.
-# So we can't compute the expectation by counting outcomes and dividing by an.
+# So we can't compute the expectation by counting outcomes and dividing by a_n .
+
+# == SOLUTION :
+# => Therefore, to calculate the the expected number of times (probability) that he finds a single sheet of paper we must consider
+# only 2-nd and 3-rd turns. As we can see ONLY the 1-st case has a SINGLE sheet of paper => Expected nr of times = 1/2
+# WHY ? : Because :  1/2 + 0 + 0  =1/2
+
+
 
 # starts with : 1A2 , 1A3, 1A4 , 1 A5
-# @ 2017-03-24 - I heoped to be able to solve this problem at this moment. but i do not understand enough
+# @ 2017-03-24 - I hoped to be able to solve this problem at this moment. but i do not understand enough
 # the decisional tree algorithms. Must study those first beginning with the binary tree
 
 print()

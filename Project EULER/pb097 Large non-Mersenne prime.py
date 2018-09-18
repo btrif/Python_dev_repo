@@ -4,15 +4,20 @@
 '''
                             Large non-Mersenne prime        -       Problem 97
 The first known prime found to exceed one million digits was discovered in 1999, and is a Mersenne prime
-of the form 2**6972593−1; it contains exactly 2,098,960 digits. Subsequently other Mersenne primes,
+of the form 2**6972593−1;
+it contains exactly 2,098,960 digits.
+Subsequently other Mersenne primes,
 of the form 2**p−1, have been found which contain more digits.
+
 However, in 2004 there was found a massive non-Mersenne prime which contains 2,357,207 digits: 28433 × (2**7830457) +1.
 Find the last ten digits of this prime number.
 '''
 # Answer :  27580.8739992577
-
+import time
 
 print('-----------------------MY SOLUTION , Very very Weak --------------------------------')
+t1  = time.time()
+
 
 print('7830457 % 62500     :',7830457 % 62500)
 print('7830457 % 312500     :',7830457 % 312500)
@@ -31,6 +36,8 @@ for i in range(1,20000):              #1152512   ; 12 --> 20   512 --> 100 , 251
 
 print('\n Last Ten Digits : ', last_ten)
 
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
 print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
 print('\n--------------------------SOLUTION 1 , No Comment  rtoscani, Netherlands--------------------------')
@@ -38,9 +45,12 @@ print('\n--------------------------SOLUTION 1 , No Comment  rtoscani, Netherland
 print ((28433 * 2**7830457 + 1) % 10**10)
 
 print('\n--------------------------SOLUTION 2 , INSTANT  lalalison, USA--------------------------')
+t1  = time.time()
 
 print((28433*pow(2, 7830457, 10**10) +1) % 10**10)
 
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 print('\n--------------------------SOLUTION 3 ,   mbh038, England--------------------------')
 
 #About 40 ms in Python.

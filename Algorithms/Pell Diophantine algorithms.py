@@ -1,6 +1,6 @@
 from gmpy2 import is_square
 
-def p137v2(limit,D=5,P0=1,Q0=2):
+def p137v2(limit, D=5, P0=1, Q0=2):
 
     a,A,B,G=PQa(D,P0,Q0,1)
 

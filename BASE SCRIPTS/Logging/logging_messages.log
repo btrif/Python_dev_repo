@@ -1,0 +1,336 @@
+2018-09-06 10:45:00, WARNING :    An example message.
+2018-09-06 10:45:00, WARNING :    Another message
+2018-09-06 10:58:31, WARNING :    An example message.
+2018-09-06 10:58:31, WARNING :    Another message
+2018-09-06 10:58:31, DEBUG :    debug message
+2018-09-06 10:58:31, INFO :    info message
+2018-09-06 10:58:31, WARNING :    warn message
+2018-09-06 10:58:31, ERROR :    error message
+2018-09-06 10:58:31, CRITICAL :    critical message
+2018-09-06 11:00:27, WARNING :    An example message.
+2018-09-06 11:00:27, WARNING :    Another message
+2018-09-06 11:00:27, DEBUG :    debug message
+2018-09-06 11:00:27, INFO :    info message
+2018-09-06 11:00:27, WARNING :    warn message
+2018-09-06 11:00:27, ERROR :    error message
+2018-09-06 11:00:27, CRITICAL :    critical message
+2018-09-06 11:00:38, WARNING :    An example message.
+2018-09-06 11:00:38, WARNING :    Another message
+2018-09-06 11:00:38, DEBUG :    debug message
+2018-09-06 11:00:38, INFO :    info message
+2018-09-06 11:00:38, WARNING :    warn message
+2018-09-06 11:00:38, ERROR :    error message
+2018-09-06 11:00:38, CRITICAL :    critical message
+2018-09-06 11:00:43, WARNING :    An example message.
+2018-09-06 11:00:43, WARNING :    Another message
+2018-09-06 11:00:43, DEBUG :    debug message
+2018-09-06 11:00:43, INFO :    info message
+2018-09-06 11:00:43, WARNING :    warn message
+2018-09-06 11:00:43, ERROR :    error message
+2018-09-06 11:00:43, CRITICAL :    critical message
+2018-09-06 11:00:49, WARNING :    An example message.
+2018-09-06 11:00:49, WARNING :    Another message
+2018-09-06 11:00:49, DEBUG :    debug message
+2018-09-06 11:00:49, INFO :    info message
+2018-09-06 11:00:49, WARNING :    warn message
+2018-09-06 11:00:49, ERROR :    error message
+2018-09-06 11:00:49, CRITICAL :    critical message
+2018-09-06 11:00:55, WARNING :    An example message.
+2018-09-06 11:00:55, WARNING :    Another message
+2018-09-06 11:00:55, DEBUG :    debug message
+2018-09-06 11:00:55, INFO :    info message
+2018-09-06 11:00:55, WARNING :    warn message
+2018-09-06 11:00:55, ERROR :    error message
+2018-09-06 11:00:55, CRITICAL :    critical message
+2018-09-06 11:16:31, WARNING :    An example message.
+2018-09-06 11:16:31, WARNING :    Another message
+2018-09-06 11:16:31, DEBUG :    debug message
+2018-09-06 11:16:31, INFO :    info message
+2018-09-06 11:16:31, WARNING :    warn message
+2018-09-06 11:16:31, ERROR :    error message
+2018-09-06 11:16:31, CRITICAL :    critical message
+2018-09-06 11:17:01, WARNING :    An example message.
+2018-09-06 11:17:01, WARNING :    Another message
+2018-09-06 11:17:01, DEBUG :    debug message
+2018-09-06 11:17:01, INFO :    info message
+2018-09-06 11:17:01, WARNING :    warn message
+2018-09-06 11:17:01, ERROR :    error message
+2018-09-06 11:17:01, CRITICAL :    critical message
+2018-09-06 11:17:22, WARNING :    An example message.
+2018-09-06 11:17:22, WARNING :    Another message
+2018-09-06 11:17:22, DEBUG :    debug message
+2018-09-06 11:17:22, INFO :    info message
+2018-09-06 11:17:22, WARNING :    warn message
+2018-09-06 11:17:22, ERROR :    error message
+2018-09-06 11:17:22, CRITICAL :    critical message
+2018-09-06 11:19:20, WARNING :    An example message.
+2018-09-06 11:19:20, WARNING :    Another message
+2018-09-06 11:19:20, INFO :    info message
+2018-09-06 11:19:20, WARNING :    warn message
+2018-09-06 11:19:20, ERROR :    error message
+2018-09-06 11:19:20, CRITICAL :    critical message
+2018-09-06 11:19:53, WARNING :    An example message.
+2018-09-06 11:19:53, WARNING :    Another message
+2018-09-06 11:19:53, INFO :    info message
+2018-09-06 11:19:53, WARNING :    warn message
+2018-09-06 11:19:53, ERROR :    error message
+2018-09-06 11:19:53, CRITICAL :    critical message
+2018-09-06 11:19:58, WARNING :    An example message.
+2018-09-06 11:19:58, WARNING :    Another message
+2018-09-06 11:19:58, DEBUG :    debug message
+2018-09-06 11:19:58, INFO :    info message
+2018-09-06 11:19:58, WARNING :    warn message
+2018-09-06 11:19:58, ERROR :    error message
+2018-09-06 11:19:58, CRITICAL :    critical message
+2018-09-06 11:20:32, WARNING :    An example message.
+2018-09-06 11:20:32, WARNING :    Another message
+2018-09-06 11:20:32, DEBUG :    debug message
+2018-09-06 11:20:32, INFO :    info message
+2018-09-06 11:20:32, WARNING :    warn message
+2018-09-06 11:20:32, ERROR :    error message
+2018-09-06 11:20:32, CRITICAL :    critical message
+2018-09-06 11:22:09, WARNING :    An example message.
+2018-09-06 11:22:09, WARNING :    Another message
+2018-09-06 11:22:09, DEBUG :    debug message
+2018-09-06 11:22:09, INFO :    info message
+2018-09-06 11:22:09, WARNING :    warning message
+2018-09-06 11:22:09, ERROR :    error message
+2018-09-06 11:22:09, CRITICAL :    critical message
+2018-09-06 11:23:02, WARNING :    An example message.
+2018-09-06 11:23:02, WARNING :    Another message
+2018-09-06 11:23:02, DEBUG :    debug message
+2018-09-06 11:23:02, INFO :    info message
+2018-09-06 11:23:02, WARNING :    warning message
+2018-09-06 11:23:02, ERROR :    error message
+2018-09-06 11:23:02, CRITICAL :    critical message
+2018-09-06 11:24:05, WARNING :    An example message.
+2018-09-06 11:24:05, WARNING :    Another message
+2018-09-06 11:24:05, DEBUG :    debug message
+2018-09-06 11:24:05, INFO :    info message
+2018-09-06 11:24:05, WARNING :    warning message
+2018-09-06 11:24:05, ERROR :    error message
+2018-09-06 11:24:05, CRITICAL :    critical message
+2018-09-06 11:24:18, WARNING :    An example message.
+2018-09-06 11:24:18, WARNING :    Another message
+2018-09-06 11:24:18, DEBUG :    debug message
+2018-09-06 11:24:18, INFO :    info message
+2018-09-06 11:24:18, WARNING :    warning message
+2018-09-06 11:24:18, ERROR :    error message
+2018-09-06 11:24:18, CRITICAL :    critical message
+2018-09-06 11:24:35, WARNING :    An example message.
+2018-09-06 11:24:35, WARNING :    Another message
+2018-09-06 11:25:14, WARNING :    An example message.
+2018-09-06 11:25:14, WARNING :    Another message
+2018-09-06 11:25:23, WARNING :    An example message.
+2018-09-06 11:25:23, WARNING :    Another message
+2018-09-06 11:25:23, DEBUG :    debug message
+2018-09-06 11:25:23, INFO :    info message
+2018-09-06 11:25:23, WARNING :    warning message
+2018-09-06 11:25:23, ERROR :    error message
+2018-09-06 11:25:23, CRITICAL :    critical message
+2018-09-06 11:25:30, WARNING :    An example message.
+2018-09-06 11:25:30, WARNING :    Another message
+2018-09-06 11:25:30, DEBUG :    debug message
+2018-09-06 11:25:30, INFO :    info message
+2018-09-06 11:25:30, WARNING :    warning message
+2018-09-06 11:25:30, ERROR :    error message
+2018-09-06 11:25:30, CRITICAL :    critical message
+2018-09-06 11:26:10, WARNING :    An example message.
+2018-09-06 11:26:10, WARNING :    Another message
+2018-09-06 11:26:49, WARNING :    An example message.
+2018-09-06 11:26:49, WARNING :    Another message
+2018-09-06 11:26:54, WARNING :    An example message.
+2018-09-06 11:26:54, WARNING :    Another message
+2018-09-06 12:42:28, WARNING :    An example message.
+2018-09-06 12:42:28, WARNING :    Another message
+2018-09-06 12:42:39, WARNING :    An example message.
+2018-09-06 12:42:39, WARNING :    Another message
+2018-09-06 12:42:39, DEBUG :    debug message
+2018-09-06 12:42:39, INFO :    info message
+2018-09-06 12:42:39, WARNING :    warning message
+2018-09-06 12:42:39, ERROR :    error message
+2018-09-06 12:42:39, CRITICAL :    critical message
+2018-09-06 12:43:40, WARNING :    
+An example message.
+2018-09-06 12:43:40, WARNING :    Another message
+2018-09-06 12:43:40, DEBUG :    debug message
+2018-09-06 12:43:40, INFO :    info message
+2018-09-06 12:43:40, WARNING :    warning message
+2018-09-06 12:43:40, ERROR :    error message
+2018-09-06 12:43:40, CRITICAL :    critical message
+2018-09-06 12:44:15, WARNING :    -------------------
+2018-09-06 12:44:15, WARNING :    An example message.
+2018-09-06 12:44:15, WARNING :    Another message
+2018-09-06 12:44:15, DEBUG :    debug message
+2018-09-06 12:44:15, INFO :    info message
+2018-09-06 12:44:15, WARNING :    warning message
+2018-09-06 12:44:15, ERROR :    error message
+2018-09-06 12:44:15, CRITICAL :    critical message
+2018-09-06 13:50:54, WARNING :    -------------------
+2018-09-06 13:50:54, WARNING :    An example message.
+2018-09-06 13:50:54, WARNING :    Another message
+2018-09-06 13:50:54, DEBUG :    debug message
+2018-09-06 13:50:54, INFO :    info message
+2018-09-06 13:50:54, WARNING :    warning message
+2018-09-06 13:50:54, ERROR :    error message
+2018-09-06 13:50:54, CRITICAL :    critical message
+2018-09-06 14:00:30, DEBUG :    debug message
+2018-09-06 14:00:30, INFO :    info message
+2018-09-06 14:00:30, WARNING :    warning message
+2018-09-06 14:00:30, ERROR :    error message
+2018-09-06 14:00:30, CRITICAL :    critical message
+2018-09-06 14:00:30, CRITICAL :    -------------------
+2018-09-06 14:01:16, DEBUG :    debug message
+2018-09-06 14:01:16, INFO :    info message
+2018-09-06 14:01:16, WARNING :    warning message
+2018-09-06 14:01:16, ERROR :    error message
+2018-09-06 14:01:16, CRITICAL :    critical message
+2018-09-06 14:01:16, CRITICAL :    -------------------
+2018-09-06 14:01:59, DEBUG :    debug message
+2018-09-06 14:01:59, INFO :    info message
+2018-09-06 14:01:59, WARNING :    warning message
+2018-09-06 14:01:59, ERROR :    error message
+2018-09-06 14:01:59, CRITICAL :    critical message
+2018-09-06 14:01:59, CRITICAL :    -------------------
+2018-09-06 14:02:11, ERROR :    error message
+2018-09-06 14:02:11, CRITICAL :    critical message
+2018-09-06 14:02:11, CRITICAL :    -------------------
+2018-09-06 14:03:31, ERROR :    error message
+2018-09-06 14:03:31, CRITICAL :    critical message
+2018-09-06 14:03:31, CRITICAL :    -------------------
+2018-09-06 14:03:38, DEBUG :    debug message
+2018-09-06 14:03:38, INFO :    info message
+2018-09-06 14:03:38, WARNING :    warning message
+2018-09-06 14:03:38, ERROR :    error message
+2018-09-06 14:03:38, CRITICAL :    critical message
+2018-09-06 14:03:38, CRITICAL :    -------------------
+2018-09-06 14:04:01, DEBUG :    debug message
+2018-09-06 14:04:01, INFO :    info message
+2018-09-06 14:04:01, WARNING :    warning message
+2018-09-06 14:04:01, ERROR :    error message
+2018-09-06 14:04:01, CRITICAL :    critical message
+2018-09-06 14:04:01, CRITICAL :    -------------------
+2018-09-06 14:04:50, WARNING :    warning message
+2018-09-06 14:04:50, ERROR :    error message
+2018-09-06 14:04:50, CRITICAL :    critical message
+2018-09-06 14:04:50, CRITICAL :    -------------------
+2018-09-06 14:05:41, WARNING :    warning message
+2018-09-06 14:05:41, ERROR :    error message
+2018-09-06 14:05:41, CRITICAL :    critical message
+2018-09-06 14:05:41, CRITICAL :    -------------------
+2018-09-06 14:16:05, WARNING :    warning message
+2018-09-06 14:16:05, ERROR :    error message
+2018-09-06 14:16:05, CRITICAL :    critical message
+2018-09-06 14:16:05, CRITICAL :    -------------------
+2018-09-06 14:16:38, WARNING :    warning message
+2018-09-06 14:16:38, ERROR :    error message
+2018-09-06 14:16:38, CRITICAL :    critical message
+2018-09-06 14:16:38, CRITICAL :    -------------------
+2018-09-06 14:17:12, WARNING :    warning message
+2018-09-06 14:17:12, ERROR :    error message
+2018-09-06 14:17:12, CRITICAL :    critical message
+2018-09-06 14:17:12, CRITICAL :    -------------------
+2018-09-06 14:18:20, WARNING :    warning message
+2018-09-06 14:18:20, ERROR :    error message
+2018-09-06 14:18:20, CRITICAL :    critical message
+2018-09-06 14:18:20, CRITICAL :    -------------------
+2018-09-06 14:18:31, WARNING :    warning message
+2018-09-06 14:18:31, ERROR :    error message
+2018-09-06 14:18:31, CRITICAL :    critical message
+2018-09-06 14:18:31, CRITICAL :    -------------------
+2018-09-06 14:22:08, WARNING :    warning message
+2018-09-06 14:22:08, ERROR :    error message
+2018-09-06 14:22:08, CRITICAL :    critical message
+2018-09-06 14:22:08, CRITICAL :    -------------------
+2018-09-06 14:24:43, WARNING :    warning message
+2018-09-06 14:24:43, ERROR :    error message
+2018-09-06 14:24:43, CRITICAL :    critical message
+2018-09-06 14:24:43, CRITICAL :    -------------------
+2018-09-06 14:25:16, WARNING :    warning message
+2018-09-06 14:25:16, ERROR :    error message
+2018-09-06 14:25:16, CRITICAL :    critical message
+2018-09-06 14:25:16, CRITICAL :    -------------------
+2018-09-06 14:26:02, WARNING :    warning message
+2018-09-06 14:26:02, ERROR :    error message
+2018-09-06 14:26:02, CRITICAL :    critical message
+2018-09-06 14:26:02, CRITICAL :    -------------------
+2018-09-06 15:48:24, WARNING :    warning message
+2018-09-06 15:48:24, ERROR :    error message
+2018-09-06 15:48:24, CRITICAL :    critical message
+2018-09-06 15:48:24, CRITICAL :    -------------------
+2018-09-06 15:51:11, WARNING :    warning message
+2018-09-06 15:51:11, ERROR :    error message
+2018-09-06 15:51:11, CRITICAL :    critical message
+2018-09-06 15:51:11, CRITICAL :    -------------------
+2018-09-06 15:51:35, CRITICAL :    -------------------
+2018-09-06 15:51:35, WARNING :    warning message
+2018-09-06 15:51:35, ERROR :    error message
+2018-09-06 15:51:35, CRITICAL :    critical message
+2018-09-06 15:51:59, CRITICAL :    --------- ALERT ----------
+2018-09-06 15:51:59, WARNING :    warning message
+2018-09-06 15:51:59, ERROR :    error message
+2018-09-06 15:51:59, CRITICAL :    critical message
+2018-09-06 15:52:04, CRITICAL :    --------- ALERT ----------
+2018-09-06 15:52:04, WARNING :    warning message
+2018-09-06 15:52:04, ERROR :    error message
+2018-09-06 15:52:04, CRITICAL :    critical message
+2018-09-06 15:52:29, CRITICAL :    --------- ALERT ----------
+2018-09-06 15:52:29, CRITICAL :    critical message
+2018-09-06 15:52:34, CRITICAL :    --------- ALERT ----------
+2018-09-06 15:52:34, CRITICAL :    critical message
+2018-09-06 15:53:06, CRITICAL :    --------- ALERT ----------
+2018-09-06 15:53:06, CRITICAL :    critical message
+2018-09-06 15:56:52, CRITICAL :    --------- ALERT ----------
+2018-09-06 15:56:52, CRITICAL :    critical message
+2018-09-06 15:56:56, CRITICAL :    --------- ALERT ----------
+2018-09-06 15:56:56, CRITICAL :    critical message
+2018-09-06 15:56:58, CRITICAL :    --------- ALERT ----------
+2018-09-06 15:56:58, CRITICAL :    critical message
+2018-09-06 16:04:00, CRITICAL :    --------- ALERT ----------
+2018-09-06 16:04:00, CRITICAL :    critical message
+2018-09-06 16:04:00, CRITICAL :    --------- ALERT ----------
+2018-09-06 16:04:00, CRITICAL :    critical message
+2018-09-06 16:06:53, CRITICAL :    --------- ALERT ----------
+2018-09-06 16:06:53, WARNING :    warning message
+2018-09-06 16:06:53, ERROR :    error message
+2018-09-06 16:06:53, CRITICAL :    critical message
+2018-09-06 16:07:05, CRITICAL :    --------- ALERT ----------
+2018-09-06 16:07:05, WARNING :    warning message
+2018-09-06 16:07:05, ERROR :    error message
+2018-09-06 16:07:05, CRITICAL :    critical message
+2018-09-06 16:07:25, CRITICAL :    --------- ALERT ----------
+2018-09-06 16:07:25, DEBUG :    debug message
+2018-09-06 16:07:25, INFO :    info message
+2018-09-06 16:07:25, WARNING :    warning message
+2018-09-06 16:07:25, ERROR :    error message
+2018-09-06 16:07:25, CRITICAL :    critical message
+2018-09-06 16:17:42, CRITICAL :    --------- ALERT ----------
+2018-09-06 16:17:42, DEBUG :    debug message
+2018-09-06 16:17:42, INFO :    info message
+2018-09-06 16:17:42, WARNING :    warning message
+2018-09-06 16:17:42, ERROR :    error message
+2018-09-06 16:17:42, CRITICAL :    critical message
+2018-09-06 16:18:02, CRITICAL :    --------- ALERT ----------
+2018-09-06 16:18:02, DEBUG :    debug message
+2018-09-06 16:18:02, INFO :    info message
+2018-09-06 16:18:02, WARNING :    warning message
+2018-09-06 16:18:02, ERROR :    error message
+2018-09-06 16:18:02, CRITICAL :    critical message
+2018-09-06 16:20:19, CRITICAL :    --------- ALERT ----------
+2018-09-06 16:20:19, DEBUG :    debug message
+2018-09-06 16:20:19, INFO :    info message
+2018-09-06 16:20:19, WARNING :    [42mwarning message[0m
+2018-09-06 16:20:19, ERROR :    error message
+2018-09-06 16:20:19, CRITICAL :    critical message
+2018-09-06 17:27:01, CRITICAL :    --------- ALERT ----------
+2018-09-06 17:27:01, DEBUG :    debug message
+2018-09-06 17:27:01, INFO :    info message
+2018-09-06 17:27:01, WARNING :    warning message
+2018-09-06 17:27:01, ERROR :    error message
+2018-09-06 17:27:01, CRITICAL :    critical message
+2018-09-06 17:28:42, CRITICAL :    --------- ALERT ----------
+2018-09-06 17:28:42, DEBUG :    debug message
+2018-09-06 17:28:42, INFO :    info message
+2018-09-06 17:28:42, WARNING :    warning message
+2018-09-06 17:28:42, ERROR :    error message
+2018-09-06 17:28:42, CRITICAL :    critical message

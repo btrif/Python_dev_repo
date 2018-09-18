@@ -195,6 +195,6 @@ def weigh(pounds):
     return (left,right)
 
 for i in [2,3,4,7,8,9,20,40]:
-	pans = weigh(i)
-	print("Left  pan: " + str(i) + " plus " + pans[0])
-	print("Right pan: " + pans[1] + "\n")
+    pans = weigh(i)
+    print("Left  pan: " + str(i) + " plus " + pans[0])
+    print("Right pan: " + pans[1] + "\n")

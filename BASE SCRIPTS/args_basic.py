@@ -107,3 +107,23 @@ def someFunction(**kwargs):
 
 someFunction(text="Dincolo de nori !")
 
+
+
+print('--------------------- kwargs function argument as a dictionary ------------------')
+def lol(**kwargs):
+    for k,v  in kwargs.items() :
+        print(k,'  = ' ,v)
+
+my_dict = {    "s": 1,    "a": 2,    "l": 3}
+
+lol(**my_dict)
+
+print('--------------------- args function argument as a list or tuple ------------------')
+
+def some_func(*args):
+    for i in args :
+        print(i)
+#     print (args  )
+
+params = ['a', 3.4, None]
+some_func(*params)

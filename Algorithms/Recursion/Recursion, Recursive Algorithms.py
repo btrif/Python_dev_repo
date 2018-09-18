@@ -2,18 +2,19 @@
 
 # TOWERS OF HANOI, Solved Recursively
 print('--------------  TOWERS OF HANOI, Solved Recursively -------------------')
-def printMove(fr, to):
-    print('move from ' + str(fr) + ' to '+ str(to))
+def move_Disk(from_pole, to_pole ):
+    print('moving disk from ', from_pole, " to ", to_pole  )
 
-def Towers(n, fr, to, spare):
-    if n== 1:
-        printMove(fr, to)
-    else:
-        Towers(n-1, fr, spare, to)
-        Towers(1, fr, to, spare)
-        Towers(n-1, spare, to, fr)
 
-Towers(4, 'P1', 'P2', 'P3')
+def move_Tower(height, fromPole, toPole, withPole ):
+    if height >= 1 :
+        move_Tower( height-1, fromPole, withPole, toPole   )
+        move_Disk(fromPole,  toPole )
+        move_Tower( height-1, withPole, toPole, fromPole  )
+
+move_Tower(3, "A", "B", "C" )
+
+
 
 
 # RECURSION  FUNCTION ALGORITHM MULTIPLICATION
@@ -368,7 +369,8 @@ def descartes(x):
     return a+b+c+2*(a*b+b*c+c*a)**0.5
 
 def f(x, n):
-    if not n: return 0
+    if not n:
+        return 0
     a, b, c = x
     d = descartes(x)
     return 1/d**2 + f ((a, b, d), n-1 ) + f((a, c, d ), n-1)  +  f ((b, c, d ) , n-1 )
@@ -439,3 +441,99 @@ def binary_rec2(n) :
     return (n%2 + 10 * binary_rec2(n//2) )
 
 print(binary_rec2(11))
+
+
+#################################
+print('\n--------   4.3. Calculating the Sum of a List of Numbers  -----------------')
+lst = [1, 3, 5, 7, 9]
+
+def sum_rec(lst):   # Made by Bogdan Trif @2018-06-15
+    if len(lst) == 1 :
+        return lst[0]
+    else :
+        return lst[0] + sum_rec(lst[1:])
+
+print('sum_rec = ',sum_rec(lst) )
+
+
+
+print('\n--------   4.5. Converting an Integer to a String in Any Base  -----------------')
+convString = "0123456789abcdef"
+
+def toStr( n , base): # Made by Bogdan Trif @2018-06-15
+    if n < base :
+        return convString[n]
+    else :
+        return toStr(n//base, base) + convString[n%base]
+
+print('toStr = ' ,toStr(254, 16) )
+
+
+
+
+print('\n--------     Reverse string with recursion     -----------------')
+# Write a function that takes a string as a parameter and returns a new string that is the reverse of the old string.
+
+s = 'Bogdan'
+def reverse( s ):   # Made by Bogdan Trif @2018-06-15
+    if len(s) == 1:
+        return s
+    else :
+        return reverse(s[1:]) + s[0]
+
+print(' reverse = ',reverse(s) )
+
+# Without Recursion
+
+def reverse2( s ):  # Made by Bogdan Trif @2018-06-15
+    if len(s) == 1:
+        return s
+    else :
+        return s[::-1]
+
+reverse2('Eugenia')
+
+print('\n--------     Check palindrom recursion     -----------------')
+'''Write a function that takes a string as a parameter and returns True if the string is a palindrome, False otherwise. 
+Remember that a string is a palindrome if it is spelled the same both forward and backward. 
+For example: radar is a palindrome. for bonus points palindromes can also be phrases, 
+but you need to remove the spaces and punctuation before checking. for example: madam i’m adam is a palindrome. 
+
+Other fun palindromes include:
+
+kayak 
+aibohphobia 
+Live not on evil 
+Reviled did I live, said I, as evil I did deliver 
+Go hang a salami; I’m a lasagna hog. 
+Able was I ere I saw Elba 
+Kanakanak – a town in Alaska 
+Wassamassaw – a town in South Dakota
+
+'''
+
+def palindrom_rec(word):   # Made by Bogdan Trif @2018-06-15
+
+    if len(word) == 0 :
+        return True
+
+    elif word[0] == word[-1] :
+        return palindrom_rec( word[1:-1] )
+
+    else :
+        return False
+
+
+
+s = 'abcba'
+
+print('palindrome_rec  :',palindrom_rec(s) )
+
+
+
+print('-------------------------    1.7.5   Example: Partitions -----------------------------')
+
+'''
+
+'''
+

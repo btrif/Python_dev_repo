@@ -1,5 +1,7 @@
 #  Created by Bogdan Trif on 06-06-2018 , 2:29 PM.
 
+# http://www.inference.org.uk/mackay/python/examples/decompose.shtml
+
 def decompose( n , candidatelist , answerSoFar=[] ):
     """ Decomposes an integer n in as many ways as possible
     using the offered list of candidates,
@@ -22,7 +24,7 @@ def decompose( n , candidatelist , answerSoFar=[] ):
         # recursion has finished, print the list
         print(answerSoFar)
         return
-    offset = 0 ;
+    offset = 0
     for a in candidatelist:
         if ( a <= n):
             answerSoFar.append(a)
@@ -30,7 +32,7 @@ def decompose( n , candidatelist , answerSoFar=[] ):
             answerSoFar.pop() # remove a from the list, so we can try replacing by later items too.
             pass
         pass
-        offset += 1 ;
+        offset += 1
     pass
 
 

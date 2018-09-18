@@ -53,6 +53,8 @@ a = [1, 2, 3, 4, 5, 6]
 
 # Using iterators
 group_adjacent = lambda a, k: zip(*([iter(a)] * k))
+
+
 print( list(group_adjacent(a, 3)) )
 print( list(group_adjacent(a, 2)) )
 print( list(group_adjacent(a, 1)) )

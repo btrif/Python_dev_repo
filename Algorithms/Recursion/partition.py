@@ -2,6 +2,7 @@
 
 
 def partition(number):
+    ''' :Description: partition a number into a custom set of integers '''
     answer = set()
     answer.add((number, ))
     for x in range(1, number):

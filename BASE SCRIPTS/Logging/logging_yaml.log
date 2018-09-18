@@ -1,0 +1,162 @@
+2018-09-06 19:34:22,570 - app - CRITICAL - --------- ALERT ----------
+2018-09-06 19:34:22,570 - app - INFO - info message
+2018-09-06 19:34:22,571 - app - WARNING - warning message
+2018-09-06 19:34:22,571 - app - ERROR - error message
+2018-09-06 19:34:22,571 - app - CRITICAL - critical message
+2018-09-06 19:34:33,300 - app - CRITICAL - --------- ALERT ----------
+2018-09-06 19:34:33,301 - app - INFO - info message
+2018-09-06 19:34:33,301 - app - WARNING - warning message
+2018-09-06 19:34:33,301 - app - ERROR - error message
+2018-09-06 19:34:33,301 - app - CRITICAL - critical message
+2018-09-06 19:35:55 CRITICAL [app] --------- ALERT ----------
+2018-09-06 19:35:55 INFO     [app] info message
+2018-09-06 19:35:55 WARNING  [app] warning message
+2018-09-06 19:35:55 ERROR    [app] error message
+2018-09-06 19:35:55 CRITICAL [app] critical message
+2018-09-06 19:37:10 CRITICAL [app] --------- ALERT ----------
+2018-09-06 19:37:10 INFO     [app] info message
+2018-09-06 19:37:10 WARNING  [app] warning message
+2018-09-06 19:37:10 ERROR    [app] error message
+2018-09-06 19:37:10 CRITICAL [app] critical message
+2018-09-06 19:37:33 CRITICAL [app] --------- ALERT ----------
+2018-09-06 19:37:33 INFO     [app] info message
+2018-09-06 19:37:33 WARNING  [app] warning message
+2018-09-06 19:37:33 ERROR    [app] error message
+2018-09-06 19:37:33 CRITICAL [app] critical message
+2018-09-06 19:37:42 CRITICAL [app] --------- ALERT ----------
+2018-09-06 19:37:42 INFO     [app] info message
+2018-09-06 19:37:42 WARNING  [app] warning message
+2018-09-06 19:37:42 ERROR    [app] error message
+2018-09-06 19:37:42 CRITICAL [app] critical message
+2018-09-06 19:37:57 CRITICAL [app] --------- ALERT ----------
+2018-09-06 19:37:57 INFO     [app] info message
+2018-09-06 19:37:57 WARNING  [app] warning message
+2018-09-06 19:37:57 ERROR    [app] error message
+2018-09-06 19:37:57 CRITICAL [app] critical message
+2018-09-06 19:38:17 CRITICAL [app] --------- ALERT ----------
+2018-09-06 19:38:17 INFO     [app] info message
+2018-09-06 19:38:17 WARNING  [app] warning message
+2018-09-06 19:38:17 ERROR    [app] error message
+2018-09-06 19:38:17 CRITICAL [app] critical message
+2018-09-06 19:38:53 CRITICAL [app] --------- ALERT ----------
+2018-09-06 19:38:53 INFO     [app] info message
+2018-09-06 19:38:53 WARNING  [app] warning message
+2018-09-06 19:38:53 ERROR    [app] error message
+2018-09-06 19:38:53 CRITICAL [app] critical message
+2018-09-06 19:39:25 CRITICAL [app] --------- ALERT ----------
+2018-09-06 19:39:25 INFO     [app] info message
+2018-09-06 19:39:25 WARNING  [app] warning message
+2018-09-06 19:39:25 ERROR    [app] error message
+2018-09-06 19:39:25 CRITICAL [app] critical message
+2018-09-06 19:39:32 CRITICAL [app] --------- ALERT ----------
+2018-09-06 19:39:32 INFO     [app] info message
+2018-09-06 19:39:32 WARNING  [app] warning message
+2018-09-06 19:39:32 ERROR    [app] error message
+2018-09-06 19:39:32 CRITICAL [app] critical message
+2018-09-06 19:44:58 CRITICAL [app] --------- ALERT ----------
+2018-09-06 19:44:58 INFO     [app] info message
+2018-09-06 19:44:58 WARNING  [app] warning message
+2018-09-06 19:44:58 ERROR    [app] error message
+2018-09-06 19:44:58 CRITICAL [app] critical message
+2018-09-06 19:45:50 CRITICAL [app] --------- ALERT ----------
+2018-09-06 19:45:50 INFO     [app] info message
+2018-09-06 19:45:50 WARNING  [app] warning message
+2018-09-06 19:45:50 ERROR    [app] error message
+2018-09-06 19:45:50 CRITICAL [app] critical message
+2018-09-06 19:45:56 CRITICAL [app] --------- ALERT ----------
+2018-09-06 19:45:56 INFO     [app] info message
+2018-09-06 19:45:56 WARNING  [app] warning message
+2018-09-06 19:45:56 ERROR    [app] error message
+2018-09-06 19:45:56 CRITICAL [app] critical message
+2018-09-06 19:47:02 CRITICAL [app] --------- ALERT ----------
+2018-09-06 19:47:02 INFO     [app] info message
+2018-09-06 19:47:02 WARNING  [app] warning message
+2018-09-06 19:47:02 ERROR    [app] error message
+2018-09-06 19:47:02 CRITICAL [app] critical message
+2018-09-06 19:47:23 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 19:47:23 INFO     [bogdanels app] info message
+2018-09-06 19:47:23 WARNING  [bogdanels app] warning message
+2018-09-06 19:47:23 ERROR    [bogdanels app] error message
+2018-09-06 19:47:23 CRITICAL [bogdanels app] critical message
+2018-09-06 21:21:20 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:21:20 INFO     [bogdanels app] info message
+2018-09-06 21:21:20 WARNING  [bogdanels app] warning message
+2018-09-06 21:21:20 ERROR    [bogdanels app] error message
+2018-09-06 21:21:20 CRITICAL [bogdanels app] critical message
+2018-09-06 21:21:29 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:21:29 INFO     [bogdanels app] info message
+2018-09-06 21:21:29 WARNING  [bogdanels app] warning message
+2018-09-06 21:21:29 ERROR    [bogdanels app] error message
+2018-09-06 21:21:29 CRITICAL [bogdanels app] critical message
+2018-09-06 21:21:34 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:21:34 INFO     [bogdanels app] info message
+2018-09-06 21:21:34 WARNING  [bogdanels app] warning message
+2018-09-06 21:21:34 ERROR    [bogdanels app] error message
+2018-09-06 21:21:34 CRITICAL [bogdanels app] critical message
+2018-09-06 21:22:11 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:22:11 INFO     [bogdanels app] info message
+2018-09-06 21:22:11 WARNING  [bogdanels app] warning message
+2018-09-06 21:22:11 ERROR    [bogdanels app] error message
+2018-09-06 21:22:11 CRITICAL [bogdanels app] critical message
+2018-09-06 21:22:41 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:22:41 INFO     [bogdanels app] info message
+2018-09-06 21:22:41 WARNING  [bogdanels app] warning message
+2018-09-06 21:22:41 ERROR    [bogdanels app] error message
+2018-09-06 21:22:41 CRITICAL [bogdanels app] critical message
+2018-09-06 21:22:45 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:22:45 INFO     [bogdanels app] info message
+2018-09-06 21:22:45 WARNING  [bogdanels app] warning message
+2018-09-06 21:22:45 ERROR    [bogdanels app] error message
+2018-09-06 21:22:45 CRITICAL [bogdanels app] critical message
+2018-09-06 21:23:21 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:23:21 INFO     [bogdanels app] info message
+2018-09-06 21:23:21 WARNING  [bogdanels app] warning message
+2018-09-06 21:23:21 ERROR    [bogdanels app] error message
+2018-09-06 21:23:21 CRITICAL [bogdanels app] critical message
+2018-09-06 21:39:05 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:39:05 INFO     [bogdanels app] info message
+2018-09-06 21:39:05 WARNING  [bogdanels app] warning message
+2018-09-06 21:39:05 ERROR    [bogdanels app] error message
+2018-09-06 21:39:05 CRITICAL [bogdanels app] critical message
+2018-09-06 21:41:29 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:41:29 INFO     [bogdanels app] info message
+2018-09-06 21:41:29 WARNING  [bogdanels app] warning message
+2018-09-06 21:41:29 ERROR    [bogdanels app] error message
+2018-09-06 21:41:29 CRITICAL [bogdanels app] critical message
+2018-09-06 21:41:50 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:41:50 INFO     [bogdanels app] info message
+2018-09-06 21:41:50 WARNING  [bogdanels app] warning message
+2018-09-06 21:41:50 ERROR    [bogdanels app] error message
+2018-09-06 21:41:50 CRITICAL [bogdanels app] critical message
+2018-09-06 21:42:03 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:42:03 INFO     [bogdanels app] info message
+2018-09-06 21:42:03 WARNING  [bogdanels app] warning message
+2018-09-06 21:42:03 ERROR    [bogdanels app] error message
+2018-09-06 21:42:03 CRITICAL [bogdanels app] critical message
+2018-09-06 21:43:16 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:43:16 INFO     [bogdanels app] info message
+2018-09-06 21:43:16 WARNING  [bogdanels app] warning message
+2018-09-06 21:43:16 ERROR    [bogdanels app] error message
+2018-09-06 21:43:16 CRITICAL [bogdanels app] critical message
+2018-09-06 21:44:00 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:44:00 DEBUG    [bogdanels app] debug message
+2018-09-06 21:44:00 INFO     [bogdanels app] info message
+2018-09-06 21:44:00 WARNING  [bogdanels app] warning message
+2018-09-06 21:44:00 ERROR    [bogdanels app] error message
+2018-09-06 21:44:00 CRITICAL [bogdanels app] critical message
+2018-09-06 21:44:32 CRITICAL [bogdanels app] --------- ALERT ----------
+2018-09-06 21:44:32 DEBUG    [bogdanels app] debug message
+2018-09-06 21:44:32 INFO     [bogdanels app] info message
+2018-09-06 21:44:32 WARNING  [bogdanels app] warning message
+2018-09-06 21:44:32 ERROR    [bogdanels app] error message
+2018-09-06 21:44:32 CRITICAL [bogdanels app] critical message
+2018-09-06 21:44:46 DEBUG    [bogdanels app] debug message
+2018-09-06 21:44:46 INFO     [bogdanels app] info message
+2018-09-06 21:44:46 WARNING  [bogdanels app] warning message
+2018-09-06 21:44:46 ERROR    [bogdanels app] error message
+2018-09-06 21:44:46 CRITICAL [bogdanels app] critical message
+2018-09-06 21:49:32 DEBUG    [bogdanels app] debug message
+2018-09-06 21:49:32 INFO     [bogdanels app] info message
+2018-09-06 21:49:32 WARNING  [bogdanels app] warning message
+2018-09-06 21:49:32 ERROR    [bogdanels app] error message
+2018-09-06 21:49:32 CRITICAL [bogdanels app] critical message

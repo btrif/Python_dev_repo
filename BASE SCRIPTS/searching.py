@@ -2,7 +2,7 @@
 # The simple way to search for a string in a list is just to use ‘if string in list’. eg:
 
 
-list=['a cat','a dog','a yacht']
+list = ['a cat','a dog','a yacht']
 string='a cat'
 if string in list:
     print ('found a cat!')
@@ -13,7 +13,7 @@ if string in list:
 
 
 import re
-list=['a cat','a dog','a yacht','cats']
+list = ['a cat','a dog','a yacht','cats']
 regex=re.compile(".*(cat).*")
 print([m.group(0) for l in list for m in [regex.search(l)] if m])
 
