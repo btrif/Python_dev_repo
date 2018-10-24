@@ -4,8 +4,8 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-# fromaddr = "bogdan.evanzo@gmail.com"
-# toaddr = "trifbogdan@gmail.com"
+# fromaddr = "mail_address1@gmail.com"
+# toaddr = "mail_address2@gmail.com"
 
 # msg['From'] = fromaddr
 # msg['To'] = toaddr
@@ -15,7 +15,7 @@ from email.mime.text import MIMEText
 # try :
 #     server = smtplib.SMTP('smtp.gmail.com', 587)
 #     server.starttls()
-#     server.login(fromaddr, "W*&@f6km$n4")
+#     server.login(fromaddr, "password")
 #     text = msg.as_string()
 #     server.sendmail(fromaddr, toaddr, text)
 #     server.quit()
@@ -55,11 +55,11 @@ msg = coin +  """  just crashed  , percent =  """ +str(percent) +"%  "
 
 
 sendemail(
-    from_addr    = 'market ALERT ',
-          to_addr_list = ['bogdan.evanzo@gmail.com'],
+         from_addr    = 'market ALERT ',
+          to_addr_list = ['mail_to_Send_to@gmail.com'],
 
           subject      = coin + "  " + str(percent) +" %"  ,
           message      = msg ,
-          login        =    'trf.bgdn',
-          password     = 'zcbm.xvn,'
+          login        =    'login_mail',
+          password     = 'password'
 )
