@@ -121,8 +121,7 @@ def solve_pell_equation(D, N):
                 return # No solutions
 
             fundemental_solution = c
-            corresponding_solution = (c[0] * c[0] + c[1] * c[1] * D,
-                                      2 * c[0] * c[1])
+            corresponding_solution = (c[0] * c[0] + c[1] * c[1] * D,  2 * c[0] * c[1])
             while True:
                 yield fundemental_solution
                 fundemental_solution = (fundemental_solution[0] * corresponding_solution[0] + fundemental_solution[1] * corresponding_solution[1] * D,

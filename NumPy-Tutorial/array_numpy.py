@@ -77,9 +77,9 @@ print( np.count_nonzero( A == 2) )      # 2 is the element we want to count
 print('\n ============= Diagonals in matrix : ================\n')
 
 # Diagonals in matrix
-matrix = np.array(         [[1,   2,   3,  4],      \
-                                      [ 5,  6,   7,  8],        \
-                                      [ 9,  10,  11,  12],      \
+matrix = np.array(         [[1,   2,   3,  4],
+                                      [ 5,  6,   7,  8],
+                                      [ 9,  10,  11,  12],
                                       [13,  4,  15,  16]]  )
 
 print('Main diagonal : \n' , np.diagonal(matrix ) )

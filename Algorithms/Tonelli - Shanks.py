@@ -1,4 +1,10 @@
 #  Created by Bogdan Trif on 16-05-2018 , 5:08 PM.
+
+# https://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm
+# The Tonelli–Shanks algorithm (referred to by Shanks as the RESSOL algorithm)
+# is used in modular arithmetic to solve for r in a congruence of the form r^2 ≡ n (mod p),
+# where p is a prime: that is, to find a square root of n modulo p.
+
 def legendre_symbol(a, p):
     """
     Legendre symbol

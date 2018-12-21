@@ -74,7 +74,7 @@ def make_test_tree():
     b0.add_child(c1) 
     
     c0.add_child(d0)
-    
+    print('a0 : ', a0)
     return a0                  
 
 def test_breadth_first_nodes():
@@ -91,7 +91,8 @@ def test_depth_first_nodes():
 
 ########################################################################
 if __name__ == "__main__":
+    println("------------   BFS -----------")
     test_breadth_first_nodes()
-    println("")
+    println("------------   DFS -----------")
     test_depth_first_nodes()
   

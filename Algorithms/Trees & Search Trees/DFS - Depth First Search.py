@@ -1,12 +1,21 @@
 #  Created by Bogdan Trif on 11-11-2017 , 8:03 PM.
-import time
+# https://en.wikipedia.org/wiki/Depth-first_search
+# Depth-first search (DFS) is an algorithm for traversing or searching tree or graph data structures.
+# The algorithm starts at the root node (selecting some arbitrary node as the root node in the case of a graph)
+# and explores as far as possible along each branch before backtracking.
 
-print('\n--------------------------SOLUTION 9,  DEPTH FIRST SEARCH, DFS --------------------------')
-t1  = time.time()
+
+
+# Euler Problem 265 - BINARY CIRCLE
+#--------------------------SOLUTION 9,  DEPTH FIRST SEARCH, DFS --------------------------
 
 # ====Fri, 27 Nov 2009, 01:33, loreto, England
 # I initially noticed some similarities with Gray Code but hadn't heard of De Bruijn's sequence.
 # Still, using a depth-first search I got the answer in 1 second, in Python 3:
+
+import time
+
+t1  = time.time()
 
 N = 5
 

@@ -167,6 +167,17 @@ Sugestion : try to use a linear solver linalg to solve the system. Otherwise you
     solved ones https://arxiv.org/pdf/1508.07562.pdf
 
 
+https://www.hindawi.com/journals/ijmms/2016/5189057/
+https://www.veltech.edu.in/wp-content/uploads/2016/04/Paper-09-15.pdf
+
+ACTUALLY the problem can be solved as follows :
+1.
+Use Primitive Pythagorean  TRIPLETS (PPT's) to solve the system of 6 equations as in
+the paper : https://www.veltech.edu.in/wp-content/uploads/2016/04/Paper-09-15.pdf
+2.  Therefore choose for example 3,4,5 as PTT and solve that system of 6 equations
+3.  After that choose another PPT like 9, 12, 13 and solve again that system and will give new
+parametric equations for another set of values.
+
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1),2), 's\n\n')
 

@@ -7,14 +7,14 @@ from math import cos, acos, sqrt, sin, asin, pi
 
 A = [ acos(4/5)*180/pi , acos(3/5)*180/pi  ]
 E = [ 4/5, 3/5 ]
-A = [ acos(sqrt(2)/2)*180/pi , acos(sqrt(2)/2)*180/pi  ]
-E = [ sqrt(2)/2, sqrt(2)/2]
+# A = [ acos(sqrt(2)/2)*180/pi , acos(sqrt(2)/2)*180/pi  ]
+# E = [ sqrt(2)/2, sqrt(2)/2]
 
 def square(sidelen, t, color) :
     t.pendown()
     t.color(color)
     t.begin_fill()
-    for i in range(4) :
+    for i in range(5) :
 
         t.forward(sidelen)
         t.left(90)
@@ -34,20 +34,21 @@ def pythagorean_tree(sidelen, t, w) :
 
         square(sidelen, t, color )
 
-        t.forward(sidelen)
-        t.right( 90 )
+        # t.forward(sidelen)
+        # t.right( A[1] )
 
         pythagorean_tree(E[1] * sidelen, t, w+1 )
         t.color('blue')
 
-        t.left(90)
-
-        t.backward(sidelen)
+        t.left(A[1])
         # t.left(90)
 
+        t.backward(sidelen)
+        t.left(90)
 
-        pythagorean_tree(E[1] * sidelen, t, w+1 )
-        t.backward( sidelen )
+
+        # pythagorean_tree(E[1] * sidelen, t, w+1 )
+        # t.backward( sidelen )
 
         # t.forward( sidelen )
 
@@ -75,8 +76,7 @@ def main() :
     t.left(90)
     t.up()
     t.backward(300)
-    # t.left(90)
-
+    t.left(90)
     t.down()
 
     # pythagorean_tree(side , t, 3  )

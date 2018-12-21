@@ -28,3 +28,13 @@ def quotient_and_remainder(x, y):
     return(q, r)                        #return(q, r)
 
 print(quotient_and_remainder(4,5))
+
+
+print('\n-------------  Sort tuples after the last element  --------------------')
+# Sort, sorting, arrange, arranging tuples after custom element
+# Specify the key argument in the sorted function.
+
+tuple1=[(1, 3), (3, 2), (2, 1)]
+output = sorted(tuple1, key=lambda x: x[-1])
+print('sorted after last elem tuple : ', output )
+#   [(2, 1), (3, 2), (1, 3)]

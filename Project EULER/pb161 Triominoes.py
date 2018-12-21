@@ -1,70 +1,60 @@
-#  Created by Bogdan Trif on 16-10-2017 , 11:53 AM.
+#  Created by Bogdan Trif on 18-12-2018 , 12:10 PM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-        Balanced Numbers            -           Problem 217
+                    Triominoes                  -                   Problem 161
 
-A positive integer with k (decimal) digits is called balanced if its first ⌈k/2⌉ digits sum to the same value
-as its last ⌈k/2⌉ digits, where ⌈x⌉, pronounced ceiling of x, is the smallest integer ≥ x,
-thus ⌈π⌉ = 4 and ⌈5⌉ = 5.
+A triomino is a shape consisting of three squares joined via the edges. There are two basic forms:
 
-So, for example, all palindromes are balanced, as is 13722.
+If all possible orientations are taken into account there are six:
 
-Let T(n) be the sum of all balanced numbers less than 10^n .
-Thus: T(1) = 45, T(2) = 540 and T(5) = 334795890.
+Any n by m grid for which nxm is divisible by 3 can be tiled with triominoes.
+If we consider tilings that can be obtained by reflection or rotation from another tiling as different there are 41 ways a 2 by 9 grid can be tiled with triominoes:
 
-Find T(47) mod 3^15
-
+In how many ways can a 9 by 12 grid be tiled in this way by triominoes?
 
 '''
 import time, zzz
-
-# 2018-03-30 - generate recursively the numbers and ...
-### KEY OBSERVATION :
-#     We only iterate EVEN numbers and then we put in the midle the numbers (0,1...9) to obtain
-# an ODD number. So... our work is reduced to HALF !!
-# max length = 47 ==> 23 digits on left, 23 digits on right
-#
-# 2.  We observe that 7539, 7548, 7557, 7566  have a difference of 9 as in the case of :
-# 81209, 81218, 81227, 81236, 81245, 81254, 81263, 81272, 81281, 81290,  - so we can group them
-
-
-
-def is_balanced(n) :
-    l = len(str(n))
-    m = l // 2
-    if l %2 ==0 :
-        s1, s2 = str(n)[ :m], str(n)[m:]
-    if l %2 ==1 :
-        s1, s0, s2 = str(n)[ :m], str(n)[m] , str(n)[m+1:]
-        # print( s1 ,'     ' , s0 , '     ' , s2    )
-    S1, S2 = sum([ int(i) for i in s1 ]), sum([ int(i) for i in s2 ])
-    # print([ int(i) for i in s1 ] ,   ' ; S1= ' , S1 ,'     ', [ int(i) for i in s2 ], ' ; S2= ',S2 )
-    return S1 == S2
-
-
-# print('is_balanced : ' ,is_balanced(22822) )
-print('is_balanced : ' ,is_balanced(99) )
+import numpy as np
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-lim = 10**6
-Sigma = 0
-for n in range(1, lim+1) :
-    if is_balanced(n) :
-        Sigma += n
-        print(n,'        ',  is_balanced(n) )
 
-print('\nSigma = ', Sigma )
+# @2018-12-18, 12:11 : I think this problem can be solved via Backtracking by using matrices blocks
+# We remark that there are only 6 shapes which can be represented with 2x2 matrices , 1x3 and 3x1
 
-#       Reference Values
-# 1   -->     45
-# 2   -->     540
-# 3   -->     50.040
-# 4   -->      3.364.890
-# 5   -->      334.795.890
-# 6   -->      27.671.338.200
+ur = np.array([ [1, 1], [1, 0] ])        #   UP-RIGHT
+ul = np.array([ [1, 1], [0, 1] ])        # UP-LEFT
+dr = np.array([ [1, 0], [1, 1] ])        # DOWN-RIGHT
+dl = np.array([ [0, 1], [1, 1] ])        # DOWN-LEFT
+ve = np.array([ [1], [1], [1] ])        # VERTICAL
+ho = np.array([ 1, 1, 1] )        # HORIZONTAL
+
+print('ur : \n', ur)
+print('ul : \n', ul)
+print('dr : \n', dr)
+print('dl : \n', dl)
+print('ve : \n', ve)
+print('ho : \n', ho)
+
+grid = np.zeros(( 9, 2 ), dtype=int )
+print('grid : ', grid)
+
+# def match_shape(shape , pos) :
+
+
+###      How to “embed” a small numpy array into a predefined block of a large numpy array :
+grid[ 0 : 0 + ur.shape[0], 0 : 0 + ur.shape[1]] = ur
+print(grid)
+
+# @2018-12-19, 13:21, Must continue the problem. A Recursive backtracking algorithm
+
+
+
+
+
+
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
@@ -187,7 +177,4 @@ print('\n================  My FIRST SOLUTION,   ===============\n')
 #
 # t2  = time.time()
 # print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-
-
-
 

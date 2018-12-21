@@ -2,13 +2,14 @@
 # © o(^_^)o  Solved by Bogdan Trif  @   Completed on Sat, 11 Nov 2017, 13:21
 #The  Euler Project  https://projecteuler.net
 '''
-Binary Circles          -           Problem 265
+                    Binary Circles          -           Problem 265
 
 2N binary digits can be placed in a circle so that all the N-digit clockwise subsequences are distinct.
 
 For N=3, two such circular arrangements are possible, ignoring rotations:
 
 p265_BinaryCircles.gif
+
 For the first arrangement, the 3-digit subsequences, in clockwise order, are:
 000, 001, 010, 101, 011, 111, 110 and 100.
 

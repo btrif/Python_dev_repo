@@ -33,64 +33,14 @@ from math import cos, acos, sqrt, sin, asin, pi, tan, atan
 # Must find those three points and the problem is solved.
 
 
-
-
-A = [ acos(4/5)*180/pi , acos(3/5)*180/pi  ]
-E = [ 4/5, 3/5 ]
-
-
-
-def get_top_base( A, B , rotation  ) :        # Made @ 2018-06-08, 00:00, working GOOD !!
-    '''Given the two points of the bottom base, left and right, generate the second pairs of points C & D
-        which represent the top of the square or the other base, the TOP BASE
-    :param side_len:
-    :param rotation : clockwise or anti-clockwise to know in which direction we are going !
-    :return: C, D, pair of points representing the upper BASE    '''
-
-    (x1, y1), (x2, y2) =  A, B
-
-    dx, dy = x2-x1,  y2-y1
-
-    if rotation == 'counter-clockwise' :
-        dx2, dy2 =  -dy, dx
-    if rotation == 'clockwise' :
-        dx2, dy2 =  dy, -dx
-    c = sqrt( dx**2 + dy**2 )
-
-    if dy ==0 : dy2 = abs(dy2)        #   The case for the base with the slope m = 0 (horizontal base )
-
-    # print( 'dx = ', dx, '    dy = ', dy,'     c= ' , c ,'    dx2= ', dx2,'    dy2= ', dy2 ) # , '    m= ', m,'    m2= ', m2,    )
-    C = x1 + dx2 , y1 + dy2
-    D = x2 + dx2 , y2 + dy2
-
-    # print(' A=', A, '    B=', B , '  ;   Opposite BASE :        C=', C , '    D=', D )
-    return C, D
-
-print('  ********** get_top_base : *************     ')
-
-# get_top_base( (9, 2) , ( 4 , 4 ), 'clockwise' )        #    works
-# get_top_base( ( 4 , 4 ),( 6 , 9) ,  'clockwise' )        #  works
-# get_top_base( ( 6 , 9) , ( 11 , 7 ), 'clockwise' )        #  works
-# get_top_base(  ( 11 , 7 ),( 9 , 2) , 'clockwise' )        #  works
-
-# get_top_base( ( 4 , 4 ),(9, 2) ,  'counter-clockwise' )        #   WORKS !    A, B must be opposite
-# get_top_base(  ( 9 , 2) ,( 11 , 7 ),  'counter-clockwise' )
-# get_top_base( ( 11 , 7 ),  ( 6 , 9) ,  'counter-clockwise' )
-
-
-# get_top_base( ( 0 , 0 ),( 5, 0 ) ,  'clockwise' )
-# get_top_base( ( 0 , 0 ),( 5, 0 ) ,  'counter-clockwise' )
-
-# get_top_base( ( 0 , 0 ),( 0, 5 ) ,  'clockwise' )
-# get_top_base( ( 0 , 0 ),( 0, 5 ) ,  'counter-clockwise' )
-
-
-
 ###################################################################
 ###########         The properties of the 3,4,5 Pythagorean Triangle        ##########
 
 print('\n ###########         The properties of the 3,4,5 Pythagorean Triangle        ########## ')
 
+
+A = [ acos(4/5)*180/pi , acos(3/5)*180/pi  ]
+E = [ 4/5, 3/5 ]
 
 c1_ = lambda base : 3.2*base / 5
 c2_ = lambda base : 1.8*base / 5
@@ -101,151 +51,242 @@ alpha_ =  acos ( 4/5 )
 beta_ =  acos ( 3/5 )
 
 
-print('c1 = ' ,c1_(5) ,   '    c2 = ' ,c2_(5)     )
-print('a = ' ,a_(5) ,   '    b = ' ,b_(5)     )
-print('h = ' ,h_(4) )
-print('alpha_ : rad =  ' ,alpha_ , '    deg =', alpha_*180/pi ,  '           beta_ : rad = ' ,beta_ ,'     deg = ',beta_ *180/pi )
+print('the two segments of the normal through the angle of 90 degrees :          c1 = ' ,c1_(5) ,   '    c2 = ' ,c2_(5)     )
+print('cathetes         a = ' ,a_(5) ,   '    b = ' ,b_(5)     )
+print('Height :   h = ' ,h_(4) )
+print('alpha_ : rad =  ' ,alpha_ , '    deg =', alpha_*180/pi )
+print(  'beta_ : rad = ' ,beta_ ,'     deg = ',beta_ *180/pi )
 print('-----------')
 
+# OBSERVATIONS :      @ 2018-12-15, 19:00
+# 1.  The difficulty resides in maintaining a correct form of the base down and up vectors .
+# After many angles transformations they will change orientations and we must keep a variable
+# with its orientation, its state.
+# So when we translate a vector clockwise or counterclockwise we must keep into account if the new angle
+# changed the top base orientation. VERY IMPORTANT
+
+
 ###################################################################
-
-def get_base(A, B, rotation):           #@2018-06-09, 14:07 , Works perfectly
-    ''':Description: Gets E point, which is the intersection of the two cathetes
-    :param C: tuple of floats, left point (x_C, y_C ) of the base
-    :param D: tuple of floats, right point (x_D, y_D ) of the base
-    :return:           '''
-
-    C, D = get_top_base(A, B ,  rotation )
-    if (A[1]**2+B[1]**2) > (C[1]**2+D[1]**2) :
-        orientation ='down'
-    else : orientation = 'up'
-    # print('orientation : ', orientation )
-
-
-    dx0, dy0 = D[0]-C[0] , D[1]-C[1]
-    # print( '   dx0, dy0 = ', dx0, dy0 , '     rotation : ', rotation )
-
-    try :  m = dy0/dx0                        # slope of the base
-    except ZeroDivisionError :
-        # print('asa')
-        m = 10**20
-
-    base = sqrt(dx0**2 + dy0**2 )
-    base_angle = atan(m)
-    alpha = base_angle + alpha_
-
-    # print('base =  ', base,'         dx0 = ', dx0, '         dy0 = ', dy0,'    m = ', m ,'    base_angle : rad = ',base_angle , '   deg = ',base_angle*180/pi  )
-    a, b = a_(base), b_(base)
-    c1 = c1_(base)
-    h = h_(a)
-
-    m_a  = h/c1               # slope of cathete a
-
-    # print('a = ', a, '         b = ', b,'    c1 = ', c1,'    h = ', h ,'    m_a = ', m_a  )
-    # print('alpha :  rad =  ', alpha,'     deg =' ,alpha*180/pi   )
-
-    dx_a = a *cos(alpha)
-    dy_a = a *sin(alpha)
-    if rotation == 'clockwise' :
-        if orientation =='down' :
-            E = ( D[0] - dx_a,  D[1] - dy_a )
-        if orientation =='up' :
-            E = ( D[0] + dx_a,  D[1] + dy_a )
-
-    if rotation == 'counter-clockwise' :
-        if orientation =='down' :
-            E = ( C[0] - dx_a,  C[1] - dy_a )
-        if orientation =='up' :
-            E = ( C[0] + dx_a,  C[1] + dy_a )
-
-    # print('dx_a =  ', dx_a , '     dy_a =  ', dy_a ,'          middle point E  = ', E   )
-
-    # print('C = ', C , '      E =' , E , '     D = ', D )
-    if rotation == 'clockwise' :
-        return  C, E
-    if rotation == 'counter-clockwise' :
-        return  C, E
-
-
-# get_base( (6 ,9), (4 , 4) , rotation = 'counter-clockwise' )        #    middle point E  =  (12.12, 2.84)
-# get_base( (9 ,2), (11 , 7) , rotation = 'counter-clockwise' )           #   middle point E  =  (2.880000000000001, 8.16)
-# get_base(  (11 , 7) , (6 , 9 ), rotation = 'counter-clockwise' )
-# get_base(  (4, 4 ) , (9, 2 ), rotation = 'counter-clockwise' )
-
-# get_base(  (9 , 2) ,(4, 4), rotation = 'clockwise' )            #    middle point E  =  (10.16, 10.12)
-# get_base(  (4, 4), (6 , 9) ,  rotation = 'clockwise' )              #   middle point E  =  (12.12, 2.84)
-# get_base(  (6 , 9) , (11, 7),  rotation = 'clockwise' )
-# get_base( (11, 7), (9 , 2)  ,   rotation = 'clockwise' )
-
-get_base((0, 0), (5, 0), rotation ='clockwise')
-# get_base( (5 , 0), (0, 0)  ,   rotation = 'counter-clockwise' )
-
-
-# print('get_top_base : ', get_top_base( (0 , 5) ,(3.2, 7.4) )              )
-# get_base ((2.4, 8.2), (5.60, 10.6))
-
-print()
-# def get_pythagorean_bases( C, D ) :
-#     ''':Description: Given the two points of the top base of the square, compute
-#         Pythagorean Triangle, by doing the following :
-#         1. Finds the vertex of the cathetes ;
-#         2.  computes the left base length
-#     :param C: tuple of floats,  leftmost point coordinates, (x_C, y_C )
-#     :param D: tuple of floats,  rightmost point coordinates, (x_D, y_D )
-#     :return:
-#     '''
-#     dx0, dy0 = abs(D[0]-C[0]) ,abs(D[1]-C[1])
-#     base_m = dy0/dx0                        # slope of the base
-#     main_base = sqrt(dx0**2 + dy0**2 )
-#     base_angle = acos(dx0/main_base)                       # omega represents the angle inclination of the main base
-#     a, b = 4*main_base/5, 3*main_base/5
-#     print('main_base =  ', main_base,'         a = ', a, '         b = ', b,'    base_angle = ', base_angle*180/pi, '    base_slope =  ', base_m )
-#
-#     c1 = cos(alpha) *a
-#     h = sqrt(a*a - c1*c1)
-#     print('alpha = ', alpha*180/pi , '    beta = ', beta*180/pi , '   c1 = ', c1 ,'   h = ', h )
-#     # C1 =
-#
-#     c2 = cos(beta) *b
-#     h2 = sqrt(b*b - c2*c2)
-#     print('alpha = ', alpha , '    beta = ', beta , '   c2 = ', c2 ,'   h2 = ', h2 )
-#
-# # @2018-06-07 - I cant think !!!! I cant think !I am vblocked here
-#
-# # get_pythagorean_bases((0, 5) , (5, 5) )
-#
-
-
 
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-A, B = (0, 0 ) , (5, 0)
-def pythagorean_tree( A, B  ) :
-    x_max , y_min, y_max = 0, 1e19, 0
-    E = get_base(A, B, 'clockwise')
-    print('E : ', E)
 
-    E = get_base(  B, A, 'counter-clockwise')
-    print('E : ', E)
-
-
-pythagorean_tree( A, B )
 
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
-print('\n================  My FIRST SOLUTION,   ===============\n')
-# t1  = time.time()
+print('\n================  My FIRST ATTEMPT SOLUTION, close but not enough  ===============\n')
+t1  = time.time()
+
+
+def translate_base( A, B , orientation  ) :        # Made @ 2018-12-15, 20:00, working GOOD !!
+    '''Given the two points of the bottom base, left and right, generate the second pairs of points C & D
+        which represent the top of the square or the other base, the TOP BASE
+    :param side_len:
+    :param rotation : clockwise or anti-clockwise to know in which direction we are going !
+    :return: C, D, pair of points representing the upper BASE, m = slope    '''
+
+    (x1, y1), (x2, y2) =  A, B
+    dx, dy = x2-x1,  y2-y1
+
+    try : m = dy/dx
+    except ZeroDivisionError :      m = -1e20
+
+#     print('m = ', m, '  dx = ', dx, '    dy=', dy)
+
+    if m >= 0 : dx, dy = abs(dx), -abs(dy)
+    if m < 0  : dx, dy = abs(dx), abs(dy)
+#     print('after m = ', m, '  dx = ', dx, '    dy=', dy)
+
+    if orientation == 'up' :
+            C = x1 + dy, y1 + dx
+            D = x2 + dy, y2 + dx
+    if orientation == 'down' :
+            C = x1 - dy, y1 - dx
+            D = x2 - dy, y2 - dx
+
+    # print(' A=', A, '    B=', B , '  ;   Opposite BASE :        C=', C , '    D=', D )
+    return C, D, orientation
+translate_base(  (0,5), (0,0),  'up' )
+
+print()
+
+# # @2018-06-07 - I cant think !!!! I cant think ! I am blocked here
+
+
+def next_orientation(orientation):
+    if orientation == 'down' : return 'up'
+    else : return 'down'
+
+
+def next_base(A, B, orientation, direction):
+    ''':Description: Gets either right (small base) either left (big base) depending
+    on which direction is chosen. It dows this by finding first the point E of the intersection
+    of the two cathetes
+    :param A: tuple, containing the point down base
+    :param B: tuple, containing the point down base
+    :param orientation: string, 'up' or 'down' containing the orientation on which to translate
+    param direction:, string, 'left' (big base) or 'right' (small baseab)
+    :return: next_base, either left, either right          '''
+
+#     A, B, orientation, m = translate_base(A, B ,  orientation )
+    dx, dy = B[0]-A[0] , B[1]-A[1]
+    try :  m = dy/dx                        # slope of the base
+    except ZeroDivisionError :
+        # print('asa')
+        m = -10**20
+
+    #  We want that no matter how I put the base points order, I will always have the following rules
+    # meaning that point A will always correspond to the closest cathete a => left side of the base
+    if orientation =='down' :
+        A, B = sorted((A, B), reverse=True)
+    if orientation =='up' :
+        A, B = sorted((A, B), reverse=False)
+
+    # print('top base=   A = ', A ,'    B=', B, '  m=', m ,'  ; orientation= ', orientation )
+    # print( 'dx, dy = ', dx, dy , '     direction : ', direction )
+
+    # BASE & BASE_ANGLE
+    base = sqrt( dx**2 + dy**2 )
+    base_angle = atan(m)
+    base_angle_deg = base_angle*180/pi
+    # print('base= ', base,'    m = ', m )
+    # print('= INITIAL = base_angle : rad = ',base_angle , ' base_angle_deg = ' ,base_angle_deg  )
+
+    if direction == 'left' :
+        # BASE ANGLE CORRECTIONS
+        if orientation =='down' :
+            base_angle = base_angle + pi
+            base_angle_deg = base_angle*180/pi
+
+        # print('base_angle : rad = ',base_angle , ' base_angle_deg = ' ,base_angle_deg  )
+
+        a = a_(base)
+        alpha = base_angle + alpha_
+        m_a  = tan(alpha)               # slope of cathete a
+        # print('a = ', a, '    m_a = ', m_a  )
+        # print('alpha :  rad =  ', alpha,'     deg =' ,alpha*180/pi   )
+
+        dx_a, dy_a = a *cos(alpha) , a *sin(alpha)
+
+        # print('dx_a =  ', dx_a , '     dy_a =  ', dy_a  )
+
+        E = A[0] + dx_a , A[1] + dy_a
+
+        if ((m >= 0 and m_a < 0)  or ( m < 0 and m_a >= 0 )) and ( abs(m) >= 1 or abs(m_a) >= 1  ) :
+            orientation = next_orientation(orientation)
+
+        # print('A = ', A ,'    E = ', E)
+
+        C, E, orientation = translate_base(A, E, orientation)
+        return C, E, orientation, direction
+
+
+    if direction == 'right' :
+        # BASE ANGLE CORRECTIONS
+        if orientation =='up' :
+            base_angle = base_angle + pi
+            base_angle_deg = base_angle * 180 /pi
+
+        # print('base_angle : rad = ',base_angle , ' base_angle_deg = ' ,base_angle_deg  )
+
+        b =  b_(base)
+        beta = base_angle - beta_
+        m_b  = tan(beta)               # slope of cathete b
+        # print('b = ', b ,'    m_b = ', m_b  )
+        # print('beta :  rad =  ', beta,'     deg =' ,beta*180/pi   )
+
+        dx_b, dy_b  = b *cos(beta) , b *sin(beta)
+        # print('dx_b =  ', dx_b , '     dy_b =  ' , dy_b  )
+        E = B[0] + dx_b , B[1] + dy_b
+
+        if ((m > 0 and m_b < 0)  or ( m < 0 and m_b > 0 )) and ( abs(m) >= 1 or abs(m_b) >= 1  ) :
+            orientation = next_orientation(orientation)
+        # print('B = ', B ,'    E = ', E)
+
+        D, E, orientation = translate_base(B, E, orientation)
+        return D, E, orientation, direction
+
+
+
+next_base( (4, 4), (6, 9) ,'down', 'left')
+
+
+def func(f):
+    def wrapper(x):
+        return f(x)
+    return wrapper
+
+
+
+epsilon = 1e-12
+
+xxy = [0, 0, 0, 0]         # x_min, x_max, y_max
+
+
+def pythagorean_tree( A, B, orientation, extrema, var  ) :
+    # main recursion execution Code
+
+    if extrema == 'x_min' :     minimax, ind = func(min), 0
+    if extrema == 'x_max' :    minimax, ind = func(max), 0
+    if extrema == 'y_min' :     minimax, ind = func(min), 1
+    if extrema == 'y_max' :    minimax, ind = func(max), 1
+
+
+    A1, B1, orientation1, direction1 = next_base(A, B, orientation, 'left')
+    A2, B2, orientation2, direction2 = next_base(A, B, orientation, 'right')
+
+    m1, m2 = (A1[ind] , B1[ind]), (A2[ind] , B2[ind])   #   We make m1, m2 to be two separate pairs of min or max, after case
+    if  minimax( ( minimax( m1) , minimax(m2) ) ) in m1  :          # if min/max value is found in first pair m1
+        if var != minimax (  ( var,   minimax( m1)  ) ) :              # then compare it with the value had in var, AND if var is min/max :
+            A, B, orientation, direction = A1, B1, orientation1, direction1
+
+    else :
+        if var != minimax (  ( var,   minimax( m2)  ) ) :
+            A, B, orientation, direction = A2, B2, orientation2, direction2
+
+    print('A =', A ,'    B =', B ,'    orientation =', orientation, '     direction=', direction ,'     var : ' , var )
+
+    if abs( var -  minimax( (A[ind] , B[ind]) ) ) < epsilon :
+        print('\nvar = ', var)
+        return var
+
+    var = minimax( (A[ind] , B[ind])  )
+    print('var = ', var)
+
+    # recursive call
+    return pythagorean_tree(A, B, orientation, extrema, var  )
+
+
+
+# @2018-12-18, 11:16 - I must change order between translate_base and calculate the two bases :
+# I must first start with translate base, because the two bases left and right have a common point
+# which often times is either the biggest => break recursion , and sometimes smaller =>
+# break recursion too !!!
+
+# xxy[0] = pythagorean_tree( (0, 1 ) , (1, 1), 'up' , 'x_min', 0  )
+# xxy[1] = pythagorean_tree( (0, 1 ) , (1, 1), 'up' , 'x_max', 0  )
+# xxy[2] = pythagorean_tree( (-1.5736319999999995, 1.6389760000000007), (-1.7538559999999992, 2.118208), 'down' , 'y_min', 1.638976 )
+xxy[3] = pythagorean_tree( (0, 1 ) , (1, 1), 'up' , 'y_max', 0  )
+print('xxy = ', xxy )
+
+Area = ( (xxy[1]-xxy[0]) * (xxy[3] - xxy[2]) )
+print('Area = ',   Area  )
+print('Area = ',   round( Area, 10 )  )
+
+
+# @ 2018-12-19 -  I must rethink the problem, I get good values for the x_min and x_max, but wrong values
+#     even if they are close for y_min and y_max
 
 
 
 
 
-# t2  = time.time()
-# print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
 
 # print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')

@@ -1,4 +1,7 @@
 #  Created by Bogdan Trif on 16-03-2018 , 1:47 PM.
+# https://www.toptal.com/python/interview-questions
+# http://quizbucket.org/what-will-be-the-output-of-the-code-below-3500
+
 
 def extendList(val, list=[] ):
     list.append(val)

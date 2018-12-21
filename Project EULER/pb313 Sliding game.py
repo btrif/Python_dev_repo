@@ -1,70 +1,61 @@
-#  Created by Bogdan Trif on 16-10-2017 , 11:53 AM.
+#  Created by Bogdan Trif on 19-12-2018 , 10:28 AM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-        Balanced Numbers            -           Problem 217
+                                    Sliding game      -       Problem 313
 
-A positive integer with k (decimal) digits is called balanced if its first ⌈k/2⌉ digits sum to the same value
-as its last ⌈k/2⌉ digits, where ⌈x⌉, pronounced ceiling of x, is the smallest integer ≥ x,
-thus ⌈π⌉ = 4 and ⌈5⌉ = 5.
+In a sliding game a counter may slide horizontally or vertically into an empty space.
+The objective of the game is to move the red counter from the top left corner of a grid
+to the bottom right corner; the space always starts in the bottom right corner.
 
-So, for example, all palindromes are balanced, as is 13722.
+For example, the following sequence of pictures show how the game can be completed in five moves on a 2 by 2 grid.
 
-Let T(n) be the sum of all balanced numbers less than 10^n .
-Thus: T(1) = 45, T(2) = 540 and T(5) = 334795890.
+p313_sliding_game_1.gif
 
-Find T(47) mod 3^15
+Let S(m,n) represent the minimum number of moves to complete the game on an m by n grid.
+
+For example, it can be verified that S(5,4) = 25.
+
+p313_sliding_game_2.gif
+
+There are exactly 5482 grids for which S(m,n) = p2, where p < 100 is prime.
+
+How many grids does S(m,n) = p^2, where p < 10^6 is prime?
 
 
 '''
 import time, zzz
 
-# 2018-03-30 - generate recursively the numbers and ...
-### KEY OBSERVATION :
-#     We only iterate EVEN numbers and then we put in the midle the numbers (0,1...9) to obtain
-# an ODD number. So... our work is reduced to HALF !!
-# max length = 47 ==> 23 digits on left, 23 digits on right
-#
-# 2.  We observe that 7539, 7548, 7557, 7566  have a difference of 9 as in the case of :
-# 81209, 81218, 81227, 81236, 81245, 81254, 81263, 81272, 81281, 81290,  - so we can group them
-
-
-
-def is_balanced(n) :
-    l = len(str(n))
-    m = l // 2
-    if l %2 ==0 :
-        s1, s2 = str(n)[ :m], str(n)[m:]
-    if l %2 ==1 :
-        s1, s0, s2 = str(n)[ :m], str(n)[m] , str(n)[m+1:]
-        # print( s1 ,'     ' , s0 , '     ' , s2    )
-    S1, S2 = sum([ int(i) for i in s1 ]), sum([ int(i) for i in s2 ])
-    # print([ int(i) for i in s1 ] ,   ' ; S1= ' , S1 ,'     ', [ int(i) for i in s2 ], ' ; S2= ',S2 )
-    return S1 == S2
-
-
-# print('is_balanced : ' ,is_balanced(22822) )
-print('is_balanced : ' ,is_balanced(99) )
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-lim = 10**6
-Sigma = 0
-for n in range(1, lim+1) :
-    if is_balanced(n) :
-        Sigma += n
-        print(n,'        ',  is_balanced(n) )
+def slides(m, n) :
+    S = m - 2 + n - 1 - 3   #   Move only white space from bottom left to top right
+    print('only white moves = ', S )
+    S += 1      # first red move to white space
+    print('white + red :  S = ', S)
+    ####   RULES :      ####
+    #   1.     For an horizontal move RED needs 4 white displacements, without the RED 1 move
+    #   2.      For a diagonal movement RED needs 2 moves for the vertical displacement + another
+    #            2 moves for the horizontal displacement, without the RED 2 own moves.
+    #   3.      For the vertical move RED needs 4 white displacements, without the RED 1 own move
+    ###   Convention: we will consider always m >= n ( cols >= rows )
+    diag = (n-1) * (4+1+1)
+    S += diag
+    print('diag = ', diag, ' ;    S=', S )
+    horiz = (m-n)*5
+    S += horiz
+    print('horiz = ', horiz )
 
-print('\nSigma = ', Sigma )
+    print('S= ', S)
+    return S
 
-#       Reference Values
-# 1   -->     45
-# 2   -->     540
-# 3   -->     50.040
-# 4   -->      3.364.890
-# 5   -->      334.795.890
-# 6   -->      27.671.338.200
+
+slides(5, 5)
+
+# @2018-12-19 --  I need to properly adjust this function. Work not completed !
+
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
@@ -187,7 +178,4 @@ print('\n================  My FIRST SOLUTION,   ===============\n')
 #
 # t2  = time.time()
 # print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-
-
-
 

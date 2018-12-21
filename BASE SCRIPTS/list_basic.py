@@ -163,12 +163,13 @@ print('\n=================== JOIN,  FLATTEN A LIST =======================')
 print('----------------- SINGLE FLATTEN , JOIN  ELEMENTS------------------')
 
 # Method I
-list_of_lists = [[180.0, 1, 2, 3], [173.8], [164.2], [156.5,[45,12,[81,41,[2,3,8],4,11]]], [147.2], [138.2]]
-single_flattened = [val for sublist in list_of_lists for val in sublist]
-print(single_flattened)
+LST = [[180.0, 1, 2, 3], [173.8], [164.2], [156.5,[45,12,[81,41,[2,3,8],4,11]]], [147.2], [138.2]]
+single_flattened = [val for sublist in LST for val in sublist]
+print('single_flattened : ', single_flattened )
 
 # Method II
 import itertools
+print('a : ', a)
 a = [[1, 2], [3, 4], [5, 6]]
 print(list(itertools.chain.from_iterable(a)) )
 
@@ -187,7 +188,12 @@ a = [1, 2, [3, 4], [[5, 6], [7, 8]]]
 flatten = lambda x: [y for l in x for y in flatten(l)] if type(x) is list else [x]
 print ( flatten(a) )
 
-
+print('------------- Flatten only first two elements of the tuples contained within the list --------------')
+#  Flatten only first two elements of the tuples contained within the list
+Q =[ (9, 20, 2, 18, 1, 22), (12, 29, 3 , 12, 13, 23 ), (13, 25, 7, 22, 15, 21) ]
+print('Q :', Q)
+flat = [item for sublist in Q for item in sublist[0:2]]
+print('flattened first 2 elem from each tuple within list : ', flat )
 
 
 print('\n----------------------- Join two lists --------------------------')
@@ -197,15 +203,16 @@ lm = l+m
 print(lm)
 
 print('\n---------------- RECURSION FLATTENING, Many levels of sublists ------------------')
-
-def flatten(lst):
-	return sum( ([x] if not isinstance(x, list) else flatten(x)
+print('LST : ', LST)
+def flatten_rec(lst):
+	return sum( ([x] if not isinstance(x, list) else flatten_rec(x)
 		     for x in lst), [] )
 
-flattened =  flatten(list_of_lists)
-print(flattened)
+flatt =  flatten_rec(LST)
+print('flatt : ', flatt)
 
 print('\n---------------- ITERATIVE FLATTENING, Many levels of sublists ------------------')
+print('LST : ', LST)
 def flat(lst):
     '''Function flat is iterative and flattens the list in-place.
      It follows the Python idiom of returning None when acting in-place:'''
@@ -217,7 +224,7 @@ def flat(lst):
             except (TypeError, IndexError):
                 break
         i += 1
-fl = flat(list_of_lists)
+fl = flat(LST)
 print(fl)
 
 print('\n---------------- GENERATIVE FLATTENING, Many levels of sublists ------------------')
@@ -233,7 +240,7 @@ def flatten(lst):
         else:
             yield x
 
-flt = flatten(list_of_lists)
+flt = flatten(LST)
 print(flt)
 
 print('\n-------------------------MUTATION & ITERATION ------------------------')

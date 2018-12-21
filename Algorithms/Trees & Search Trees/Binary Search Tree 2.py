@@ -1,4 +1,6 @@
 #  Created by Bogdan Trif on 15-05-2018 , 3:46 PM.
+# https://gist.github.com/Frikster/838fedf93640876ae7016d3325edf40c
+
 class Node:
     def __init__(self, val):
         self.val = val
@@ -18,6 +20,8 @@ class Node:
         if(self.rightChild != None):
             children.append(self.rightChild)
         return children
+
+
 
 class BST:
     def __init__(self):
@@ -64,7 +68,9 @@ print( Tree.get() )
 OP.setRoot(100)
 
 import random
-for i in range(19) :
+for i in range(190) :
     OP.insert( random.randint(1,300) )
+
+print('OP.find(15)  =  ', OP.find(15) )
 
 

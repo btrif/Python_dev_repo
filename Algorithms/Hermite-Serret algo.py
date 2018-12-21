@@ -1,9 +1,21 @@
 #  Created by Bogdan Trif on 16-05-2018 , 10:13 PM.
-import sys
-
 """
 Solve p = a^2 + b^2 where p is a prime and p = 1 (mod 4)
 """
+
+# https://math.stackexchange.com/questions/5877/efficiently-finding-two-squares-which-sum-to-a-prime
+
+# The web is littered with any number of pages (example) giving an existence and uniqueness proof
+# that a pair of squares can be found summing to primes congruent to 1 mod 4
+# (and also that there are no such pairs for primes congruent to 3 mod 4).
+#
+# However, none of the stuff I've read on the topic offers any help with actually efficiently finding ' \
+# (ie other than a straight search up to sqrt(p)) the concrete values of such squares.
+#
+# What's the best way to actually find them ?
+#
+# number-theory algorithms prime-numbers
+
 class HermiteSerretAlgorithm():
     def get(self, prime):
         if prime % 4 != 1:

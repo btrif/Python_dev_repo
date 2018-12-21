@@ -2,7 +2,7 @@
 # Solved by Bogdan Trif @   Completed on Wed, 30 Nov 2016, 23:46
 #The  Euler Project  https://projecteuler.net
 '''
-Goldbach's other conjecture     -       Problem 46
+                        Goldbach's other conjecture     -       Problem 46
 It was proposed by Christian Goldbach that every odd composite number can be written as the sum of a prime and twice a square.
 9 = 7 + 2×12
 15 = 7 + 2×22
