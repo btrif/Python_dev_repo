@@ -24,9 +24,17 @@ Find S(10^9).
 import time, zzz
 from math import sqrt, gcd
 from gmpy2 import is_prime, is_square
+from pyprimes import factorise
+
 
 def gcd3(a, b, c):
     return gcd(gcd(a, b), c)
+
+def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
+    ''' Decompose a factor in its prime factors. This function uses the pyprimes module. THE FASTEST  '''
+
+    return [val for sublist in [[i[0]]*i[1] for i in factorise(n)] for val in sublist]
+
 
 def get_k4( rad_array ):
     # compute_circle_radius_between_three_circles
@@ -69,29 +77,64 @@ def some_brute_force_first(lim) :
                 r_C = int(r_C)
                 S_n += ( r_A + r_B + r_C)
                 # if is_prime(int(r_C)) :
-                if (r_B/r_A )%1 != 0  :
+                # if (r_B/r_A )%1 != 0  :
                 # if not is_square( r_B//r_C )  :
                 # if is_square(r_C) :# == False  and is_prime(r_C)== False :
-                    print('r_A = ', r_A, ' ,   r_B = ', r_B , ' ,   r_C = ', r_C, '          r_B/r_A =', r_B/r_A ,
-                          '        gcd(A,B,C)=  ', gcd3(r_A, r_B, r_C) , '      gcd_A_B = ',gcd(r_A, r_B) , '      gcd_A_C = ',gcd(r_A, r_C), '      gcd_B_C = ',gcd(r_B, r_C) ,'         B/C= ',  r_B/r_C )
+                print('r_A = ', r_A,'     ' ,get_factors(r_A) , ' ,   r_B = ', r_B ,'     ' ,get_factors(r_B),  ' ,   r_C = ', r_C        )
 
 
     return print('\nS(n) = ', S_n )
 
 some_brute_force_first(20000)
 
+'''
 
 # CASES :
 # 1.  r_C - prime => r_A = R_B = R_C *4
 # 2. r_C - square =>
 
 # https://www.cut-the-knot.org/pythagoras/TangentCirclesSangaku.shtml
-@2017-11-02     -   I need to solve some kind of Pell equation of the form 1/sqrt(r_C) = 1/ sqrt(r_A) + 1/sqrt(r_B)
-where r_C is the smallest circle in between the two bigger circles and the line
+# @2017-11-02     -   I need to solve some kind of Pell equation of the form 1/sqrt(r_C) = 1/ sqrt(r_A) + 1/sqrt(r_B)
+# where r_C is the smallest circle in between the two bigger circles and the line
+
+@2019-01-24 - THERE ARE THREE CASES :
+
+### CASE 1  - there IS ONLY one r_B
+r_A =  244       [2, 2, 61]  ,   r_B =  244       [2, 2, 61]  ,   r_C =  61
+
+
+### CASE 2  - there are multiple r_B :
+numerator = 2 + 2 = 4 , denom = 2*2 = 4=> make a 4 => add []
+r_A =  324       [2, 2, 3, 3, 3, 3]  ,   r_B =  324       [2, 2, 3, 3, 3, 3]  ,   r_C =  81
+
+numerator = 2 + 7 = 9 = [3, 3] , denom = 3*3 = 9 => make a 7 => add [7]
+r_A =  324       [2, 2, 3, 3, 3, 3]  ,   r_B =  3969       [2, 2, 7, 7, 3, 3, 3, 3]  ,   r_C =  144
+
+numerator = 2 + 4 = 6 = [2, 3] ,   => make a 6 => add [2, 2] = 4
+r_A =  324       [2, 2, 3, 3, 3, 3]  ,   r_B =  1296       [2, 2, 2, 2, 3, 3, 3, 3]  ,   r_C =  144
+
+numerator = 2 + 10 = 12 = [2, 2,  3] ,   => make a 10 => add [2, 5]
+r_A =  324       [2, 2, 3, 3, 3, 3]  ,   r_B =  8100       [2, 2, 3, 3, 3, 3, 5, 5]  ,   r_C =  225
+
+
+#### CASE 3 :           - r_A != r_B     r_A is different than r_B but there is an r_B which is unique
+r_A =  375       [3, 5, 5, 5]  ,   r_B =  375       [3, 5, 5, 5]  ,   r_C =  240
+# the numerator sum = 5+5 = 10 => not feasible because we have 2*5 / 5*5
+but it is not working. So we make a 25 = 5+x => x = 20.
+So make a 20 =[2,2,5] :
+r_A =  375       [3, 5, 5, 5]  ,   r_B =  6000       [2, 2, 2, 2, 3, 5, 5, 5]  ,   r_C =  240
+
+
+r_A =  369       [3, 3, 41]  ,   r_B =  1476       [2, 2, 3, 3, 41]  ,   r_C =  164
+the numerator sum  = 3+3 = 6 but the denominor : 3*3 = 9 So we make 9-3 = 6 = [2,3] :
+r_A =  369       [3, 3, 41]  ,   r_B =  1476       [2, 2, 3, 3, 41]  ,   r_C =  164
+
+
+'''
 
 
 t2  = time.time()
-print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+print('\n# Completed in :', round((t2-t1),2), 's\n\n')
 
 print('\n================  My FIRST SOLUTION,   ===============\n')
 t1  = time.time()

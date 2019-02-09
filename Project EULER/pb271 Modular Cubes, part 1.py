@@ -15,6 +15,12 @@ Find S(13082761331670030) .
 
 '''
 import time, zzz
+from pyprimes import factorise
+
+def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
+    ''' Decompose a factor in its prime factors. This function uses the pyprimes module. THE FASTEST  '''
+
+    return [val for sublist in [[i[0]]*i[1] for i in factorise(n)] for val in sublist]
 
 def egcd(a, b):         #Extended Euclidian Algorithm
     if a == 0:
@@ -111,21 +117,18 @@ prime_mod_sqrt(12, 13), legendre_symbol(12,13)
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-def brute_force_test( n = 91 ):
-    for x in range(2 , n ) :
+def brute_force_test( n  ):
+    for x in range(1 , n ) :
         if pow(x, 3, n ) == 1 :
             print('x = ' + str(x) +'     ;    x^3 = 1    ( mod '+str(n)+' )'  )
 
-brute_force_test(91)
+brute_force_test( 91 )
 
 # @2017-10-14 - NOTE - This is classical example of Chinese Reminder Theorem
 
 # BEST
 # https://math.stackexchange.com/questions/673418/cube-roots-modulo-p     !!!
-# https://math.stackexchange.com/questions/673418/cube-roots-modulo-p
-#
-#
-#
+
 # https://math.stackexchange.com/questions/983971/modular-arithmetic-root     !!!!!
 #
 #
@@ -143,14 +146,24 @@ t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
 print('\n================  My FIRST SOLUTION,   ===============\n')
-# t1  = time.time()
+t1  = time.time()
+
+
+CHINESE REMAINDER THEORY
+
+n = 91
+
+N = get_factors(n)
+print('N = ', N)
+
+for i in N :
+    brute_force_test(i)
+    print('n=  ', i     )
 
 
 
-
-
-# t2  = time.time()
-# print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
 
 # print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')

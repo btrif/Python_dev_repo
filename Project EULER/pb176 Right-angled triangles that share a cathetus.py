@@ -53,7 +53,7 @@ def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
     return [val for sublist in [[i[0]]*i[1] for i in factorise(n)] for val in sublist]
 
 
-
+'''
 @2017-03-23 - get_factors(47547) =  [3, 3, 3, 3, 587]
 we need to find the smallest triangles with 3, 3, 3, 3 shared cathetus and find the largest with 587 cathetus
 We then must multiply all these to obtain the desired trainagle !!
@@ -62,6 +62,8 @@ We then must multiply all these to obtain the desired trainagle !!
 => x**2 + y**2 is a perfect square.  In the example given :
 (9,12,15), (12,16,20), (5,12,13) and (12,35,37) => x=12 form together with 4 different y-s perfect squares
 in this case the range of y's is :   9 <= y <= 35
+
+'''
 
 
 print('\n--------------------------TESTS------------------------------')
@@ -129,19 +131,28 @@ def small_brute_force_test(nr):
     for b in range(3, 2000*nr):
         if  gmpy2.is_square( nr**2 + b**2 ) :
             cnt+=1
-            print(str(cnt)+'.     ',nr, b, pow(nr**2 + b**2, 1/2) )
+            print(str(cnt)+'.    nr = ',nr,  ' ,      b = ' ,  b, ' ,      c =  ' , pow(nr**2 + b**2, 1/2) )
     return print('\nAnswer : \t', cnt)
 
-nr = 2*2*3*5*7*11*13
+nr = 2*3*5
 small_brute_force_test(nr)
 print('Its Totient : \t',ntheory.totient(nr) )
 
+''' @2019-01-09 - We must find the following relationship : between Totient and nr of cathetes :
+4.      nr =  2*3*5 =  30  ,      b =  224  ,      c =   226.0     Answer : 	 4      Its Totient : 	 8
+13.     nr = 2*3*5*7   210  ,      b =  11024  ,      c =   11026.0 Answer : 	 13     Its Totient : 	 48
+201.    nr =  9240  ,      b =  10672198  ,      c =   10672202.0   Answer : 	 201        Its Totient : 	 1920
+121.     nr = 2*2*3*5*7*11 =  4620  5336099 5336101.0        Answer : 	 121    Its Totient : 	 960
+357.      60060 100200091 100200109.0    Answer : 	 357     Its Totient : 	 11520    Completed in : 235.903493 s
 
-# 357.      60060 100200091 100200109.0    Answer : 	 357     Its Totient : 	 11520    Completed in : 235.903493 s
+
 
 @2017-03-09 - This must be done with some kind of totient type method.
 OBSERVATION : I observed that the totient number is in some kind of correlation with
 the number of pythagorean triplets that share a cathetus. Must find some kind of relation
+
+
+'''
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1),6), 's')

@@ -2,7 +2,8 @@
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-An amazing Prime-generating Automaton           -           Problem 308
+                An amazing Prime-generating Automaton           -           Problem 308
+
 A program written in the programming language Fractran consists of a list of fractions.
 
 The internal state of the Fractran Virtual Machine is a positive integer, which is initially set to a seed value.
@@ -57,6 +58,12 @@ Fractran = [  mpq (17, 91), mpq(78,85 ), mpq(19,51) , mpq(23,38) , mpq(29,33) , 
 print(2*Fractran[0])
 
 
+# IDEAS :
+# https://en.wikipedia.org/wiki/FRACTRAN
+# https://oeis.org/A034785/b034785.txt
+#
+
+
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
@@ -71,17 +78,17 @@ def brute_force_conceptualization(lim) :
                 seed = m
                 # print('iter = ', i , '     j= ', j,'         new seed = ', m)
                 if numpy.math.log2(m) %1 == 0 :
-                    print('iter = ', i , '         new seed = ', m ,'-------- 2-power = ',   int(numpy.math.log2(m)) ,'       ',  i-iter2 , iter2 / i  )
+                    print('iter = ', i , '         new seed = ', m ,'---- 2-power = ',   int(numpy.math.log2(m)) ,'       i-iter2= ',  i-iter2 ,'     ' , iter2 / i  )
                     iter2 = i
 
 
                 break
 
-brute_force_conceptualization(10**5)
+# brute_force_conceptualization(10**7)
 
 
 t2  = time.time()
-print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+print('\n# Completed in :', round((t2-t1),2), 's\n\n')
 
 print('\n================  My FIRST SOLUTION,   ===============\n')
 # t1  = time.time()
@@ -98,12 +105,10 @@ print('\n================  My FIRST SOLUTION,   ===============\n')
 # print('\n--------------------------SOLUTION 1,   --------------------------')
 # t1  = time.time()
 #
-#
-#
 # t2  = time.time()
 # print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-#
-#
+
+
 # print('\n--------------------------SOLUTION 2,   --------------------------')
 # t1  = time.time()
 #

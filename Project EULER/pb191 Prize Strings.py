@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Solved by Bogdan Trif @
+# Solved by Bogdan Trif @   Completed on Fri, 3 Feb 2017, 15:19
 #The  Euler Project  https://projecteuler.net           ( ͡° ͜ʖ ͡°)
 '''
             Prize Strings       -       Problem 191
@@ -142,27 +142,47 @@ print('\ncomb_A1L : \t', comb_A1L(nr))
 
 
 ############## GENERAL IDEAS ################
+'''
+===== Tue, 29 Apr 2008, 23:57, rayfil, Assembly  , Canada
+There are only 6 states in which strings can exist, divided into two groups.
 
-# ===== Tue, 29 Apr 2008, 23:57, rayfil, Assembly  , Canada
-# There are only 6 states in which strings can exist, divided into two groups.
-# Three of those states are those where the strings don't contain any LATE occurence.
-# The other three are those where the strings already contain one LATE occurence.
-# Within each group, one state is when the string does not end with an absence,
-# another when the string ends with only one absence, and the third when the string
-# ends with two absences. Let's denote them as O, Oa, Oaa, L, La and Laa.
-# Let's denote the sums of these two groups as SO and SL.
-#
-# The initial states after the first day would be O=1, Oa=1 and L=1(all other states =0).
-# The initial sums would be SO=2 and SL=1.
-# a) If absent on the following day, all strings in state Oa would become Oaa strings
-#         and all strings in state O would become Oa strings.
-#         Similarly, all strings in state La would become Laa strings and all strings in state L would become La strings.
-# b) If late on the following day, all strings in group O would become L strings.
-# c) If neither late nor absent on the following day, all strings in group O would become O strings (O=SO),
-# and all strings in group L would become L strings in addition to (b) above such that L=SL+SO.
-#
-# The following algo should produce the answer within 1 ms with most (if not all) programming languages.
-# zeycus and logopetria have already posted similar algos in their own programming language.
+Three of those states are those where the strings don't contain any LATE occurence.
+The other three are those where the strings already contain one LATE occurence.
+
+Within each group, one state is when the string does not end with an absence,
+another when the string ends with only one absence, and the third when the string
+ends with two absences. Let's denote them as O, Oa, Oaa, L, La and Laa.
+Let's denote the sums of these two groups as SO and SL.
+I.   On time O combined with absences
+    === STRING ENDINGS ===
+O - On time & no absence
+Oa - On time & one abscence
+Oaa - On time &  string ending with two abscences
+II.  Late occurences combined with absences
+    === STRING ENDINGS ===
+L - Late occurence
+La - Late occurence & 1 absence
+Laa - Late occurence & 2 absences
+
+The initial states after the first day would be O=1, Oa=1 and L=1(all other states =0).
+The initial sums would be SO=2 and SL=1.
+a) If ABSENT on the following day :
+    -   all strings in state Oa would become Oaa strings
+    -    all strings in state O would become Oa strings.
+    Similarly, 
+    -   all strings in state La would become Laa strings and
+    -   all strings in state L would become La strings.
+
+b) If LATE on the following day, all strings in group O would become L strings.
+
+c) If neither late nor absent on the following day, all strings in group O would become O strings (O=SO),
+and all strings in group L would become L strings in addition to (b) above such that L=SL+SO.
+
+The following algo should produce the answer within 1 ms with most (if not all) programming languages.
+zeycus and logopetria have already posted similar algos in their own programming language.
+
+'''
+
 
 # =====Fri, 2 May 2008, 21:48, easyway
 # This is just a variation of problem 164.  I simply modified my Ruby code for that one.
@@ -186,17 +206,22 @@ t1  = time.time()
 # Second idea was this magnificent solution which is NOT MINE ! Dynamic Programming
 
 #################     Approach -  Finite State  Machine Automata   ##############
-                #                                 First day :
+
+                # _________  |             0A              |           1A             |            2A            |
+                #     1L       |              A               |            B              |               C            |
+                #     0L       |              C               |            D              |               F            |
+
+                #                                 First day :       STATES   # Remark : Only 3 possibilities : O, A, L
                 # _________  |             0A              |           1A             |            2A            |
                 #     1L       |              1               |            0              |               0            |
                 #     0L       |              1               |            1              |               0            |
                 #
-                #                                           Next day :
-                # __________|  A+B+C+D+E+F     |           1A             |            2A            |
-                #     1L       |          D+E+F          |            0              |               0            |
-                #     0L       |              1               |            1              |               0            |
+                #                                           Next day :  STATES
+                # __________|               0A             |           1A             |            2A            |
+                #     1L       |  A+B+C+D+E+F     |            A              |               B            |
+                #     0L       |         D+E+F           |            D              |               E            |
 
-
+### The ABOVE IMPLEMENTATION
 def pb191_finite_state_automata_machine(days):
 
     A , B, C , D, E, F = 1, 0, 0, 1, 1, 0
@@ -219,17 +244,95 @@ pb191_finite_state_automata_machine( 30 )             #   Answer : 	 1918080160
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
+
+print('\n-------------          My SECOND SOLUTION ----------------')
+
+'''
+===== Tue, 29 Apr 2008, 23:57, rayfil, Assembly  , Canada
+There are only 6 states in which strings can exist, divided into two groups.
+
+Three of those states are those where the strings don't contain any LATE occurence.
+The other three are those where the strings already contain one LATE occurence.
+
+Within each group, one state is when the string does not end with an absence,
+another when the string ends with only one absence, and the third when the string
+ends with two absences. 
+Let's denote them as O, Oa, Oaa, L, La and Laa.
+Let's denote the sums of these two groups as SO = O + Oa + Oaa and SL = L + La + Laa
+I.   On time O combined with absences
+    === STRING ENDINGS ===
+O - On time & no absence
+Oa - On time & one abscence
+Oaa - On time &  string ending with two abscences
+II.  Late occurences combined with absences
+    === STRING ENDINGS ===
+L - Late occurence
+La - Late occurence & 1 absence
+Laa - Late occurence & 2 absences
+
+The initial states after the first day would be O=1, Oa=1 and L=1(all other states =0).
+The initial sums would be SO=2 and SL=1.
+a) If ABSENT on the following day :
+    -   all strings in state Oa would become Oaa strings
+    -   all strings in state O would become Oa strings.
+    Similarly, 
+    -   all strings in state La would become Laa strings and
+    -   all strings in state L would become La strings.
+
+b) If LATE on the following day, all strings in group O would become L strings.
+
+c) If neither late nor absent on the following day :
+ -  all strings in group O would become O strings (O=SO), AND
+-  all strings in group L would become L strings in addition to (b) above such that L=SL+SO.
+
+
+#################     Approach -  Finite State  Machine Automata   ##############
+                # _________  |             0A              |           1A             |            2A            |
+                #     0L       |              A               |            B              |               C            |
+                #     1L       |              C               |            D              |               F            |
+
+                #                                 First day :   STATES      # Remark : Only 3 possibilities : O, A, L
+                # _________  |             0A              |           1A             |            2A            |
+                #     0L       |              1               |            1              |               0            |
+                #     1L       |              1               |            0              |               0            |
+                #
+                #                                           Next day :  STATES
+                # __________|              0A             |           1A             |            2A            |
+                #     0L       |          A+B+C          |            A              |              B            |
+                #     1L       |   A+B+C+D+E+F   |            D              |               E            |
+
+'''
+
+def finite_state_automata_machine_2(days):
+
+    A , B, C , D, E, F = 1, 1, 0, 1, 0, 0
+    for i in range(2, days+1 ):
+        tD = A+B+C+D+E+F
+        tB = A
+        tC = B
+        tA = A + B + C
+        tE = D
+        tF = E
+        A, B, C, D, E, F = tA, tB, tC, tD, tE, tF
+        S = A+B+C+D+E+F
+        print('day: '+str(i)+'   ', A, B, C, D, E, F ,'  ', S)
+
+    return print('\nAnswer : \t', S)
+
+pb191_finite_state_automata_machine( 30 )             #   Answer : 	 1918080160
+
+
 print('\n--------------------------Recursion, without MEmoization  --------------------------')
 
-def school(r,a,l) :
+def school( r, a, l ) :
 # > option remember;
     if a==3 : return 0
     if l==2 : return 0
     if r==0 : return 1
 
-    return school(r-1,0,l) + school(r-1,0,l+1) + school(r-1,a+1,l)
+    return school( r-1, 0, l ) + school( r-1, 0, l+1 ) + school( r-1, a+1, l )
 
-school(10,0,0)
+# school(10,0,0)
 
 print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
 print('\n--------------------------SOLUTION 1, Dynamic Programming  --------------------------')
@@ -257,7 +360,7 @@ print (sum([v_0, v_1, v_2, v_L0, v_L1, v_L2]))
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n--------------------------SOLUTION 2, Super Interesting  --------------------------')
+print('\n--------------------------SOLUTION 2, RECURSION with Memoization,  Super Interesting  --------------------------')
 t1  = time.time()
 
 # ====Sat, 26 Apr 2008, 03:49, quilan, USA
@@ -288,7 +391,7 @@ print ("Total: %d"%total)
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
-print('\n--------------------------SOLUTION 3,   --------------------------')
+print('\n--------------------------SOLUTION 3, Dynamic Programming  --------------------------')
 t1  = time.time()
 
 # =====Sat, 26 Apr 2008, 13:38, anceps, Switzerland
@@ -437,7 +540,7 @@ table = [[[-1 for k in range(0, max_num_ls + 1)]
 				for i in range(0, n)]
 
 def count_strings(n):
-	""" Counts all the possible prize strings in an n-day period.
+    """ Counts all the possible prize strings in an n-day period.
 	There are a total of 3^n possible strings.
 	A prize string satisfies:
 	- has less than 2 (L)ates and
@@ -446,7 +549,7 @@ def count_strings(n):
 	P.S: As a counting problem it gets a bit tricky after n goes past
 	n = 7 or 8 because of the consecutive As. """
 
-	return aux_count(n, 0, 0, 0)
+    return aux_count(n, 0, 0, 0)
 
 def aux_count(n, i, num_con_as, num_ls):
 	""" Recursively count the prize strings and memoize the results.

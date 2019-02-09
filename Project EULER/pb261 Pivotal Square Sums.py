@@ -98,7 +98,7 @@ brute_force( 10**4 )
 
 
 
-# --------------------------TESTS------------------------------
+# --------------------------SOME IRREGULAR PIVOTS  ------------------------------
 # 1.          pivot = 21           LHS =   [20, 21]         RHS =   [29]       diff=  8      pivot=  [3, 7]
 # 2.          pivot = 110           LHS =   [108, 109, 110]         RHS =   [133, 134]       diff=  23      pivot=  [2, 5, 11]
 # 3.          pivot = 120           LHS =   [119, 120]         RHS =   [169]       diff=  49      pivot=  [2, 2, 2, 3, 5]
@@ -117,6 +117,14 @@ brute_force( 10**4 )
 
 
 # @2017-12-11 - The regular pivots  are following the pattern 4, 12, 20, 32, .... => +4, +8, +12, +16 ,...
+# 2.          pivot = 12           LHS =   [10, 11, 12]         RHS =   [13, 14]       diff=  1      pivot=  [2, 2, 3]
+# 4.          pivot = 24           LHS =   [21, 22, 23, 24]         RHS =   [25, 26, 27]       diff=  1      pivot=  [2, 2, 2, 3]
+# 5.          pivot = 40           LHS =   [36, 37, 38, 39, 40]         RHS =   [41, 42, 43, 44]       diff=  1      pivot=  [2, 2, 2, 5]
+# 6.          pivot = 60           LHS =   [55, 56, 57, 58, 59, 60]         RHS =   [61, 62, 63, 64, 65]       diff=  1      pivot=  [2, 2, 3, 5]
+# 7.          pivot = 84           LHS =   [78, 79, 80, 81, 82, 83, 84]         RHS =   [85, 86, 87, 88, 89, 90]       diff=  1      pivot=  [2, 2, 3, 7]
+# Those regular pivots have a diff = 1
+
+
 # The task now is to find the abnormal ones of the type :
 # pivot = 110           LHS =   [108, 109, 110]         RHS =   [133, 134]
 # pivot = 315           LHS =   [312, 313, 314, 315]         RHS =   [361, 362, 363]

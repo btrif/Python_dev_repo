@@ -17,7 +17,7 @@ Find f(1,000,000,000,000)
 '''
 import time
 from math import factorial
-from gmpy2 import fac
+# from gmpy2 import fac
 import operator, functools
 
 import math
@@ -116,13 +116,13 @@ print('10.000          ',factorial_non_zero(10**4))
 print('100.000        ',factorial_non_zero(10**5) ,'\n\n')
 # print('1.000.000        ',factorial_non_zero(10**6))
 
-# f(               10)=36288
-# f(              100)=16864
-# f(            1,000)=53472
-# f(           10,000)=79008
-# f(          100,000)=56096
-# f(        1,000,000)=12544
-# f(       10,000,000)=28125
+# f(               10)  =   36288
+# f(              100)  =   16864
+# f(            1,000)  =   53472
+# f(           10,000)  =   79008
+# f(          100,000)  =   56096
+# f(        1,000,000)  =   12544
+# f(       10,000,000)  =   94688
 
 
 # http://mathforum.org/library/drmath/view/71768.html     !!!!!!!!!!!!!!!!!!
@@ -131,6 +131,7 @@ print('100.000        ',factorial_non_zero(10**5) ,'\n\n')
 # http://mathcentral.uregina.ca/qq/database/qq.09.07/s/mukesh1.html
 # http://www.mathpages.com/home/kmath489.htm
 # https://comeoncodeon.wordpress.com/2009/06/20/lastnon-zero-digit-of-factorial/
+# https://www.quora.com/How-can-I-solve-problem-number-160-at-Project-Euler
 
 # print('\n' , len(str(fac(10**4))) , str(factorial(10**4)) )                   # 27753472
 
@@ -155,7 +156,7 @@ def brute_check( down, diff ):
     for i in range(down, down+diff +1  ) :
         P *= i
 
-    return print('\nRes =', P)
+    print('\nRes =', P)
 
 brute_check(50, 10)
 
@@ -182,8 +183,30 @@ brute_check(50, 10)
 #
 # print('obladioblada :' , (pow( 36288, 10, 10**5 )*2**67 ) %10**5    )
 
+
+def pb160_BF( lim ) :
+    P = 1
+    for n in range(1, lim+1) :
+        P *= n
+        m = n
+        while m%5 == 0 :
+            P //= 10
+            m //= 5
+
+        # print(n, '    ' , P)
+
+        P %= 10**12
+
+        if n%10**10 ==0 : print('iter = ', n%10**10  )
+
+
+    print('\n ANSWER = ', P%10**5 )
+    return P%10**5
+
+pb160_BF(10**8)             #
+
 t2  = time.time()
-print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n')
+print('\nCompleted in :', round((t2-t1), 2), 's\n')
 
 print('\n================  My FIRST SOLUTION,   ===============\n')
 t1  = time.time()

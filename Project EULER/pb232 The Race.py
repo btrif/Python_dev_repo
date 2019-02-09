@@ -1,68 +1,35 @@
-#  Created by Bogdan Trif on 01-11-2017 , 7:59 PM.
+#  Created by Bogdan Trif on 12-01-2019 , 9:50 AM.
 # © o(^_^)o  Solved by Bogdan Trif  @
 #The  Euler Project  https://projecteuler.net
 '''
-                Path sum: four ways             -               Problem 83
+                            The Race            -           Problem 232
 
-NOTE: This problem is a significantly more challenging version of Problem 81.
+Two players share an unbiased coin and take it in turns to play "The Race".
+On Player 1's turn, he tosses the coin once: if it comes up Heads, he scores one point;
+if it comes up Tails, he scores nothing.
 
-In the 5 by 5 matrix below, the minimal path sum from the top left to the bottom right,
-by moving left, right, up, and down, is indicated in bold red and is equal to 2297.
+On Player 2's turn, she chooses a positive integer T and tosses the coin T times:
+if it comes up all Heads, she scores 2^(T-1) points; otherwise, she scores nothing.
 
+Player 1 goes first. The winner is the first to 100 or more points.
 
-Find the minimal path sum, in matrix.txt (right click and "Save Link/Target As..."),
-a 31K text file containing a 80 by 80 matrix,
-from the top left to the bottom right by moving left, right, up, and down.
+On each turn Player 2 selects the number, T, of coin tosses that maximises the probability of her winning.
+
+What is the probability that Player 2 wins?
+
+Give your answer rounded to eight decimal places in the form 0.abcdefgh .
 
 
 '''
 import time, zzz
 
-filename = "pb081_matrix.txt"
-def load_file(filename):
-    with open(filename) as f:
-        matrix = [list(map(int, line.split(","))) for line in f.readlines()]
-    f.close()
-    return matrix
 
-matrix = load_file(filename)
-
-
+## Player1 : 64, 32, 4
+Question : What is the probability that Player1 hits before 64, 32, 4 arriving at 100 ?
 
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-M=  [[131, 673, 234, 103, 18], \
-        [201, 96,  342, 965, 150],\
-        [630, 803, 746, 422, 111],\
-        [537, 699, 497, 121, 956],\
-        [805, 732, 524, 37,  331]]
-
-
-def three_ways_path( matrix ) :
-
-    M = matrix
-    gridSize = len(M)
-    sol = [0 for i in range(gridSize)]
-
-    #   initialise solution :
-    for i in range(0, gridSize ) :
-        sol[i] = M[i][gridSize - 1]
-
-    for i in range(gridSize-2,-1, -1 ) :
-        #   Traverse down :
-        sol[0] += M[0][i]
-        for j in range(1, gridSize) :
-           sol[j] = min ( sol[j - 1] + M[j][i], sol[j] + M[j][i] )
-
-        #   Traverse up :
-        for j in range(gridSize -2, -1, -1) :
-            sol[j] = min( sol[j], sol[j+1] + M[j][i] )
-
-    print('The Complete path is : ',sol)
-    return print('\nThe minimal path is : \t', min(sol))
-
-three_ways_path(M)
 
 
 t2  = time.time()
@@ -186,7 +153,4 @@ print('\n================  My FIRST SOLUTION,   ===============\n')
 #
 # t2  = time.time()
 # print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-
-
-
 

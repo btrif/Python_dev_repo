@@ -6,8 +6,11 @@ L = [ 2, 4, 5, 7, 9, 11, 14, 16, 17, 19, 22, 25, 29, 34, 36, 38 ]
 def binary_search_rec( lst, n, low, high) :     ### by Bogdan Trif, My implementation @  12-04-2018 , 1:11 PM.
     mid_point = ( low + high) // 2
 
-    if  n == lst[mid_point] : return mid_point
-    if mid_point == low or mid_point == high  : return False
+    if  n == lst[mid_point] :
+        return mid_point
+
+    if mid_point == low or mid_point == high  :
+        return False
 
     else :
         if  n <= lst[mid_point] :

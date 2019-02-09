@@ -1,7 +1,7 @@
 #  Created by Bogdan Trif on 09-02-2018 , 10:03 PM.
 
 '''
-
+https://stackoverflow.com/questions/17784587/gradient-descent-using-python-and-numpy/43240929
 
 I think your code is a bit too complicated and it needs more structure,
 because otherwise you'll be lost in all equations and operations. In the end this regression boils down to four operations:
@@ -10,7 +10,8 @@ Calculate the hypothesis h = X * theta
 Calculate the loss = h - y and maybe the squared cost (loss^2)/2m
 Calculate the gradient = X' * loss / m
 Update the parameters theta = theta - alpha * gradient
-In your case, I guess you have confused m with n. Here m denotes the number of examples in your training set, not the number of features.
+In your case, I guess you have confused m with n.
+Here m denotes the number of examples in your training set, not the number of features.
 
 Let's have a look at my variation of your code:
 '''

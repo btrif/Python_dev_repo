@@ -158,7 +158,7 @@ print('\npoint_outside_ellipse : \t', point_outside_ellipse(test_ellipse, (-2 , 
 # print('\nget_tangents_from_a_point :  \t' ,get_tangents_from_a_point(test_ellipse, (-100,-400) ) )
 # print('\nget_tangents_from_a_point :  \t' ,get_tangents_from_a_point( ellipse , (  15000, 10000 ) ) )
 
-print('\n================  My FIRST SOLUTION,   ===============\n')
+print('\n==========  My FIRST SOLUTION, SUPER SLOW Because of sympy  ===============\n')
 t1  = time.time()
 
 

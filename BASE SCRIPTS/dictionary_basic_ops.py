@@ -307,3 +307,11 @@ print('\n----------  Print only a range of values from a Dictionary ------------
 SQD = {x*x: x for x in range(1000) }
 print('This prints only the k,v fro the dictionary if the values are < 100 :')
 print( 'Length : ',len(SQD) , '\n', { k:v for k,v in SQD.items() if v<100 } )
+
+
+print('\n-----      Get a random pair of key, value from a Dictionary   ------------')
+# https://stackoverflow.com/questions/4859292/how-to-get-a-random-value-in-python-dictionary
+import random
+d = {'VENEZUELA':'CARACAS', 'CANADA':'OTTAWA'}
+country, capital = random.choice(list(d.items()))
+print('country, capital = ', country, capital)

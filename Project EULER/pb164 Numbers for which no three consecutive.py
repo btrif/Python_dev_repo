@@ -88,20 +88,31 @@ print('\n\nFinal Res : \t', Z - sum(N),'    ' ,len( str( Z - sum(N)) )   )
 
 
 print('\n---------------- MORE TESTS ON THE CONCEPT ----------------')
+t1  = time.time()
 
-itr=0
-up_rng = 10**4
+def brute_force(  digit_nr ) :
 
-for i in range(up_rng//10 , up_rng):
-    s = str(i)
-    if s.find('0') != -1 :
-        itr+=1
-        print(str(itr)+'.   ',s)
+    cnt=0
+    for n in range(100 ,  10**digit_nr ):
+        i = 0
 
-print('\n 00 : \t\t', itr    )
+        while i+3 <= digit_nr :
+            s = str(n)[i:i+3]
+            n3 = [ int(i) for i in  s]
+            if sum(n3 ) > 9 :
+                print('n= ', n,  '   s=' ,s , '    ' , n3 , '   ' , sum(n3) )
+                cnt+=1
+                break
+            i+=1
+
+    print('\nBrute force result =  ', cnt)
 
 
+brute_force(4)
 
+
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')
 
 print('\n================  My FIRST SOLUTION,   ===============\n')
 t1  = time.time()

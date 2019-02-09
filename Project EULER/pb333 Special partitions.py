@@ -30,6 +30,7 @@ import time, zzz
 from itertools import combinations
 
 
+
 def prime_sieve(n):       # FOURTH      o(^_^)o
     sieve = [True] * n
     for i in range(3, int(n**0.5)+1, 2):
@@ -47,7 +48,6 @@ def get_terms(lim) :
         j = 0
         while 2**i * 3**j < lim :
             n = 2**i * 3**j
-
             L.append(n)
             T[n] = (i,j)
             # print( 'i, j = ', i, j , '    n =', n ,'       L = ', L)
@@ -56,13 +56,13 @@ def get_terms(lim) :
         i+=1
 
     L.sort()
-    print('L = ', len(L),'  ', L )
-    print('T = ', T)
+    # print('L = ', len(L),'  ', L )
+    # print('T = ', T)
     return T, L
 
 
 
-S = [1,4,9]
+S = [1,4, 9 ]
 
 def partition_nr_into_given_set_of_nrs(nr, S,  lim=10 ):
     ''' :Description: partition a number into a custom set of integers with a limit maximum number of terms
@@ -156,10 +156,10 @@ def subset(array, num):
 
 
 
-print('\n--------------------------TESTS------------------------------')
+print('\n-------------------------- BRUTE FORCE TESTS------------------------------')
 t1  = time.time()
 
-def first_solution(lim):
+def first_solution_BF(lim):         #   Work correctly , but VERY VERY SLOW
 
     T = get_terms( lim )[1]
     T = T[1:]
@@ -194,8 +194,6 @@ def first_solution(lim):
                     if  part[i] % part[j] ==0 :
                         c0 +=1
 
-
-
             if c0 == 0 :
                 cnt +=1
                 B = part
@@ -210,31 +208,37 @@ def first_solution(lim):
     print('\nSum of primes = ' , Sum)
     return Sum
 
-first_solution(1*10**2)
+# first_solution_BF(1*10**3)
 
- #  ----------- chosen prime =   2           [2]
- # ----------- chosen prime =   3           [3]
- # ----------- chosen prime =   5           [3, 2]
- # ----------- chosen prime =   7           [4, 3]
- # ----------- chosen prime =   13           [9, 4]
- # ----------- chosen prime =   17           [9, 8]
- # ----------- chosen prime =   23           [9, 8, 6]
- # ----------- chosen prime =   43           [27, 16]
- # ----------- chosen prime =   59           [32, 27]
- # ----------- chosen prime =   61           [27, 18, 16]
- # ----------- chosen prime =   113           [81, 32]
- # ----------- chosen prime =   181           [81, 64, 36]
- # ----------- chosen prime =   193           [81, 64, 48]
- # ----------- chosen prime =   199           [81, 64, 54]
- # ----------- chosen prime =   241           [96, 81, 64]
- # ----------- chosen prime =   467           [243, 128, 96]
- # ----------- chosen prime =   479           [243, 128, 108]
- # ----------- chosen prime =   499           [256, 243]
- # ----------- chosen prime =   593           [512, 81]
- # ----------- chosen prime =   643           [256, 243, 144]
- # ----------- chosen prime =   661           [256, 243, 162]
- # ----------- chosen prime =   691           [256, 243, 192]
+'''
 
+  ----------- chosen prime =   2           [2]
+ ----------- chosen prime =   3           [3]
+ ----------- chosen prime =   5           [3, 2]
+ ----------- chosen prime =   7           [4, 3]
+ ----------- chosen prime =   13           [9, 4]
+ ----------- chosen prime =   17           [9, 8]
+ ----------- chosen prime =   23           [9, 8, 6]
+ ----------- chosen prime =   43           [27, 16]
+ ----------- chosen prime =   59           [32, 27]
+ ----------- chosen prime =   61           [27, 18, 16]
+ ----------- chosen prime =   113           [81, 32]
+ ----------- chosen prime =   181           [81, 64, 36]
+ ----------- chosen prime =   193           [81, 64, 48]
+ ----------- chosen prime =   199           [81, 64, 54]
+ ----------- chosen prime =   241           [96, 81, 64]
+ ----------- chosen prime =   467           [243, 128, 96]
+ ----------- chosen prime =   479           [243, 128, 108]
+ ----------- chosen prime =   499           [256, 243]
+ ----------- chosen prime =   593           [512, 81]
+ ----------- chosen prime =   643           [256, 243, 144]
+ ----------- chosen prime =   661           [256, 243, 162]
+ ----------- chosen prime =   691           [256, 243, 192]
+
+RESULTS for 10^3 :
+ [2, 3, 5, 7, 13, 17, 23, 43, 59, 61, 113, 181, 193, 199, 241, 467, 479, 499, 643, 661, 691]
+Sum of primes =  4600
+'''
 
 print('---------------')
 
@@ -260,50 +264,133 @@ print('---------------')
 #  [0, 1, 2, 1, 2, 3, 4, 4 ] where indexes represent the actual numbers and the values represent how many representations
 # an index number has.
 #
-# 3. Select the primes indeces with values of 1 . Sum them.
+# 3. Select the primes indexes with values of 1 . Sum them.
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1), 4 ), 's\n\n')
 
-print('\n================  My FIRST SOLUTION,   ===============\n')
+print('\n======  My FIRST SOLUTION, EXPONENTIAL, Must improve it, ,  SUPER SLOW, 4 hours  =======\n')
 t1  = time.time()
 
 
+# @2019-01-13 - Use SETS like in the problem 201 !!! ---- hmmmm ... NOT  EXACTLY !
+# IDEA :
+# 1.  Iterate over all valid power of the type 2^i*3^j -->[1, 2, 3, 4, 6, 8, 9, 12, 16, 18, 24, 27, 32, 36, 48, 54, 64, ... ] <- 143 numbers
+# 2. Make valid subsets of 2, 3, 4, ... elements
+
+# 2nd IDEA :
+# 1.  Form all the numberswith 2 elements. Put them in an array.
+# 2. Then successively formlists of 3, 4, 5 , ... elements
 
 
-
-
-T, V = get_terms( 10**2 )
-
-
-def check_new_elem(L , elem, T) :
+def check_new_elem(L , nr, T ) :
     ''':Description: Checks whether it is safe to add a new element to the list L
-        :Example1: if L = [ 16 ,  24  ] and the new elem is 96 it is invalid since 96 | 16
-            but the elem 27 is valid since 27  do not divide neither 16 neither 24
-        :Example2: if L = [ 4 ,  9  ] and the new elem is 18 it is invalid since 18 | 9
+        :Example1: if L = [ 16 ,  24  ] and the new elem is 96 it is INVALID since 96 | 16
+            but the elem 27 is VALID since 27  do not divide neither 16 neither 24
+        :Example2: if L = [ 4 ,  9  ] and the new elem is 18 it is INVALID since 18 | 9
             but the elem 6 is valid since 6  do not divide neither 4 neither 9    '''
 
-    c, d = T[elem]
+    c, d = T[nr]
     for i in L :
         a , b = T[ i ]
-        print( '.       ' , i , '    a, b =' , T[ i ] ,'        c, d = ',  T[elem] ,'      ' ,elem )
-
-        if  (a < c)  and (b > d) == False :
-                return False
-        if ( a > c ) and (b < d )==False :
-                return False
-
+        # print( '.       ' , i , '    a, b =' , T[ i ] ,'        c, d = ',  T[nr] ,'      nr= ' , nr )
+        if  (a <= c)  and (b > d) == False :                 return False
+        if ( a >= c ) and (b < d )== False :                 return False
     return True
 
 
-print(' check_new_elem :', check_new_elem( [ 24,  32 ] , 81, T )  )
+# print(' check_new_elem :', check_new_elem( [ 36,  27 ] , 16, T )  )
 
 
-### BACKTRACKING
+def solution_special_partitions(lim) :
 
+    Primes= set( prime_sieve(lim) )
+
+    W = [0] * (lim+1)                   # SIEVE used to store how many 2^i* 3^j numbers are
+
+    T, V = get_terms( lim )
+    V = V[1:]
+    # print('T : ', T)
+    # print('V : ', V)
+
+
+    A = [ [i] for i in V  ]
+    print('A : ', A)
+    X = { (lim+2):{1234} }               # Dictionary used for doubles like : elem =  [2, 3] & elem =  [3, 2] = 5
+    w= 2
+
+    while len(X) > 0 :
+        B, X = [], {}              # B will serve as the temp array
+        print('\n - - - -   nr. of elemets = ', w )
+        for s in A :
+            for j in range( len(V) ) :          # V will be unchanged
+                if check_new_elem( s  , V[j], T ) :
+                    elem = s + [ V[j]]
+                    if sum(elem) <= lim :
+                        if sum(elem) not in X :
+                            X[ sum(elem) ] = []
+                        S = sum(elem)
+                        seta = set(elem)
+                        # print( s, j , '      ', s,'    ', V[j] ,'      elem = ', elem,'     sum = ', S )
+
+                        if seta not in X[ sum(elem) ] :
+                            X[S ].append(seta)
+                            B.append(elem)
+                            W[S] += 1          # The Main SIEVE
+
+        A = [i for i in B]
+
+
+        # print('\nX : ',  X )
+        print('A :   length = ',  len(A),'     ' ,A[:10] )
+
+
+        w+=1
+
+    print('\nW : ',  len(W), W[:50] )
+
+    SP = [ p for p in Primes if W[p] == 1 ]
+    print('SP : ', SP)
+    print('\nANSWER :       SP sum =  ', sum(SP)+5 )
+
+
+'''
+ - - - -   nr. of elemets =  2
+A :   length =  5633       [[2, 3], [2, 9], [2, 27], [2, 81], [2, 243], [2, 729], [2, 2187], [2, 6561], [2, 19683], [2, 59049]]
+ - - - -   nr. of elemets =  3
+A :   length =  93866       [[4, 6, 9], [4, 6, 27]
+ - - - -   nr. of elemets =  4
+A :   length =  773881       [[8, 12, 18, 27]
+ - - - -   nr. of elemets =  5
+A :   length =  3440916       [[16, 24, 36, 54, 81]
+ - - - -   nr. of elemets =  6
+A :   length =  8612200       [[32, 48, 72, 108, 162, 243]
+ - - - -   nr. of elemets =  7
+A :   length =  12303612       [[64, 96, 144, 216, 324, 486, 729]
+ - - - -   nr. of elemets =  8
+A :   length =  9927062       [[128, 192, 288, 432, 648, 972, 1458, 2187], [128, 192, 288, 432, 648, 972, 1458, 6561]
+ - - - -   nr. of elemets =  9
+A :   length =  4349817       [[256, 384, 576, 864, 1296, 1944, 2916, 4374, 6561]
+ - - - -   nr. of elemets =  10
+A :   length =  952137       [[512, 768, 1152, 1728, 2592, 3888, 5832, 8748, 13122, 19683]
+ - - - -   nr. of elemets =  11
+A :   length =  87695       [1024, 1536, 2304, 3456, 5184, 7776, 11664, 17496, 26244, 39366, 59049]
+ - - - -   nr. of elemets =  12
+A :   length =  2169       [2048, 3072, 4608, 6912, 10368, 15552, 23328, 34992, 52488, 78732, 118098, 177147]
+ - - - -   nr. of elemets =  13
+A :   length =  0       []
+
+SP :  [5, 7, 13, 17, 23, 43, 59, 61, 113, 181, 193, 199, 241, 467, 479, 499, 
+643, 661, 691, 1753, 1889, 5387, 5531, 5693, 10657, 13249, 13729, 
+14753, 15031, 418811, 36067, 308219, 49891, 54499, 448187, 
+494843, 118061, 122921, 518171, 391163]
+
+'''
+
+solution_special_partitions(10**6)          #    ANSWER :       SP sum =   3053105
 
 t2  = time.time()
-print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')        #   Completed in : 1395.13 s
 
 
 # print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')

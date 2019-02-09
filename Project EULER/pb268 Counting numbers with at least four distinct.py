@@ -207,22 +207,47 @@ class Problem():
 
 
 problem = Problem()
-problem.solve()
+# problem.solve()
 
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
 
-# print('\n--------------------------SOLUTION 2,   --------------------------')
-# t1  = time.time()
-#
-#
-#
-# t2  = time.time()
-# print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-#
-#
+print('\n--------------------------SOLUTION 2,      Inclusion - Exclusion  , 2 min       --------------------------')
+t1  = time.time()
+
+'''==== Sat, 15 Dec 2018, 23:27, cfranck , South Korea
+Inclusion - Exclusion, like others. Evaluated coefficients for PIE with separate code. ~30s in total.
+
+'''
+
+
+from itertools import combinations
+
+def PE268():
+    primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+    coeff = [0, 0, 0, 0, 1, -4, 10, -20, 35, -56, 84, -120, 165, -220, 286]
+
+    limit = 10**16
+    grand_total = 0
+    for i in range(4, 15):
+        total = 0
+        for each in combinations(primes, i):
+            target = 1
+            for k in range(i):
+                target *= each[k]
+            total += limit // target
+        grand_total += total * coeff[i]
+    return grand_total
+
+print(PE268())
+
+
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+
+
 # print('\n--------------------------SOLUTION 3,   --------------------------')
 # t1  = time.time()
 #

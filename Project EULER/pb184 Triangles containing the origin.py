@@ -531,7 +531,7 @@ test_point_inside_circle_sector_BF(R, x1, y1, x2, y2 )
 # @2018-06-13 - Important observation :           !!!!!!!!!!!!!!!!!!!!
 # 1.  V1 is from (0, pi/2) and V2 is from (0+i, pi/2)
 # 2.  V1 is from (0, pi/2) and V2 is from (pi/2, pi)
-I still obtain duplicates. Must do a dictionary and keep track of duplicates !
+# I still obtain duplicates. Must do a dictionary and keep track of duplicates !
 
 
 def triangles_with_origin(R) :
@@ -564,7 +564,9 @@ def triangles_with_origin(R) :
     # print('\nT : ', len(T),'   ', T )
 
 
-triangles_with_origin(2)
+triangles_with_origin(3)
+
+# @2019-01-06 - For I(3) must give CNT = 180 => So I am missing a few
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')

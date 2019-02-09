@@ -64,6 +64,7 @@ print(  a(10**6) )
 
 # @2017-10-11, 22:00   # scooping - the sequence repeats itself in zooming
 
+https://oeis.org/A001462/b001462.txt
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,6), 'ms\n\n')

@@ -50,6 +50,7 @@ x y : A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P
 0 1 : 0  0  0  0  1  1  1  1  0  0  0  0  1  1  1  1
 1 0 : 0  0  1  1  0  0  1  1  0  0  1  1  0  0  1  1
 1 1 : 0  1  0  1  0  1  0  1  0  1  0  1  0  1  0  1
+
 Each of the columns A-P above, represents a distinct 2-input binary truth table. 
 A few of them are well known and have specific names e.g. column B is usually called "AND", 
 column H is usually called "OR" etc. But most of them are not particularly useful, so they do not have distinct names.

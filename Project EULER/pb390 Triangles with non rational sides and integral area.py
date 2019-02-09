@@ -21,8 +21,11 @@ Find S(10^10).
 import time, zzz
 from math import sqrt
 
-### Calculate Area using Heron Simplification
+### Calculate Area using Heron Simplification - Archimedes Theorem
 A = lambda x,y :  (1/2) * sqrt(x**2 * y**2 + x**2 + y**2)
+
+# ##    Archimedes Area Calculation :
+A_squared = lambda a, b : pow ( a*a + b*b +(a*b)**2, 1/2) / 2
 
 print( ' Area for x,y =         ', A(2,8))
 
@@ -39,26 +42,27 @@ def get_factors(n):       ### o(^_^)o  FASTEST  o(^_^)o  ###
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
-# def brute_force (lim, constraint) :
-#     cnt = 0
-#     Suma = 0
-#     for b in range(2, lim+1, 2) :
-#         for c in range(b, 100*lim+1, 2) :
-#             Area = A(b,c)
-#             if Area %1 == 0 and Area <= constraint :
-#                 cnt+=1
-#                 Suma += Area
-#                 print(str(cnt)+'.     b =  ', b ,'    c =  ', c ,  '         Area = ' , Area ,'     c%b =', c%b , '       c/b = ', c/b )
-#
-#     return print('\n Total Area = ', Suma)
+def brute_force (lim, constraint) :     # @2019-01-04, 19:00 - Works well for the limit = 10^6
+    cnt = 0
+    Suma = 0
+    for b in range(2, lim+1, 2) :
+        # for c in range(3*b, 100*lim+1, 2) :
+        for c in range(3*b, constraint * 2, 2) :
+            Area = A(b,c)
+            if Area > constraint : break
+            if Area %1 == 0 and Area <= constraint :
+                cnt+=1
+                Suma += Area
+                print(str(cnt)+'.     b =  ', b ,'    c =  ', c ,  '         Area = ' , Area ,'         c%b =', c%b , '       c/b = ', c/b  )
 
-# brute_force(500, 10**6)
+    print('\n Total Area = ', Suma)
+    return Suma
 
-t2  = time.time()
-print('\nCompleted in :', round((t2-t1)*1000,2), 'ms\n\n')
+# brute_force(10000, 10**10)
 
-print('\n================  My FIRST SOLUTION,   ===============\n')
-t1  = time.time()
+
+
+
 
 # ==== My APPROACH ===
 # 1. First we must put in the Herons formula the values for √(1+b^2), √(1+c^2) and √(b^2+c^2)
@@ -85,10 +89,15 @@ def non_rational_sides_triangles(  constraint ) :
                     print(str(cnt)+'.     b =  ', b ,'    c =  ', c ,  '         Area = ' , A ) #, '    A_factors = ', get_factors(A)  , '        ',  get_factors(c) )
                     Suma += A
 
-    return print('\n Total Sum Area = ', Suma)
+    print('\n Total Sum Area = ', Suma)
+    return Suma
 
-non_rational_sides_triangles( 10**10)                           # WEONG Total Sum Area =  286926266212986
+# non_rational_sides_triangles( 10**10)                           # WRONG Total Sum Area =  286926266212986
 # @2017-09-22 - This problem takes too long ! can't find another method different than BRUTE FORCE !!!
+
+# @2019-01-04 - The solution is I think to parametrize the equation :
+# s^2 = b^2 + c^2 + b^2*c^2   in a similar fashion as pythagorean triplets are generated
+# Maybe Brute force in JAVA ?
 
 # 42861.     b =   49932     c =   393114          Area =  9814484126
 # 42862.     b =   49946     c =   393224          Area =  9819982954
@@ -122,9 +131,47 @@ non_rational_sides_triangles( 10**10)                           # WEONG Total Su
 
 # non_rational_sides_triangles1( 10**6)
 
+t2  = time.time()
+print('\nCompleted in :', round((t2-t1),2), 's\n\n')
+
+print('\n================  My FIRST SOLUTION,  1 hour  ===============\n')
+t1  = time.time()
+
+
+def second_solution (limit) :
+    N = int(limit * 2)
+    S, count = 0, 0
+    b = 2
+    while  b*b <= N :
+        upper_bound = N // (b * b )
+        for t in range(2, upper_bound+1, 2 ) :
+            if (t % 1e8 == 0) :
+                print("t = ", t,  '    upper_bound =  ' ,upper_bound);
+            s = b * b * t * t - b * b + t * t
+            v = sqrt(s)
+            if v %1 == 0 :
+                c = b * t + v
+                Area = b * c + t
+                if Area > N : break
+
+                count += 1
+                print(str(count) + '.       b = ', b , '      c= ', c   ,'    Area = ', Area//2 ,'       t= ' , t )
+                S += Area / 2
+
+        b+=2
+
+    print('\n Answer = ', S )
+    return S
+
+second_solution(10**6)              # It verifies for 10**6, gives the correct answer !
+
+# WRONG  : Answer =  6209341318032.0               #               Completed in : 3822.25962 s
+
+
+# @2019-01-27, 20:49:     I must understand the problem and parametrize it properly.
 
 t2  = time.time()
-print('\nCompleted in :', round((t2-t1)*1000,2), 'ms\n\n')
+print('\nCompleted in :', round((t2-t1)/60,2), 'mins\n\n')
 
 
 '''
@@ -136,14 +183,6 @@ using namespace std;
 const long long N = 1e10 * 2;
 
 int main() {
-  // for (int a = 1; a <= 10000; ++a)
-  //   for (int b = a + 1; b <= 10000; ++b) {
-  //     long long s = (a * a + 1ll) * (b * b + 1ll) - 1;
-  //     int t = sqrt(s);
-  //     if ((long long)t * t == s && b != a + 1 && b != 2 * a * a) {
-  //       printf("%d %d %d: %d %d\n", a, b, t, t % b, b / (t % b));
-  //     }
-  //   }
   long long ans = 0;
   for (long long a = 2; a * a + 1 <= N; a += 2) {
     long long upper_bound = N / (a * a + 1);

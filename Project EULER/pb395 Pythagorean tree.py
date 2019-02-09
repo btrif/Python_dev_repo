@@ -25,7 +25,7 @@ Find the smallest area possible for such a bounding rectangle, and give your ans
 
 '''
 import time, zzz
-from math import cos, acos, sqrt, sin, asin, pi, tan, atan
+from math import cos, acos, sqrt, sin, asin, pi, tan, atan, atan2
 
 # @ 2018-05-23
 # Obviously , we must use recursion.
@@ -37,7 +37,6 @@ from math import cos, acos, sqrt, sin, asin, pi, tan, atan
 ###########         The properties of the 3,4,5 Pythagorean Triangle        ##########
 
 print('\n ###########         The properties of the 3,4,5 Pythagorean Triangle        ########## ')
-
 
 A = [ acos(4/5)*180/pi , acos(3/5)*180/pi  ]
 E = [ 4/5, 3/5 ]
@@ -51,9 +50,9 @@ alpha_ =  acos ( 4/5 )
 beta_ =  acos ( 3/5 )
 
 
-print('the two segments of the normal through the angle of 90 degrees :          c1 = ' ,c1_(5) ,   '    c2 = ' ,c2_(5)     )
-print('cathetes         a = ' ,a_(5) ,   '    b = ' ,b_(5)     )
-print('Height :   h = ' ,h_(4) )
+print('the two segments of the normal through the angle of 90 degrees :          c1 = ' ,c1_(1) ,   '    c2 = ' ,c2_(1)     )
+print('cathetes         a = ' ,a_(1) ,   '    b = ' ,b_(1)     )
+print('Height :   h = ' ,h_(4/5) )
 print('alpha_ : rad =  ' ,alpha_ , '    deg =', alpha_*180/pi )
 print(  'beta_ : rad = ' ,beta_ ,'     deg = ',beta_ *180/pi )
 print('-----------')
@@ -78,7 +77,7 @@ t1  = time.time()
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
-print('\n================  My FIRST ATTEMPT SOLUTION, close but not enough  ===============\n')
+print('\n-------------   My FIRST ATTEMPT SOLUTION, close but not enough  ------------------ \n')
 t1  = time.time()
 
 
@@ -124,7 +123,7 @@ def next_orientation(orientation):
 
 def next_base(A, B, orientation, direction):
     ''':Description: Gets either right (small base) either left (big base) depending
-    on which direction is chosen. It dows this by finding first the point E of the intersection
+    on which direction is chosen. It does this by finding first the point E of the intersection
     of the two cathetes
     :param A: tuple, containing the point down base
     :param B: tuple, containing the point down base
@@ -277,9 +276,36 @@ Area = ( (xxy[1]-xxy[0]) * (xxy[3] - xxy[2]) )
 print('Area = ',   Area  )
 print('Area = ',   round( Area, 10 )  )
 
-
 # @ 2018-12-19 -  I must rethink the problem, I get good values for the x_min and x_max, but wrong values
 #     even if they are close for y_min and y_max
+
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+
+
+# IDEAS :
+# https://matthew-brett.github.io/teaching/rotation_2d.html
+# https://en.wikipedia.org/wiki/Rotation_matrix
+
+print('\n============       MY SECOND SOLUTION      ==============')
+t1  = time.time()
+
+A = [ acos(4/5)*180/pi , acos(3/5)*180/pi  ]
+E = [ 4/5, 3/5 ]
+
+c1_ = lambda base : 3.2*base / 5
+c2_ = lambda base : 1.8*base / 5
+a_ = lambda base : 4*base/5
+b_ = lambda base : 3*base/5
+h_ = lambda a : 3*a /5
+alpha_ =  acos ( 4/5 )
+beta_ =  acos ( 3/5 )
+
+v1 = [ [0, 0], [0, 1 ]  ]
+
+
+
+
 
 
 
@@ -287,7 +313,6 @@ print('Area = ',   round( Area, 10 )  )
 
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
-
 
 # print('\n===============OTHER SOLUTIONS FROM THE EULER FORUM ==============')
 # print('\n--------------------------SOLUTION 1,   --------------------------')

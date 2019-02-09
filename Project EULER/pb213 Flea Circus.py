@@ -249,13 +249,13 @@ def Monte_Carlo_custom_nr_of_jump(matrix_size , nr_of_jumps , runs ) :
 #     return print('\nExpected number of unoccupied squares  = ' , round(NR/nr_of_times, 6) )
 
 # Monte_Carlo_Simulation(10**3)
-# @2019-09-10 - Too slow in Python, about 80 hours : Implement in Java
+# @2017-09-10 - Too slow in Python, about 80 hours : Implement in Java
 
 
 t2  = time.time()
 print('\n#Completed in :', round((t2-t1), 2), 's\n\n')
 
-print('\n================  My FIRST SOLUTION,  5 min ===============\n')
+print('\n================  My FIRST SOLUTION, Probabilities 5 min ===============\n')
 t1  = time.time()
 
 

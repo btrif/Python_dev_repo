@@ -897,7 +897,29 @@ class ModInverse():
             g, y, x = self._extended_gcd(b % a, a)
             return (g, x - (b // a) * y, y)
 
+print('---------------------- Is square formula --------------------')
+###     Is square formula :
+is_square = lambda x :  int( x**(1/2) )**2 == x
 
 
+print('\n-------------------       Unique  Combinations ----------------------- ')
+
+from itertools import combinations
+
+from itertools import combinations, chain
 
 
+L = [3, 3, 3, 139]
+
+def unique_combinations(L) :        # Made by Bogdan Trif @ 2019-01-21, 20:00
+    ''':Description: Having a list like L = [3, 3, 3, 139] it outputs the unique combinations of elements
+    without repeating the same subsets :                    '''
+
+    COMB = [ list(set(combinations(L, i))) for i in range(1, len(L)+1)  ]
+    single_flattened = list( chain.from_iterable(COMB) )        # Method I
+#     single_flattened = [val for sublist in COMB for val in sublist]   # Method II
+
+    return single_flattened
+
+
+print('unique combinations : \n ',  unique_combinations(L) )

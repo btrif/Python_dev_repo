@@ -5,7 +5,7 @@
 # for odd/ even terms + /- and we do not know which divisors are composed of 2,3,4 primes.
 # Example : [3, 21, 7, 93, 651, 217, 31] , we may know the primes (1 terms with Rabbin - Muller )
 # but to test again for terms composed from 2,3,4 terms it takes computational resources.
-# THE SOLUTION is to use it in conjuction with mobius Sieve :
+# THE SOLUTION is to use it in conjuction with Mobius Sieve :
 
 import time
 
@@ -58,6 +58,52 @@ lim =  56049977
 t2  = time.time()
 print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
+
+print('\n------------------         Sieve of Factors, Factorization   -----------------   ')
+t1  = time.time()
+
+class sieve_factorization():         #   o(^_^)o  Made by Bogdan Trif @ 2019-01-30
+    def __init__(self, lim):
+        self.lim = lim
+        self.n = int( lim**(1/2) )+1
+        self.Primes = self.prime_sieve()
+#         print(list(self.Primes))
+
+    def prime_sieve (self):
+        P = [ False if i % 2 == 0 else True for i in range (self.lim) ]
+        yield 2
+        for i in range (3, self.lim):
+            if P[i]:
+                for j in range (i*i, self.lim, i):
+                    P[j] = False
+                yield i
+
+
+    def sieve_factorize ( self ):
+        F = [ [] for _ in range (self.lim) ]
+        for p in self.Primes:
+            for x in range (p, self.lim, p):
+                F[x] += [p]
+            ### Add powers
+            i = 2
+            while  p**i <  lim :
+                for x in range(p**i, self.lim, p**i):
+                    F[x] += [p]
+
+                i+=1
+
+        return F
+
+
+SD = sieve_factorization(10**7)
+
+F = SD.sieve_factorize()
+x = 5648944
+print(' factors of '+str(x) +'  :  '  , F[x]  )
+
+t2  = time.time()
+print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
+
 #####       PROJECT EULER, PROBLEM 540  , 177 seconds for 56* 10**6    ######### Can be improved
 
 t1  = time.time()
@@ -79,8 +125,9 @@ def sieve_factorize (M, s):
             f[x] += [p]
     return f
 
-N = 3141592653589793
-lim = int(sqrt(N))+1
+# N = 3141592653589793
+N = 10**6
+lim = int( N**(1/2) )+1
 s = prime_sieve( lim )
 f = sieve_factorize( lim, s )
 
@@ -92,7 +139,7 @@ print('\n# Completed in :', round((t2-t1)*1000,2), 'ms\n\n')
 
 
 
-#########################       ANOTHER ONE , Taken from internet
+#########################       ANOTHER ONE , Taken from internet   , SLOW    #############
 # https://codereview.stackexchange.com/questions/18346/optimizing-divisor-sieve
 # https://stackoverflow.com/questions/13280198/optimizing-divisor-sieve
 
@@ -127,8 +174,8 @@ def numdivisorSieve(n):
             divs[j] += 2
     return divs
 
-A = divisorSieve(10**6)
-print(A[:100])
+# A = divisorSieve(10**6)
+# print(A[:100])
 
 
 t2  = time.time()

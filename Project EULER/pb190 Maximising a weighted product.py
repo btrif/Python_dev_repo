@@ -265,10 +265,10 @@ t1  = time.time()
 from fractions import Fraction
 
 def sol(n):
-	t = Fraction(1,1)
-	for i in range(1, n+1):
-		t *= Fraction((2*i)**i, (n+1)**i)
-	return int(t)
+    t = Fraction(1,1)
+    for i in range(1, n+1):
+        t *= Fraction((2*i)**i, (n+1)**i)
+    return int(t)
 
 T = 0
 for i in range(2,16):

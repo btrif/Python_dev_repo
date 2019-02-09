@@ -62,7 +62,7 @@ class Factorization():
     ''' Based on a prebuilt prime sieve, and we must pay attention that the prime up range is not
     to low, so that we don't miss a prime when we first factor . As default the value is set to 10.000   '''
     def __init__(self):
-        self.prime_table = PrimeTable(10**4)
+        self.prime_table = PrimeTable(10**5)
 
     def get_divisors(self, n):
         d = n
@@ -91,6 +91,46 @@ class Factorization():
 primes = prime_sieve_numpy(100)
 print(primes)
 
+class sieve_factorization():         #   o(^_^)o  Made by Bogdan Trif @ 2019-01-30
+    def __init__(self, lim):
+        self.lim = lim
+        self.n = int( lim**(1/2) )+1
+        self.Primes = self.prime_sieve()
+#         print(list(self.Primes))
+
+    def prime_sieve (self):
+        P = [ False if i % 2 == 0 else True for i in range (self.lim) ]
+        yield 2
+        for i in range (3, self.lim):
+            if P[i]:
+                for j in range (i*i, self.lim, i):
+                    P[j] = False
+                yield i
+
+
+    def sieve_factorize ( self ):
+        F = [ [] for _ in range (self.lim) ]
+        for p in self.Primes:
+            for x in range (p, self.lim, p):
+                F[x] += [p]
+            ### Add powers
+            i = 2
+            while  p**i <  self.lim :
+                for x in range(p**i, self.lim, p**i):
+                    F[x] += [p]
+
+                i+=1
+
+        return F
+
+
+# SD = sieve_factorization(10**7)
+#
+# F = SD.sieve_factorize()
+# x = 5648944
+# print(' factors of '+str(x) +'  :  '  , F[x]  )
+
+
 print('\n--------------------------TESTS------------------------------')
 t1  = time.time()
 
@@ -103,21 +143,37 @@ for i in range(1, 10):
 print('-----------')
 
 
-F = Factorization()
-print(F.get_divisors(120120))
+# F = Factorization()
+# print(F.get_divisors(120120))
 
 def brute_force_check(up_lim):
     N = 0
+
+    FA = Factorization()
     for n in range(1, up_lim+1):
-        F = set(get_factors(n))
-        print(str(n)+'.     ', F ,'   ', len(F))
-        N += len(F)
+        F = FA.get_divisors(n)
+
+
+        print(str(n)+'.     ', F ,'      len = ', len(F))
+        if len(F) == 1 : N +=1
+
+        if len(F) > 1 :
+            for i in range(2, len(F)//2+1  ) :
+                C = list( itertools.combinations( F, i  ) )
+                print('C : ', C)
+                max_val = 1
+                for J in C :
+                    print(j)
+                    MUST FINISH THIS !!!
+
+
+
     return print('\nResult : \t', N,'\n')
 
 
-# brute_force_check(10**2)
+brute_force_check(10**2)
 
-# CHECK ANSWER : 30 longest antichain for  correct for 120120
+# CHECK ANSWER : 30 longest antichain   correct for 120120
 
 print(get_factors(120120))
 
@@ -140,9 +196,24 @@ def antichain(up_lim):
 
     return print('\nResult :  ', sum(sieve))
 
-antichain(10**2)
+# antichain(10**2)
 
 
+
+SD = sieve_factorization(10**2)
+
+F = SD.sieve_factorize()
+# x = 5648944
+# print(' factors of '+str(x) +'  :  '  , F[x]  )
+print(F)
+
+@2019-01-30 - Must write an antichain exponents evaluation. For example :
+# 30 = [2, 3, 5] --> Divisors = [2, 3, 5, 6, 10, 15, 30] --> {2, 3, 5} is the longest antichain
+# 60 = [2, 2, 3, 5] --> Divisors = [2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60] --> {4, 6, 10, 15} is the longest antichain
+# 90 = [2, 3, 3, 5] --> Divisors = [2, 3, 5, 6, 9, 10, 15, 18, 30, 45, 60,90] --> {6, 9, 10, 15} is the longest antichain
+# 36 = [2, 2, 3, 3] --> Divisors = [2, 3, 4, 6, 9, 12, 18, 24, 36] --> {4, 6, 9} is the longest antichain
+# 72 = [2, 2, 2, 3, 3] --> Divisors = [2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72] --> {4, 6, 9} is the longest antichain
+# 144 = [2, 2, 2, 2, 3, 3] --> Divisors = [2, 3, 4, 6, 8, 9, 12, 16, 18, 24, 36, 48, 72, 144] --> {4, 6, 9} is the longest antichain
 
 t2  = time.time()
 print('\nCompleted in :', round((t2-t1)*1000,2), 'ms\n\n')

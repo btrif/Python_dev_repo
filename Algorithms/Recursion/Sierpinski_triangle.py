@@ -69,7 +69,7 @@ def main():
    # myWin = turtle.Screen()
    side_len = 400
    myPoints = [ [-side_len , -side_len//2 ] , [ 0, side_len ],[ side_len,-side_len//2 ] ]
-   sierpinski( myPoints , 5 , myTurtle)
+   sierpinski( myPoints , 2 , myTurtle)
    myWin.exitonclick()
 
 main()
