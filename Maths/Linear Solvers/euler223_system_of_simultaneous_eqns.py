@@ -3,13 +3,17 @@
 
 '''
 
+A Note on Generating Almost Pythagorean Triples
+
+https://www.veltech.edu.in/wp-content/uploads/2016/04/Paper-09-15.pdf
+
 Use fsolve to find the solution of the following two equations :
 
-f(x,y) = 2*x^(2/3) + y^(2/3) − 9^(1/3)
-g(x,y) = x^2/4 + y^(1/2) − 1
+    f[0] =  p**2 + q**2 - r**2 -1
+    f[1] = (a+p)**2 + (b+q)**2 - (c+r)**2 - 1
+    f[2] = (2*a-p)**2 + (2*b-q)**2 - (2*c-r)**2 - 1
 
-
-Use the initial guess (init conds. ) :  x_0=1, y_0=1
+Use the initial guess (init conds. ) :  x_0=1, y_0=0, z_0 = 0
 
 '''
 
@@ -40,7 +44,7 @@ def func( init_cond , *x_y_z ):
     return f
 
 #############           HERE IS THE PATTERN      !!!!!!!!!         ################
-x_y_z = ( 3, 4, 5 )        # works         p, q, r  =  1.0 3.0 3.0
+# x_y_z = ( 3, 4, 5 )        # works         p, q, r  =  1.0 3.0 3.0
 # x_y_z = ( 5, 12, 13 )        # works         p, q, r  =  1.0 5.0 5.0
 # x_y_z = ( 7, 24, 25 )      # works           p, q, r  =  1.0 7.0 7.0
 # x_y_z = ( 9, 40, 41 )          # works          p, q, r  =  1.0 9.0 9.0
@@ -48,15 +52,23 @@ x_y_z = ( 3, 4, 5 )        # works         p, q, r  =  1.0 3.0 3.0
 # x_y_z = ( 13, 84 ,85)              # works      p, q, r  =  1.0 13.0 13.0
 # x_y_z = ( 15, 112, 113)              # works      p, q, r  =  1.0 15.0 15.0
 # x_y_z = ( 17, 144 ,145)              # works      p, q, r  =  1.0 17.0 17.0
+x_y_z = ( 35, 612, 613)              # works      p, q, r  =  1.0 35.0 35.0
 
 
+x_y_z = ( 15, 8, 17)              #  DOES NOT WORK
+
+# Out Primitive Pythagorean Triplet with properties : gcd(a,b,c) = 1;     b|2 = True ;    a,b,c > 0
 a, b, c = x_y_z
-A = fsolve( func, [ 0 , a  , a  ],  args=x_y_z )
+print('Our Pythagorean Triplet is  : ',  a, b, c ,'           those are ')
+
+# We try with initial conditions a, b, c . for big values like  x_y_z = ( 35, 612, 613)   the SOLVER gives strange results
+# A = fsolve( func, [ 0 , a  , a  ],  args=x_y_z )
+A = fsolve( func, [ 14 , 17  , 22  ],  args=x_y_z )
 
 
 # As we see bellow  the computed values of the fnct func(x,y,z) = 0,0,0 pretty close to 0 which means that
 # fsolve evaluated our problem correctly
-print('GENERAL SOLUTION : ' , A, '    ;              Evaluation of soln :   ',func( A, *x_y_z )  )
+print('\nGENERAL SOLUTION : ' , A, '    ;              Evaluation of soln :   ',func( A, *x_y_z )  )
 
 p, q, r = np.round(A)
 print(' Solution :  ', A , '  ;        Soln.  rounded :       p, q, r  = '  , p, q, r  )
