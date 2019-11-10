@@ -593,7 +593,7 @@ print(enigma)
 
 
 print('\n -----------NESTED LIST , Iteration over an unknown Number of Sublists----------- ')
-
+# Association ( product )  of a nested lists ( list of lists )
 from itertools import product
 
 lists = [    ['THE', 'A'],

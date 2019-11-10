@@ -897,6 +897,12 @@ class ModInverse():
             g, y, x = self._extended_gcd(b % a, a)
             return (g, x - (b // a) * y, y)
 
+
+# Assuming that p and q are coprime, 0 <= a < p, and 0 <= b < q, this returns the unique
+# integer x in the range [0, p*q) such that x satisfies (x = a mod p) and (x = b mod q).
+def chinese_remainder_theorem(a, p, b, q):
+	return (a + (b - a) * eulerlib.reciprocal_mod(p % q, q) * p) % (p * q)
+
 print('---------------------- Is square formula --------------------')
 ###     Is square formula :
 is_square = lambda x :  int( x**(1/2) )**2 == x
